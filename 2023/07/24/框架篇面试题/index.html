@@ -24,7 +24,7 @@
 <meta property="og:description" content="框架篇面试题-参考回答 面试官：Spring框架中的单例bean是线程安全的吗？候选人： 嗯！ 不是线程安全的，是这样的 当多用户同时请求一个服务时，容器会给每一个请求分配一个线程，这是多个线程会并发执行该请求对应的业务逻辑（成员方法），如果该处理逻辑中有对该单列状态的修改（体现为该单例的成员属性），则必须考虑线程同步问题。 Spring框架并没有对单例bean进行任何多线程的封装处理。关于单例b">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-24T07:56:54.000Z">
-<meta property="article:modified_time" content="2023-07-24T07:58:49.779Z">
+<meta property="article:modified_time" content="2023-07-24T08:01:49.899Z">
 <meta property="article:author" content="Jokerz">
 <meta name="twitter:card" content="summary_large_image">
   
