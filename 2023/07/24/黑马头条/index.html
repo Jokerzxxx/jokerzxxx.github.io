@@ -1,20 +1,27 @@
-
-
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
-
-
+<html lang='en'>
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Jokerz">
-  <meta name="keywords" content="">
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>黑马头条 - Java从入门到放弃</title>
+
   
     <meta name="description" content="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)1)课程对比 2)项目概述2.1)能让你收获什么 2.2)项目课程大纲 2.3)项目概述随着智能手机的普及，人们更加习惯于通过手机来看新闻。由于生活节奏的加快，很多人只能利用碎片时间来获取信息，因此，对于移动资讯客户端的需求也越来越高。黑马头条项目正是在这样背景下开发出来。黑马头条项目采用当下火热的微服务+大数据技术架构实现。本">
 <meta property="og:type" content="article">
@@ -76,260 +83,81 @@
 <meta property="article:published_time" content="2023-07-24T08:03:16.000Z">
 <meta property="article:modified_time" content="2023-07-24T08:05:46.085Z">
 <meta property="article:author" content="Jokerz">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jokerzxxx.github.io/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png">
   
   
   
-  <title>黑马头条 - Java从入门到放弃</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
+  <!-- feed -->
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jokerzxxx.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+  
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  
+
   
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
-
+</head>
 
 <body>
   
 
-  <header>
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
     
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
 
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="黑马头条"></span>
-          
-        </div>
+<header class="header"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">Java从入门到放弃</div></a></div>
 
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-24 16:03" pubdate>
-          July 24, 2023 pm
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          70k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          588 mins
-        
-      </span>
-    
-
-    
-    
-  </div>
+<nav class="menu dis-select"></nav>
+</header>
 
 
-        
-      </div>
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div></div></widget>
 
-      
-    </div>
-  </div>
-</div>
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">黑马头条</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AF%BE%E7%A8%8B%E5%AF%B9%E6%AF%94"><span class="toc-text">1)课程对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-text">2)项目概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E8%83%BD%E8%AE%A9%E4%BD%A0%E6%94%B6%E8%8E%B7%E4%BB%80%E4%B9%88"><span class="toc-text">2.1)能让你收获什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B%E5%A4%A7%E7%BA%B2"><span class="toc-text">2.2)项目课程大纲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-text">2.3)项目概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%A1%B9%E7%9B%AE%E6%9C%AF%E8%AF%AD"><span class="toc-text">2.4)项目术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E4%B8%9A%E5%8A%A1%E8%AF%B4%E6%98%8E"><span class="toc-text">2.5)业务说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-text">3)技术栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-nacos%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">4)nacos环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%95%9C%E5%83%8F%E5%87%86%E5%A4%87"><span class="toc-text">4.1)虚拟机镜像准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-nacos%E5%AE%89%E8%A3%85"><span class="toc-text">4.2)nacos安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%88%9D%E5%A7%8B%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA"><span class="toc-text">5)初始工程搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">5.1)环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E4%B8%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="toc-text">5.2)主体结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%99%BB%E5%BD%95"><span class="toc-text">6)登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">6.1)需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E8%A1%A8%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-text">6.2)表结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-text">6.3)思路分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E8%BF%90%E8%90%A5%E7%AB%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA"><span class="toc-text">6.4)运营端微服务搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">6.4)登录功能实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8E%A5%E5%8F%A3%E5%B7%A5%E5%85%B7postman%E3%80%81swagger%E3%80%81knife4j"><span class="toc-text">7)接口工具postman、swagger、knife4j</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-postman"><span class="toc-text">7.1)postman</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-swagger"><span class="toc-text">7.2)swagger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-knife4j"><span class="toc-text">7.3)knife4j</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E7%BD%91%E5%85%B3"><span class="toc-text">8)网关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AE%9E%E7%8E%B0jwt%E6%A0%A1%E9%AA%8C"><span class="toc-text">1.3 全局过滤器实现jwt校验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%89%8D%E7%AB%AF%E9%9B%86%E6%88%90"><span class="toc-text">9)前端集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%80%9D%E8%B7%AF"><span class="toc-text">9.1)前端项目部署思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E9%85%8D%E7%BD%AEnginx"><span class="toc-text">9.2)配置nginx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8%E5%8A%A0%E8%BD%BD"><span class="toc-text">1)文章列表加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">1.1)需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%A1%A8%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-text">1.2)表结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%AF%BC%E5%85%A5%E6%96%87%E7%AB%A0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.3)导入文章数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.3.1)导入数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-%E5%AF%BC%E5%85%A5%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-text">1.3.2)导入对应的实体类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">1.4)实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">1.5)接口定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.6)功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-%EF%BC%9A%E5%AF%BC%E5%85%A5heima-leadnews-article%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%8C%E8%B5%84%E6%96%99%E5%9C%A8%E5%BD%93%E5%A4%A9%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD"><span class="toc-text">1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-%EF%BC%9A%E5%AE%9A%E4%B9%89%E6%8E%A5%E5%8F%A3"><span class="toc-text">1.6.2)：定义接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-3-%EF%BC%9A%E7%BC%96%E5%86%99mapper%E6%96%87%E4%BB%B6"><span class="toc-text">1.6.3)：编写mapper文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-4-%EF%BC%9A%E7%BC%96%E5%86%99%E4%B8%9A%E5%8A%A1%E5%B1%82%E4%BB%A3%E7%A0%81"><span class="toc-text">1.6.4)：编写业务层代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-5-%EF%BC%9A%E7%BC%96%E5%86%99%E6%8E%A7%E5%88%B6%E5%99%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">1.6.5)：编写控制器代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-6-%EF%BC%9Aswagger%E6%B5%8B%E8%AF%95%E6%88%96%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E6%B5%8B%E8%AF%95"><span class="toc-text">1.6.6)：swagger测试或前后端联调测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-freemarker"><span class="toc-text">2)freemarker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-freemarker-%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.1) freemarker 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-text">2.2) 环境搭建&amp;&amp;快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%88%9B%E5%BB%BA%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B"><span class="toc-text">2.2.1) 创建测试工程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">2.2.2) 配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%B1%BB"><span class="toc-text">2.2.3) 创建模型类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-4-%E5%88%9B%E5%BB%BA%E6%A8%A1%E6%9D%BF"><span class="toc-text">2.2.4) 创建模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-5-%E5%88%9B%E5%BB%BAcontroller"><span class="toc-text">2.2.5) 创建controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-6-%E5%88%9B%E5%BB%BA%E5%90%AF%E5%8A%A8%E7%B1%BB"><span class="toc-text">2.2.6) 创建启动类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-7-%E6%B5%8B%E8%AF%95"><span class="toc-text">2.2.7) 测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-freemarker%E5%9F%BA%E7%A1%80"><span class="toc-text">2.3) freemarker基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%A7%8D%E7%B1%BB"><span class="toc-text">2.3.1) 基础语法种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2-%E9%9B%86%E5%90%88%E6%8C%87%E4%BB%A4%EF%BC%88List%E5%92%8CMap%EF%BC%89"><span class="toc-text">2.3.2) 集合指令（List和Map）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-if%E6%8C%87%E4%BB%A4"><span class="toc-text">2.3.3) if指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2.3.4)  运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-5-%E7%A9%BA%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-text">2.3.5) 空值处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-6-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="toc-text">2.3.6) 内建函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%9D%99%E6%80%81%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-text">2.4) 静态化测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">2.4.1) 需求分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E9%9D%99%E6%80%81%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-text">2.4.2) 静态化测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1MinIO"><span class="toc-text">3) 对象存储服务MinIO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-MinIO%E7%AE%80%E4%BB%8B"><span class="toc-text">3.1 MinIO简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-MinIO%E7%89%B9%E7%82%B9"><span class="toc-text">3.2 MinIO特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%BC%80%E7%AE%B1%E4%BD%BF%E7%94%A8"><span class="toc-text">3.3 开箱使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8"><span class="toc-text">3.3.1 安装启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-%E7%AE%A1%E7%90%86%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-text">3.3.2 管理控制台</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-text">3.4 快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%AF%BC%E5%85%A5pom%E4%BE%9D%E8%B5%96"><span class="toc-text">3.4.1 创建工程，导入pom依赖</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%B0%81%E8%A3%85MinIO%E4%B8%BAstarter"><span class="toc-text">3.5 封装MinIO为starter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97heima-file-starter"><span class="toc-text">3.5.1 创建模块heima-file-starter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-text">3.5.2 配置类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-3-%E5%B0%81%E8%A3%85%E6%93%8D%E4%BD%9CminIO%E7%B1%BB"><span class="toc-text">3.5.3 封装操作minIO类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-4-%E5%AF%B9%E5%A4%96%E5%8A%A0%E5%85%A5%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">3.5.4 对外加入自动配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-5-%E5%85%B6%E4%BB%96%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8"><span class="toc-text">3.5.5 其他微服务使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85"><span class="toc-text">4)文章详情</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">4.1)需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-text">4.2)实现方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">4.3)实现步骤</span></a></li></ol></li></ol></div></div></widget>
+
+
+
 
 </div>
 
-  </header>
 
-  <main>
-    
+    </aside>
+    <div class='l_main'>
       
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
       
 
-    </div>
 
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">黑马头条</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关"><a href="#1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关" class="headerlink" title="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)"></a>1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)</h1><h2 id="1-课程对比"><a href="#1-课程对比" class="headerlink" title="1)课程对比"></a>1)课程对比</h2><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png" srcset="/img/loading.gif" lazyload alt="image-20210407203818808"></p>
-<h2 id="2-项目概述"><a href="#2-项目概述" class="headerlink" title="2)项目概述"></a>2)项目概述</h2><h3 id="2-1-能让你收获什么"><a href="#2-1-能让你收获什么" class="headerlink" title="2.1)能让你收获什么"></a>2.1)能让你收获什么</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203902473-1690185911430-22.png" srcset="/img/loading.gif" lazyload alt="image-20210407203902473"></p>
-<h3 id="2-2-项目课程大纲"><a href="#2-2-项目课程大纲" class="headerlink" title="2.2)项目课程大纲"></a>2.2)项目课程大纲</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203935383-1690185911430-23.png" srcset="/img/loading.gif" lazyload alt="image-20210407203935383"></p>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a><span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></div><div id="post-meta">Posted on&nbsp;<time datetime="2023-07-24T08:03:16.000Z">2023-07-24</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>黑马头条</span></h1>
+<h1 id="1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关"><a href="#1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关" class="headerlink" title="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)"></a>1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)</h1><h2 id="1-课程对比"><a href="#1-课程对比" class="headerlink" title="1)课程对比"></a>1)课程对比</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png" alt="image-20210407203818808"></p>
+<h2 id="2-项目概述"><a href="#2-项目概述" class="headerlink" title="2)项目概述"></a>2)项目概述</h2><h3 id="2-1-能让你收获什么"><a href="#2-1-能让你收获什么" class="headerlink" title="2.1)能让你收获什么"></a>2.1)能让你收获什么</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203902473-1690185911430-22.png" alt="image-20210407203902473"></p>
+<h3 id="2-2-项目课程大纲"><a href="#2-2-项目课程大纲" class="headerlink" title="2.2)项目课程大纲"></a>2.2)项目课程大纲</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203935383-1690185911430-23.png" alt="image-20210407203935383"></p>
 <h3 id="2-3-项目概述"><a href="#2-3-项目概述" class="headerlink" title="2.3)项目概述"></a>2.3)项目概述</h3><p>随着智能手机的普及，人们更加习惯于通过手机来看新闻。由于生活节奏的加快，很多人只能利用碎片时间来获取信息，因此，对于移动资讯客户端的需求也越来越高。黑马头条项目正是在这样背景下开发出来。黑马头条项目采用当下火热的微服务+大数据技术架构实现。本项目主要着手于获取最新最热新闻资讯，通过大数据分析用户喜好精确推送咨询新闻</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204320559-1690185911431-25.png" srcset="/img/loading.gif" lazyload alt="image-20210407204320559"></p>
-<h3 id="2-4-项目术语"><a href="#2-4-项目术语" class="headerlink" title="2.4)项目术语"></a>2.4)项目术语</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204345614-1690185911431-24.png" srcset="/img/loading.gif" lazyload alt="image-20210407204345614"></p>
-<h3 id="2-5-业务说明"><a href="#2-5-业务说明" class="headerlink" title="2.5)业务说明"></a>2.5)业务说明</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204405774-1690185911431-26.png" srcset="/img/loading.gif" lazyload alt="image-20210407204405774"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204320559-1690185911431-25.png" alt="image-20210407204320559"></p>
+<h3 id="2-4-项目术语"><a href="#2-4-项目术语" class="headerlink" title="2.4)项目术语"></a>2.4)项目术语</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204345614-1690185911431-24.png" alt="image-20210407204345614"></p>
+<h3 id="2-5-业务说明"><a href="#2-5-业务说明" class="headerlink" title="2.5)业务说明"></a>2.5)业务说明</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204405774-1690185911431-26.png" alt="image-20210407204405774"></p>
 <p>项目演示地址：</p>
 <ul>
 <li><p>平台管理：<a target="_blank" rel="noopener" href="http://heima-admin-java.research.itcast.cn/">http://heima-admin-java.research.itcast.cn</a> </p>
@@ -345,10 +173,10 @@
 <li><p>谷歌浏览器打开，调成移动端模式                      </p>
 </li>
 <li><p>手机浏览器打开或扫描右侧二维码</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204213963-1690185911431-27.png" srcset="/img/loading.gif" lazyload alt="image-20210407204213963"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204213963-1690185911431-27.png" alt="image-20210407204213963"></p>
 </li>
 </ul>
-<h2 id="3-技术栈"><a href="#3-技术栈" class="headerlink" title="3)技术栈"></a>3)技术栈</h2><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/f3accd2ba01c41b0a9ac98370241eba3-1690185911431-28.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3-技术栈"><a href="#3-技术栈" class="headerlink" title="3)技术栈"></a>3)技术栈</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/f3accd2ba01c41b0a9ac98370241eba3-1690185911431-28.png" alt="img"></p>
 <ul>
 <li>Spring-Cloud-Gateway : 微服务之前架设的网关服务，实现服务注册中的API请求路由，以及控制流速控制和熔断处理都是常用的架构手段，而这些功能Gateway天然支持</li>
 <li>运用Spring Boot快速开发框架，构建项目工程；并结合Spring Cloud全家桶技术，实现后端个人中心、自媒体、管理中心等微服务。</li>
@@ -366,19 +194,19 @@
 </ul>
 <h2 id="4-nacos环境搭建"><a href="#4-nacos环境搭建" class="headerlink" title="4)nacos环境搭建"></a>4)nacos环境搭建</h2><h3 id="4-1-虚拟机镜像准备"><a href="#4-1-虚拟机镜像准备" class="headerlink" title="4.1)虚拟机镜像准备"></a>4.1)虚拟机镜像准备</h3><p>1)打开当天资料文件中的镜像，拷贝到一个地方，然后解压</p>
 <p>2)解压后，双击ContOS7-hmtt.vmx文件，前提是电脑上已经安装了VMware</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205305080-1690185911431-32.png" srcset="/img/loading.gif" lazyload alt="image-20210407205305080"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205305080-1690185911431-32.png" alt="image-20210407205305080"></p>
 <ol start="3">
 <li>修改虚拟网络地址（NAT）</li>
 </ol>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205325182-1690185911431-29.png" srcset="/img/loading.gif" lazyload alt="image-20210407205325182"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205325182-1690185911431-29.png" alt="image-20210407205325182"></p>
 <p>​		                                                        ①，选中VMware中的编辑</p>
 <p>​		                                                        ②，选择虚拟网络编辑器</p>
 <p>​		                                                        ③，找到NAT网卡，把网段改为200（当前挂载的虚拟机已固定ip地址）</p>
 <p>4)修改虚拟机的网络模式为NAT</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205431849-1690185911431-30.png" srcset="/img/loading.gif" lazyload alt="image-20210407205431849"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205431849-1690185911431-30.png" alt="image-20210407205431849"></p>
 <p>5)启动虚拟机，<strong>用户名：root  密码：itcast</strong>，当前虚拟机的ip已手动固定（静态IP）, 地址为：<strong>192.168.200.130</strong></p>
 <p>6)使用FinalShell客户端链接</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205502305-1690185911431-31.png" srcset="/img/loading.gif" lazyload alt="image-20210407205502305"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205502305-1690185911431-31.png" alt="image-20210407205502305"></p>
 <h3 id="4-2-nacos安装"><a href="#4-2-nacos安装" class="headerlink" title="4.2)nacos安装"></a>4.2)nacos安装</h3><p>①：docker拉取镜像 </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull nacos/nacos-server:1.2.0<br></code></pre></td></tr></table></figure>
 
@@ -396,7 +224,7 @@
 </li>
 </ul>
 <p>③：访问地址：<a target="_blank" rel="noopener" href="http://192.168.200.130:8848/nacos">http://192.168.200.130:8848/nacos</a> </p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141353694-1690185911431-33.png" srcset="/img/loading.gif" lazyload alt="image-20210412141353694"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141353694-1690185911431-33.png" alt="image-20210412141353694"></p>
 <h2 id="5-初始工程搭建"><a href="#5-初始工程搭建" class="headerlink" title="5)初始工程搭建"></a>5)初始工程搭建</h2><h3 id="5-1-环境准备"><a href="#5-1-环境准备" class="headerlink" title="5.1)环境准备"></a>5.1)环境准备</h3><p>①：项目依赖环境（需提前安装好）</p>
 <ul>
 <li><p>JDK1.8</p>
@@ -409,14 +237,14 @@
 </li>
 </ul>
 <p>②：在当天资料中解压heima-leadnews.zip文件，拷贝到一个没有中文和空格的目录，使用idea打开即可</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141517519-1690185911431-34.png" srcset="/img/loading.gif" lazyload alt="image-20210412141517519"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141517519-1690185911431-34.png" alt="image-20210412141517519"></p>
 <p>③：IDEA开发工具配置</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141601018-1690185911431-35.png" srcset="/img/loading.gif" lazyload alt="image-20210412141601018"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141601018-1690185911431-35.png" alt="image-20210412141601018"></p>
 <p>设置本地仓库，建议使用资料中提供好的仓库</p>
 <p>④：设置项目编码格式</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141631441-1690185911431-37.png" srcset="/img/loading.gif" lazyload alt="image-20210412141631441"></p>
-<h3 id="5-2-主体结构"><a href="#5-2-主体结构" class="headerlink" title="5.2)主体结构"></a>5.2)主体结构</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141711919-1690185911431-36.png" srcset="/img/loading.gif" lazyload alt="image-20210412141711919"></p>
-<h2 id="6-登录"><a href="#6-登录" class="headerlink" title="6)登录"></a>6)登录</h2><h3 id="6-1-需求分析"><a href="#6-1-需求分析" class="headerlink" title="6.1)需求分析"></a>6.1)需求分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141809919-1690185911431-39.png" srcset="/img/loading.gif" lazyload alt="image-20210412141809919"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141631441-1690185911431-37.png" alt="image-20210412141631441"></p>
+<h3 id="5-2-主体结构"><a href="#5-2-主体结构" class="headerlink" title="5.2)主体结构"></a>5.2)主体结构</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141711919-1690185911431-36.png" alt="image-20210412141711919"></p>
+<h2 id="6-登录"><a href="#6-登录" class="headerlink" title="6)登录"></a>6)登录</h2><h3 id="6-1-需求分析"><a href="#6-1-需求分析" class="headerlink" title="6.1)需求分析"></a>6.1)需求分析</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141809919-1690185911431-39.png" alt="image-20210412141809919"></p>
 <ul>
 <li><p>用户点击<strong>开始使用</strong></p>
 <p>登录后的用户权限较大，可以查看，也可以操作（点赞，关注，评论）</p>
@@ -452,8 +280,8 @@
 </tbody></table>
 <p>从当前资料中找到对应数据库并导入到mysql中</p>
 <p>登录需要用到的是ap_user表，表结构如下：</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142006558-1690185911431-38.png" srcset="/img/loading.gif" lazyload alt="image-20210412142006558"></p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142055047-1690185911431-40.png" srcset="/img/loading.gif" lazyload alt="image-20210412142055047"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142006558-1690185911431-38.png" alt="image-20210412142006558"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142055047-1690185911431-40.png" alt="image-20210412142055047"></p>
 <p>项目中的持久层使用的mybatis-plus，一般都使用mybais-plus逆向生成对应的实体类</p>
 <p>app_user表对应的实体类如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.model.user.pojos;<br><br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;<br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * APP用户信息表</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> itheima</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@TableName(&quot;ap_user&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApUser</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 主键</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableId(value = &quot;id&quot;, type = IdType.AUTO)</span><br>    <span class="hljs-keyword">private</span> Integer id;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 密码、通信等加密盐</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;salt&quot;)</span><br>    <span class="hljs-keyword">private</span> String salt;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 用户名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;name&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 密码,md5加密</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;password&quot;)</span><br>    <span class="hljs-keyword">private</span> String password;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 手机号</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;phone&quot;)</span><br>    <span class="hljs-keyword">private</span> String phone;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 头像</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;image&quot;)</span><br>    <span class="hljs-keyword">private</span> String image;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 0 男</span><br><span class="hljs-comment">            1 女</span><br><span class="hljs-comment">            2 未知</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;sex&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean sex;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 0 未</span><br><span class="hljs-comment">            1 是</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;is_certification&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean certification;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否身份认证</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;is_identity_authentication&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean identityAuthentication;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 0正常</span><br><span class="hljs-comment">            1锁定</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;status&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean status;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 0 普通用户</span><br><span class="hljs-comment">            1 自媒体人</span><br><span class="hljs-comment">            2 大V</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;flag&quot;)</span><br>    <span class="hljs-keyword">private</span> Short flag;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 注册时间</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;created_time&quot;)</span><br>    <span class="hljs-keyword">private</span> Date createdTime;<br><br>&#125;<br></code></pre></td></tr></table></figure>
@@ -461,14 +289,14 @@
 <p>手动加密（md5+随机字符串）</p>
 <p>md5是不可逆加密，md5相同的密码每次加密都一样，不太安全。在md5的基础上手动加盐（salt）处理</p>
 <p>注册-&gt;生成盐</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142315248-1690185911431-41.png" srcset="/img/loading.gif" lazyload alt="image-20210412142315248"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142315248-1690185911431-41.png" alt="image-20210412142315248"></p>
 <p>登录-&gt;使用盐来配合验证</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142428499-1690185911431-43.png" srcset="/img/loading.gif" lazyload alt="image-20210412142428499"></p>
-<h3 id="6-3-思路分析"><a href="#6-3-思路分析" class="headerlink" title="6.3)思路分析"></a>6.3)思路分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142536782-1690185911431-42.png" srcset="/img/loading.gif" lazyload alt="image-20210412142536782"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142428499-1690185911431-43.png" alt="image-20210412142428499"></p>
+<h3 id="6-3-思路分析"><a href="#6-3-思路分析" class="headerlink" title="6.3)思路分析"></a>6.3)思路分析</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142536782-1690185911431-42.png" alt="image-20210412142536782"></p>
 <p>1，用户输入了用户名和密码进行登录，校验成功后返回jwt(基于当前用户的id生成)</p>
 <p>2，用户游客登录，生成jwt返回(基于默认值0生成)‘</p>
 <h3 id="6-4-运营端微服务搭建"><a href="#6-4-运营端微服务搭建" class="headerlink" title="6.4)运营端微服务搭建"></a>6.4)<strong>运营端微服务搭建</strong></h3><p>在heima-leadnews-service下创建工程heima-leadnews-user</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142706443-1690185911431-44.png" srcset="/img/loading.gif" lazyload alt="image-20210412142706443"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142706443-1690185911431-44.png" alt="image-20210412142706443"></p>
 <p>引导类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.user;<br><br><span class="hljs-keyword">import</span> org.mybatis.spring.annotation.MapperScan;<br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDiscoveryClient</span><br><span class="hljs-meta">@MapperScan(&quot;com.heima.user.mapper&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserApplication</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(UserApplication.class,args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -476,7 +304,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">51801</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">leadnews-user</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">discovery:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.130</span><span class="hljs-string">:8848</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.130</span><span class="hljs-string">:8848</span><br>        <span class="hljs-attr">file-extension:</span> <span class="hljs-string">yml</span><br></code></pre></td></tr></table></figure>
 
 <p>在nacos中创建配置文件</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412143121648-1690185911431-45.png" srcset="/img/loading.gif" lazyload alt="image-20210412143121648"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412143121648-1690185911431-45.png" alt="image-20210412143121648"></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/leadnews_user?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">root</span><br><span class="hljs-comment"># 设置Mapper接口所对应的XML文件位置，如果你在Mapper接口中有自定义方法，需要进行该配置</span><br><span class="hljs-attr">mybatis-plus:</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath*:mapper/*.xml</span><br>  <span class="hljs-comment"># 设置别名包扫描路径，通过该属性可以给包中的类注册别名</span><br>  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.heima.model.user.pojos</span><br></code></pre></td></tr></table></figure>
 
 <p>logback.xml</p>
@@ -502,9 +330,9 @@
 <h2 id="7-接口工具postman、swagger、knife4j"><a href="#7-接口工具postman、swagger、knife4j" class="headerlink" title="7)接口工具postman、swagger、knife4j"></a>7)接口工具postman、swagger、knife4j</h2><h3 id="7-1-postman"><a href="#7-1-postman" class="headerlink" title="7.1)postman"></a>7.1)postman</h3><p>Postman是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。postman被500万开发者和超100,000家公司用于每月访问1.3亿个API。</p>
 <p>官方网址：<a target="_blank" rel="noopener" href="https://www.postman.com/">https://www.postman.com/</a></p>
 <p>解压资料文件夹中的软件，安装即可</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162511873-1690185911431-46.png" srcset="/img/loading.gif" lazyload alt="image-20210413162511873"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162511873-1690185911431-46.png" alt="image-20210413162511873"></p>
 <p>通常的接口测试查看请求和响应，下面是登录请求的测试</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162558657-1690185911431-47.png" srcset="/img/loading.gif" lazyload alt="image-20210413162558657"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162558657-1690185911431-47.png" alt="image-20210413162558657"></p>
 <h3 id="7-2-swagger"><a href="#7-2-swagger" class="headerlink" title="7.2)swagger"></a>7.2)swagger</h3><p>(1)简介</p>
 <p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务(<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a>)。 它的主要作用是：</p>
 <ol>
@@ -703,14 +531,14 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">51601</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">leadnews-app-gateway</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">discovery:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.130</span><span class="hljs-string">:8848</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.130</span><span class="hljs-string">:8848</span><br>        <span class="hljs-attr">file-extension:</span> <span class="hljs-string">yml</span><br></code></pre></td></tr></table></figure>
 
 <p>在nacos的配置中心创建dataid为leadnews-app-gateway的yml配置</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210728140447647-1690185911431-48.png" srcset="/img/loading.gif" lazyload alt="image-20210728140447647"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210728140447647-1690185911431-48.png" alt="image-20210728140447647"></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">globalcors:</span><br>        <span class="hljs-attr">add-to-simple-url-handler-mapping:</span> <span class="hljs-literal">true</span><br>        <span class="hljs-attr">corsConfigurations:</span><br>          <span class="hljs-string">&#x27;[/**]&#x27;</span><span class="hljs-string">:</span><br>            <span class="hljs-attr">allowedHeaders:</span> <span class="hljs-string">&quot;*&quot;</span><br>            <span class="hljs-attr">allowedOrigins:</span> <span class="hljs-string">&quot;*&quot;</span><br>            <span class="hljs-attr">allowedMethods:</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">GET</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">POST</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">DELETE</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">PUT</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">OPTION</span><br>      <span class="hljs-attr">routes:</span><br>        <span class="hljs-comment"># 平台管理</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">user</span><br>          <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://leadnews-user</span><br>          <span class="hljs-attr">predicates:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/user/**</span><br>          <span class="hljs-attr">filters:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">StripPrefix=</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>环境搭建完成以后，启动项目网关和用户两个服务，使用postman进行测试</p>
 <p>请求地址：<a target="_blank" rel="noopener" href="http://localhost:51601/user/api/v1/login/login_auth">http://localhost:51601/user/api/v1/login/login_auth</a>   </p>
-<h3 id="1-3-全局过滤器实现jwt校验"><a href="#1-3-全局过滤器实现jwt校验" class="headerlink" title="1.3 全局过滤器实现jwt校验"></a>1.3 全局过滤器实现jwt校验</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210705110434492-1690185911431-49.png" srcset="/img/loading.gif" lazyload alt="image-20210705110434492"></p>
+<h3 id="1-3-全局过滤器实现jwt校验"><a href="#1-3-全局过滤器实现jwt校验" class="headerlink" title="1.3 全局过滤器实现jwt校验"></a>1.3 全局过滤器实现jwt校验</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210705110434492-1690185911431-49.png" alt="image-20210705110434492"></p>
 <p>思路分析：</p>
 <ol>
 <li>用户进入网关开始登陆，网关过滤器进行判断，如果是登录，则路由到后台管理微服务进行登录</li>
@@ -727,7 +555,7 @@
 
 <p>测试：</p>
 <p>启动user服务，继续访问其他微服务，会提示需要认证才能访问，这个时候需要在heads中设置设置token才能正常访问。</p>
-<h2 id="9-前端集成"><a href="#9-前端集成" class="headerlink" title="9)前端集成"></a>9)前端集成</h2><h3 id="9-1-前端项目部署思路"><a href="#9-1-前端项目部署思路" class="headerlink" title="9.1)前端项目部署思路"></a>9.1)前端项目部署思路</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210416095950485-1690185911431-50.png" srcset="/img/loading.gif" lazyload alt="image-20210416095950485"></p>
+<h2 id="9-前端集成"><a href="#9-前端集成" class="headerlink" title="9)前端集成"></a>9)前端集成</h2><h3 id="9-1-前端项目部署思路"><a href="#9-1-前端项目部署思路" class="headerlink" title="9.1)前端项目部署思路"></a>9.1)前端项目部署思路</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210416095950485-1690185911431-50.png" alt="image-20210416095950485"></p>
 <p>通过nginx来进行配置，功能如下</p>
 <ul>
 <li>通过nginx的反向代理功能访问后台的网关资源</li>
@@ -750,15 +578,15 @@
 <p>⑤：打开前端项目进行测试  – &gt;  <a target="_blank" rel="noopener" href="http://localhost:8801/">http://localhost:8801</a></p>
 <p>​     用谷歌浏览器打开，调试移动端模式进行访问</p>
 <h1 id="2-app端文章查看，静态化freemarker-分布式文件系统minIO"><a href="#2-app端文章查看，静态化freemarker-分布式文件系统minIO" class="headerlink" title="2.app端文章查看，静态化freemarker,分布式文件系统minIO"></a>2.app端文章查看，静态化freemarker,分布式文件系统minIO</h1><h2 id="1-文章列表加载"><a href="#1-文章列表加载" class="headerlink" title="1)文章列表加载"></a>1)文章列表加载</h2><h3 id="1-1-需求分析"><a href="#1-1-需求分析" class="headerlink" title="1.1)需求分析"></a>1.1)需求分析</h3><p>文章布局展示</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151801252.png" srcset="/img/loading.gif" lazyload alt="image-20210419151801252"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151801252.png" alt="image-20210419151801252"></p>
 <h3 id="1-2-表结构分析"><a href="#1-2-表结构分析" class="headerlink" title="1.2)表结构分析"></a>1.2)表结构分析</h3><p>ap_article  文章基本信息表</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151839634.png" srcset="/img/loading.gif" lazyload alt="image-20210419151839634"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151839634.png" alt="image-20210419151839634"></p>
 <p>ap_article_config  文章配置表</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151854868.png" srcset="/img/loading.gif" lazyload alt="image-20210419151854868"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151854868.png" alt="image-20210419151854868"></p>
 <p>ap_article_content 文章内容表</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151912063.png" srcset="/img/loading.gif" lazyload alt="image-20210419151912063"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151912063.png" alt="image-20210419151912063"></p>
 <p>三张表关系分析</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151938103.png" srcset="/img/loading.gif" lazyload alt="image-20210419151938103"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151938103.png" alt="image-20210419151938103"></p>
 <h3 id="1-3-导入文章数据库"><a href="#1-3-导入文章数据库" class="headerlink" title="1.3)导入文章数据库"></a>1.3)导入文章数据库</h3><h4 id="1-3-1-导入数据库"><a href="#1-3-1-导入数据库" class="headerlink" title="1.3.1)导入数据库"></a>1.3.1)导入数据库</h4><p>查看当天资料文件夹，在数据库连接工具中执行leadnews_article.sql</p>
 <h4 id="1-3-2-导入对应的实体类"><a href="#1-3-2-导入对应的实体类" class="headerlink" title="1.3.2)导入对应的实体类"></a>1.3.2)导入对应的实体类</h4><p>ap_article文章表对应实体</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.model.article.pojos;<br><br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;<br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 文章信息表，存储已发布的文章</span><br><span class="hljs-comment"> * &lt;/p&gt;</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> itheima</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@TableName(&quot;ap_article&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApArticle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br><br>    <span class="hljs-meta">@TableId(value = &quot;id&quot;,type = IdType.ID_WORKER)</span><br>    <span class="hljs-keyword">private</span> Long id;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 标题</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String title;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 作者id</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;author_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Long authorId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 作者名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;author_name&quot;)</span><br>    <span class="hljs-keyword">private</span> String authorName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 频道id</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;channel_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer channelId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 频道名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;channel_name&quot;)</span><br>    <span class="hljs-keyword">private</span> String channelName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文章布局  0 无图文章   1 单图文章    2 多图文章</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Short layout;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文章标记  0 普通文章   1 热点文章   2 置顶文章   3 精品文章   4 大V 文章</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Byte flag;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文章封面图片 多张逗号分隔</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String images;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 标签</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String labels;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 点赞数量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Integer likes;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 收藏数量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Integer collection;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 评论数量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Integer comment;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 阅读数量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Integer views;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 省市</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;province_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer provinceId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 市区</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;city_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer cityId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 区县</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;county_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer countyId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建时间</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;created_time&quot;)</span><br>    <span class="hljs-keyword">private</span> Date createdTime;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 发布时间</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;publish_time&quot;)</span><br>    <span class="hljs-keyword">private</span> Date publishTime;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 同步状态</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;sync_status&quot;)</span><br>    <span class="hljs-keyword">private</span> Boolean syncStatus;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 来源</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Boolean origin;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 静态页面地址</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;static_url&quot;)</span><br>    <span class="hljs-keyword">private</span> String staticUrl;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -769,7 +597,7 @@
 <p>ap_article_content 文章内容对应的实体类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.model.article.pojos;<br><br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;<br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;<br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@TableName(&quot;ap_article_content&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ApArticleContent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br><br>    <span class="hljs-meta">@TableId(value = &quot;id&quot;,type = IdType.ID_WORKER)</span><br>    <span class="hljs-keyword">private</span> Long id;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文章id</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@TableField(&quot;article_id&quot;)</span><br>    <span class="hljs-keyword">private</span> Long articleId;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 文章内容</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String content;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-4-实现思路"><a href="#1-4-实现思路" class="headerlink" title="1.4)实现思路"></a>1.4)实现思路</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419152011931.png" srcset="/img/loading.gif" lazyload alt="image-20210419152011931"></p>
+<h3 id="1-4-实现思路"><a href="#1-4-实现思路" class="headerlink" title="1.4)实现思路"></a>1.4)实现思路</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419152011931.png" alt="image-20210419152011931"></p>
 <p>1,在默认频道展示10条文章信息</p>
 <p>2,可以切换频道查看不同种类文章</p>
 <p>3,当用户下拉可以加载最新的文章（分页）本页文章列表中发布时间为最大的时间为依据</p>
@@ -818,12 +646,12 @@
 <p>ArticleHomeDto</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.model.article.dtos;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ArticleHomeDto</span> &#123;<br><br>    <span class="hljs-comment">// 最大时间</span><br>    Date maxBehotTime;<br>    <span class="hljs-comment">// 最小时间</span><br>    Date minBehotTime;<br>    <span class="hljs-comment">// 分页size</span><br>    Integer size;<br>    <span class="hljs-comment">// 频道ID</span><br>    String tag;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-6-功能实现"><a href="#1-6-功能实现" class="headerlink" title="1.6)功能实现"></a>1.6)功能实现</h3><h4 id="1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中"><a href="#1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中" class="headerlink" title="1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中"></a>1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中</h4><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420000326669.png" srcset="/img/loading.gif" lazyload alt="image-20210420000326669"></p>
+<h3 id="1-6-功能实现"><a href="#1-6-功能实现" class="headerlink" title="1.6)功能实现"></a>1.6)功能实现</h3><h4 id="1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中"><a href="#1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中" class="headerlink" title="1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中"></a>1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中</h4><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420000326669.png" alt="image-20210420000326669"></p>
 <p><font color="red">注意：需要在heima-leadnews-service的pom文件夹中添加子模块信息，如下：</font></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">modules</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>heima-leadnews-user<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">module</span>&gt;</span>heima-leadnews-article<span class="hljs-tag">&lt;/<span class="hljs-name">module</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">modules</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>在idea中的maven中更新一下，如果工程还是灰色的，需要在重新添加文章微服务的pom文件，操作步骤如下：</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420001037992.png" srcset="/img/loading.gif" lazyload alt="image-20210420001037992"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420001037992.png" alt="image-20210420001037992"></p>
 <p>需要在nacos中添加对应的配置</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">datasource:</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/leadnews_article?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">root</span><br><span class="hljs-comment"># 设置Mapper接口所对应的XML文件位置，如果你在Mapper接口中有自定义方法，需要进行该配置</span><br><span class="hljs-attr">mybatis-plus:</span><br>  <span class="hljs-attr">mapper-locations:</span> <span class="hljs-string">classpath*:mapper/*.xml</span><br>  <span class="hljs-comment"># 设置别名包扫描路径，通过该属性可以给包中的类注册别名</span><br>  <span class="hljs-attr">type-aliases-package:</span> <span class="hljs-string">com.heima.model.article.pojos</span><br></code></pre></td></tr></table></figure>
 
@@ -851,7 +679,7 @@
 <p>第二：启动nginx，直接使用前端项目测试，启动文章微服务，用户微服务、app网关微服务</p>
 <h2 id="2-freemarker"><a href="#2-freemarker" class="headerlink" title="2)freemarker"></a>2)freemarker</h2><h3 id="2-1-freemarker-介绍"><a href="#2-1-freemarker-介绍" class="headerlink" title="2.1) freemarker 介绍"></a>2.1) freemarker 介绍</h3><p>​	FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
 <p>​	模板编写为FreeMarker Template Language (FTL)。它是简单的，专用的语言， <em>不是</em> 像PHP那样成熟的编程语言。 那就意味着要准备数据在真实编程语言中来显示，比如数据库查询和业务运算， 之后模板显示已经准备好的数据。在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。 </p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1528820943975.png" srcset="/img/loading.gif" lazyload alt="1528820943975"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1528820943975.png" alt="1528820943975"></p>
 <p>常用的java模板引擎还有哪些？</p>
 <p>Jsp、Freemarker、Thymeleaf 、Velocity 等。</p>
 <p>1.Jsp 为 Servlet 专用，不能单独进行使用。</p>
@@ -892,7 +720,7 @@
 <h4 id="2-2-6-创建启动类"><a href="#2-2-6-创建启动类" class="headerlink" title="2.2.6) 创建启动类"></a>2.2.6) 创建启动类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.freemarker;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FreemarkerDemotApplication</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(FreemarkerDemotApplication.class,args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="2-2-7-测试"><a href="#2-2-7-测试" class="headerlink" title="2.2.7) 测试"></a>2.2.7) 测试</h4><p>请求：<a target="_blank" rel="noopener" href="http://localhost:8881/basic">http://localhost:8881/basic</a></p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1576129529361.png" srcset="/img/loading.gif" lazyload alt="1576129529361"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1576129529361.png" alt="1576129529361"></p>
 <h3 id="2-3-freemarker基础"><a href="#2-3-freemarker基础" class="headerlink" title="2.3) freemarker基础"></a>2.3) freemarker基础</h3><h4 id="2-3-1-基础语法种类"><a href="#2-3-1-基础语法种类" class="headerlink" title="2.3.1) 基础语法种类"></a>2.3.1) 基础语法种类</h4><p>  1、注释，即&lt;#–  –&gt;，介于其之间的内容会被freemarker忽略</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs velocity">&lt;#--我是一个freemarker注释--&gt;<br></code></pre></td></tr></table></figure>
 
@@ -942,7 +770,7 @@
 
 <p>3、输出：</p>
 <p>姓名为“小强”则字体颜色显示为红色。</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1539947776259.png" srcset="/img/loading.gif" lazyload alt="1539947776259"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1539947776259.png" alt="1539947776259"></p>
 <h4 id="2-3-4-运算符"><a href="#2-3-4-运算符" class="headerlink" title="2.3.4)  运算符"></a>2.3.4)  运算符</h4><p><strong>1、算数运算符</strong></p>
 <p>FreeMarker表达式中完全支持算术运算,FreeMarker支持的算术运算符包括:</p>
 <ul>
@@ -1048,7 +876,7 @@
 
 <h3 id="2-4-静态化测试"><a href="#2-4-静态化测试" class="headerlink" title="2.4) 静态化测试"></a>2.4) 静态化测试</h3><p>之前的测试都是SpringMVC将Freemarker作为视图解析器（ViewReporter）来集成到项目中，工作中，有的时候需要使用Freemarker原生Api来生成静态内容，下面一起来学习下原生Api生成文本文件。</p>
 <h4 id="2-4-1-需求分析"><a href="#2-4-1-需求分析" class="headerlink" title="2.4.1) 需求分析"></a>2.4.1) 需求分析</h4><p>使用freemarker原生Api将页面生成html文件，本节测试html文件生成的方法：</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210422163843108.png" srcset="/img/loading.gif" lazyload alt="image-20210422163843108"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210422163843108.png" alt="image-20210422163843108"></p>
 <h4 id="2-4-2-静态化测试"><a href="#2-4-2-静态化测试" class="headerlink" title="2.4.2) 静态化测试"></a>2.4.2) 静态化测试</h4><p>根据模板文件生成html文件</p>
 <p>①：修改application.yml文件，添加以下模板存放位置的配置信息，完整配置如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8881</span> <span class="hljs-comment">#服务端口</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">freemarker-demo</span> <span class="hljs-comment">#指定服务名</span><br>  <span class="hljs-attr">freemarker:</span><br>    <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>  <span class="hljs-comment">#关闭模板缓存，方便测试</span><br>    <span class="hljs-attr">settings:</span><br>      <span class="hljs-attr">template_update_delay:</span> <span class="hljs-number">0</span> <span class="hljs-comment">#检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试</span><br>    <span class="hljs-attr">suffix:</span> <span class="hljs-string">.ftl</span>               <span class="hljs-comment">#指定Freemarker模板文件的后缀名</span><br>    <span class="hljs-attr">template-loader-path:</span> <span class="hljs-string">classpath:/templates</span>   <span class="hljs-comment">#模板存放位置</span><br></code></pre></td></tr></table></figure>
@@ -1099,11 +927,11 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">docker</span> <span class="hljs-string">run</span> <span class="hljs-string">-p</span> <span class="hljs-number">9000</span><span class="hljs-string">:9000</span> <span class="hljs-string">--name</span> <span class="hljs-string">minio</span> <span class="hljs-string">-d</span> <span class="hljs-string">--restart=always</span> <span class="hljs-string">-e</span> <span class="hljs-string">&quot;MINIO_ACCESS_KEY=minio&quot;</span> <span class="hljs-string">-e</span> <span class="hljs-string">&quot;MINIO_SECRET_KEY=minio123&quot;</span> <span class="hljs-string">-v</span> <span class="hljs-string">/home/data:/data</span> <span class="hljs-string">-v</span> <span class="hljs-string">/home/config:/root/.minio</span> <span class="hljs-string">minio/minio</span> <span class="hljs-string">server</span> <span class="hljs-string">/data</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="3-3-2-管理控制台"><a href="#3-3-2-管理控制台" class="headerlink" title="3.3.2 管理控制台"></a>3.3.2 管理控制台</h4><p>假设我们的服务器地址为<a href="http://192.168.200.130:9000，我们在地址栏输入：http://http://192.168.200.130:9000/">http://192.168.200.130:9000，我们在地址栏输入：http://http://192.168.200.130:9000/</a> 即可进入登录界面。</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102204739.png" srcset="/img/loading.gif" lazyload alt="image-20210417102204739"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102204739.png" alt="image-20210417102204739"></p>
 <p>Access Key为minio   Secret_key 为minio123    进入系统后可以看到主界面</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102356582.png" srcset="/img/loading.gif" lazyload alt="image-20210417102356582"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102356582.png" alt="image-20210417102356582"></p>
 <p>点击右下角的“+”号 ，点击下面的图标，创建一个桶</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102435088.png" srcset="/img/loading.gif" lazyload alt="image-20210417102435088"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102435088.png" alt="image-20210417102435088"></p>
 <h3 id="3-4-快速入门"><a href="#3-4-快速入门" class="headerlink" title="3.4 快速入门"></a>3.4 快速入门</h3><h4 id="3-4-1-创建工程，导入pom依赖"><a href="#3-4-1-创建工程，导入pom依赖" class="headerlink" title="3.4.1 创建工程，导入pom依赖"></a>3.4.1 创建工程，导入pom依赖</h4><p>创建minio-demo,对应pom如下</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>heima-leadnews-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.heima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>minio-demo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.minio<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>minio<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>7.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -1142,17 +970,17 @@
 <p>第三，在对应使用的业务类中注入FileStorageService，样例如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.heima.minio.test;<br><br><br><span class="hljs-keyword">import</span> com.heima.file.service.FileStorageService;<br><span class="hljs-keyword">import</span> com.heima.minio.MinioApplication;<br><span class="hljs-keyword">import</span> org.junit.Test;<br><span class="hljs-keyword">import</span> org.junit.runner.RunWith;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;<br><span class="hljs-keyword">import</span> org.springframework.test.context.junit4.SpringRunner;<br><br><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.io.FileNotFoundException;<br><br><span class="hljs-meta">@SpringBootTest(classes = MinioApplication.class)</span><br><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MinioTest</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> FileStorageService fileStorageService;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testUpdateImgFile</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fileInputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;E:\\tmp\\ak47.jpg&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> fileStorageService.uploadImgFile(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;ak47.jpg&quot;</span>, fileInputStream);<br>            System.out.println(filePath);<br>        &#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="4-文章详情"><a href="#4-文章详情" class="headerlink" title="4)文章详情"></a>4)文章详情</h2><h3 id="4-1-需求分析"><a href="#4-1-需求分析" class="headerlink" title="4.1)需求分析"></a>4.1)需求分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180753705.png" srcset="/img/loading.gif" lazyload alt="image-20210602180753705"></p>
+<h2 id="4-文章详情"><a href="#4-文章详情" class="headerlink" title="4)文章详情"></a>4)文章详情</h2><h3 id="4-1-需求分析"><a href="#4-1-需求分析" class="headerlink" title="4.1)需求分析"></a>4.1)需求分析</h3><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180753705.png" alt="image-20210602180753705"></p>
 <h3 id="4-2-实现方案"><a href="#4-2-实现方案" class="headerlink" title="4.2)实现方案"></a>4.2)实现方案</h3><p>方案一</p>
 <p>用户某一条文章，根据文章的id去查询文章内容表，返回渲染页面</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180824202.png" srcset="/img/loading.gif" lazyload alt="image-20210602180824202"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180824202.png" alt="image-20210602180824202"></p>
 <p>方案二</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180856833.png" srcset="/img/loading.gif" lazyload alt="image-20210602180856833"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180856833.png" alt="image-20210602180856833"></p>
 <h3 id="4-3-实现步骤"><a href="#4-3-实现步骤" class="headerlink" title="4.3)实现步骤"></a>4.3)实现步骤</h3><p>1.在artile微服务中添加MinIO和freemarker的支持，参考测试项目</p>
 <p>2.资料中找到模板文件（article.ftl）拷贝到article微服务下</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180931839.png" srcset="/img/loading.gif" lazyload alt="image-20210602180931839"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180931839.png" alt="image-20210602180931839"></p>
 <p>3.资料中找到index.js和index.css两个文件手动上传到MinIO中</p>
-<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180957787.png" srcset="/img/loading.gif" lazyload alt="image-20210602180957787"></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180957787.png" alt="image-20210602180957787"></p>
 <p>4.在文章微服务中导入依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.heima<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>heima-file-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -1169,365 +997,199 @@
 
 
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>License</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/">Spring原理</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2023/07/24/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">消息中间件面试题</a></div></section></div>
+
+
+
+
+
+
+
+
       
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@anonymity</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
 
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="category-chain-item">项目实战</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>黑马头条</div>
-      <div>https://jokerzxxx.github.io/2023/07/24/黑马头条/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>Jokerz</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>July 24, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/" title="Spring原理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Spring原理</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/07/24/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/" title="消息中间件面试题">
-                        <span class="hidden-mobile">消息中间件面试题</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
 
     </div>
   </div>
-</div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
 
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
 
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
+    },
+    root : '/',
+  };
 
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
 
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
 
 
 
-  
+<!-- optional -->
 
 
 
-  
+<!-- inject -->
 
 
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
   </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
 </body>
 </html>
