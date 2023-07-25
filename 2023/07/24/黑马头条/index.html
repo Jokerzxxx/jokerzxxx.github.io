@@ -1,44 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head>
-    <meta charset="utf-8">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-
-
-    <link rel="dns-prefetch" //cdn.jsdelivr.net>
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css">
-
-
-
-    
-<link rel="stylesheet" href="/css/prism-m.css">
-
-    
-
-
-
-<meta name="theme-color" content="#3F51B5">
-
-
-<style>
-    html,body{scroll-behavior:smooth;min-height:100vh}
-    blockquote>strong>a{word-break:break-all}
-    .mdui-hoverable:hover,.mdui-hoverable:focus{-webkit-box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12) !important;box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12) !important;}
-    .mdui-card-primary-title a{text-decoration:none !important}
-    .page-number{display:none !important}
-    .mdui-container-fluid{transition:opacity .4s}
-    
-        body{background-color: #f6f6f6}
-
-    
-</style>
-    
-    <title>黑马头条 | Java从入门到放弃</title>
-    <link rel="canonical" href="https://jokerzxxx.github.io/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jokerz">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)1)课程对比 2)项目概述2.1)能让你收获什么 2.2)项目课程大纲 2.3)项目概述随着智能手机的普及，人们更加习惯于通过手机来看新闻。由于生活节奏的加快，很多人只能利用碎片时间来获取信息，因此，对于移动资讯客户端的需求也越来越高。黑马头条项目正是在这样背景下开发出来。黑马头条项目采用当下火热的微服务+大数据技术架构实现。本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黑马头条">
@@ -99,106 +76,260 @@
 <meta property="article:published_time" content="2023-07-24T08:03:16.000Z">
 <meta property="article:modified_time" content="2023-07-24T08:05:46.085Z">
 <meta property="article:author" content="Jokerz">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jokerzxxx.github.io/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png">
+  
+  
+  
+  <title>黑马头条 - Java从入门到放弃</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jokerzxxx.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar ">
-    <div class="mdui-theme-layout-light">
-    <header id="appbar" class="mdui-appbar mdui-appbar-fixed mdui-shadow-0 mdui-appbar-scroll-hide">
-    <div class="mdui-toolbar">
-        <button mdui-drawer="{target: '.mdui-drawer'}" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">menu</i></button>
-        <a href="/" class="mdui-typo-title">Java从入门到放弃</a>
-        <div class="mdui-toolbar-spacer"></div>
-        
-        <a href="/search/" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">search</i></a>
-        
-    </div>
-</header>
-    <aside class="mdui-drawer mdui-drawer-close">
-    <nav class="mdui-list" mdui-collapse="{accordion: true}">
-        <a href="/about/"  class="mdui-list-item mdui-ripple">
-            <div class="mdui-list-item-avatar">
-                
-                <i class="mdui-color-theme-primary mdui-icon material-icons">person</i>
-                
-            </div>
-            <div class="mdui-list-item-content">Jokerz</div>
-        </a>
-        <div class="mdui-divider"></div>
-        
-        <a href="/" class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-            <div class="mdui-list-item-content">Home</div>
-        </a>
-        
-        <div class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">inbox</i>
-                <div class="mdui-list-item-content">Archives</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <a class="mdui-list-item mdui-ripple m-link" href="/archives/2023/07/">July 2023</a>
-            </div>
-        </div>
-        
-        <div class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">apps</i>
-                <div class="mdui-list-item-content">Categories</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <a class="mdui-list-item mdui-ripple m-link" href="/categories/Spring/">Spring</a><a class="mdui-list-item mdui-ripple m-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><a class="mdui-list-item mdui-ripple m-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
-            </div>
-        </div>
-        
-    </nav>
-    <div class="mdui-divider"></div>
-    <footer class="mdui-m-l-2 mdui-m-t-1 mdui-typo mdui-text-color-theme-disabled">
-        <p class="mdui-m-b-0">
-            
-            ©
-            2023 Jokerz<br>
-            
-            Powered by <a href="https://hexo.io/" rel="noreferrer" target="_blank">Hexo</a><br>
-            
-            Theme - <a href="https://github.com/kwaa/hexo-theme-m" rel="noreferrer" target="_blank"
-                mdui-tooltip="{position:'right', content: 'by 藍+85CD'}">M</a></p>
-            
-    </footer>
-</aside>
-    </div>
-    <div class="mdui-container-fluid mdui-center" style="max-width:720px">
-        <article class="mdui-card mdui-hoverable mdui-shadow-1 mdui-m-y-2" style="opacity: 1; border-radius: 4px">
+
+
+<body>
+  
+
+  <header>
     
-    <div class="mdui-card-primary mdui-ripple">
-    <div class="mdui-card-primary-title">
-        <a role="heading" aria-level="1" class="mdui-text-color-theme-text" >黑马头条</a>
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-        <small> <a class="mdui-text-color-theme-text category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></small>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="mdui-card-primary-subtitle mdui-typo">
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="黑马头条"></span>
+          
+        </div>
+
         
-        <span mdui-tooltip="{content:'Created: 2023-07-24 04:03<br>Updated: 2023-07-24 04:05'}">2023-07-24 -</span>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-24 16:03" pubdate>
+          July 24, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-            <span>2023/07/24/黑马头条/</span>
+          62k words
         
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          516 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
     </div>
+  </div>
 </div>
+
+</div>
+
+  </header>
+
+  <main>
     
-    
-    <div class="mdui-divider"></div>
-    <div class="mdui-card-content mdui-typo">
-        
-        <h1 id="1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关"><a href="#1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关" class="headerlink" title="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)"></a>1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)</h1><h2 id="1-课程对比"><a href="#1-课程对比" class="headerlink" title="1)课程对比"></a>1)课程对比</h2><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png" alt="image-20210407203818808"class="mdui-img-rounded" loading="lazy"></figure>
-<h2 id="2-项目概述"><a href="#2-项目概述" class="headerlink" title="2)项目概述"></a>2)项目概述</h2><h3 id="2-1-能让你收获什么"><a href="#2-1-能让你收获什么" class="headerlink" title="2.1)能让你收获什么"></a>2.1)能让你收获什么</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203902473-1690185911430-22.png" alt="image-20210407203902473"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="2-2-项目课程大纲"><a href="#2-2-项目课程大纲" class="headerlink" title="2.2)项目课程大纲"></a>2.2)项目课程大纲</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203935383-1690185911430-23.png" alt="image-20210407203935383"class="mdui-img-rounded" loading="lazy"></figure>
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">黑马头条</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关"><a href="#1-环境搭建、SpringCloud微服务-注册发现、服务调用、网关" class="headerlink" title="1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)"></a>1.环境搭建、SpringCloud微服务(注册发现、服务调用、网关)</h1><h2 id="1-课程对比"><a href="#1-课程对比" class="headerlink" title="1)课程对比"></a>1)课程对比</h2><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203818808-1690185911430-21.png" srcset="/img/loading.gif" lazyload alt="image-20210407203818808"></p>
+<h2 id="2-项目概述"><a href="#2-项目概述" class="headerlink" title="2)项目概述"></a>2)项目概述</h2><h3 id="2-1-能让你收获什么"><a href="#2-1-能让你收获什么" class="headerlink" title="2.1)能让你收获什么"></a>2.1)能让你收获什么</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203902473-1690185911430-22.png" srcset="/img/loading.gif" lazyload alt="image-20210407203902473"></p>
+<h3 id="2-2-项目课程大纲"><a href="#2-2-项目课程大纲" class="headerlink" title="2.2)项目课程大纲"></a>2.2)项目课程大纲</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407203935383-1690185911430-23.png" srcset="/img/loading.gif" lazyload alt="image-20210407203935383"></p>
 <h3 id="2-3-项目概述"><a href="#2-3-项目概述" class="headerlink" title="2.3)项目概述"></a>2.3)项目概述</h3><p>随着智能手机的普及，人们更加习惯于通过手机来看新闻。由于生活节奏的加快，很多人只能利用碎片时间来获取信息，因此，对于移动资讯客户端的需求也越来越高。黑马头条项目正是在这样背景下开发出来。黑马头条项目采用当下火热的微服务+大数据技术架构实现。本项目主要着手于获取最新最热新闻资讯，通过大数据分析用户喜好精确推送咨询新闻</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204320559-1690185911431-25.png" alt="image-20210407204320559"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="2-4-项目术语"><a href="#2-4-项目术语" class="headerlink" title="2.4)项目术语"></a>2.4)项目术语</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204345614-1690185911431-24.png" alt="image-20210407204345614"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="2-5-业务说明"><a href="#2-5-业务说明" class="headerlink" title="2.5)业务说明"></a>2.5)业务说明</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204405774-1690185911431-26.png" alt="image-20210407204405774"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204320559-1690185911431-25.png" srcset="/img/loading.gif" lazyload alt="image-20210407204320559"></p>
+<h3 id="2-4-项目术语"><a href="#2-4-项目术语" class="headerlink" title="2.4)项目术语"></a>2.4)项目术语</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204345614-1690185911431-24.png" srcset="/img/loading.gif" lazyload alt="image-20210407204345614"></p>
+<h3 id="2-5-业务说明"><a href="#2-5-业务说明" class="headerlink" title="2.5)业务说明"></a>2.5)业务说明</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204405774-1690185911431-26.png" srcset="/img/loading.gif" lazyload alt="image-20210407204405774"></p>
 <p>项目演示地址：</p>
 <ul>
 <li><p>平台管理：<a target="_blank" rel="noopener" href="http://heima-admin-java.research.itcast.cn/">http://heima-admin-java.research.itcast.cn</a> </p>
@@ -214,10 +345,10 @@
 <li><p>谷歌浏览器打开，调成移动端模式                      </p>
 </li>
 <li><p>手机浏览器打开或扫描右侧二维码</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204213963-1690185911431-27.png" alt="image-20210407204213963"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407204213963-1690185911431-27.png" srcset="/img/loading.gif" lazyload alt="image-20210407204213963"></p>
 </li>
 </ul>
-<h2 id="3-技术栈"><a href="#3-技术栈" class="headerlink" title="3)技术栈"></a>3)技术栈</h2><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/f3accd2ba01c41b0a9ac98370241eba3-1690185911431-28.png" alt="img"class="mdui-img-rounded" loading="lazy"></figure>
+<h2 id="3-技术栈"><a href="#3-技术栈" class="headerlink" title="3)技术栈"></a>3)技术栈</h2><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/f3accd2ba01c41b0a9ac98370241eba3-1690185911431-28.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>Spring-Cloud-Gateway : 微服务之前架设的网关服务，实现服务注册中的API请求路由，以及控制流速控制和熔断处理都是常用的架构手段，而这些功能Gateway天然支持</li>
 <li>运用Spring Boot快速开发框架，构建项目工程；并结合Spring Cloud全家桶技术，实现后端个人中心、自媒体、管理中心等微服务。</li>
@@ -235,19 +366,19 @@
 </ul>
 <h2 id="4-nacos环境搭建"><a href="#4-nacos环境搭建" class="headerlink" title="4)nacos环境搭建"></a>4)nacos环境搭建</h2><h3 id="4-1-虚拟机镜像准备"><a href="#4-1-虚拟机镜像准备" class="headerlink" title="4.1)虚拟机镜像准备"></a>4.1)虚拟机镜像准备</h3><p>1)打开当天资料文件中的镜像，拷贝到一个地方，然后解压</p>
 <p>2)解压后，双击ContOS7-hmtt.vmx文件，前提是电脑上已经安装了VMware</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205305080-1690185911431-32.png" alt="image-20210407205305080"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205305080-1690185911431-32.png" srcset="/img/loading.gif" lazyload alt="image-20210407205305080"></p>
 <ol start="3">
 <li>修改虚拟网络地址（NAT）</li>
 </ol>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205325182-1690185911431-29.png" alt="image-20210407205325182"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205325182-1690185911431-29.png" srcset="/img/loading.gif" lazyload alt="image-20210407205325182"></p>
 <p>​		                                                        ①，选中VMware中的编辑</p>
 <p>​		                                                        ②，选择虚拟网络编辑器</p>
 <p>​		                                                        ③，找到NAT网卡，把网段改为200（当前挂载的虚拟机已固定ip地址）</p>
 <p>4)修改虚拟机的网络模式为NAT</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205431849-1690185911431-30.png" alt="image-20210407205431849"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205431849-1690185911431-30.png" srcset="/img/loading.gif" lazyload alt="image-20210407205431849"></p>
 <p>5)启动虚拟机，<strong>用户名：root  密码：itcast</strong>，当前虚拟机的ip已手动固定（静态IP）, 地址为：<strong>192.168.200.130</strong></p>
 <p>6)使用FinalShell客户端链接</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205502305-1690185911431-31.png" alt="image-20210407205502305"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210407205502305-1690185911431-31.png" srcset="/img/loading.gif" lazyload alt="image-20210407205502305"></p>
 <h3 id="4-2-nacos安装"><a href="#4-2-nacos安装" class="headerlink" title="4.2)nacos安装"></a>4.2)nacos安装</h3><p>①：docker拉取镜像 </p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> pull nacos/nacos-server:1.2.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -265,7 +396,7 @@
 </li>
 </ul>
 <p>③：访问地址：<a target="_blank" rel="noopener" href="http://192.168.200.130:8848/nacos">http://192.168.200.130:8848/nacos</a> </p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141353694-1690185911431-33.png" alt="image-20210412141353694"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141353694-1690185911431-33.png" srcset="/img/loading.gif" lazyload alt="image-20210412141353694"></p>
 <h2 id="5-初始工程搭建"><a href="#5-初始工程搭建" class="headerlink" title="5)初始工程搭建"></a>5)初始工程搭建</h2><h3 id="5-1-环境准备"><a href="#5-1-环境准备" class="headerlink" title="5.1)环境准备"></a>5.1)环境准备</h3><p>①：项目依赖环境（需提前安装好）</p>
 <ul>
 <li><p>JDK1.8</p>
@@ -278,14 +409,14 @@
 </li>
 </ul>
 <p>②：在当天资料中解压heima-leadnews.zip文件，拷贝到一个没有中文和空格的目录，使用idea打开即可</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141517519-1690185911431-34.png" alt="image-20210412141517519"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141517519-1690185911431-34.png" srcset="/img/loading.gif" lazyload alt="image-20210412141517519"></p>
 <p>③：IDEA开发工具配置</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141601018-1690185911431-35.png" alt="image-20210412141601018"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141601018-1690185911431-35.png" srcset="/img/loading.gif" lazyload alt="image-20210412141601018"></p>
 <p>设置本地仓库，建议使用资料中提供好的仓库</p>
 <p>④：设置项目编码格式</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141631441-1690185911431-37.png" alt="image-20210412141631441"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="5-2-主体结构"><a href="#5-2-主体结构" class="headerlink" title="5.2)主体结构"></a>5.2)主体结构</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141711919-1690185911431-36.png" alt="image-20210412141711919"class="mdui-img-rounded" loading="lazy"></figure>
-<h2 id="6-登录"><a href="#6-登录" class="headerlink" title="6)登录"></a>6)登录</h2><h3 id="6-1-需求分析"><a href="#6-1-需求分析" class="headerlink" title="6.1)需求分析"></a>6.1)需求分析</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141809919-1690185911431-39.png" alt="image-20210412141809919"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141631441-1690185911431-37.png" srcset="/img/loading.gif" lazyload alt="image-20210412141631441"></p>
+<h3 id="5-2-主体结构"><a href="#5-2-主体结构" class="headerlink" title="5.2)主体结构"></a>5.2)主体结构</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141711919-1690185911431-36.png" srcset="/img/loading.gif" lazyload alt="image-20210412141711919"></p>
+<h2 id="6-登录"><a href="#6-登录" class="headerlink" title="6)登录"></a>6)登录</h2><h3 id="6-1-需求分析"><a href="#6-1-需求分析" class="headerlink" title="6.1)需求分析"></a>6.1)需求分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412141809919-1690185911431-39.png" srcset="/img/loading.gif" lazyload alt="image-20210412141809919"></p>
 <ul>
 <li><p>用户点击<strong>开始使用</strong></p>
 <p>登录后的用户权限较大，可以查看，也可以操作（点赞，关注，评论）</p>
@@ -295,7 +426,7 @@
 </ul>
 <p>​       游客只有查看的权限</p>
 <h3 id="6-2-表结构分析"><a href="#6-2-表结构分析" class="headerlink" title="6.2)表结构分析"></a>6.2)表结构分析</h3><p>关于app端用户相关的内容较多，可以单独设置一个库leadnews_user</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th><strong>表名称</strong></th>
@@ -318,11 +449,11 @@
 <td>ap_user_realname</td>
 <td>APP实名认证信息表</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <p>从当前资料中找到对应数据库并导入到mysql中</p>
 <p>登录需要用到的是ap_user表，表结构如下：</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142006558-1690185911431-38.png" alt="image-20210412142006558"class="mdui-img-rounded" loading="lazy"></figure>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142055047-1690185911431-40.png" alt="image-20210412142055047"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142006558-1690185911431-38.png" srcset="/img/loading.gif" lazyload alt="image-20210412142006558"></p>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142055047-1690185911431-40.png" srcset="/img/loading.gif" lazyload alt="image-20210412142055047"></p>
 <p>项目中的持久层使用的mybatis-plus，一般都使用mybais-plus逆向生成对应的实体类</p>
 <p>app_user表对应的实体类如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>heima<span class="token punctuation">.</span>model<span class="token punctuation">.</span>user<span class="token punctuation">.</span>pojos</span><span class="token punctuation">;</span>
@@ -432,14 +563,14 @@
 <p>手动加密（md5+随机字符串）</p>
 <p>md5是不可逆加密，md5相同的密码每次加密都一样，不太安全。在md5的基础上手动加盐（salt）处理</p>
 <p>注册-&gt;生成盐</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142315248-1690185911431-41.png" alt="image-20210412142315248"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142315248-1690185911431-41.png" srcset="/img/loading.gif" lazyload alt="image-20210412142315248"></p>
 <p>登录-&gt;使用盐来配合验证</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142428499-1690185911431-43.png" alt="image-20210412142428499"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="6-3-思路分析"><a href="#6-3-思路分析" class="headerlink" title="6.3)思路分析"></a>6.3)思路分析</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142536782-1690185911431-42.png" alt="image-20210412142536782"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142428499-1690185911431-43.png" srcset="/img/loading.gif" lazyload alt="image-20210412142428499"></p>
+<h3 id="6-3-思路分析"><a href="#6-3-思路分析" class="headerlink" title="6.3)思路分析"></a>6.3)思路分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142536782-1690185911431-42.png" srcset="/img/loading.gif" lazyload alt="image-20210412142536782"></p>
 <p>1，用户输入了用户名和密码进行登录，校验成功后返回jwt(基于当前用户的id生成)</p>
 <p>2，用户游客登录，生成jwt返回(基于默认值0生成)‘</p>
 <h3 id="6-4-运营端微服务搭建"><a href="#6-4-运营端微服务搭建" class="headerlink" title="6.4)运营端微服务搭建"></a>6.4)<strong>运营端微服务搭建</strong></h3><p>在heima-leadnews-service下创建工程heima-leadnews-user</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142706443-1690185911431-44.png" alt="image-20210412142706443"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412142706443-1690185911431-44.png" srcset="/img/loading.gif" lazyload alt="image-20210412142706443"></p>
 <p>引导类</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>heima<span class="token punctuation">.</span>user</span><span class="token punctuation">;</span>
 
@@ -473,7 +604,7 @@
         <span class="token key atrule">file-extension</span><span class="token punctuation">:</span> yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在nacos中创建配置文件</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412143121648-1690185911431-45.png" alt="image-20210412143121648"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210412143121648-1690185911431-45.png" srcset="/img/loading.gif" lazyload alt="image-20210412143121648"></p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
     <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.jdbc.Driver
@@ -663,9 +794,9 @@
 <h2 id="7-接口工具postman、swagger、knife4j"><a href="#7-接口工具postman、swagger、knife4j" class="headerlink" title="7)接口工具postman、swagger、knife4j"></a>7)接口工具postman、swagger、knife4j</h2><h3 id="7-1-postman"><a href="#7-1-postman" class="headerlink" title="7.1)postman"></a>7.1)postman</h3><p>Postman是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。postman被500万开发者和超100,000家公司用于每月访问1.3亿个API。</p>
 <p>官方网址：<a target="_blank" rel="noopener" href="https://www.postman.com/">https://www.postman.com/</a></p>
 <p>解压资料文件夹中的软件，安装即可</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162511873-1690185911431-46.png" alt="image-20210413162511873"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162511873-1690185911431-46.png" srcset="/img/loading.gif" lazyload alt="image-20210413162511873"></p>
 <p>通常的接口测试查看请求和响应，下面是登录请求的测试</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162558657-1690185911431-47.png" alt="image-20210413162558657"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210413162558657-1690185911431-47.png" srcset="/img/loading.gif" lazyload alt="image-20210413162558657"></p>
 <h3 id="7-2-swagger"><a href="#7-2-swagger" class="headerlink" title="7.2)swagger"></a>7.2)swagger</h3><p>(1)简介</p>
 <p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务(<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a>)。 它的主要作用是：</p>
 <ol>
@@ -751,7 +882,7 @@
 <p>@ApiImplicitParam：一个请求参数  </p>
 <p>@ApiImplicitParams：多个请求参数的描述信息</p>
 <p> @ApiImplicitParam属性：</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th>属性</th>
@@ -834,7 +965,7 @@
 <td></td>
 <td>默认值</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <p>我们在ApUserLoginController中添加Swagger注解，代码如下所示：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api/v1/login"</span><span class="token punctuation">)</span>
@@ -941,7 +1072,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上有两个注解需要特别说明，如下表：</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th>注解</th>
@@ -956,7 +1087,7 @@
 <td><code>@EnableKnife4j</code></td>
 <td>该注解是<code>knife4j</code>提供的增强注解,Ui提供了例如动态参数、参数过滤、接口排序等增强功能,如果你想使用这些增强功能就必须加该注解，否则可以不用加</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <ul>
 <li>添加配置</li>
 </ul>
@@ -1022,7 +1153,7 @@
         <span class="token key atrule">file-extension</span><span class="token punctuation">:</span> yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在nacos的配置中心创建dataid为leadnews-app-gateway的yml配置</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210728140447647-1690185911431-48.png" alt="image-20210728140447647"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210728140447647-1690185911431-48.png" srcset="/img/loading.gif" lazyload alt="image-20210728140447647"></p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
     <span class="token key atrule">gateway</span><span class="token punctuation">:</span>
@@ -1051,7 +1182,7 @@
 
 <p>环境搭建完成以后，启动项目网关和用户两个服务，使用postman进行测试</p>
 <p>请求地址：<a target="_blank" rel="noopener" href="http://localhost:51601/user/api/v1/login/login_auth">http://localhost:51601/user/api/v1/login/login_auth</a>   </p>
-<h3 id="1-3-全局过滤器实现jwt校验"><a href="#1-3-全局过滤器实现jwt校验" class="headerlink" title="1.3 全局过滤器实现jwt校验"></a>1.3 全局过滤器实现jwt校验</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210705110434492-1690185911431-49.png" alt="image-20210705110434492"class="mdui-img-rounded" loading="lazy"></figure>
+<h3 id="1-3-全局过滤器实现jwt校验"><a href="#1-3-全局过滤器实现jwt校验" class="headerlink" title="1.3 全局过滤器实现jwt校验"></a>1.3 全局过滤器实现jwt校验</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210705110434492-1690185911431-49.png" srcset="/img/loading.gif" lazyload alt="image-20210705110434492"></p>
 <p>思路分析：</p>
 <ol>
 <li>用户进入网关开始登陆，网关过滤器进行判断，如果是登录，则路由到后台管理微服务进行登录</li>
@@ -1137,7 +1268,7 @@
 
 <p>测试：</p>
 <p>启动user服务，继续访问其他微服务，会提示需要认证才能访问，这个时候需要在heads中设置设置token才能正常访问。</p>
-<h2 id="9-前端集成"><a href="#9-前端集成" class="headerlink" title="9)前端集成"></a>9)前端集成</h2><h3 id="9-1-前端项目部署思路"><a href="#9-1-前端项目部署思路" class="headerlink" title="9.1)前端项目部署思路"></a>9.1)前端项目部署思路</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210416095950485-1690185911431-50.png" alt="image-20210416095950485"class="mdui-img-rounded" loading="lazy"></figure>
+<h2 id="9-前端集成"><a href="#9-前端集成" class="headerlink" title="9)前端集成"></a>9)前端集成</h2><h3 id="9-1-前端项目部署思路"><a href="#9-1-前端项目部署思路" class="headerlink" title="9.1)前端项目部署思路"></a>9.1)前端项目部署思路</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210416095950485-1690185911431-50.png" srcset="/img/loading.gif" lazyload alt="image-20210416095950485"></p>
 <p>通过nginx来进行配置，功能如下</p>
 <ul>
 <li>通过nginx的反向代理功能访问后台的网关资源</li>
@@ -1192,15 +1323,15 @@ http <span class="token punctuation">&#123;</span>
 <p>⑤：打开前端项目进行测试  – &gt;  <a target="_blank" rel="noopener" href="http://localhost:8801/">http://localhost:8801</a></p>
 <p>​     用谷歌浏览器打开，调试移动端模式进行访问</p>
 <h1 id="2-app端文章查看，静态化freemarker-分布式文件系统minIO"><a href="#2-app端文章查看，静态化freemarker-分布式文件系统minIO" class="headerlink" title="2.app端文章查看，静态化freemarker,分布式文件系统minIO"></a>2.app端文章查看，静态化freemarker,分布式文件系统minIO</h1><h2 id="1-文章列表加载"><a href="#1-文章列表加载" class="headerlink" title="1)文章列表加载"></a>1)文章列表加载</h2><h3 id="1-1-需求分析"><a href="#1-1-需求分析" class="headerlink" title="1.1)需求分析"></a>1.1)需求分析</h3><p>文章布局展示</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151801252.png" alt="image-20210419151801252"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151801252.png" srcset="/img/loading.gif" lazyload alt="image-20210419151801252"></p>
 <h3 id="1-2-表结构分析"><a href="#1-2-表结构分析" class="headerlink" title="1.2)表结构分析"></a>1.2)表结构分析</h3><p>ap_article  文章基本信息表</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151839634.png" alt="image-20210419151839634"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151839634.png" srcset="/img/loading.gif" lazyload alt="image-20210419151839634"></p>
 <p>ap_article_config  文章配置表</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151854868.png" alt="image-20210419151854868"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151854868.png" srcset="/img/loading.gif" lazyload alt="image-20210419151854868"></p>
 <p>ap_article_content 文章内容表</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151912063.png" alt="image-20210419151912063"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151912063.png" srcset="/img/loading.gif" lazyload alt="image-20210419151912063"></p>
 <p>三张表关系分析</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151938103.png" alt="image-20210419151938103"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419151938103.png" srcset="/img/loading.gif" lazyload alt="image-20210419151938103"></p>
 <h3 id="1-3-导入文章数据库"><a href="#1-3-导入文章数据库" class="headerlink" title="1.3)导入文章数据库"></a>1.3)导入文章数据库</h3><h4 id="1-3-1-导入数据库"><a href="#1-3-1-导入数据库" class="headerlink" title="1.3.1)导入数据库"></a>1.3.1)导入数据库</h4><p>查看当天资料文件夹，在数据库连接工具中执行leadnews_article.sql</p>
 <h4 id="1-3-2-导入对应的实体类"><a href="#1-3-2-导入对应的实体类" class="headerlink" title="1.3.2)导入对应的实体类"></a>1.3.2)导入对应的实体类</h4><p>ap_article文章表对应实体</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>heima<span class="token punctuation">.</span>model<span class="token punctuation">.</span>article<span class="token punctuation">.</span>pojos</span><span class="token punctuation">;</span>
@@ -1442,7 +1573,7 @@ http <span class="token punctuation">&#123;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> content<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="1-4-实现思路"><a href="#1-4-实现思路" class="headerlink" title="1.4)实现思路"></a>1.4)实现思路</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419152011931.png" alt="image-20210419152011931"class="mdui-img-rounded" loading="lazy"></figure>
+<h3 id="1-4-实现思路"><a href="#1-4-实现思路" class="headerlink" title="1.4)实现思路"></a>1.4)实现思路</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210419152011931.png" srcset="/img/loading.gif" lazyload alt="image-20210419152011931"></p>
 <p>1,在默认频道展示10条文章信息</p>
 <p>2,可以切换频道查看不同种类文章</p>
 <p>3,当用户下拉可以加载最新的文章（分页）本页文章列表中发布时间为最大的时间为依据</p>
@@ -1454,7 +1585,7 @@ http <span class="token punctuation">&#123;</span>
 <li><p>minBehotTime：20000000000000（毫秒）—&gt;2063年</p>
 </li>
 </ul>
-<h3 id="1-5-接口定义"><a href="#1-5-接口定义" class="headerlink" title="1.5)接口定义"></a>1.5)接口定义</h3><div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<h3 id="1-5-接口定义"><a href="#1-5-接口定义" class="headerlink" title="1.5)接口定义"></a>1.5)接口定义</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -1487,7 +1618,7 @@ http <span class="token punctuation">&#123;</span>
 <td>ResponseResult</td>
 <td>ResponseResult</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <p>ArticleHomeDto</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>heima<span class="token punctuation">.</span>model<span class="token punctuation">.</span>article<span class="token punctuation">.</span>dtos</span><span class="token punctuation">;</span>
 
@@ -1508,7 +1639,7 @@ http <span class="token punctuation">&#123;</span>
     <span class="token class-name">String</span> tag<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="1-6-功能实现"><a href="#1-6-功能实现" class="headerlink" title="1.6)功能实现"></a>1.6)功能实现</h3><h4 id="1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中"><a href="#1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中" class="headerlink" title="1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中"></a>1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中</h4><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420000326669.png" alt="image-20210420000326669"class="mdui-img-rounded" loading="lazy"></figure>
+<h3 id="1-6-功能实现"><a href="#1-6-功能实现" class="headerlink" title="1.6)功能实现"></a>1.6)功能实现</h3><h4 id="1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中"><a href="#1-6-1-：导入heima-leadnews-article微服务，资料在当天的文件夹中" class="headerlink" title="1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中"></a>1.6.1)：导入heima-leadnews-article微服务，资料在当天的文件夹中</h4><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420000326669.png" srcset="/img/loading.gif" lazyload alt="image-20210420000326669"></p>
 <p><font color="red">注意：需要在heima-leadnews-service的pom文件夹中添加子模块信息，如下：</font></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modules</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>module</span><span class="token punctuation">></span></span>heima-leadnews-user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>module</span><span class="token punctuation">></span></span>
@@ -1516,7 +1647,7 @@ http <span class="token punctuation">&#123;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modules</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在idea中的maven中更新一下，如果工程还是灰色的，需要在重新添加文章微服务的pom文件，操作步骤如下：</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420001037992.png" alt="image-20210420001037992"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210420001037992.png" srcset="/img/loading.gif" lazyload alt="image-20210420001037992"></p>
 <p>需要在nacos中添加对应的配置</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
@@ -1801,7 +1932,7 @@ http <span class="token punctuation">&#123;</span>
 <p>第二：启动nginx，直接使用前端项目测试，启动文章微服务，用户微服务、app网关微服务</p>
 <h2 id="2-freemarker"><a href="#2-freemarker" class="headerlink" title="2)freemarker"></a>2)freemarker</h2><h3 id="2-1-freemarker-介绍"><a href="#2-1-freemarker-介绍" class="headerlink" title="2.1) freemarker 介绍"></a>2.1) freemarker 介绍</h3><p>​	FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
 <p>​	模板编写为FreeMarker Template Language (FTL)。它是简单的，专用的语言， <em>不是</em> 像PHP那样成熟的编程语言。 那就意味着要准备数据在真实编程语言中来显示，比如数据库查询和业务运算， 之后模板显示已经准备好的数据。在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。 </p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1528820943975.png" alt="1528820943975"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1528820943975.png" srcset="/img/loading.gif" lazyload alt="1528820943975"></p>
 <p>常用的java模板引擎还有哪些？</p>
 <p>Jsp、Freemarker、Thymeleaf 、Velocity 等。</p>
 <p>1.Jsp 为 Servlet 专用，不能单独进行使用。</p>
@@ -1976,7 +2107,7 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="2-2-7-测试"><a href="#2-2-7-测试" class="headerlink" title="2.2.7) 测试"></a>2.2.7) 测试</h4><p>请求：<a target="_blank" rel="noopener" href="http://localhost:8881/basic">http://localhost:8881/basic</a></p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1576129529361.png" alt="1576129529361"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1576129529361.png" srcset="/img/loading.gif" lazyload alt="1576129529361"></p>
 <h3 id="2-3-freemarker基础"><a href="#2-3-freemarker基础" class="headerlink" title="2.3) freemarker基础"></a>2.3) freemarker基础</h3><h4 id="2-3-1-基础语法种类"><a href="#2-3-1-基础语法种类" class="headerlink" title="2.3.1) 基础语法种类"></a>2.3.1) 基础语法种类</h4><p>  1、注释，即&lt;#–  –&gt;，介于其之间的内容会被freemarker忽略</p>
 <pre class="line-numbers language-velocity" data-language="velocity"><code class="language-velocity"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#--我是一个freemarker注释--</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -2211,7 +2342,7 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
 
 <p>3、输出：</p>
 <p>姓名为“小强”则字体颜色显示为红色。</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1539947776259.png" alt="1539947776259"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/1539947776259.png" srcset="/img/loading.gif" lazyload alt="1539947776259"></p>
 <h4 id="2-3-4-运算符"><a href="#2-3-4-运算符" class="headerlink" title="2.3.4)  运算符"></a>2.3.4)  运算符</h4><p><strong>1、算数运算符</strong></p>
 <p>FreeMarker表达式中完全支持算术运算,FreeMarker支持的算术运算符包括:</p>
 <ul>
@@ -2496,7 +2627,7 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
 
 <h3 id="2-4-静态化测试"><a href="#2-4-静态化测试" class="headerlink" title="2.4) 静态化测试"></a>2.4) 静态化测试</h3><p>之前的测试都是SpringMVC将Freemarker作为视图解析器（ViewReporter）来集成到项目中，工作中，有的时候需要使用Freemarker原生Api来生成静态内容，下面一起来学习下原生Api生成文本文件。</p>
 <h4 id="2-4-1-需求分析"><a href="#2-4-1-需求分析" class="headerlink" title="2.4.1) 需求分析"></a>2.4.1) 需求分析</h4><p>使用freemarker原生Api将页面生成html文件，本节测试html文件生成的方法：</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210422163843108.png" alt="image-20210422163843108"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210422163843108.png" srcset="/img/loading.gif" lazyload alt="image-20210422163843108"></p>
 <h4 id="2-4-2-静态化测试"><a href="#2-4-2-静态化测试" class="headerlink" title="2.4.2) 静态化测试"></a>2.4.2) 静态化测试</h4><p>根据模板文件生成html文件</p>
 <p>①：修改application.yml文件，添加以下模板存放位置的配置信息，完整配置如下：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
@@ -2628,11 +2759,11 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">docker run <span class="token punctuation">-</span>p 9000<span class="token punctuation">:</span>9000 <span class="token punctuation">-</span><span class="token punctuation">-</span>name minio <span class="token punctuation">-</span>d <span class="token punctuation">-</span><span class="token punctuation">-</span>restart=always <span class="token punctuation">-</span>e "MINIO_ACCESS_KEY=minio" <span class="token punctuation">-</span>e "MINIO_SECRET_KEY=minio123" <span class="token punctuation">-</span>v /home/data<span class="token punctuation">:</span>/data <span class="token punctuation">-</span>v /home/config<span class="token punctuation">:</span>/root/.minio minio/minio server /data<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="3-3-2-管理控制台"><a href="#3-3-2-管理控制台" class="headerlink" title="3.3.2 管理控制台"></a>3.3.2 管理控制台</h4><p>假设我们的服务器地址为<a href="http://192.168.200.130:9000，我们在地址栏输入：http://http://192.168.200.130:9000/">http://192.168.200.130:9000，我们在地址栏输入：http://http://192.168.200.130:9000/</a> 即可进入登录界面。</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102204739.png" alt="image-20210417102204739"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102204739.png" srcset="/img/loading.gif" lazyload alt="image-20210417102204739"></p>
 <p>Access Key为minio   Secret_key 为minio123    进入系统后可以看到主界面</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102356582.png" alt="image-20210417102356582"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102356582.png" srcset="/img/loading.gif" lazyload alt="image-20210417102356582"></p>
 <p>点击右下角的“+”号 ，点击下面的图标，创建一个桶</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102435088.png" alt="image-20210417102435088"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210417102435088.png" srcset="/img/loading.gif" lazyload alt="image-20210417102435088"></p>
 <h3 id="3-4-快速入门"><a href="#3-4-快速入门" class="headerlink" title="3.4 快速入门"></a>3.4 快速入门</h3><h4 id="3-4-1-创建工程，导入pom依赖"><a href="#3-4-1-创建工程，导入pom依赖" class="headerlink" title="3.4.1 创建工程，导入pom依赖"></a>3.4.1 创建工程，导入pom依赖</h4><p>创建minio-demo,对应pom如下</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
@@ -3066,17 +3197,17 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="4-文章详情"><a href="#4-文章详情" class="headerlink" title="4)文章详情"></a>4)文章详情</h2><h3 id="4-1-需求分析"><a href="#4-1-需求分析" class="headerlink" title="4.1)需求分析"></a>4.1)需求分析</h3><figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180753705.png" alt="image-20210602180753705"class="mdui-img-rounded" loading="lazy"></figure>
+<h2 id="4-文章详情"><a href="#4-文章详情" class="headerlink" title="4)文章详情"></a>4)文章详情</h2><h3 id="4-1-需求分析"><a href="#4-1-需求分析" class="headerlink" title="4.1)需求分析"></a>4.1)需求分析</h3><p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180753705.png" srcset="/img/loading.gif" lazyload alt="image-20210602180753705"></p>
 <h3 id="4-2-实现方案"><a href="#4-2-实现方案" class="headerlink" title="4.2)实现方案"></a>4.2)实现方案</h3><p>方案一</p>
 <p>用户某一条文章，根据文章的id去查询文章内容表，返回渲染页面</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180824202.png" alt="image-20210602180824202"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180824202.png" srcset="/img/loading.gif" lazyload alt="image-20210602180824202"></p>
 <p>方案二</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180856833.png" alt="image-20210602180856833"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180856833.png" srcset="/img/loading.gif" lazyload alt="image-20210602180856833"></p>
 <h3 id="4-3-实现步骤"><a href="#4-3-实现步骤" class="headerlink" title="4.3)实现步骤"></a>4.3)实现步骤</h3><p>1.在artile微服务中添加MinIO和freemarker的支持，参考测试项目</p>
 <p>2.资料中找到模板文件（article.ftl）拷贝到article微服务下</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180931839.png" alt="image-20210602180931839"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180931839.png" srcset="/img/loading.gif" lazyload alt="image-20210602180931839"></p>
 <p>3.资料中找到index.js和index.css两个文件手动上传到MinIO中</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180957787.png" alt="image-20210602180957787"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/image-20210602180957787.png" srcset="/img/loading.gif" lazyload alt="image-20210602180957787"></p>
 <p>4.在文章微服务中导入依赖</p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -3180,54 +3311,365 @@ Hello $&#123;name&#125; <span class="token tag"><span class="token tag"><span cl
 
 
 
-        
-        <blockquote class="mdui-m-x-0 mdui-m-t-4">
-    <strong>
-        Author: <a href="/about/">Jokerz</a><br>
-        URL: <a href="https://jokerzxxx.github.io/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/">https://jokerzxxx.github.io/2023/07/24/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1/</a><br>
-        
-            This work is licensed under a <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> .
-        
-    </strong>
-</blockquote>
-        
-    </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
     
-</article>
-<nav class="mdui-theme-layout-light mdui-color-transparent mdui-row mdui-m-b-2">
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="category-chain-item">项目实战</a>
+  
+  
+
+      </span>
     
-        <div class="mdui-col-xs-12 mdui-m-b-2">
-            <a class="extend prev mdui-btn mdui-ripple mdui-float-left mdui-text-truncate" rel="prev"
-                style="max-width: 100%" href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/">
-                <i class="mdui-icon mdui-icon-left material-icons">arrow_back</i>Spring原理
-            </a>
-        </div>
-    
-        <div class="mdui-col-xs-12">
-            <a class="extend next mdui-btn mdui-ripple mdui-float-right mdui-text-truncate" rel="next"
-                style="max-width: 100%" href="/2023/07/24/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                <i class="mdui-icon mdui-icon-right material-icons">arrow_forward</i>消息中间件面试题
-            </a>
-        </div>
-    
-</nav>
+  
+</span>
 
     </div>
-    <a href="#" class="mdui-fab mdui-fab-fixed mdui-hidden-xs mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">keyboard_arrow_up</i></a>
+  
+  
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>黑马头条</div>
+      <div>https://jokerzxxx.github.io/2023/07/24/黑马头条/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Jokerz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 24, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
 
 
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/" title="Spring原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring原理</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/24/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E9%A2%98/" title="消息中间件面试题">
+                        <span class="hidden-mobile">消息中间件面试题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-    var $ = mdui.$;
-    function init(){
-        //
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
-    window.addEventListener("load", () => {
-        //
-        init()
-    }, {once: true});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
 
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>

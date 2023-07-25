@@ -1,44 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" data-default-color-scheme=auto>
+
+
+
 <head>
-    <meta charset="utf-8">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-
-
-    <link rel="dns-prefetch" //cdn.jsdelivr.net>
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css">
-
-
-
-    
-<link rel="stylesheet" href="/css/prism-m.css">
-
-    
-
-
-
-<meta name="theme-color" content="#3F51B5">
-
-
-<style>
-    html,body{scroll-behavior:smooth;min-height:100vh}
-    blockquote>strong>a{word-break:break-all}
-    .mdui-hoverable:hover,.mdui-hoverable:focus{-webkit-box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12) !important;box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12) !important;}
-    .mdui-card-primary-title a{text-decoration:none !important}
-    .page-number{display:none !important}
-    .mdui-container-fluid{transition:opacity .4s}
-    
-        body{background-color: #f6f6f6}
-
-    
-</style>
-    
-    <title>Java | Java从入门到放弃</title>
-    <link rel="canonical" href="https://jokerzxxx.github.io/2023/07/25/Java/">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jokerz">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="day01 - Java基础语法1. 人机交互1.1 什么是cmd？就是在windows操作系统中，利用命令行的方式去操作计算机。 我们可以利用cmd命令去操作计算机，比如：打开文件，打开文件夹，创建文件夹等。 1.2 如何打开CMD窗口？ 按下快捷键：win + R。 此时会出现运行窗口。   在运行窗口中输出cmd  输出回车。   解惑： ​	cmd默认操作C盘下的users文件夹下的XXX">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java">
@@ -142,98 +119,254 @@
 <meta property="article:published_time" content="2023-07-25T07:21:57.000Z">
 <meta property="article:modified_time" content="2023-07-25T07:29:21.332Z">
 <meta property="article:author" content="Jokerz">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jokerzxxx.github.io/2023/07/25/Java/cmd-1690270058867-80-1690270082701-258.png">
+  
+  
+  
+  <title>Java - Java从入门到放弃</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jokerzxxx.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 6.3.0"></head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar ">
-    <div class="mdui-theme-layout-light">
-    <header id="appbar" class="mdui-appbar mdui-appbar-fixed mdui-shadow-0 mdui-appbar-scroll-hide">
-    <div class="mdui-toolbar">
-        <button mdui-drawer="{target: '.mdui-drawer'}" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">menu</i></button>
-        <a href="/" class="mdui-typo-title">Java从入门到放弃</a>
-        <div class="mdui-toolbar-spacer"></div>
-        
-        <a href="/search/" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">search</i></a>
-        
-    </div>
-</header>
-    <aside class="mdui-drawer mdui-drawer-close">
-    <nav class="mdui-list" mdui-collapse="{accordion: true}">
-        <a href="/about/"  class="mdui-list-item mdui-ripple">
-            <div class="mdui-list-item-avatar">
-                
-                <i class="mdui-color-theme-primary mdui-icon material-icons">person</i>
-                
-            </div>
-            <div class="mdui-list-item-content">Jokerz</div>
-        </a>
-        <div class="mdui-divider"></div>
-        
-        <a href="/" class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-            <div class="mdui-list-item-content">Home</div>
-        </a>
-        
-        <div class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">inbox</i>
-                <div class="mdui-list-item-content">Archives</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <a class="mdui-list-item mdui-ripple m-link" href="/archives/2023/07/">July 2023</a>
-            </div>
-        </div>
-        
-        <div class="mdui-collapse-item">
-            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">apps</i>
-                <div class="mdui-list-item-content">Categories</div>
-                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-            </div>
-            <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                <a class="mdui-list-item mdui-ripple m-link" href="/categories/Spring/">Spring</a><a class="mdui-list-item mdui-ripple m-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><a class="mdui-list-item mdui-ripple m-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a>
-            </div>
-        </div>
-        
-    </nav>
-    <div class="mdui-divider"></div>
-    <footer class="mdui-m-l-2 mdui-m-t-1 mdui-typo mdui-text-color-theme-disabled">
-        <p class="mdui-m-b-0">
-            
-            ©
-            2023 Jokerz<br>
-            
-            Powered by <a href="https://hexo.io/" rel="noreferrer" target="_blank">Hexo</a><br>
-            
-            Theme - <a href="https://github.com/kwaa/hexo-theme-m" rel="noreferrer" target="_blank"
-                mdui-tooltip="{position:'right', content: 'by 藍+85CD'}">M</a></p>
-            
-    </footer>
-</aside>
-    </div>
-    <div class="mdui-container-fluid mdui-center" style="max-width:720px">
-        <article class="mdui-card mdui-hoverable mdui-shadow-1 mdui-m-y-2" style="opacity: 1; border-radius: 4px">
+
+
+<body>
+  
+
+  <header>
     
-    <div class="mdui-card-primary mdui-ripple">
-    <div class="mdui-card-primary-title">
-        <a role="heading" aria-level="1" class="mdui-text-color-theme-text" >Java</a>
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="mdui-card-primary-subtitle mdui-typo">
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java"></span>
+          
+        </div>
+
         
-        <span mdui-tooltip="{content:'Created: 2023-07-25 03:21<br>Updated: 2023-07-25 03:29'}">2023-07-25 -</span>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-25 15:21" pubdate>
+          July 25, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-            <span>2023/07/25/Java/</span>
+          22k words
         
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          188 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
     </div>
+  </div>
 </div>
+
+</div>
+
+  </header>
+
+  <main>
     
-    
-    <div class="mdui-divider"></div>
-    <div class="mdui-card-content mdui-typo">
-        
-        <h1 id="day01-Java基础语法"><a href="#day01-Java基础语法" class="headerlink" title="day01 - Java基础语法"></a>day01 - Java基础语法</h1><h2 id="1-人机交互"><a href="#1-人机交互" class="headerlink" title="1. 人机交互"></a>1. 人机交互</h2><h3 id="1-1-什么是cmd？"><a href="#1-1-什么是cmd？" class="headerlink" title="1.1 什么是cmd？"></a>1.1 什么是cmd？</h3><p>就是在windows操作系统中，利用命令行的方式去操作计算机。</p>
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="day01-Java基础语法"><a href="#day01-Java基础语法" class="headerlink" title="day01 - Java基础语法"></a>day01 - Java基础语法</h1><h2 id="1-人机交互"><a href="#1-人机交互" class="headerlink" title="1. 人机交互"></a>1. 人机交互</h2><h3 id="1-1-什么是cmd？"><a href="#1-1-什么是cmd？" class="headerlink" title="1.1 什么是cmd？"></a>1.1 什么是cmd？</h3><p>就是在windows操作系统中，利用命令行的方式去操作计算机。</p>
 <p>我们可以利用cmd命令去操作计算机，比如：打开文件，打开文件夹，创建文件夹等。</p>
 <h3 id="1-2-如何打开CMD窗口？"><a href="#1-2-如何打开CMD窗口？" class="headerlink" title="1.2 如何打开CMD窗口？"></a>1.2 如何打开CMD窗口？</h3><ol>
 <li><p>按下快捷键：win + R。</p>
@@ -247,12 +380,12 @@
 </ol>
 <p>解惑：</p>
 <p>​	cmd默认操作C盘下的users文件夹下的XXX文件夹。（XXX就是计算机名）</p>
-<p> <img src="/2023/07/25/Java/cmd-1690270058867-80-1690270082701-258.png" alt="image-20210923091350952"></p>
+<p> <img src="/2023/07/25/Java/cmd-1690270058867-80-1690270082701-258.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <h3 id="1-3-常用CMD命令"><a href="#1-3-常用CMD命令" class="headerlink" title="1.3 常用CMD命令"></a>1.3 常用CMD命令</h3><p> 扩展一个小点：</p>
 <p>​	在很多资料中都说成是DOS命令，其实是不对的。真正的DOS命令是1981年微软和IBM出品的MS-DOS操作系统中的命令才叫做DOS命令。</p>
 <p>​	而在Windows中，win98之前的操作系统是以非图形化的DOS为基础的，可以叫做DOS命令。到了2000年以后，windows逐渐的以图形化界面为主了，这个时候就不能叫DOS命令了，他只是模拟了DOS环境而已，很多的原本的DOS命令已经无法使用了，所以这个时候叫做CMD命令会更准确一些。</p>
 <p>常见的CMD命令如下：</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th>操作</th>
@@ -291,7 +424,7 @@
 <td>exit</td>
 <td>退出命令提示符窗口。</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <h3 id="1-4-CMD练习"><a href="#1-4-CMD练习" class="headerlink" title="1.4 CMD练习"></a>1.4 CMD练习</h3><p>需求：</p>
 <p>  利用cmd命令打开自己电脑上的QQ。</p>
 <p>完成步骤：</p>
@@ -317,17 +450,17 @@
 <p>图解示例如下：</p>
 <p>第一步：右键点击我的电脑并选择属性。</p>
 <p>（如果无法出现第二步界面，可以打开我的电脑之后右键点击空白处）</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/1-1690270058867-81-1690270082701-259.png" alt="image-20210923091350952"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/1-1690270058867-81-1690270082701-259.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <p>第二步：点击高级系统设置。</p>
-<p>​	 <img src="/2023/07/25/Java/2-1690270058867-83-1690270082701-260.png" alt="image-20210923091350952"></p>
+<p>​	 <img src="/2023/07/25/Java/2-1690270058867-83-1690270082701-260.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <p>第三步：选择高级，再点击下面的环境变量。</p>
-<p> <img src="/2023/07/25/Java/3-1690270058867-82-1690270082701-268.png" alt="image-20210923091350952"></p>
+<p> <img src="/2023/07/25/Java/3-1690270058867-82-1690270082701-268.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <p>第四步：找系统变量里面的PATH</p>
-<p> <img src="/2023/07/25/Java/4-1690270058867-84-1690270082701-261.png" alt="image-20210923091350952"></p>
+<p> <img src="/2023/07/25/Java/4-1690270058867-84-1690270082701-261.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <p>第五步：点击新建，把软件的完整路径，配置到PATH当中，再点击确定即可。</p>
 <p>第六步：（可做可不做）点击上移，把当前配置的路径移动到最上面。</p>
 <p>移动的好处：在CMD中打开软件时，会先找当前路径，再找环境变量，在环境变量中是从上往下依次查找的，如果路径放在最上面查找的速度比较快。</p>
-<p> <img src="/2023/07/25/Java/5-1690270058867-85-1690270082701-262.png" alt="image-20210923091350952"></p>
+<p> <img src="/2023/07/25/Java/5-1690270058867-85-1690270082701-262.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
 <h2 id="2-Java概述"><a href="#2-Java概述" class="headerlink" title="2. Java概述"></a>2. Java概述</h2><h3 id="1-1-Java是什么？"><a href="#1-1-Java是什么？" class="headerlink" title="1.1 Java是什么？"></a>1.1 Java是什么？</h3><p>语言：人与人交流沟通的表达方式</p>
 <p>计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言</p>
 <p>Java是一门非常火的计算机语言。（也叫做编程语言）</p>
@@ -345,7 +478,7 @@
 <li>安装路径不要有中文，不要有空格等一些特殊的符号。</li>
 <li>以后跟开发相关的所有软件建议都安装在同一个文件夹中，方便管理。</li>
 </ul>
-<h4 id="1-2-3-JDK的安装目录介绍"><a href="#1-2-3-JDK的安装目录介绍" class="headerlink" title="1.2.3 JDK的安装目录介绍"></a>1.2.3 JDK的安装目录介绍</h4><div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<h4 id="1-2-3-JDK的安装目录介绍"><a href="#1-2-3-JDK的安装目录介绍" class="headerlink" title="1.2.3 JDK的安装目录介绍"></a>1.2.3 JDK的安装目录介绍</h4><table>
 <thead>
 <tr>
 <th>目录名称</th>
@@ -376,7 +509,7 @@
 <td>lib</td>
 <td>该路径下存放了JDK工具的一些补充JAR包。</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <h3 id="1-3-HelloWorld小案例"><a href="#1-3-HelloWorld小案例" class="headerlink" title="1.3 HelloWorld小案例"></a>1.3 HelloWorld小案例</h3><p>​	HelloWorld案例是指在计算机屏幕上输出“HelloWorld”这行文字。各种计算机语言都习惯使用该案例作为第一个演示案例。</p>
 <h4 id="2-3-1-Java程序开发运行流程"><a href="#2-3-1-Java程序开发运行流程" class="headerlink" title="2.3.1 Java程序开发运行流程"></a>2.3.1 Java程序开发运行流程</h4><p>开发Java程序，需要三个步骤：编写程序，编译程序，运行程序。</p>
 <h4 id="2-3-2-HelloWorld案例的编写"><a href="#2-3-2-HelloWorld案例的编写" class="headerlink" title="2.3.2 HelloWorld案例的编写"></a>2.3.2 HelloWorld案例的编写</h4><ol>
@@ -464,12 +597,12 @@
 <p>​	可以在输入法中进行对应的设置。</p>
 <h3 id="1-5-环境变量-1"><a href="#1-5-环境变量-1" class="headerlink" title="1.5 环境变量"></a>1.5 环境变量</h3><h4 id="1-5-1-为什么配置环境变量"><a href="#1-5-1-为什么配置环境变量" class="headerlink" title="1.5.1 为什么配置环境变量"></a>1.5.1 为什么配置环境变量</h4><p>​	开发Java程序，需要使用JDK提供的开发工具（比如javac.exe、java.exe等命令），而这些工具在JDK的安装目录的bin目录下，如果不配置环境变量，那么这些命令只可以在bin目录下使用，而我们想要在任意目录下都能使用，所以就要配置环境变量。</p>
 <p>注意：现在最新从官网上下载的JDK安装时会自动配置javac、java命令的路径到Path环境变量中去 ，所以javac、java可以直接使用。</p>
-<h4 id="1-5-2配置方式"><a href="#1-5-2配置方式" class="headerlink" title="1.5.2配置方式"></a>1.5.2配置方式</h4><figure class="mdui-img-fluid"><img src="/2023/07/25/Java/image-20210923091654365-1690270058867-87-1690270082701-263.png" alt="image-20210923091654365"class="mdui-img-rounded" loading="lazy"></figure>
+<h4 id="1-5-2配置方式"><a href="#1-5-2配置方式" class="headerlink" title="1.5.2配置方式"></a>1.5.2配置方式</h4><p><img src="/2023/07/25/Java/image-20210923091654365-1690270058867-87-1690270082701-263.png" srcset="/img/loading.gif" lazyload alt="image-20210923091654365"></p>
 <p>以前下载的老版本的JDK是没有自动配置的，而且自动配置的也只包含了4个工具而已，所以我们需要删掉已经配置完毕的，再次重新配置Path环境变量。</p>
 <p>①<strong>JAVA_HOME</strong>：告诉操作系统JDK安装在了哪个位置（未来其他技术要通过这个找JDK）</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/image-20210923091710450-1690270058867-86-1690270082701-264.png" alt="image-20210923091710450"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/image-20210923091710450-1690270058867-86-1690270082701-264.png" srcset="/img/loading.gif" lazyload alt="image-20210923091710450"></p>
 <p>②<strong>Path</strong>：告诉操作系统JDK提供的javac(编译)、java(执行)命令安装到了哪个位置</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/image-20210923091721035-1690270058867-88-1690270082701-265.png" alt="image-20210923091721035"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/image-20210923091721035-1690270058867-88-1690270082701-265.png" srcset="/img/loading.gif" lazyload alt="image-20210923091721035"></p>
 <h4 id="1-5-3win10的bug"><a href="#1-5-3win10的bug" class="headerlink" title="1.5.3win10的bug"></a>1.5.3win10的bug</h4><p>当电脑重启之后，环境变量失效了。表示操作系统不支持自定义的环境变量。</p>
 <p>步骤：</p>
 <ul>
@@ -524,8 +657,8 @@
 <li>但是针对于不同的操作系统，Java提供了不同的虚拟机。</li>
 </ul>
 <p>虚拟机会把Java语言翻译成操作系统能看得懂的语言。</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/image-20210923091350952-1690270058867-89-1690270082701-266.png" alt="image-20210923091350952"class="mdui-img-rounded" loading="lazy"></figure>
-<h3 id="1-10-JRE和JDK"><a href="#1-10-JRE和JDK" class="headerlink" title="1.10 JRE和JDK"></a>1.10 JRE和JDK</h3><figure class="mdui-img-fluid"><img src="/2023/07/25/Java/image-20210923091544110-1690270058867-90-1690270082701-267.png" alt="image-20210923091544110"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/image-20210923091350952-1690270058867-89-1690270082701-266.png" srcset="/img/loading.gif" lazyload alt="image-20210923091350952"></p>
+<h3 id="1-10-JRE和JDK"><a href="#1-10-JRE和JDK" class="headerlink" title="1.10 JRE和JDK"></a>1.10 JRE和JDK</h3><p><img src="/2023/07/25/Java/image-20210923091544110-1690270058867-90-1690270082701-267.png" srcset="/img/loading.gif" lazyload alt="image-20210923091544110"></p>
 <p>JVM（Java Virtual Machine），Java虚拟机</p>
 <p>JRE（Java Runtime Environment），Java运行环境，包含了JVM和Java的核心类库（Java API）</p>
 <p>JDK（Java Development Kit）称为Java开发工具，包含了JRE和开发工具</p>
@@ -564,7 +697,7 @@
 <h2 id="2-关键字"><a href="#2-关键字" class="headerlink" title="2. 关键字"></a>2. 关键字</h2><h3 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h3><p>​	被Java赋予了特定含义的英文单词。</p>
 <p>​	当我们在代码中写了关键字之后，程序在运行的时候，就知道要做什么事情了。</p>
 <p>注意：关键字很多，不用刻意去记。</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th><strong>abstract</strong></th>
@@ -637,7 +770,7 @@
 <td><strong>volatile</strong></td>
 <td><strong>while</strong></td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <h3 id="2-2-第一个关键字class"><a href="#2-2-第一个关键字class" class="headerlink" title="2.2 第一个关键字class"></a>2.2 第一个关键字class</h3><p>​	表示定义一个类。创建一个类。</p>
 <p>类：Java项目最基本的组成单元，一个完整的Java项目有可能会有成千上万个类来组成的。</p>
 <p>class后面跟随的就是这个类的名字，简称：类名。</p>
@@ -652,7 +785,7 @@
 <p>​	类名：HelloWorld</p>
 <p>​	HelloWorld后面的大括号表示这个类的范围。</p>
 <h2 id="3-字面量"><a href="#3-字面量" class="headerlink" title="3. 字面量"></a>3. 字面量</h2><p>作用：告诉程序员，数据在程序中的书写格式。</p>
-<div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<table>
 <thead>
 <tr>
 <th><strong>字面量类型</strong></th>
@@ -690,7 +823,7 @@
 <td>一个特殊的值，空值</td>
 <td>值是：null</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出一个整数</span>
@@ -796,7 +929,7 @@
 <li>基本数据类型</li>
 <li>引用数据类型（面向对象的时候再深入学习）</li>
 </ul>
-<h3 id="5-2-基本数据类型的四类八种"><a href="#5-2-基本数据类型的四类八种" class="headerlink" title="5.2 基本数据类型的四类八种"></a>5.2 基本数据类型的四类八种</h3><div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<h3 id="5-2-基本数据类型的四类八种"><a href="#5-2-基本数据类型的四类八种" class="headerlink" title="5.2 基本数据类型的四类八种"></a>5.2 基本数据类型的四类八种</h3><table>
 <thead>
 <tr>
 <th align="center">数据类型</th>
@@ -853,7 +986,7 @@
 <td align="center">1</td>
 <td align="center">true，false</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>​	e+38表示是乘以10的38次方，同样，e-45表示乘以10的负45次方。</p>
 <p>​	在java中整数默认是int类型，浮点数默认是double类型。</p>
 <h4 id="需要记忆以下几点"><a href="#需要记忆以下几点" class="headerlink" title="需要记忆以下几点"></a>需要记忆以下几点</h4><p>byte类型的取值范围：</p>
@@ -1055,36 +1188,36 @@
 <li>到资料文件夹中，双击安装包。</li>
 <li>点击next，准备安装</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%851-1690270082693-180.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%851-1690270082693-180.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>点击Browse修改安装路径。</p>
 <p>修改完毕点击next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%852-1690270082693-181.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%852-1690270082693-181.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>勾选64-bit launcher。表示在桌面新建一个64位的快捷方式。</p>
 <p>其他的不要勾选。</p>
 <p>点击next。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%854-1690270082693-182.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%854-1690270082693-182.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击Install，准备安装。</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%855-1690270082693-183.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%855-1690270082693-183.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>等进度条读取完毕之后，会有最终界面提示。</p>
 <p>点击finish即可。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%856-1690270082693-184.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%856-1690270082693-184.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>第一次启动会询问，是否导入一些设置。</p>
 <p>选择第二个不导入，保持默认设置，再点击OK。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%857-1690270082693-185.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%857-1690270082693-185.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>选择背景主题</p>
 <p>左边是黑色背景。右边是白色背景。</p>
@@ -1092,24 +1225,24 @@
 <p>选择完毕点击右下角的next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%858-1690270082693-186.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%858-1690270082693-186.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>在本界面让我们购买idea。</p>
 <p>因为我们是学习阶段，所以可以使用免费使用30天。</p>
 <p>点击第一排第二个。Evaluate for free</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%859-1690270082693-187.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%859-1690270082693-187.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击蓝色的Evaluate，就可以开始免费试用30天了。</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%8510-1690270082693-188.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%8510-1690270082693-188.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>当看到这个界面，就表示idea已经成功安装完毕</p>
 <p>可以点击右上角关闭。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%8511-1690270082693-189.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E5%AE%89%E8%A3%8511-1690270082693-189.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h3 id="8-3-IDEA中层级结构介绍"><a href="#8-3-IDEA中层级结构介绍" class="headerlink" title="8.3 IDEA中层级结构介绍"></a>8.3 IDEA中层级结构介绍</h3><h4 id="8-3-1-结构分类"><a href="#8-3-1-结构分类" class="headerlink" title="8.3.1 结构分类"></a>8.3.1 结构分类</h4><ul>
 <li>project（项目、工程）</li>
 <li>module（模块）</li>
@@ -1149,100 +1282,100 @@
 </ul>
 <h5 id="8-4-2-分步图解"><a href="#8-4-2-分步图解" class="headerlink" title="8.4.2 分步图解"></a>8.4.2 分步图解</h5><ul>
 <li><p>双击启动图标</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea%E4%BD%BF%E7%94%A81-1690270082693-190.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea%E4%BD%BF%E7%94%A81-1690270082693-190.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 </li>
 <li><p>首先要新建一个项目</p>
 <p>点击creat new project</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea1-1690270082693-191.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea1-1690270082693-191.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 </li>
 <li><p>我们要从0开始写代码，所以新建一个空的什么都没有的项目。</p>
 <p>点击左下方的Empty Project</p>
 <p>再点击右下角的next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea2-1690270082693-192.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea2-1690270082693-192.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入项目的名称</p>
 <p>输入项目的存放路径</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea3-1690270082693-193.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea3-1690270082693-193.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击ok。idea会帮助我们在本地创建一个项目文件夹</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea4-1690270082693-194.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea4-1690270082693-194.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击Module，准备新建一个模块</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea5-1690270082693-195.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea5-1690270082693-195.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>点击+</p>
 <p>再点击New Module</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea6-1690270082693-196.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea6-1690270082693-196.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>我们要编写Java代码，所以要新建一个Java模块。</p>
 <p>点击Java</p>
 <p>再点击右下角的next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea7-1690270082693-197.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea7-1690270082693-197.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入模块的名称</p>
 <p>再点击右下角的Next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea8-1690270082693-198.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea8-1690270082693-198.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>成功新建一个模块之后，中间就会出现刚刚新建的模块</p>
 <p>点击右下角的OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea9-1690270082693-199.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea9-1690270082693-199.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>回到主界面</p>
 <p>展开刚刚新建的模块</p>
 <p>右键点击src，选择New，选择Java Class</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea10-1690270082693-200.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea10-1690270082693-200.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入类名</p>
 <p>再按回车</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea11-1690270082693-201.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea11-1690270082693-201.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>由于字体比较小</p>
 <p>所以，我们要设置一下字体。</p>
 <p>点击File，选择Setting。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea12-1690270082693-202.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea12-1690270082693-202.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>搜索一下font</p>
 <p>在右边可以输入Size的数值来调节代码字体的大小。</p>
 <p>设置完毕后点击右下角的OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea13-1690270082694-203.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea13-1690270082694-203.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>编写代码</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea14-1690270082694-204.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea14-1690270082694-204.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>运行代码</p>
 <p>右键空白处，点击Run</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea15-1690270082694-205.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea15-1690270082694-205.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>最下面会弹出控制台。</p>
 <p>所有输出语句中的内容，都会在控制台上展示。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/idea16-1690270082694-206.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/idea16-1690270082694-206.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h3 id="8-5-IDEA中类的相关操作"><a href="#8-5-IDEA中类的相关操作" class="headerlink" title="8.5 IDEA中类的相关操作"></a>8.5 IDEA中类的相关操作</h3><h4 id="8-5-1-类的相关操作"><a href="#8-5-1-类的相关操作" class="headerlink" title="8.5.1 类的相关操作"></a>8.5.1 类的相关操作</h4><ul>
 <li>新建类文件</li>
 <li>删除类文件</li>
@@ -1251,31 +1384,31 @@
 <h4 id="8-5-2-新建类文件"><a href="#8-5-2-新建类文件" class="headerlink" title="8.5.2 新建类文件"></a>8.5.2 新建类文件</h4><ul>
 <li><p>所有的Java代码都会写在src文件夹当中。</p>
 <p>所以，右键点击src，选择new，点击Java Class</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB1-1690270082694-207.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB1-1690270082694-207.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 </li>
 <li><p>输入类名，再按回车</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB2-1690270082694-208.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB2-1690270082694-208.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 </li>
 <li><p>新建完毕</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB3-1690270082694-209.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E7%B1%BB3-1690270082694-209.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-5-3-修改类名"><a href="#8-5-3-修改类名" class="headerlink" title="8.5.3 修改类名"></a>8.5.3 修改类名</h4><ul>
 <li><p>右键点击想要修改的文件</p>
 <p>点击Refactor</p>
 <p>再点击Rename</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D1-1690270082694-210.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D1-1690270082694-210.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入想要修改的名字</p>
 <p>输入完毕点击下面的Refactor</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D2-1690270082694-211.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D2-1690270082694-211.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>文件名和类名均已修改成功</p>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D3-1690270082694-212.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%90%8D3-1690270082694-212.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 </li>
 </ul>
 <h4 id="8-5-4-删除类文件"><a href="#8-5-4-删除类文件" class="headerlink" title="8.5.4 删除类文件"></a>8.5.4 删除类文件</h4><ul>
@@ -1283,11 +1416,11 @@
 <p>选择Delete即可</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E7%B1%BB%E6%96%87%E4%BB%B61-1690270082694-213.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E7%B1%BB%E6%96%87%E4%BB%B61-1690270082694-213.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>在弹出的界面中点击OK，确定删除</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E7%B1%BB%E6%96%87%E4%BB%B62-1690270082694-214.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E7%B1%BB%E6%96%87%E4%BB%B62-1690270082694-214.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <blockquote>
 <p>小贴士：</p>
 <p>此时删除是不走回收站的，直接从硬盘中删掉了。</p>
@@ -1301,53 +1434,53 @@
 <h4 id="8-6-2-新建模块"><a href="#8-6-2-新建模块" class="headerlink" title="8.6.2 新建模块"></a>8.6.2 新建模块</h4><ul>
 <li>点击File，选择Project Structure</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%971-1690270082694-215.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%971-1690270082694-215.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>选择Module</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%972-1690270082694-216.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%972-1690270082694-216.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>点击+</p>
 <p>选择New Module</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%973-1690270082694-217.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%973-1690270082694-217.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>要创建一个Java模块，所以选择第一个Java</p>
 <p>点击右下角的Next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%974-1690270082694-218.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%974-1690270082694-218.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入模块的名称</p>
 <p>点击右下角的Finish</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%975-1690270082694-219.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%975-1690270082694-219.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>成功新建完毕之后，在中间空白区域就出现了刚刚新建的模块</p>
 <p>点击右下角的OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%976-1690270082694-220.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%976-1690270082694-220.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>在主界面中，也会出现刚刚新建的模块</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%977-1690270082694-221.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%977-1690270082694-221.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-6-3-删除模块"><a href="#8-6-3-删除模块" class="headerlink" title="8.6.3 删除模块"></a>8.6.3 删除模块</h4><ul>
 <li><p>右键点击模块</p>
 <p>选择Remove Module</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%971-1690270082694-222.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%971-1690270082694-222.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>选择Remove，表示确定删除</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%972-1690270082694-223.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%972-1690270082694-223.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>此时发现，在IDEA列表页面，删除的模块已经不在了。</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%973-1690270082694-224.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%88%A0%E9%99%A4%E6%A8%A1%E5%9D%973-1690270082694-224.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <blockquote>
 <p>小贴士：</p>
 <p>此时删除仅仅是从IDEA列表中的删除，在本地硬盘中还是存在的。</p>
@@ -1358,78 +1491,78 @@
 <p>再选择Rename</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D1-1690270082694-225.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D1-1690270082694-225.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>选择第三个修改模块名和本地文件夹名</p>
 <p>点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D3-1690270082694-226.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D3-1690270082694-226.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入要修改的新的模块名</p>
 <p>输入完毕点击Refactor</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D4-1690270082694-227.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D4-1690270082694-227.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>回到主界面，就发现模块名和文件夹名都已经修改完毕</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D5-1690270082694-228.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E6%A8%A1%E5%9D%97%E5%90%8D5-1690270082694-228.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-6-5-导入模块"><a href="#8-6-5-导入模块" class="headerlink" title="8.6.5 导入模块"></a>8.6.5 导入模块</h4><ul>
 <li>点击File，选择Project Structure</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%971-1690270082694-229.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%971-1690270082694-229.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>选择Module</p>
 <p>点击+</p>
 <p>选择Import Module</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%972-1690270082694-230.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%972-1690270082694-230.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>从本地硬盘中选择要导入的模块</p>
 <p>再点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%973-1690270082694-231.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%973-1690270082694-231.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>不断点击Next</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%974-1690270082694-232.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%974-1690270082694-232.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>如果中间出现提示框，则点击Overwrite</p>
 <p>然后继续点击右下角的Next</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%975-1690270082694-233.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%975-1690270082694-233.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>一直点到finish为止</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%976-1690270082694-234.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%976-1690270082694-234.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>成功导入后，在中间位置就会出现导入的模块信息</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%977-1690270082694-235.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%977-1690270082694-235.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>在主界面中也会出现导入的模块信息</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%978-1690270082694-236.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%978-1690270082694-236.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>展开模块点击模块中的Java文件，会发现代码报错。</p>
 <p>是因为导入模块跟JDK没有关联导致。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%979-1690270082694-237.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%979-1690270082694-237.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>可以点击右上角的Setup SDK</p>
 <p>再选择已经安装的JDK版本即可</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%9710-1690270082694-238.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%9710-1690270082694-238.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>导入完毕之后，代码就恢复正常不会报错了</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%9711-1690270082694-239.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%AF%BC%E5%85%A5%E6%A8%A1%E5%9D%9711-1690270082694-239.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h3 id="8-7-IDEA中项目的相关操作"><a href="#8-7-IDEA中项目的相关操作" class="headerlink" title="8.7 IDEA中项目的相关操作"></a>8.7 IDEA中项目的相关操作</h3><h4 id="8-7-1-项目的相关操作"><a href="#8-7-1-项目的相关操作" class="headerlink" title="8.7.1 项目的相关操作"></a>8.7.1 项目的相关操作</h4><ul>
 <li>关闭项目</li>
 <li>打开项目</li>
@@ -1439,40 +1572,40 @@
 <h4 id="8-7-2-关闭项目"><a href="#8-7-2-关闭项目" class="headerlink" title="8.7.2 关闭项目"></a>8.7.2 关闭项目</h4><ul>
 <li>点击File，选择Close Project即可</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE1-1690270082694-240.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE1-1690270082694-240.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>刚刚操作的项目就已经关闭了</p>
 <p>左侧是项目列表，如果要再次打开该项目，直接点击即可。</p>
 <p>右侧有create new project，可以再建一个新的项目</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE2-1690270082694-241.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE2-1690270082694-241.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>鼠标放在项目上，后面会出现一个叉。</p>
 <p>如果点击了这里的叉，会在IDEA的列表中删除。不会删除本地硬盘上的项目。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE3-1690270082695-242.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE3-1690270082695-242.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-7-3-打开项目"><a href="#8-7-3-打开项目" class="headerlink" title="8.7.3 打开项目"></a>8.7.3 打开项目</h4><ul>
 <li><p>在本界面还可以打开本地已经存在的项目</p>
 <p>点击Open or Import</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE1-1690270082695-243.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE1-1690270082695-243.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>选择要打开的项目</p>
 <p>点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE2-1690270082695-244.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE2-1690270082695-244.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>项目就被打开了。</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE3-1690270082695-245.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE3-1690270082695-245.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-7-4-修改项目"><a href="#8-7-4-修改项目" class="headerlink" title="8.7.4 修改项目"></a>8.7.4 修改项目</h4><ul>
 <li>点击File，选择Project Structure</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE1-1690270082695-246.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE1-1690270082695-246.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>在这个界面，默认是Module</p>
 <p>所以，要先点击Project</p>
@@ -1481,74 +1614,74 @@
 <p>再点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE2-1690270082695-247.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE2-1690270082695-247.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>此时发现，项目名称已经修改完毕</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE3-1690270082695-248.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE3-1690270082695-248.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>但是本地文件夹的名字还没有修改</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE4-1690270082695-249.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE4-1690270082695-249.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>需要先关闭当前项目</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE1-1690270082694-240.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE1-1690270082694-240.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击项目后面的叉，从列表中移除项目</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE3-1690270082695-242.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E5%85%B3%E9%97%AD%E9%A1%B9%E7%9B%AE3-1690270082695-242.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>到本地硬盘中手动修改文件夹的名称</li>
 </ul>
-<p> <img src="/2023/07/25/Java/JavaSE%E6%9C%80%E6%96%B0%E7%89%88/day02-Java%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/%E7%AC%94%E8%AE%B0/img/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE5.png" alt="计算机发展"></p>
+<p> <img src="/2023/07/25/Java/JavaSE%E6%9C%80%E6%96%B0%E7%89%88/day02-Java%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/%E7%AC%94%E8%AE%B0/img/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE5.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>点击Open or Import重新打开项目</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE1-1690270082695-243.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE1-1690270082695-243.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>选择修改之后的项目</p>
 <p>点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE6-1690270082695-250.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE6-1690270082695-250.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>此时会发现，项目名称和本地硬盘文件夹的名称都已经修改完毕了</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE7-1690270082695-251.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E4%BF%AE%E6%94%B9%E9%A1%B9%E7%9B%AE7-1690270082695-251.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h4 id="8-7-5-新建项目"><a href="#8-7-5-新建项目" class="headerlink" title="8.7.5 新建项目"></a>8.7.5 新建项目</h4><ul>
 <li><p>点击File</p>
 <p>选择New</p>
 <p>点击Project</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE1-1690270082695-252.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE1-1690270082695-252.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>同样还是创建一个什么都没有的空项目</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE2-1690270082695-253.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE2-1690270082695-253.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>输入项目的名称</p>
 <p>点击右下角的finish</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE3-1690270082695-254.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE3-1690270082695-254.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>IDEA循环是否需要帮我们在本地创建一个新的文件夹</p>
 <p>点击OK</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE4-1690270082695-255.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE4-1690270082695-255.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li><p>询问是在本窗口打开还是在一个新的窗口打开。</p>
 <p>可以点击New Window，在一个新的窗口打开。</p>
 </li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE5-1690270082695-256.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE5-1690270082695-256.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <ul>
 <li>此时就出现了两个窗口，在一个新的窗口打开了新的项目</li>
 </ul>
-<figure class="mdui-img-fluid"><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE6-1690270082695-257.png" alt="计算机发展"class="mdui-img-rounded" loading="lazy"></figure>
+<p><img src="/2023/07/25/Java/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE6-1690270082695-257.png" srcset="/img/loading.gif" lazyload alt="计算机发展"></p>
 <h1 id="day03-运算符"><a href="#day03-运算符" class="headerlink" title="day03 - 运算符"></a>day03 - 运算符</h1><h1 id="1-运算符和表达式"><a href="#1-运算符和表达式" class="headerlink" title="1.运算符和表达式"></a>1.运算符和表达式</h1><h3 id="运算符："><a href="#运算符：" class="headerlink" title="运算符："></a>运算符：</h3><p>​	就是对常量或者变量进行操作的符号。</p>
 <p>​	比如： +  -  *  &#x2F; </p>
 <h3 id="表达式："><a href="#表达式：" class="headerlink" title="表达式："></a>表达式：</h3><p>​	用运算符把常量或者变量连接起来的，符合Java语法的式子就是表达式。</p>
@@ -1799,7 +1932,7 @@ a<span class="token operator">++</span><span class="token punctuation">;</span><
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="13-关系运算符"><a href="#13-关系运算符" class="headerlink" title="13.关系运算符"></a>13.关系运算符</h1><p>又叫比较运算符，其实就是拿着左边跟右边进行了判断而已。</p>
-<h3 id="分类：-2"><a href="#分类：-2" class="headerlink" title="分类："></a>分类：</h3><div class="mdui-table-fluid mdui-shadow-0"><table class="mdui-table mdui-table-hoverable">
+<h3 id="分类：-2"><a href="#分类：-2" class="headerlink" title="分类："></a>分类：</h3><table>
 <thead>
 <tr>
 <th>符号</th>
@@ -1830,7 +1963,7 @@ a<span class="token operator">++</span><span class="token punctuation">;</span><
 <td>&lt;&#x3D;</td>
 <td>就是判断左边是否小于等于右边，如果成立就是true，如果不成立就是false</td>
 </tr>
-</tbody></table></div>
+</tbody></table>
 <h3 id="注意点：-2"><a href="#注意点：-2" class="headerlink" title="注意点："></a>注意点：</h3><ul>
 <li>关系运算符最终的结果一定是布尔类型的。要么是true，要么是false</li>
 <li>在写&#x3D;&#x3D;的时候，千万不要写成&#x3D;</li>
@@ -1982,53 +2115,338 @@ a<span class="token operator">++</span><span class="token punctuation">;</span><
 <p>咱们只要知道其中一点：</p>
 <p>​	小括号优先于所有。</p>
 
-        
-        <blockquote class="mdui-m-x-0 mdui-m-t-4">
-    <strong>
-        Author: <a href="/about/">Jokerz</a><br>
-        URL: <a href="https://jokerzxxx.github.io/2023/07/25/Java/">https://jokerzxxx.github.io/2023/07/25/Java/</a><br>
-        
-            This work is licensed under a <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> .
-        
-    </strong>
-</blockquote>
-        
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java</div>
+      <div>https://jokerzxxx.github.io/2023/07/25/Java/</div>
     </div>
-    
-</article>
-<nav class="mdui-theme-layout-light mdui-color-transparent mdui-row mdui-m-b-2">
-    
-        <div class="mdui-col-xs-12 mdui-m-b-2">
-            <span disabled class="extend prev mdui-btn mdui-ripple mdui-float-left" rel="prev">
-                <i class="mdui-icon mdui-icon-left material-icons">arrow_back</i>
-            </span>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Jokerz</div>
         </div>
-    
-        <div class="mdui-col-xs-12">
-            <a class="extend next mdui-btn mdui-ripple mdui-float-right mdui-text-truncate" rel="next"
-                style="max-width: 100%" href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/">
-                <i class="mdui-icon mdui-icon-right material-icons">arrow_forward</i>Spring原理
-            </a>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 25, 2023</div>
         </div>
-    
-</nav>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/24/Spring%E5%8E%9F%E7%90%86/" title="Spring原理">
+                        <span class="hidden-mobile">Spring原理</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <a href="#" class="mdui-fab mdui-fab-fixed mdui-hidden-xs mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">keyboard_arrow_up</i></a>
+  </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
 
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
 <script>
-    var $ = mdui.$;
-    function init(){
-        //
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
-    window.addEventListener("load", () => {
-        //
-        init()
-    }, {once: true});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
 
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>
