@@ -16,15 +16,14 @@
   <meta name="author" content="Jokerz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="第2章 认识Java虚拟机的基本结构本章涉及的主要知识点有：   认识Java虚拟机中的堆。  了解有关栈的概念和使用。  了解存放类型描述的永久区和元数据区。  2.1 谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为 方法区的内存空间中。除了类的信息，方法区中可能还会存放运">
+    <meta name="description" content="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实战Java虚拟机-JVM故障诊断与性能优化">
+<meta property="og:title" content="Java从入门到放弃">
 <meta property="og:url" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Java从入门到放弃">
-<meta property="og:description" content="第2章 认识Java虚拟机的基本结构本章涉及的主要知识点有：   认识Java虚拟机中的堆。  了解有关栈的概念和使用。  了解存放类型描述的永久区和元数据区。  2.1 谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为 方法区的内存空间中。除了类的信息，方法区中可能还会存放运">
+<meta property="og:description" content="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728222927631-1690644721021-1.png">
-<meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224441395-1690644721021-2.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224708388-1690644721021-3.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224745061-1690644721021-4.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224813469-1690644721021-5.png">
@@ -119,16 +118,15 @@
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232933787.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232943539.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729233058589.png">
-<meta property="article:published_time" content="2023-07-28T14:15:33.000Z">
-<meta property="article:modified_time" content="2023-07-29T15:32:06.012Z">
+<meta property="article:published_time" content="2023-07-28T14:15:33.110Z">
+<meta property="article:modified_time" content="2023-07-31T00:45:56.768Z">
 <meta property="article:author" content="Jokerz">
-<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728222927631-1690644721021-1.png">
   
   
   
-  <title>实战Java虚拟机-JVM故障诊断与性能优化 - Java从入门到放弃</title>
+  <title>Java从入门到放弃</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -294,7 +292,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="实战Java虚拟机-JVM故障诊断与性能优化"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -328,7 +326,7 @@
         
         
         
-          192 mins
+          194 mins
         
       </span>
     
@@ -365,63 +363,63 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">实战Java虚拟机-JVM故障诊断与性能优化</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="第2章-认识Java虚拟机的基本结构"><a href="#第2章-认识Java虚拟机的基本结构" class="headerlink" title="第2章 认识Java虚拟机的基本结构"></a>第2章 认识Java虚拟机的基本结构</h2><p>本章涉及的主要知识点有： </p>
+                <hr>
+<h2 id="title-实战Java虚拟机-JVM故障诊断与性能优化date-2023-07-2822-15-33tags-JVMcategory-读书笔记"><a href="#title-实战Java虚拟机-JVM故障诊断与性能优化date-2023-07-2822-15-33tags-JVMcategory-读书笔记" class="headerlink" title="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记"></a>title:实战Java虚拟机-JVM故障诊断与性能优化<br>date:2023-07-2822:15:33<br>tags:JVM<br>category:读书笔记</h2><h2 id="第2章认识Java虚拟机的基本结构"><a href="#第2章认识Java虚拟机的基本结构" class="headerlink" title="第2章认识Java虚拟机的基本结构"></a>第2章认识Java虚拟机的基本结构</h2><p>本章涉及的主要知识点有：</p>
 <ul>
-<li>认识Java虚拟机中的堆。 </li>
-<li>了解有关栈的概念和使用。 </li>
+<li>认识Java虚拟机中的堆。</li>
+<li>了解有关栈的概念和使用。</li>
 <li>了解存放类型描述的永久区和元数据区。</li>
 </ul>
-<h3 id="2-1-谋全局者才能成大器：看穿Java虚拟机的架构"><a href="#2-1-谋全局者才能成大器：看穿Java虚拟机的架构" class="headerlink" title="2.1 谋全局者才能成大器：看穿Java虚拟机的架构"></a>2.1 谋全局者才能成大器：看穿Java虚拟机的架构</h3><p>Java虚拟机的基本结构如图2.1所示。</p>
+<h3 id="2-1谋全局者才能成大器：看穿Java虚拟机的架构"><a href="#2-1谋全局者才能成大器：看穿Java虚拟机的架构" class="headerlink" title="2.1谋全局者才能成大器：看穿Java虚拟机的架构"></a>2.1谋全局者才能成大器：看穿Java虚拟机的架构</h3><p>Java虚拟机的基本结构如图2.1所示。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728222927631-1690644721021-1.png" srcset="/img/loading.gif" lazyload alt="image-20230728222927631"></p>
-<p>类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为 方法区的内存空间中。除了类的信息，方法区中可能还会存放运行时常量池信息，包括字符串 字面量和数字常量(这部分常量信息是Class文件中常量池部分的内存映射)。</p>
-<p>Java堆在虚拟机启动的时候建立，它是Java程序最主要的内存工作区域。几乎所有的Java 对象实例都存放于Java堆中。堆空间是所有线程共享的，这是一块与Java应用密切相关的内存 区域。</p>
-<p>Java的NIO库允许Java程序使用直接内存。直接内存是在Java堆外的、直接向系统申请 的内存区域。通常，访问直接内存的速度会优于Java堆。因此，出于性能考虑，读写频繁的场 合可能会考虑使用直接内存。由于直接内存在Java堆外，因此，它的大小不会直接受限于Xmx 指定的最大堆大小，但是系统内存是有限的，Java堆和直接内存的总和依然受限于操作系统的 最大内存。</p>
-<p>每一个Java虚拟机线程都有一个私有的Java栈。一个线程的Java栈在线程创建的时候被 创建。Java栈中保存着帧信息(参阅2.4节),Java栈中保存着局部变量、方法参数，同时和 Java方法的调用、返回密切相关。</p>
-<p>本地方法栈和Java栈非常类似，最大的不同在于Java栈用于Java方法的调用，而本地方 法栈则用于本地方法的调用。作为对Java虚拟机的重要扩展，Java虚拟机允许Java直接调用本 地方法(通常使用C语言编写)。</p>
-<p>PC(Program Counter)寄存器也是每个线程私有的空间，Java虚拟机会为每一个Java线程 创建PC寄存器。在任意时刻，一个Java线程总是在执行一个方法，这个正在被执行的方法称 为当前方法。如果当前方法不是本地方法，PC寄存器就会指向当前正在被执行的指令。如果当 前方法是本地方法，那么PC寄存器的值就是undefined。</p>
-<p>执行引擎是Java虚拟机的最核心组件之一，它负责执行虚拟机的字节码。现代虚拟机为了 提高执行效率，会使用即时编译技术将方法编译成机器码后再执行。</p>
-<h3 id="2-2-小参数能解决大问题：学会设置Java虚拟机的参数"><a href="#2-2-小参数能解决大问题：学会设置Java虚拟机的参数" class="headerlink" title="2.2 小参数能解决大问题：学会设置Java虚拟机的参数"></a>2.2 小参数能解决大问题：学会设置Java虚拟机的参数</h3><p>Java虚拟机可以使用JAVA_HOME&#x2F;bin&#x2F;java程序启动(JAVA_HOME为JDK的安装目录), 一般来说，Java进程的命令行使用方法如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">java <span class="hljs-selector-attr">[-options]</span> class <span class="hljs-selector-attr">[args...]</span><br></code></pre></td></tr></table></figure>
+<p>类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为方法区的内存空间中。除了类的信息，方法区中可能还会存放运行时常量池信息，包括字符串字面量和数字常量(这部分常量信息是Class文件中常量池部分的内存映射)。</p>
+<p>Java堆在虚拟机启动的时候建立，它是Java程序最主要的内存工作区域。几乎所有的Java对象实例都存放于Java堆中。堆空间是所有线程共享的，这是一块与Java应用密切相关的内存区域。</p>
+<p>Java的NIO库允许Java程序使用直接内存。直接内存是在Java堆外的、直接向系统申请的内存区域。通常，访问直接内存的速度会优于Java堆。因此，出于性能考虑，读写频繁的场合可能会考虑使用直接内存。由于直接内存在Java堆外，因此，它的大小不会直接受限于Xmx指定的最大堆大小，但是系统内存是有限的，Java堆和直接内存的总和依然受限于操作系统的最大内存。</p>
+<p>每一个Java虚拟机线程都有一个私有的Java栈。一个线程的Java栈在线程创建的时候被创建。Java栈中保存着帧信息(参阅2.4节),Java栈中保存着局部变量、方法参数，同时和Java方法的调用、返回密切相关。</p>
+<p>本地方法栈和Java栈非常类似，最大的不同在于Java栈用于Java方法的调用，而本地方法栈则用于本地方法的调用。作为对Java虚拟机的重要扩展，Java虚拟机允许Java直接调用本地方法(通常使用C语言编写)。</p>
+<p>PC(ProgramCounter)寄存器也是每个线程私有的空间，Java虚拟机会为每一个Java线程创建PC寄存器。在任意时刻，一个Java线程总是在执行一个方法，这个正在被执行的方法称为当前方法。如果当前方法不是本地方法，PC寄存器就会指向当前正在被执行的指令。如果当前方法是本地方法，那么PC寄存器的值就是undefined。</p>
+<p>执行引擎是Java虚拟机的最核心组件之一，它负责执行虚拟机的字节码。现代虚拟机为了提高执行效率，会使用即时编译技术将方法编译成机器码后再执行。</p>
+<h3 id="2-2小参数能解决大问题：学会设置Java虚拟机的参数"><a href="#2-2小参数能解决大问题：学会设置Java虚拟机的参数" class="headerlink" title="2.2小参数能解决大问题：学会设置Java虚拟机的参数"></a>2.2小参数能解决大问题：学会设置Java虚拟机的参数</h3><p>Java虚拟机可以使用JAVA_HOME&#x2F;bin&#x2F;java程序启动(JAVA_HOME为JDK的安装目录),一般来说，Java进程的命令行使用方法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">java<span class="hljs-selector-attr">[-options]</span>class<span class="hljs-selector-attr">[args...]</span><br></code></pre></td></tr></table></figure>
 
-<p>其中，-options表示Java虚拟机的启动参数，class为带有main()函数的Java类，args表示 传递给主函数main()的参数。</p>
+<p>其中，-options表示Java虚拟机的启动参数，class为带有main()函数的Java类，args表示传递给主函数main()的参数。</p>
 <p>【示例2-1】以如下代码为例，我们先来了解一下如何设置参数。</p>
-<img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224441395-1690644721021-2.png" srcset="/img/loading.gif" lazyload alt="image-20230728224441395" style="zoom:80%;">
-
-<p>上述代码打印了传递给main()函数的参数，同时打印了系统的最大可用堆内存。使用如下 命令运行这段代码：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java -Xmx32m geym,zbase<span class="hljs-selector-class">.ch2</span><span class="hljs-selector-class">.SimpleArgs</span> <span class="hljs-selector-tag">a</span><br>参数<span class="hljs-number">1</span>:<span class="hljs-selector-tag">a</span><br>-Xmx32M<br></code></pre></td></tr></table></figure>
+<p>&lt;imgsrc&#x3D;”实战Java虚拟机-JVM故障诊断与性能优化&#x2F;image-20230728224441395-1690644721021-2.png”alt&#x3D;”image-20230728224441395”style&#x3D;”zoom:80%;”&#x2F;&gt;</p>
+<p>上述代码打印了传递给main()函数的参数，同时打印了系统的最大可用堆内存。使用如下命令运行这段代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">java-Xmx32mgeym,zbase<span class="hljs-selector-class">.ch2</span><span class="hljs-selector-class">.SimpleArgsa</span><br>参数<span class="hljs-number">1</span>:<span class="hljs-selector-tag">a</span><br>-Xmx32M<br></code></pre></td></tr></table></figure>
 
 <p>从结果可以看到，第一个参数-Xmx32m传递给Java虚拟机，生效后，使得系统最大可用堆空间为32MB,参数a则传递给主函数main(),作为应用程序的参数。</p>
-<h3 id="2-3-对象去哪儿：辨清Java堆"><a href="#2-3-对象去哪儿：辨清Java堆" class="headerlink" title="2.3 对象去哪儿：辨清Java堆"></a>2.3 对象去哪儿：辨清Java堆</h3><p>Java堆是和Java应用程序关系最为密切的内存空间，几乎所有的对象都存放在堆中，并 且Java堆是完全自动化管理的，通过垃圾回收机制，垃圾对象会被自动清理，而不需要显式 地释放。</p>
-<p>根据垃圾回收机制的不同，Java堆有可能拥有不同的结构。最为常见的一种构成是将整个 Java堆分为新生代和老年代。其中，新生代存放新生对象或者年龄不大的对象，老年代则存放 老年对象。新生代有可能分为eden、s0、s1,其中s0和s1也被称为from和to区域，它们是两块大小相等、可以互换角色的内存空间。</p>
+<h3 id="2-3对象去哪儿：辨清Java堆"><a href="#2-3对象去哪儿：辨清Java堆" class="headerlink" title="2.3对象去哪儿：辨清Java堆"></a>2.3对象去哪儿：辨清Java堆</h3><p>Java堆是和Java应用程序关系最为密切的内存空间，几乎所有的对象都存放在堆中，并且Java堆是完全自动化管理的，通过垃圾回收机制，垃圾对象会被自动清理，而不需要显式地释放。</p>
+<p>根据垃圾回收机制的不同，Java堆有可能拥有不同的结构。最为常见的一种构成是将整个Java堆分为新生代和老年代。其中，新生代存放新生对象或者年龄不大的对象，老年代则存放老年对象。新生代有可能分为eden、s0、s1,其中s0和s1也被称为from和to区域，它们是两块大小相等、可以互换角色的内存空间。</p>
 <p>图2.3显示了一个堆空间的一般结构。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224708388-1690644721021-3.png" srcset="/img/loading.gif" lazyload alt="image-20230728224708388"></p>
-<p>在绝大多数情况下，对象首先在eden区分配，在一次新生代回收后，如果对象还存活，则 会进入s0或者s1,之后，每经过一次新生代回收，对象如果存活，它的年龄就会加1。当对象 的年龄达到一定条件后，就会被认为是老年对象，从而进入老年代。</p>
+<p>在绝大多数情况下，对象首先在eden区分配，在一次新生代回收后，如果对象还存活，则会进入s0或者s1,之后，每经过一次新生代回收，对象如果存活，它的年龄就会加1。当对象的年龄达到一定条件后，就会被认为是老年对象，从而进入老年代。</p>
 <p>【示例2-2】下面通过一个简单的示例，来展示Java堆、方法区和Java栈之间的关系。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224745061-1690644721021-4.png" srcset="/img/loading.gif" lazyload alt="image-20230728224745061"></p>
-<p>上述代码声明了一个SimpleHeap类，并在main()函数中创建了两个SimpleHeap实例，此 时，各对象和局部变量的存放如图2.4所示。SimpleHeap实例本身在堆中分配，描述SimpleHeap类的信息存放在方法区，main()函数中sl和s2局部变量存放在Java栈中，并指向堆中的两个实例。</p>
+<p>上述代码声明了一个SimpleHeap类，并在main()函数中创建了两个SimpleHeap实例，此时，各对象和局部变量的存放如图2.4所示。SimpleHeap实例本身在堆中分配，描述SimpleHeap类的信息存放在方法区，main()函数中sl和s2局部变量存放在Java栈中，并指向堆中的两个实例。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224813469-1690644721021-5.png" srcset="/img/loading.gif" lazyload alt="image-20230728224813469"></p>
-<h3 id="2-4-函数如何调用：出入Java栈"><a href="#2-4-函数如何调用：出入Java栈" class="headerlink" title="2.4 函数如何调用：出入Java栈"></a>2.4 函数如何调用：出入Java栈</h3><p>Java栈是一块线程私有的内存空间。如果说Java堆和程序数据密切相关，那么Java栈就是 和线程执行密切相关的。线程执行的基本行为是函数调用，每次函数调用的数据都是通过Java 栈传递的。</p>
-<p>Java栈与数据结构中的栈有着类似的含义，它是一块先进后出的数据结构，只支持出栈和 入栈两种操作。在Java栈中保存的主要内容为栈帧。每一次函数调用，都会有一个对应的栈帧 被压入Java栈，每一次函数调用结束，都会有一个栈帧被弹出Java栈。如图2.5所示，函数1 对应栈帧1,函数2对应栈帧2,依此类推。函数1中调用函数2,函数2中调用函数3,函数 3中调用函数4。当函数1被调用时，栈帧1入栈；当函数2被调用时，栈帧2入栈；当函数3 被调用时，栈帧3入栈；当函数4被调用时，栈帧4入栈。当前正在执行的函数所对应的帧就 是当前的帧(位于栈顶),它保存着当前函数的局部变量、中间运算结果等数据。</p>
-<p>当函数返回时，栈帧从Java栈中被弹出。Java方法有两种返回函数的方式，一种是正常的 函数返回，使用return指令；另外一种是抛出异常。不管使用哪种方式，都会导致栈帧被弹出。</p>
+<h3 id="2-4函数如何调用：出入Java栈"><a href="#2-4函数如何调用：出入Java栈" class="headerlink" title="2.4函数如何调用：出入Java栈"></a>2.4函数如何调用：出入Java栈</h3><p>Java栈是一块线程私有的内存空间。如果说Java堆和程序数据密切相关，那么Java栈就是和线程执行密切相关的。线程执行的基本行为是函数调用，每次函数调用的数据都是通过Java栈传递的。</p>
+<p>Java栈与数据结构中的栈有着类似的含义，它是一块先进后出的数据结构，只支持出栈和入栈两种操作。在Java栈中保存的主要内容为栈帧。每一次函数调用，都会有一个对应的栈帧被压入Java栈，每一次函数调用结束，都会有一个栈帧被弹出Java栈。如图2.5所示，函数1对应栈帧1,函数2对应栈帧2,依此类推。函数1中调用函数2,函数2中调用函数3,函数3中调用函数4。当函数1被调用时，栈帧1入栈；当函数2被调用时，栈帧2入栈；当函数3被调用时，栈帧3入栈；当函数4被调用时，栈帧4入栈。当前正在执行的函数所对应的帧就是当前的帧(位于栈顶),它保存着当前函数的局部变量、中间运算结果等数据。</p>
+<p>当函数返回时，栈帧从Java栈中被弹出。Java方法有两种返回函数的方式，一种是正常的函数返回，使用return指令；另外一种是抛出异常。不管使用哪种方式，都会导致栈帧被弹出。</p>
 <p>在一个栈帧中，至少要包含局部变量表、操作数栈和帧数据区几部分。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224951570-1690644721021-6.png" srcset="/img/loading.gif" lazyload alt="image-20230728224951570"></p>
-<p><strong>提示</strong>：由于每次函数调用都会生成对应的栈帧，从而占用一定的栈空间。因此，如果 栈空间不足，那么函数调用自然无法继续进行。当请求的栈深度大于最大可用 栈深度时，系统就会抛出StackOverflowError栈溢出错误。</p>
-<p>Java虚拟机提供了参数-Xss来指定线程的最大栈空间，这个参数也直接决定了函数调用的 最大深度。</p>
-<p>【示例2-3】下面的代码是一个递归调用，由于递归没有出口，这段代码可能会出现栈溢出 错误，在抛出错误后，程序打印了最大的调用深度。</p>
+<p><strong>提示</strong>：由于每次函数调用都会生成对应的栈帧，从而占用一定的栈空间。因此，如果栈空间不足，那么函数调用自然无法继续进行。当请求的栈深度大于最大可用栈深度时，系统就会抛出StackOverflowError栈溢出错误。</p>
+<p>Java虚拟机提供了参数-Xss来指定线程的最大栈空间，这个参数也直接决定了函数调用的最大深度。</p>
+<p>【示例2-3】下面的代码是一个递归调用，由于递归没有出口，这段代码可能会出现栈溢出错误，在抛出错误后，程序打印了最大的调用深度。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728225024108-1690644721021-7.png" srcset="/img/loading.gif" lazyload alt="image-20230728225024108"></p>
 <p>使用参数-Xss128K执行以上代码，部分结果如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728225327085-1690644721021-9.png" srcset="/img/loading.gif" lazyload alt="image-20230728225327085"></p>
-<p>可以看到，在进行大约2500次调用后，发生了栈溢出错误，通过增大-Xss的值，可以获得 更深的调用层次，尝试使用参数-Xss256K执行上述代码，可能产生如下输出，很明显，调用层 次明显增加。</p>
+<p>可以看到，在进行大约2500次调用后，发生了栈溢出错误，通过增大-Xss的值，可以获得更深的调用层次，尝试使用参数-Xss256K执行上述代码，可能产生如下输出，很明显，调用层次明显增加。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728225345221-1690644721021-8.png" srcset="/img/loading.gif" lazyload alt="image-20230728225345221"></p>
-<p><strong>注意：</strong>函数嵌套调用的层次在很大程度上由栈的大小决定，栈越大，函数可以支持的 嵌套调用次数就越多。</p>
-<h4 id="2-4-1-局部变量表"><a href="#2-4-1-局部变量表" class="headerlink" title="2.4.1 局部变量表"></a>2.4.1 局部变量表</h4><p>局部变量表是栈帧的重要组成部分之一。它用于保存函数的参数及局部变量。局部变量表 中的变量只在当前函数调用中有效，当函数调用结束后，函数栈帧销毁，局部变量表也会随之销毁。</p>
-<p>由于局部变量表在栈帧之中，因此，如果函数的参数和局部变量较多，会使局部变量表膨 胀，从而每一次函数调用就会占用更多的栈空间，最终导致函数的嵌套调用次数减少。</p>
-<p>【示例2-4】下面的代码演示了这种情况，第1个recursion()函数含有3个参数和10个局 部变量，因此，其局部变量表含有13个变量。而第2个recursion()函数不含有任何参数和局部 变量。当这两个函数被嵌套调用时，第2个recursion()函数可以拥有更深的调用层次。</p>
+<p><strong>注意：</strong>函数嵌套调用的层次在很大程度上由栈的大小决定，栈越大，函数可以支持的嵌套调用次数就越多。</p>
+<h4 id="2-4-1局部变量表"><a href="#2-4-1局部变量表" class="headerlink" title="2.4.1局部变量表"></a>2.4.1局部变量表</h4><p>局部变量表是栈帧的重要组成部分之一。它用于保存函数的参数及局部变量。局部变量表中的变量只在当前函数调用中有效，当函数调用结束后，函数栈帧销毁，局部变量表也会随之销毁。</p>
+<p>由于局部变量表在栈帧之中，因此，如果函数的参数和局部变量较多，会使局部变量表膨胀，从而每一次函数调用就会占用更多的栈空间，最终导致函数的嵌套调用次数减少。</p>
+<p>【示例2-4】下面的代码演示了这种情况，第1个recursion()函数含有3个参数和10个局部变量，因此，其局部变量表含有13个变量。而第2个recursion()函数不含有任何参数和局部变量。当这两个函数被嵌套调用时，第2个recursion()函数可以拥有更深的调用层次。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728225916104-1690644721021-10.png" srcset="/img/loading.gif" lazyload alt="image-20230728225916104"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728225925426-1690644721021-11.png" srcset="/img/loading.gif" lazyload alt="image-20230728225925426"></p>
 <p>使用参数-Xss128K执行上述代码中的第1个recursion()函数，输出结果如下：</p>
@@ -429,310 +427,310 @@
 <p>使用参数-Xss128K执行上述代码中的第2个recursion()函数，输出结果如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230032785-1690644721021-13.png" srcset="/img/loading.gif" lazyload alt="image-20230728230032785"></p>
 <p>可以看到，在相同的栈容量下，局部变量少的函数可以支持更深层次的函数调用。</p>
-<p>使用jclasslib工具可以进一步查看函数的局部变量信息。图2.6显示了第一个recursion()函 数的最大局部变量表的大小为26字。因为该函数包含总共13个参数和局部变量，且都为long 类型，long类型和double类型在局部变量表中需要占用2字，其他如int、short、byte、对象引 用等占用1字。</p>
+<p>使用jclasslib工具可以进一步查看函数的局部变量信息。图2.6显示了第一个recursion()函数的最大局部变量表的大小为26字。因为该函数包含总共13个参数和局部变量，且都为long类型，long类型和double类型在局部变量表中需要占用2字，其他如int、short、byte、对象引用等占用1字。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230407752-1690644721021-26.png" srcset="/img/loading.gif" lazyload alt="image-20230728230407752"></p>
-<p><strong>说明：</strong>字(Word)指的是计算机内存中占据一个单独的内存单元编号的一组二进制串。 一般32位计算机上一个字为4个字节长度。</p>
-<p>图2.7显示了在Class文件中的局部变量表的内容(这里说的局部变量表和上述的局部变量 表不同，这里指Class文件的一个属性，而上述局部变量表指Java栈空间的一部分)。</p>
+<p><strong>说明：</strong>字(Word)指的是计算机内存中占据一个单独的内存单元编号的一组二进制串。一般32位计算机上一个字为4个字节长度。</p>
+<p>图2.7显示了在Class文件中的局部变量表的内容(这里说的局部变量表和上述的局部变量表不同，这里指Class文件的一个属性，而上述局部变量表指Java栈空间的一部分)。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230342735-1690644721021-14.png" srcset="/img/loading.gif" lazyload alt="image-20230728230342735"></p>
-<p>可以看到，在Class文件的局部变量表中，显示了每个局部变量的作用域范围、所在槽位 的索引(index列)、变量名(name列)和数据类型(J表示long型)。</p>
-<p>栈帧中的局部变量表中的槽位是可以重用的，如果局部变量a超过了其作用域，那么在其作用域之后声明的新的局部变量就很有可能会复用局部变量a的槽位，从而达到节省资源的目 的。</p>
-<p>【示例2-5】下面的代码显示了局部变量表槽位的复用。在localvar1()函数中，局部变量a 和b都作用到了函数末尾，故b无法复用a所在的位置。而在localvar2()函数中，局部变量a 在第10行时不再有效，故局部变量b可以复用a的槽位(1个字)。</p>
+<p>可以看到，在Class文件的局部变量表中，显示了每个局部变量的作用域范围、所在槽位的索引(index列)、变量名(name列)和数据类型(J表示long型)。</p>
+<p>栈帧中的局部变量表中的槽位是可以重用的，如果局部变量a超过了其作用域，那么在其作用域之后声明的新的局部变量就很有可能会复用局部变量a的槽位，从而达到节省资源的目的。</p>
+<p>【示例2-5】下面的代码显示了局部变量表槽位的复用。在localvar1()函数中，局部变量a和b都作用到了函数末尾，故b无法复用a所在的位置。而在localvar2()函数中，局部变量a在第10行时不再有效，故局部变量b可以复用a的槽位(1个字)。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230833743-1690644721021-15.png" srcset="/img/loading.gif" lazyload alt="image-20230728230833743"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230841536-1690644721021-16.png" srcset="/img/loading.gif" lazyload alt="image-20230728230841536"></p>
-<p>图2.8显示了localvar1(的局部变量信息，该函数最大局部变量大小为3字，第0个槽位为 函数的this引用(实例方法的第一个局部变量都是this引用),第1个槽位为变量a,第2个槽 位为变量b,每个变量占1字，合计3字。</p>
+<p>图2.8显示了localvar1(的局部变量信息，该函数最大局部变量大小为3字，第0个槽位为函数的this引用(实例方法的第一个局部变量都是this引用),第1个槽位为变量a,第2个槽位为变量b,每个变量占1字，合计3字。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230902195-1690644721021-17.png" srcset="/img/loading.gif" lazyload alt="image-20230728230902195"></p>
-<p>图2.9显示了localvar2()的局部变量信息，该函数的最大局部变量表为2字，虽然和localvar10 一样，拥有this、a、b等3个局部变量，但b复用了a的槽位(从它们都占用了第1个槽位可 以知道这点)。因此，在函数执行中，同时存在的最大局部变量为2字。</p>
+<p>图2.9显示了localvar2()的局部变量信息，该函数的最大局部变量表为2字，虽然和localvar10一样，拥有this、a、b等3个局部变量，但b复用了a的槽位(从它们都占用了第1个槽位可以知道这点)。因此，在函数执行中，同时存在的最大局部变量为2字。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230912600-1690644721021-18.png" srcset="/img/loading.gif" lazyload alt="image-20230728230912600"></p>
-<p>局部变量表中的变量也是重要的垃圾回收根节点，被局部变量表中直接或间接引用的对象 都是不会被回收的。因此，理解局部变量表对理解垃圾回收也有一定的帮助。</p>
+<p>局部变量表中的变量也是重要的垃圾回收根节点，被局部变量表中直接或间接引用的对象都是不会被回收的。因此，理解局部变量表对理解垃圾回收也有一定的帮助。</p>
 <p>【示例2-6】下面通过一个简单的示例，展示局部变量对垃圾回收的影响。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230939494-1690644721021-23.png" srcset="/img/loading.gif" lazyload alt="image-20230728230939494"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728230950414-1690644721021-19.png" srcset="/img/loading.gif" lazyload alt="image-20230728230950414"></p>
-<p>上述代码中，每一个localvarGcNO函数都分配了一块6MB的堆空间，并使用局部变量引用 这块空间。</p>
-<p>在localvarGc1(中，在申请空间后，立即进行垃圾回收，很明显，由于byte数组被变量a 引用，因此无法回收这块空间。</p>
-<p>在localvarGc2O中，在垃圾回收前，先将变量a置为null,使byte数组失去强引用，故垃 圾回收可以顺利回收byte数组。</p>
-<p>对于localvarGc3(,在进行垃圾回收前，先使局部变量a失效，虽然变量a已经离开了作 用域，但是变量a依然存在于局部变量表中，并且也指向这块byte数组，故byte数组依然无法 被回收。</p>
-<p>对于localvarGc4(),在垃圾回收之前，不仅使变量a失效，更是声明了变量c,使变量c复 用了变量a的字，由于变量a此时被销毁，故垃圾回收器可以顺利回收byte数组。</p>
-<p>对于localvarGc5(,它首先调用了localvarGc1(),很明显，在localvarGc1()中并没有释放 byte数组，但在localvarGc1()返回后，它的栈帧被销毁，自然也包含了栈帧中的所有局部变量， 故byte数组失去引用，在localvarGc5(O的垃圾回收中被回收。</p>
-<p>读者可以使用参数-XX:+PrintGC执行上述几个函数，在输出的日志中，可以看到垃圾回收 前后堆的大小，进而推断byte数组是否被回收。下面的输出是函数localvarGc4()的运行结果：</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">[</span><span class="hljs-variable">Ful1</span> <span class="hljs-variable">GC</span> <span class="hljs-number">6746</span><span class="hljs-built_in">K</span><span class="hljs-operator">-&gt;</span><span class="hljs-number">376</span><span class="hljs-built_in">K</span><span class="hljs-punctuation">(</span><span class="hljs-number">15872</span><span class="hljs-built_in">K</span><span class="hljs-punctuation">)</span><span class="hljs-operator">,</span><span class="hljs-number">0.0034589</span> <span class="hljs-variable">secs</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+<p>上述代码中，每一个localvarGcNO函数都分配了一块6MB的堆空间，并使用局部变量引用这块空间。</p>
+<p>在localvarGc1(中，在申请空间后，立即进行垃圾回收，很明显，由于byte数组被变量a引用，因此无法回收这块空间。</p>
+<p>在localvarGc2O中，在垃圾回收前，先将变量a置为null,使byte数组失去强引用，故垃圾回收可以顺利回收byte数组。</p>
+<p>对于localvarGc3(,在进行垃圾回收前，先使局部变量a失效，虽然变量a已经离开了作用域，但是变量a依然存在于局部变量表中，并且也指向这块byte数组，故byte数组依然无法被回收。</p>
+<p>对于localvarGc4(),在垃圾回收之前，不仅使变量a失效，更是声明了变量c,使变量c复用了变量a的字，由于变量a此时被销毁，故垃圾回收器可以顺利回收byte数组。</p>
+<p>对于localvarGc5(,它首先调用了localvarGc1(),很明显，在localvarGc1()中并没有释放byte数组，但在localvarGc1()返回后，它的栈帧被销毁，自然也包含了栈帧中的所有局部变量，故byte数组失去引用，在localvarGc5(O的垃圾回收中被回收。</p>
+<p>读者可以使用参数-XX:+PrintGC执行上述几个函数，在输出的日志中，可以看到垃圾回收前后堆的大小，进而推断byte数组是否被回收。下面的输出是函数localvarGc4()的运行结果：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-punctuation">[</span><span class="hljs-variable">Ful1GC6746K</span><span class="hljs-operator">-&gt;</span><span class="hljs-number">376</span><span class="hljs-built_in">K</span><span class="hljs-punctuation">(</span><span class="hljs-number">15872</span><span class="hljs-built_in">K</span><span class="hljs-punctuation">)</span><span class="hljs-operator">,</span><span class="hljs-number">0.0034589</span><span class="hljs-variable">secs</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
 
-<p>从日志中可以看到，堆空间从回收前的6746KB变为回收后的376KB,释放了约6MB空间。 进而可以推断，byte数组已被回收释放。</p>
-<h4 id="2-4-2-操作数栈"><a href="#2-4-2-操作数栈" class="headerlink" title="2.4.2 操作数栈"></a>2.4.2 操作数栈</h4><p>操作数栈也是栈帧中重要的内容之一，它主要用于保存计算过程的中间结果，同时作为计 算过程中变量临时的存储空间。</p>
-<p>操作数栈也是一个先进后出的数据结构，只支持入栈和出栈两种操作。许多Java字节码指 令都需要通过操作数栈进行参数传递。比如iadd指令，它就会在操作数栈中弹出两个整数并进 行加法计算，计算结果会被入栈，如图2.10所示，显示了iadd执行前后操作数栈的变化。</p>
+<p>从日志中可以看到，堆空间从回收前的6746KB变为回收后的376KB,释放了约6MB空间。进而可以推断，byte数组已被回收释放。</p>
+<h4 id="2-4-2操作数栈"><a href="#2-4-2操作数栈" class="headerlink" title="2.4.2操作数栈"></a>2.4.2操作数栈</h4><p>操作数栈也是栈帧中重要的内容之一，它主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间。</p>
+<p>操作数栈也是一个先进后出的数据结构，只支持入栈和出栈两种操作。许多Java字节码指令都需要通过操作数栈进行参数传递。比如iadd指令，它就会在操作数栈中弹出两个整数并进行加法计算，计算结果会被入栈，如图2.10所示，显示了iadd执行前后操作数栈的变化。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231120718-1690644721021-20.png" srcset="/img/loading.gif" lazyload alt="image-20230728231120718"></p>
-<h4 id="2-4-3-帧数据区"><a href="#2-4-3-帧数据区" class="headerlink" title="2.4.3 帧数据区"></a>2.4.3 帧数据区</h4><p>除了局部变量表和操作数栈，Java栈帧还需要一些数据来支持常量池解析、正常方法返回 和异常处理等。大部分Java字节码指令需要进行常量池访问，在帧数据区中保存着访问常量池 的指针，方便程序访问常量池。</p>
-<p>此外，当函数返回或者出现异常时，虚拟机必须恢复调用者函数的栈帧，并让调用者函 数继续执行。对于异常处理，虚拟机必须有一个异常处理表，方便在发生异常的时候找到处 理异常的代码，因此，异常处理表也是帧数据区中重要的一部分。一个典型的异常处理表如 下所示：</p>
+<h4 id="2-4-3帧数据区"><a href="#2-4-3帧数据区" class="headerlink" title="2.4.3帧数据区"></a>2.4.3帧数据区</h4><p>除了局部变量表和操作数栈，Java栈帧还需要一些数据来支持常量池解析、正常方法返回和异常处理等。大部分Java字节码指令需要进行常量池访问，在帧数据区中保存着访问常量池的指针，方便程序访问常量池。</p>
+<p>此外，当函数返回或者出现异常时，虚拟机必须恢复调用者函数的栈帧，并让调用者函数继续执行。对于异常处理，虚拟机必须有一个异常处理表，方便在发生异常的时候找到处理异常的代码，因此，异常处理表也是帧数据区中重要的一部分。一个典型的异常处理表如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231151082-1690644721021-22.png" srcset="/img/loading.gif" lazyload alt="image-20230728231151082"></p>
-<p>它表示在字节码偏移量4~16字节可能抛出任意异常，如果遇到异常，则跳转到字节码偏移 19处执行。当方法抛出异常时，虚拟机就会查找类似的异常表来进行处理，如果无法在异常表 中找到合适的处理方法，则会结束当前函数调用，返回调用函数，并在调用函数中抛出相同的 异常，并查找调用函数的异常表进行处理。</p>
-<h4 id="2-4-4-栈上分配"><a href="#2-4-4-栈上分配" class="headerlink" title="2.4.4 栈上分配"></a>2.4.4 栈上分配</h4><p>栈上分配是Java虚拟机提供的一项优化技术，它的基本思想是，对于那些线程私有的对象 (这里指不可能被其他线程访问的对象),可以将它们打散分配在栈上，而不是分配在堆上。 分配在栈上的好处是可以在函数调用结束后自行销毁，而不需要垃圾回收器的介入，从而提高 系统的性能。</p>
-<p>栈上分配的一个技术基础是进行逃逸分析。逃逸分析的目的是判断对象的作用域是否有可 能逃逸出函数体。如下代码显示了一个逃逸的对象：</p>
+<p>它表示在字节码偏移量4~16字节可能抛出任意异常，如果遇到异常，则跳转到字节码偏移19处执行。当方法抛出异常时，虚拟机就会查找类似的异常表来进行处理，如果无法在异常表中找到合适的处理方法，则会结束当前函数调用，返回调用函数，并在调用函数中抛出相同的异常，并查找调用函数的异常表进行处理。</p>
+<h4 id="2-4-4栈上分配"><a href="#2-4-4栈上分配" class="headerlink" title="2.4.4栈上分配"></a>2.4.4栈上分配</h4><p>栈上分配是Java虚拟机提供的一项优化技术，它的基本思想是，对于那些线程私有的对象(这里指不可能被其他线程访问的对象),可以将它们打散分配在栈上，而不是分配在堆上。分配在栈上的好处是可以在函数调用结束后自行销毁，而不需要垃圾回收器的介入，从而提高系统的性能。</p>
+<p>栈上分配的一个技术基础是进行逃逸分析。逃逸分析的目的是判断对象的作用域是否有可能逃逸出函数体。如下代码显示了一个逃逸的对象：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231229482-1690644721021-21.png" srcset="/img/loading.gif" lazyload alt="image-20230728231229482"></p>
-<p>对象Useru是类的成员变量，该字段有可能被任何线程访问，因此属于逃逸对象。而以下 代码片段显示了一个非逃逸的对象：</p>
+<p>对象Useru是类的成员变量，该字段有可能被任何线程访问，因此属于逃逸对象。而以下代码片段显示了一个非逃逸的对象：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231248681-1690644721021-24.png" srcset="/img/loading.gif" lazyload alt="image-20230728231248681"></p>
-<p>在上述代码中，对象User以局部变量的形式存在，并且该对象并没有被alloc()函数返回， 或者出现了任何形式的公开。因此，它并未发生逃逸，所以对于这种情况，虚拟机就有可能将 User分配在栈上，而不在堆上。</p>
+<p>在上述代码中，对象User以局部变量的形式存在，并且该对象并没有被alloc()函数返回，或者出现了任何形式的公开。因此，它并未发生逃逸，所以对于这种情况，虚拟机就有可能将User分配在栈上，而不在堆上。</p>
 <p>【示例2-7】下面这个简单的示例显示了对非逃逸对象的栈上分配。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231659432-1690644721021-25.png" srcset="/img/loading.gif" lazyload alt="image-20230728231659432"></p>
-<p>上述代码在主函数中进行了1亿次alloc()调用来创建对象，由于User对象实例需要占据约 16字节的空间，因此，累计分配空间将近1.5GB。如果堆空间小于这个值，就必然会发生GC。 使用如下参数运行上述代码：</p>
+<p>上述代码在主函数中进行了1亿次alloc()调用来创建对象，由于User对象实例需要占据约16字节的空间，因此，累计分配空间将近1.5GB。如果堆空间小于这个值，就必然会发生GC。使用如下参数运行上述代码：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231710386-1690644721021-27.png" srcset="/img/loading.gif" lazyload alt="image-20230728231710386"></p>
-<p>这里使用参数-server执行程序，因为在Server模式下，才可以启用逃逸分析。参数 -XX:+DoEscapeAnalysis启用逃逸分析，-Xmx10m指定了堆空间最大为10MB。显然，如果对象 在堆上分配，必然会引起大量的GC。如果GC真的发生了，参数-XX:+PrintGC将打印GC日 志。参数-XX:+EliminateAllocations开启了标量替换(默认打开),允许将对象打散分配在栈上， 比如对象拥有id和name两个字段，那么这两个字段将会被视为两个独立的局部变量进行分配。 参数-XX:-UseTLAB关闭了TLAB。</p>
+<p>这里使用参数-server执行程序，因为在Server模式下，才可以启用逃逸分析。参数-XX:+DoEscapeAnalysis启用逃逸分析，-Xmx10m指定了堆空间最大为10MB。显然，如果对象在堆上分配，必然会引起大量的GC。如果GC真的发生了，参数-XX:+PrintGC将打印GC日志。参数-XX:+EliminateAllocations开启了标量替换(默认打开),允许将对象打散分配在栈上，比如对象拥有id和name两个字段，那么这两个字段将会被视为两个独立的局部变量进行分配。参数-XX:-UseTLAB关闭了TLAB。</p>
 <p>程序执行后，完整的输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231725831-1690644721021-28.png" srcset="/img/loading.gif" lazyload alt="image-20230728231725831"></p>
-<p>可以看到，没有任何形式的GC输出，程序就执行完毕了。这说明在执行过程中User对象 的分配过程被优化了。 </p>
-<p>如果关闭逃逸分析或者标量替换中的任何一个，再次执行程序，就会看到大量的GC日志， 说明栈上分配依赖逃逸分析和标量替换的实现。</p>
-<p>对于大量的零散小对象，栈上分配提供了一种很好的对象分配优化策略，栈上分配速度快， 并且可以有效避免垃圾回收带来的负面影响，但由于和堆空间相比，栈空间较小，因此，大对象无法也不适合在栈上分配。</p>
-<h3 id="2-5-类去哪儿了：识别方法区"><a href="#2-5-类去哪儿了：识别方法区" class="headerlink" title="2.5 类去哪儿了：识别方法区"></a>2.5 类去哪儿了：识别方法区</h3><p>和Java堆一样，方法区是一块所有线程共享的内存区域。它用于保存系统的类信息，比如 类的字段、方法、常量池等。方法区的大小决定了系统可以保存多少个类，如果系统定义了太 多的类，导致方法区溢出，虚拟机同样会抛出内存溢出错误。</p>
-<p>在JDK 1.6、JDK 1.7中，方法区可以理解为永久区(Perm)。永久区可以使用参数 XX:PermSize和-XX:MaxPermSize指定，默认情况下，-XX:MaxPermSize为64MB。一个大的 永久区可以保存更多的类信息。如果系统使用了一些动态代理，那么有可能会在运行时生成大 量的类，这时就需要设置一个合理的永久区大小，确保不发生永久区内存溢出。</p>
+<p>可以看到，没有任何形式的GC输出，程序就执行完毕了。这说明在执行过程中User对象的分配过程被优化了。</p>
+<p>如果关闭逃逸分析或者标量替换中的任何一个，再次执行程序，就会看到大量的GC日志，说明栈上分配依赖逃逸分析和标量替换的实现。</p>
+<p>对于大量的零散小对象，栈上分配提供了一种很好的对象分配优化策略，栈上分配速度快，并且可以有效避免垃圾回收带来的负面影响，但由于和堆空间相比，栈空间较小，因此，大对象无法也不适合在栈上分配。</p>
+<h3 id="2-5类去哪儿了：识别方法区"><a href="#2-5类去哪儿了：识别方法区" class="headerlink" title="2.5类去哪儿了：识别方法区"></a>2.5类去哪儿了：识别方法区</h3><p>和Java堆一样，方法区是一块所有线程共享的内存区域。它用于保存系统的类信息，比如类的字段、方法、常量池等。方法区的大小决定了系统可以保存多少个类，如果系统定义了太多的类，导致方法区溢出，虚拟机同样会抛出内存溢出错误。</p>
+<p>在JDK1.6、JDK1.7中，方法区可以理解为永久区(Perm)。永久区可以使用参数XX:PermSize和-XX:MaxPermSize指定，默认情况下，-XX:MaxPermSize为64MB。一个大的永久区可以保存更多的类信息。如果系统使用了一些动态代理，那么有可能会在运行时生成大量的类，这时就需要设置一个合理的永久区大小，确保不发生永久区内存溢出。</p>
 <p>【示例2-8】下面这段代码使用CGLIB库生成大量的动态类。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728231842442-1690644721021-32.png" srcset="/img/loading.gif" lazyload alt="image-20230728231842442"></p>
-<p>在CglibBean的构造函数中，会根据传入 参数，动态生成一个类，以及一个类的实例对象。任何一个动态产生类的程序都可用于本节的 实验。</p>
-<p><strong>注意：</strong>这里使用CGLIB动态产生类，不仅仅是对象实例。由于类的信息(字段、方法、 字节码等)保存在方法区，因此，这个操作会占用方法区的空间。</p>
+<p>在CglibBean的构造函数中，会根据传入参数，动态生成一个类，以及一个类的实例对象。任何一个动态产生类的程序都可用于本节的实验。</p>
+<p><strong>注意：</strong>这里使用CGLIB动态产生类，不仅仅是对象实例。由于类的信息(字段、方法、字节码等)保存在方法区，因此，这个操作会占用方法区的空间。</p>
 <p>生成大量的类可能导致永久区溢出，使用如下参数运行上述代码：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728232021198-1690644721021-29.png" srcset="/img/loading.gif" lazyload alt="image-20230728232021198"></p>
-<p>这里指定了初始永久区为5MB,最大永久区为5MB,即当5MB空间耗尽时，系统将抛出 内存溢出异常。执行程序后，部分输出如下：</p>
+<p>这里指定了初始永久区为5MB,最大永久区为5MB,即当5MB空间耗尽时，系统将抛出内存溢出异常。执行程序后，部分输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728232038358-1690644721021-30.png" srcset="/img/loading.gif" lazyload alt="image-20230728232038358"></p>
-<p>可以看到，在大约1280个类产生后，系统发生了内存溢出。扩大-XX:MaxPermSize的值， 那么系统将可以生成更多的动态类，读者可以自行实验。</p>
-<p>图2.11显示了在Visual VM中观察永久区的情况。</p>
+<p>可以看到，在大约1280个类产生后，系统发生了内存溢出。扩大-XX:MaxPermSize的值，那么系统将可以生成更多的动态类，读者可以自行实验。</p>
+<p>图2.11显示了在VisualVM中观察永久区的情况。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728232055729-1690644721021-31.png" srcset="/img/loading.gif" lazyload alt="image-20230728232055729"></p>
-<p>在JDK1.8、JDK1.9、JDK1.10中，永久区已经被彻底移除。取而代之的是元数据区，元 数据区大小可以使用参数-XX:MaxMetaspaceSize指定(一个大的元数据区可以使系统支持更多 的类),这是一块堆外的直接内存。与永久区不同，如果不指定大小，默认情况下，虚拟机会 耗尽所有的可用系统内存。图2.12显示了JDK1.8中的元数据区，JDK 1.9、JDK 1.10与此相同， 不再赘述。</p>
+<p>在JDK1.8、JDK1.9、JDK1.10中，永久区已经被彻底移除。取而代之的是元数据区，元数据区大小可以使用参数-XX:MaxMetaspaceSize指定(一个大的元数据区可以使系统支持更多的类),这是一块堆外的直接内存。与永久区不同，如果不指定大小，默认情况下，虚拟机会耗尽所有的可用系统内存。图2.12显示了JDK1.8中的元数据区，JDK1.9、JDK1.10与此相同，不再赘述。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728232114117-1690644721021-33.png" srcset="/img/loading.gif" lazyload alt="image-20230728232114117"></p>
 <p>如果元数据区发生溢出，虚拟机一样会抛出异常，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728232130865-1690644721021-34.png" srcset="/img/loading.gif" lazyload alt="image-20230728232130865"></p>
-<h3 id="2-6-小结"><a href="#2-6-小结" class="headerlink" title="2.6 小结"></a>2.6 小结</h3><p>本章主要介绍了Java虚拟机的基本结构，其中，对Java堆、Java栈和方法区做了较为完整 的说明。同时，也对如何设置Java虚拟机参数做了简要说明。对于具体的虚拟机参数，本章并 未给出太多信息，在本书的后续章节将会逐步介绍一些实用的虚拟机参数。</p>
-<h2 id="第3章-常用Java虚拟机参数"><a href="#第3章-常用Java虚拟机参数" class="headerlink" title="第3章 常用Java虚拟机参数"></a>第3章 常用Java虚拟机参数</h2><p>本章涉及的主要知识点有： </p>
+<h3 id="2-6小结"><a href="#2-6小结" class="headerlink" title="2.6小结"></a>2.6小结</h3><p>本章主要介绍了Java虚拟机的基本结构，其中，对Java堆、Java栈和方法区做了较为完整的说明。同时，也对如何设置Java虚拟机参数做了简要说明。对于具体的虚拟机参数，本章并未给出太多信息，在本书的后续章节将会逐步介绍一些实用的虚拟机参数。</p>
+<h2 id="第3章常用Java虚拟机参数"><a href="#第3章常用Java虚拟机参数" class="headerlink" title="第3章常用Java虚拟机参数"></a>第3章常用Java虚拟机参数</h2><p>本章涉及的主要知识点有：</p>
 <ul>
-<li>跟踪Java虚拟机的垃圾回收和类加载等信息。 </li>
-<li>配置Java虚拟机的堆空间。 </li>
-<li>配置永久区和Java栈。 </li>
+<li>跟踪Java虚拟机的垃圾回收和类加载等信息。</li>
+<li>配置Java虚拟机的堆空间。</li>
+<li>配置永久区和Java栈。</li>
 <li>学习虚拟机的服务器和客户端模式。</li>
 </ul>
-<h3 id="3-1-一切运行都有迹可循：掌握跟踪调试参数"><a href="#3-1-一切运行都有迹可循：掌握跟踪调试参数" class="headerlink" title="3.1 一切运行都有迹可循：掌握跟踪调试参数"></a>3.1 一切运行都有迹可循：掌握跟踪调试参数</h3><h4 id="3-1-1-跟踪垃圾回收——读懂虚拟机日志"><a href="#3-1-1-跟踪垃圾回收——读懂虚拟机日志" class="headerlink" title="3.1.1 跟踪垃圾回收——读懂虚拟机日志"></a>3.1.1 跟踪垃圾回收——读懂虚拟机日志</h4><p>最简单的一个GC参数是-XX:+PrintGC(在JDK 9、JDK 10中建议使用-Xlog:gc),使用这 个参数启动Java虚拟机后，只要遇到GC,就会打印日志，如下所示：</p>
+<h3 id="3-1一切运行都有迹可循：掌握跟踪调试参数"><a href="#3-1一切运行都有迹可循：掌握跟踪调试参数" class="headerlink" title="3.1一切运行都有迹可循：掌握跟踪调试参数"></a>3.1一切运行都有迹可循：掌握跟踪调试参数</h3><h4 id="3-1-1跟踪垃圾回收——读懂虚拟机日志"><a href="#3-1-1跟踪垃圾回收——读懂虚拟机日志" class="headerlink" title="3.1.1跟踪垃圾回收——读懂虚拟机日志"></a>3.1.1跟踪垃圾回收——读懂虚拟机日志</h4><p>最简单的一个GC参数是-XX:+PrintGC(在JDK9、JDK10中建议使用-Xlog:gc),使用这个参数启动Java虚拟机后，只要遇到GC,就会打印日志，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224119708.png" srcset="/img/loading.gif" lazyload alt="image-20230729224119708"></p>
-<p>该日志显示，一共进行了4次GC,每次GC占用一行，在GC前，堆空间使用量约为4MB, 在GC后，堆空间使用量为377KB,当前可用的堆空间总和约为16MB(15936KB)。最后， 显示的是本次GC所花的时间。</p>
-<p>JDK 9、JDK10默认使用G1作为垃圾回收器，使用参数-Xlog:gc来打印GC日志，如下 所示：</p>
+<p>该日志显示，一共进行了4次GC,每次GC占用一行，在GC前，堆空间使用量约为4MB,在GC后，堆空间使用量为377KB,当前可用的堆空间总和约为16MB(15936KB)。最后，显示的是本次GC所花的时间。</p>
+<p>JDK9、JDK10默认使用G1作为垃圾回收器，使用参数-Xlog:gc来打印GC日志，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224139219.png" srcset="/img/loading.gif" lazyload alt="image-20230729224139219"></p>
-<p>该日志显示，一共进行了1次GC,在GC前，堆空间使用量为16MB,在GC后，堆空间 使用量为7MB,当前可用的堆空间总和为34MB。最后，显示的是本次GC所花的时间，为 23.511ms。</p>
-<p>如果需要更加详细的信息，可以使用-XX:+PrintGCDetails参数。JDK 8(JDK 9、JDK 10 建议使用-Xlog:gc*,后面讲述)中的输出可能如下：</p>
+<p>该日志显示，一共进行了1次GC,在GC前，堆空间使用量为16MB,在GC后，堆空间使用量为7MB,当前可用的堆空间总和为34MB。最后，显示的是本次GC所花的时间，为23.511ms。</p>
+<p>如果需要更加详细的信息，可以使用-XX:+PrintGCDetails参数。JDK8(JDK9、JDK10建议使用-Xlog:gc*,后面讲述)中的输出可能如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224158871.png" srcset="/img/loading.gif" lazyload alt="image-20230729224158871"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224206030.png" srcset="/img/loading.gif" lazyload alt="image-20230729224206030"></p>
-<p>从这个输出中可以看到，系统经历了3次GC,第1次仅为新生代GC,回收的效果是新生 代从回收前的8MB左右降低到1MB。整个堆从22MB左右降低到17MB。</p>
-<p>第2次(加粗部分)为Full GC,它同时回收了新生代、老年代和永久区。日志显示，新生 代在这次GC中没有释放空间(严格来说，这是GC日志的一个小bug,事实上，在这次Full GC 完成后，新生代被清空，由于GC日志输出时机的关系，各个版本JDK的日志多少有些不太精 确的地方，读者需要留意),老年代从16MB降低到13MB。整个堆大小从26MB左右降低为 13MB左右(这个大小完全与老年代实际大小相等，因此也可以推断，新生代实际上已被清空)。 永久区的大小没有变化。日志的最后显示了GC所花的时间，其中user表示用户态CPU耗时， sys表示系统CPU耗时，real表示GC实际经历的时间。</p>
-<p>参数-XX:+PrintGCDetails还会使虚拟机在退出前打印堆的详细信息，详细信息描述了当前 堆的各个区间的使用情况。如上输出所示，当前新生代(new generation)总大小为9792KB, 已使用4586KB。紧跟其后的3个16进制数字表示新生代的下界、当前上界和上界。</p>
+<p>从这个输出中可以看到，系统经历了3次GC,第1次仅为新生代GC,回收的效果是新生代从回收前的8MB左右降低到1MB。整个堆从22MB左右降低到17MB。</p>
+<p>第2次(加粗部分)为FullGC,它同时回收了新生代、老年代和永久区。日志显示，新生代在这次GC中没有释放空间(严格来说，这是GC日志的一个小bug,事实上，在这次FullGC完成后，新生代被清空，由于GC日志输出时机的关系，各个版本JDK的日志多少有些不太精确的地方，读者需要留意),老年代从16MB降低到13MB。整个堆大小从26MB左右降低为13MB左右(这个大小完全与老年代实际大小相等，因此也可以推断，新生代实际上已被清空)。永久区的大小没有变化。日志的最后显示了GC所花的时间，其中user表示用户态CPU耗时，sys表示系统CPU耗时，real表示GC实际经历的时间。</p>
+<p>参数-XX:+PrintGCDetails还会使虚拟机在退出前打印堆的详细信息，详细信息描述了当前堆的各个区间的使用情况。如上输出所示，当前新生代(newgeneration)总大小为9792KB,已使用4586KB。紧跟其后的3个16进制数字表示新生代的下界、当前上界和上界。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224252092.png" srcset="/img/loading.gif" lazyload alt="image-20230729224252092"></p>
-<p>使用上界减去下界就能得到当前堆空间的最大值，使用当前上界减去下界，就是当前虚拟 机已经为程序分配的空间。如果当前上界等于下界，说明当前的堆空间已经没有扩大的可能性。 在本例中(0x00000000f98a0000-0x00000000f8e00000)&#x2F;1024&#x3D;10880KB。这块空间正好等于 eden+from+to的总和。而可用的新生代9792KB为eden+from(to)的总和，对于两者出现差异的 原因，读者可以参考本书第4章。</p>
-<p>除了新生代，详细的堆日志中还显示了老年代(tenured generation)和永久区(compacting perm gen)的使用情况，其格式和新生代相同。</p>
-<p>JDK 9、JDK 10使用参数-Xlog:gc*来打印更加详细的GC日志，如下所示：</p>
+<p>使用上界减去下界就能得到当前堆空间的最大值，使用当前上界减去下界，就是当前虚拟机已经为程序分配的空间。如果当前上界等于下界，说明当前的堆空间已经没有扩大的可能性。在本例中(0x00000000f98a0000-0x00000000f8e00000)&#x2F;1024&#x3D;10880KB。这块空间正好等于eden+from+to的总和。而可用的新生代9792KB为eden+from(to)的总和，对于两者出现差异的原因，读者可以参考本书第4章。</p>
+<p>除了新生代，详细的堆日志中还显示了老年代(tenuredgeneration)和永久区(compactingpermgen)的使用情况，其格式和新生代相同。</p>
+<p>JDK9、JDK10使用参数-Xlog:gc*来打印更加详细的GC日志，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224320815.png" srcset="/img/loading.gif" lazyload alt="image-20230729224320815"></p>
-<p>从这个输出中可以看到，堆的最大可用大小为32MB,系统经历了1次GC,为新生代GC, 回收的效果是整个堆从14MB左右降低到了1MB。在JDK 9、JDK10中，除了新生代、老年代， 还新增了一个巨型区域，即上述输出中的Humongous regions。</p>
-<p>另外，日志中有详细的时间信息，第一列显示Java程序运行的时间，Pause Young(G1 Evacuation Pause)14M-&gt;1M(32M)7.028ms表示新生代垃圾回收花了7.028ms。</p>
-<p>Pre Evacuate Collection Set、Evacuate Collection Set、Post Evacuate Collection Set、Other代 表G1垃圾回收标记——清除算法不同阶段所花费的时间。</p>
+<p>从这个输出中可以看到，堆的最大可用大小为32MB,系统经历了1次GC,为新生代GC,回收的效果是整个堆从14MB左右降低到了1MB。在JDK9、JDK10中，除了新生代、老年代，还新增了一个巨型区域，即上述输出中的Humongousregions。</p>
+<p>另外，日志中有详细的时间信息，第一列显示Java程序运行的时间，PauseYoung(G1EvacuationPause)14M-&gt;1M(32M)7.028ms表示新生代垃圾回收花了7.028ms。</p>
+<p>PreEvacuateCollectionSet、EvacuateCollectionSet、PostEvacuateCollectionSet、Other代表G1垃圾回收标记——清除算法不同阶段所花费的时间。</p>
 <p>最后一行的时间信息跟JDK8相同，不再赘述。</p>
-<p>如果需要更全面的堆信息，还可以使用参数-XX:+PrintHeapAtGC(考虑到兼容性，从JDK 9 开始已经删除此参数，查看堆信息可以使用Visual VM,第6章将会讲述)。它会在每次GC 前、后分别打印堆的信息，就如同-XX:+PrintGCDetails的最后输出一样。下面就是 -XX:+PrintHeapAtGC的输出样式，限于篇幅，只给出部分输出：</p>
+<p>如果需要更全面的堆信息，还可以使用参数-XX:+PrintHeapAtGC(考虑到兼容性，从JDK9开始已经删除此参数，查看堆信息可以使用VisualVM,第6章将会讲述)。它会在每次GC前、后分别打印堆的信息，就如同-XX:+PrintGCDetails的最后输出一样。下面就是-XX:+PrintHeapAtGC的输出样式，限于篇幅，只给出部分输出：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224404775.png" srcset="/img/loading.gif" lazyload alt="image-20230729224404775"></p>
-<p>可以看到，在使用-XX:+PrintHeapAtGC后，在GC日志输出前、后都有详细的堆信息输出， 分别表示GC回收前和GC回收后的堆信息，使用这个参数，可以很好地观察GC对堆空间的 影响。</p>
-<p>如果需要分析GC发生的时间，还可以使用-XX:+PrintGCTimeStamps(JDK 9、JDK 10中 使用-Xlog:gc<em>已经默认打印出时间，前文关于-Xlog:gc</em>已经有讲述，这里不再赘述)参数，该 参数会在每次GC时，额外输出GC发生的时间，该输出时间为虚拟机启动后的时间偏移量。 如下代码表示在系统启动后0.08s、0.088s、0.094s发生了GC。</p>
+<p>可以看到，在使用-XX:+PrintHeapAtGC后，在GC日志输出前、后都有详细的堆信息输出，分别表示GC回收前和GC回收后的堆信息，使用这个参数，可以很好地观察GC对堆空间的影响。</p>
+<p>如果需要分析GC发生的时间，还可以使用-XX:+PrintGCTimeStamps(JDK9、JDK10中使用-Xlog:gc<em>已经默认打印出时间，前文关于-Xlog:gc</em>已经有讲述，这里不再赘述)参数，该参数会在每次GC时，额外输出GC发生的时间，该输出时间为虚拟机启动后的时间偏移量。如下代码表示在系统启动后0.08s、0.088s、0.094s发生了GC。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224423981.png" srcset="/img/loading.gif" lazyload alt="image-20230729224423981"></p>
-<p>由于GC会引起应用程序停顿，因此还需要特别关注应用程序的执行时间和停顿时间。使 用参数-XX:+PrintGCApplicationConcurrentTime可以打印应用程序的执行时间，使用参数 -XX:+PrintGCApplicationStoppedTime可以打印应用程序由于GC而产生的停顿时间，如下所示：</p>
+<p>由于GC会引起应用程序停顿，因此还需要特别关注应用程序的执行时间和停顿时间。使用参数-XX:+PrintGCApplicationConcurrentTime可以打印应用程序的执行时间，使用参数-XX:+PrintGCApplicationStoppedTime可以打印应用程序由于GC而产生的停顿时间，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224435180.png" srcset="/img/loading.gif" lazyload alt="image-20230729224435180"></p>
-<p>如果想跟踪系统内的软引用、弱引用、虚引用和Finallize队列，可以打开-XX:+ PrintReferenceGC(考虑到兼容性，从JDK9开始已经删除此参数，查看堆信息可以使用Visual VM,第6章将会讲述)开关，结果如下：</p>
+<p>如果想跟踪系统内的软引用、弱引用、虚引用和Finallize队列，可以打开-XX:+PrintReferenceGC(考虑到兼容性，从JDK9开始已经删除此参数，查看堆信息可以使用VisualVM,第6章将会讲述)开关，结果如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224447806.png" srcset="/img/loading.gif" lazyload alt="image-20230729224447806"></p>
-<p>默认情况下，GC的日志会在控制台中输出，这不便于后续分析和定位问题。所以，虚拟 机允许将GC日志以文件的形式输出，可以使用参数-Xloggc指定。比如使用参数 -Xloggc:log&#x2F;gc.log(在JDK 9、JDK10中建议使用-Xlog:gc:log&#x2F;gc.log)启动虚拟机，可以在当前 目录的log文件夹下的gc.log文件中记录所有的GC日志。图3.1显示了由-Xloggc生成的gc.log 文件，JDK 9、JDK10生成的文件与JDK8相同，不再赘述。</p>
+<p>默认情况下，GC的日志会在控制台中输出，这不便于后续分析和定位问题。所以，虚拟机允许将GC日志以文件的形式输出，可以使用参数-Xloggc指定。比如使用参数-Xloggc:log&#x2F;gc.log(在JDK9、JDK10中建议使用-Xlog:gc:log&#x2F;gc.log)启动虚拟机，可以在当前目录的log文件夹下的gc.log文件中记录所有的GC日志。图3.1显示了由-Xloggc生成的gc.log文件，JDK9、JDK10生成的文件与JDK8相同，不再赘述。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224503816.png" srcset="/img/loading.gif" lazyload alt="image-20230729224503816"></p>
-<h4 id="3-1-2-类加载-卸载的跟踪"><a href="#3-1-2-类加载-卸载的跟踪" class="headerlink" title="3.1.2 类加载&#x2F;卸载的跟踪"></a>3.1.2 类加载&#x2F;卸载的跟踪</h4><p>一般情况下，系统加载的类存在于文件系统中，以jar的形式打包或者以class文 件的形式存在，可以直接通过文件系统查看。但是随着动态代理、AOP等技术的普遍使用，系 统也极有可能在运行时动态生成某些类，这些类相对比较隐蔽，无法通过文件系统找到，此时 虚拟机提供的类加载&#x2F;卸载跟踪参数就显得格外有意义。</p>
-<p>可以使用参数-verbose:class跟踪类的加载&#x2F;卸载，也可以单独使用参数-XX:+TraceClassLoading(在JDK 9、JDK 10中建议使用-Xlog:class+load&#x3D;info,跟JDK 8中的参数-XX:+ TraceClassLoading 效果相同)跟踪类的加载，使用参数-XX:+TraceClassUnloading(在JDK 9、JDK 10中建议使用 -Xlog:class+unload&#x3D;info,跟JDK8中的参数-XX:+TraceClassLoading效果相同)跟踪类的卸载。 这两类参数是等价的。</p>
-<p>【示例3-1】下面这段代码使用ASM动态生成名为Example的类，并将其反复加载到系统 中(ASM的使用可以参阅9.3节)。</p>
+<h4 id="3-1-2类加载-卸载的跟踪"><a href="#3-1-2类加载-卸载的跟踪" class="headerlink" title="3.1.2类加载&#x2F;卸载的跟踪"></a>3.1.2类加载&#x2F;卸载的跟踪</h4><p>一般情况下，系统加载的类存在于文件系统中，以jar的形式打包或者以class文件的形式存在，可以直接通过文件系统查看。但是随着动态代理、AOP等技术的普遍使用，系统也极有可能在运行时动态生成某些类，这些类相对比较隐蔽，无法通过文件系统找到，此时虚拟机提供的类加载&#x2F;卸载跟踪参数就显得格外有意义。</p>
+<p>可以使用参数-verbose:class跟踪类的加载&#x2F;卸载，也可以单独使用参数-XX:+TraceClassLoading(在JDK9、JDK10中建议使用-Xlog:class+load&#x3D;info,跟JDK8中的参数-XX:+TraceClassLoading效果相同)跟踪类的加载，使用参数-XX:+TraceClassUnloading(在JDK9、JDK10中建议使用-Xlog:class+unload&#x3D;info,跟JDK8中的参数-XX:+TraceClassLoading效果相同)跟踪类的卸载。这两类参数是等价的。</p>
+<p>【示例3-1】下面这段代码使用ASM动态生成名为Example的类，并将其反复加载到系统中(ASM的使用可以参阅9.3节)。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224730975.png" srcset="/img/loading.gif" lazyload alt="image-20230729224730975"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224738366.png" srcset="/img/loading.gif" lazyload alt="image-20230729224738366"></p>
-<p>上述代码的第3<del>18行使用ASM生成名为Example的类，并将其保存在code数组中。第 20</del>27行使用ClassLoader将新生成的类反复加载到系统中，每次循环使用新的ClassLoader实 例，并在循环结束前进行Full GC,释放上一次循环加载的类，因此，这一过程会涉及类的加载 和卸载。</p>
-<p>使用参数-XX:+TraceClassUnloading和参数-XX:+TraceClassLoading执行上述代码，跟踪类 的加载和卸载过程，部分输出如下：</p>
+<p>上述代码的第3<del>18行使用ASM生成名为Example的类，并将其保存在code数组中。第20</del>27行使用ClassLoader将新生成的类反复加载到系统中，每次循环使用新的ClassLoader实例，并在循环结束前进行FullGC,释放上一次循环加载的类，因此，这一过程会涉及类的加载和卸载。</p>
+<p>使用参数-XX:+TraceClassUnloading和参数-XX:+TraceClassLoading执行上述代码，跟踪类的加载和卸载过程，部分输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224752631.png" srcset="/img/loading.gif" lazyload alt="image-20230729224752631"></p>
-<p>从这份日志中可以看到，系统先加载了java.lang.Object类，作为所有类的父类。日志的后 半部分显示，系统对Example类先后进行了10次加载和9次卸载(最后一次加载的类没有机会 被卸载)。</p>
-<p><strong>注意：</strong>动态类的加载是非常隐蔽的，它们由代码逻辑控制，不出现在文件系统中，跟 踪这些类需要使用-XX:+TraceClassLoading等参数。</p>
-<p>Java虚拟机还允许研发人员在运行时打印、查看系统中类的分布情况，只要在系统启动时 加上-XX:+PrintClassHistogram参数，然后在Java的控制台中按下Ctrl+Break组合键，控制台上 就会显示当前的类信息柱状图，如下所示：</p>
+<p>从这份日志中可以看到，系统先加载了java.lang.Object类，作为所有类的父类。日志的后半部分显示，系统对Example类先后进行了10次加载和9次卸载(最后一次加载的类没有机会被卸载)。</p>
+<p><strong>注意：</strong>动态类的加载是非常隐蔽的，它们由代码逻辑控制，不出现在文件系统中，跟踪这些类需要使用-XX:+TraceClassLoading等参数。</p>
+<p>Java虚拟机还允许研发人员在运行时打印、查看系统中类的分布情况，只要在系统启动时加上-XX:+PrintClassHistogram参数，然后在Java的控制台中按下Ctrl+Break组合键，控制台上就会显示当前的类信息柱状图，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224819901.png" srcset="/img/loading.gif" lazyload alt="image-20230729224819901"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224826253.png" srcset="/img/loading.gif" lazyload alt="image-20230729224826253"></p>
-<p>通过这个柱状图信息，可以看到当前系统中占用空间最大的对象，以及它的实例数量和所 占用空间大小。</p>
-<h4 id="3-1-3-查看系统参数"><a href="#3-1-3-查看系统参数" class="headerlink" title="3.1.3 查看系统参数"></a>3.1.3 查看系统参数</h4><p>参数-XX:+PrintVMOptions可以在程序运行时打印虚拟机接收到的命令行显式参数。其输出 如下：</p>
+<p>通过这个柱状图信息，可以看到当前系统中占用空间最大的对象，以及它的实例数量和所占用空间大小。</p>
+<h4 id="3-1-3查看系统参数"><a href="#3-1-3查看系统参数" class="headerlink" title="3.1.3查看系统参数"></a>3.1.3查看系统参数</h4><p>参数-XX:+PrintVMOptions可以在程序运行时打印虚拟机接收到的命令行显式参数。其输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224854429.png" srcset="/img/loading.gif" lazyload alt="image-20230729224854429"></p>
 <p>这说明该虚拟机启动时，命令行明确指定了UseSerialGC、DisableExplicitGC两个参数。</p>
-<p>参数-XX:+PrintCommandLineFlags可以打印传递给虚拟机的显式和隐式参数，隐式参数未必是 通过命令行直接给出的，它可能是在虚拟机启动时自行设置的，使用-XX:+PrintCommandLineFlags 后，可能的输出如下：</p>
+<p>参数-XX:+PrintCommandLineFlags可以打印传递给虚拟机的显式和隐式参数，隐式参数未必是通过命令行直接给出的，它可能是在虚拟机启动时自行设置的，使用-XX:+PrintCommandLineFlags后，可能的输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729224928537.png" srcset="/img/loading.gif" lazyload alt="image-20230729224928537"></p>
-<p>在本例中，-XX: InitialHeapSize、-XX:MaxHeapSize和-XX:-UseLargePagesIndividualAllocation 并未在命令行显式指定，是由虚拟机自行设置的。</p>
-<p>此外，另一个有用的参数是-XX:+PrintFlagsFinal,它会打印所有的系统参数的值。开启这 个参数后，虚拟机可能会产生500多行输出，每一行为一个配置参数及其当前取值，读者如果 对虚拟机的各参数感兴趣，可以打印出这些参数，逐个学习。</p>
-<h3 id="3-2-让性能飞起来：学习堆的配置参数"><a href="#3-2-让性能飞起来：学习堆的配置参数" class="headerlink" title="3.2 让性能飞起来：学习堆的配置参数"></a>3.2 让性能飞起来：学习堆的配置参数</h3><h4 id="3-2-1-最大堆和初始堆的设置"><a href="#3-2-1-最大堆和初始堆的设置" class="headerlink" title="3.2.1 最大堆和初始堆的设置"></a>3.2.1 最大堆和初始堆的设置</h4><p>当Java进程启动时，虚拟机就会分配一块初始堆空间，可以使用参数-Xms指定这块空间 的大小。一般来说，虚拟机会尽可能维持在初始堆空间的范围内运行。但是如果初始堆空间耗 尽，虚拟机将会对堆空间进行扩展，其扩展上限为最大堆空间，最大堆空间可以使用参数-Xmx 指定。</p>
-<p>【示例3-2】下面通过一个简单的示例，说明最大堆、初始堆和系统可用内存的含义，以及 它们彼此之间的关系。</p>
+<p>在本例中，-XX:InitialHeapSize、-XX:MaxHeapSize和-XX:-UseLargePagesIndividualAllocation并未在命令行显式指定，是由虚拟机自行设置的。</p>
+<p>此外，另一个有用的参数是-XX:+PrintFlagsFinal,它会打印所有的系统参数的值。开启这个参数后，虚拟机可能会产生500多行输出，每一行为一个配置参数及其当前取值，读者如果对虚拟机的各参数感兴趣，可以打印出这些参数，逐个学习。</p>
+<h3 id="3-2让性能飞起来：学习堆的配置参数"><a href="#3-2让性能飞起来：学习堆的配置参数" class="headerlink" title="3.2让性能飞起来：学习堆的配置参数"></a>3.2让性能飞起来：学习堆的配置参数</h3><h4 id="3-2-1最大堆和初始堆的设置"><a href="#3-2-1最大堆和初始堆的设置" class="headerlink" title="3.2.1最大堆和初始堆的设置"></a>3.2.1最大堆和初始堆的设置</h4><p>当Java进程启动时，虚拟机就会分配一块初始堆空间，可以使用参数-Xms指定这块空间的大小。一般来说，虚拟机会尽可能维持在初始堆空间的范围内运行。但是如果初始堆空间耗尽，虚拟机将会对堆空间进行扩展，其扩展上限为最大堆空间，最大堆空间可以使用参数-Xmx指定。</p>
+<p>【示例3-2】下面通过一个简单的示例，说明最大堆、初始堆和系统可用内存的含义，以及它们彼此之间的关系。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225045814.png" srcset="/img/loading.gif" lazyload alt="image-20230729225045814"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225052672.png" srcset="/img/loading.gif" lazyload alt="image-20230729225052672"></p>
-<p>上述代码首先在第3<del>8行打印了基本的系统信息，包括最大可用内存、当前空闲内存和当 前总内存。然后，在第10行申请了1MB内存空间，显然，这块空间将在堆上分配。在第13</del>18 行，同样打印了最大可用内存、当前空闲内存和当前总内存。接着，在第20行再次申请了4MB 内存空间。最后，同样打印了3个参数。</p>
-<p>根据前文很容易想到，这里的最大可用内存就是-Xmx的取值，当前总内存应该不小于-Xms 的取值，因为当前总内存总是在-Xms和-Xmx之间，从-Xms开始根据需要向上增长。当前空闲 内存应该是当前总内存减去当前已经使用的内存。</p>
-<p>这样理解差不多是正确的，之所以使用“差不多”一词，是因为这样理解并不是十分全面 的。使用如下参数执行程序，很快就能发现偏差。</p>
+<p>上述代码首先在第3<del>8行打印了基本的系统信息，包括最大可用内存、当前空闲内存和当前总内存。然后，在第10行申请了1MB内存空间，显然，这块空间将在堆上分配。在第13</del>18行，同样打印了最大可用内存、当前空闲内存和当前总内存。接着，在第20行再次申请了4MB内存空间。最后，同样打印了3个参数。</p>
+<p>根据前文很容易想到，这里的最大可用内存就是-Xmx的取值，当前总内存应该不小于-Xms的取值，因为当前总内存总是在-Xms和-Xmx之间，从-Xms开始根据需要向上增长。当前空闲内存应该是当前总内存减去当前已经使用的内存。</p>
+<p>这样理解差不多是正确的，之所以使用“差不多”一词，是因为这样理解并不是十分全面的。使用如下参数执行程序，很快就能发现偏差。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225635577.png" srcset="/img/loading.gif" lazyload alt="image-20230729225635577"></p>
 <p>程序的输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225646109.png" srcset="/img/loading.gif" lazyload alt="image-20230729225646109"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225655185.png" srcset="/img/loading.gif" lazyload alt="image-20230729225655185"></p>
-<p>可以看到，当前最大内存由-XX:MaxHeapSize&#x3D;20971520指定，它正好是20×1024×1024&#x3D; 20971520字节。而打印的最大可用内存仅为20316160字节，比设定值略少。这是因为分配给堆 的内存空间和实际可用内存空间并非一个概念。由于垃圾回收的需要，虚拟机会对堆空间进行分 区管理，不同的区采用不同的回收算法，一些算法会使用空间换时间的策略，因此会存在可用内 存的损失，详细算法可以参见4.2.3节，这里不展开讨论。最终的结果就是实际可用内存会浪费 大小等于from&#x2F;to的空间。因此，实际最大可用内存为-Xmx的值减去from的值。从堆的详细信 息可以看到，from的大小为0x33420000-0x33400000-0x20000&#x3D;131072字节。但很不幸，读者应 该会发现20971520-131072&#x3D;20840448字节，与实际值20316160依然存在偏差。出现这个偏差是 因为虚拟机内部并没有直接使用新生代from&#x2F;to的大小，而是进一步对它们做了对齐操作。对于 串行GC的情况，虚拟机使用以下方法估算from&#x2F;to的大小，并进行对齐。</p>
+<p>可以看到，当前最大内存由-XX:MaxHeapSize&#x3D;20971520指定，它正好是20×1024×1024&#x3D;20971520字节。而打印的最大可用内存仅为20316160字节，比设定值略少。这是因为分配给堆的内存空间和实际可用内存空间并非一个概念。由于垃圾回收的需要，虚拟机会对堆空间进行分区管理，不同的区采用不同的回收算法，一些算法会使用空间换时间的策略，因此会存在可用内存的损失，详细算法可以参见4.2.3节，这里不展开讨论。最终的结果就是实际可用内存会浪费大小等于from&#x2F;to的空间。因此，实际最大可用内存为-Xmx的值减去from的值。从堆的详细信息可以看到，from的大小为0x33420000-0x33400000-0x20000&#x3D;131072字节。但很不幸，读者应该会发现20971520-131072&#x3D;20840448字节，与实际值20316160依然存在偏差。出现这个偏差是因为虚拟机内部并没有直接使用新生代from&#x2F;to的大小，而是进一步对它们做了对齐操作。对于串行GC的情况，虚拟机使用以下方法估算from&#x2F;to的大小，并进行对齐。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225859744.png" srcset="/img/loading.gif" lazyload alt="image-20230729225859744"></p>
-<p>上述代码中的alignment变量在非ARM平台上为1&lt;&lt;16,即2**16,参数gen_size表示新生代 的总大小，SurvivorRatio默认值为8,表示幸存代的比例。在本例中，使用compute_survivor_size 估算并对齐后的from&#x2F;to区间大小为：</p>
+<p>上述代码中的alignment变量在非ARM平台上为1&lt;&lt;16,即2**16,参数gen_size表示新生代的总大小，SurvivorRatio默认值为8,表示幸存代的比例。在本例中，使用compute_survivor_size估算并对齐后的from&#x2F;to区间大小为：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729225933941.png" srcset="/img/loading.gif" lazyload alt="image-20230729225933941"></p>
-<p>用20971520减去655360,得出实际可用最大堆空间为20316160字节，与输出值吻合。这 可以解释实际可用堆大小与-Xmx配置值之间的偏差。</p>
-<p>打印显示，程序运行初期空闲内存约为4.5MB,总内存约为5MB。在进行了1MB内存分 配后，最大可用内存不变(理论上它永远不变),总内存依然为5MB,而空闲内存约为3.5MB, 这与分配了1MB内存有关。之后，程序申请了4MB内存，由于剩余可用内存已经不能满足需 要，因此堆空间进行了扩展，扩展后总内存约为10MB,空闲内存约为3.5MB。</p>
-<p><strong>提示：</strong>在实际工作中，也可以直接将初始堆-Xms与最大堆-Xmx设置为相等。这样的 好处是，可以减少程序运行时进行垃圾回收的次数，从而提高程序的性能。</p>
-<h4 id="3-2-2-新生代的配置"><a href="#3-2-2-新生代的配置" class="headerlink" title="3.2.2 新生代的配置"></a>3.2.2 新生代的配置</h4><p>参数-Xmn可以用于设置新生代的大小。设置一个较大的新生代会减小老年代的大小，这个 参数对系统性能及GC行为有很大的影响。新生代的大小一般设置为整个堆空间的1&#x2F;3到1&#x2F;4。</p>
+<p>用20971520减去655360,得出实际可用最大堆空间为20316160字节，与输出值吻合。这可以解释实际可用堆大小与-Xmx配置值之间的偏差。</p>
+<p>打印显示，程序运行初期空闲内存约为4.5MB,总内存约为5MB。在进行了1MB内存分配后，最大可用内存不变(理论上它永远不变),总内存依然为5MB,而空闲内存约为3.5MB,这与分配了1MB内存有关。之后，程序申请了4MB内存，由于剩余可用内存已经不能满足需要，因此堆空间进行了扩展，扩展后总内存约为10MB,空闲内存约为3.5MB。</p>
+<p><strong>提示：</strong>在实际工作中，也可以直接将初始堆-Xms与最大堆-Xmx设置为相等。这样的好处是，可以减少程序运行时进行垃圾回收的次数，从而提高程序的性能。</p>
+<h4 id="3-2-2新生代的配置"><a href="#3-2-2新生代的配置" class="headerlink" title="3.2.2新生代的配置"></a>3.2.2新生代的配置</h4><p>参数-Xmn可以用于设置新生代的大小。设置一个较大的新生代会减小老年代的大小，这个参数对系统性能及GC行为有很大的影响。新生代的大小一般设置为整个堆空间的1&#x2F;3到1&#x2F;4。</p>
 <p>参数-XX:SurvivorRatio用来设置新生代中eden区和from&#x2F;to区的比例，它的含义如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230039235.png" srcset="/img/loading.gif" lazyload alt="image-20230729230039235"></p>
 <p>【示例3-3】考察以下这段简单的Java程序，它连续向系统请求10MB空间(每次申请1MB)。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230308807.png" srcset="/img/loading.gif" lazyload alt="image-20230729230308807"></p>
-<p>使用不同的堆分配参数执行这段程序，因为虚拟机的表现受到堆空间分配的影响，所以运 行过程不尽相同。下面分别使用不同的参数执行，读者可以一起来实战演习。</p>
-<p>(1)使用-Xmx20m-Xms20m -Xmnlm -XX:SurvivorRatio&#x3D;2-XX:+PrintGCDetails运行上 述Java程序，输出如下：</p>
+<p>使用不同的堆分配参数执行这段程序，因为虚拟机的表现受到堆空间分配的影响，所以运行过程不尽相同。下面分别使用不同的参数执行，读者可以一起来实战演习。</p>
+<p>(1)使用-Xmx20m-Xms20m-Xmnlm-XX:SurvivorRatio&#x3D;2-XX:+PrintGCDetails运行上述Java程序，输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230326861.png" srcset="/img/loading.gif" lazyload alt="image-20230729230326861"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230334071.png" srcset="/img/loading.gif" lazyload alt="image-20230729230334071"></p>
-<p>这里eden区与from区的比值为2:1,故eden区为512KB。总可用新生代大小为 512KB+256KB&#x3D;768KB,新生代总大小为512KB+256KB+256KB&#x3D;1024KB&#x3D;1MB。</p>
-<p>由于eden区无法容纳任何一个程序中分配的1MB数组，故触发了一次新生代GC,对eden 区进行了部分回收。同时，这个偏小的新生代无法为1MB数组预留空间，故所有的数组都分配 在老年代，老年代最终占用10354KB空间。</p>
-<p>(2)使用参数-Xmx20m-Xms20m -Xmn7m -XX:SurvivorRatio&#x3D;2-XX:+PrintGCDetails运 行上述程序，将新生代扩大为7MB,则输出如下：</p>
+<p>这里eden区与from区的比值为2:1,故eden区为512KB。总可用新生代大小为512KB+256KB&#x3D;768KB,新生代总大小为512KB+256KB+256KB&#x3D;1024KB&#x3D;1MB。</p>
+<p>由于eden区无法容纳任何一个程序中分配的1MB数组，故触发了一次新生代GC,对eden区进行了部分回收。同时，这个偏小的新生代无法为1MB数组预留空间，故所有的数组都分配在老年代，老年代最终占用10354KB空间。</p>
+<p>(2)使用参数-Xmx20m-Xms20m-Xmn7m-XX:SurvivorRatio&#x3D;2-XX:+PrintGCDetails运行上述程序，将新生代扩大为7MB,则输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230423487.png" srcset="/img/loading.gif" lazyload alt="image-20230729230423487"></p>
-<p>在这个参数下，由于eden区有足够的空间，因此所有的数组都分配在eden区。但eden区 并不足以预留10MB的空间，故在程序运行期间出现了3次新生代GC。由于每申请一次空间， 同时也废弃了上一次申请的空间(上一次申请的内存失去了引用),故在新生代GC中，有效回收了这些失效的内存。最终结果是：所有的内存分配都在新生代进行，通过GC保证了新生代有足够的空间，而老年代没有为这些数组预留任何空间，只是在GC过程中，部分新生代对象晋升到老年代。</p>
-<p>(3)使用参数-Xmx20m -Xms20m-Xmn15m -XX:SurvivorRatio&#x3D;8-XX:+PrintGCDetails运 行上述程序，输出如下：</p>
+<p>在这个参数下，由于eden区有足够的空间，因此所有的数组都分配在eden区。但eden区并不足以预留10MB的空间，故在程序运行期间出现了3次新生代GC。由于每申请一次空间，同时也废弃了上一次申请的空间(上一次申请的内存失去了引用),故在新生代GC中，有效回收了这些失效的内存。最终结果是：所有的内存分配都在新生代进行，通过GC保证了新生代有足够的空间，而老年代没有为这些数组预留任何空间，只是在GC过程中，部分新生代对象晋升到老年代。</p>
+<p>(3)使用参数-Xmx20m-Xms20m-Xmn15m-XX:SurvivorRatio&#x3D;8-XX:+PrintGCDetails运行上述程序，输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230502604.png" srcset="/img/loading.gif" lazyload alt="image-20230729230502604"></p>
-<p>在这次执行中，由于新生代使用15MB空间，其中eden区占用了12288KB,完全满足10MB 数组的分配，因此所有的分配行为都在eden区直接进行，且没有触发任何GC行为。因此from&#x2F;to 和老年代tenured的使用率都为0。</p>
-<p>由此可见，不同的堆分布情况对系统会产生一定影响。在实际工作中，应该根据系统的特 点做合理的设置，基本策略是：尽可能将对象预留在新生代，减少老年代GC的次数(本例中的第一种情况，对象都分配在老年代，显然为后续的老年代GC埋下了伏笔)。</p>
-<p>除了可以使用参数-Xmn指定新生代的绝对大小，还可以使用参数-XX:NewRatio来设置新 生代和老年代的比例，如下所示：</p>
+<p>在这次执行中，由于新生代使用15MB空间，其中eden区占用了12288KB,完全满足10MB数组的分配，因此所有的分配行为都在eden区直接进行，且没有触发任何GC行为。因此from&#x2F;to和老年代tenured的使用率都为0。</p>
+<p>由此可见，不同的堆分布情况对系统会产生一定影响。在实际工作中，应该根据系统的特点做合理的设置，基本策略是：尽可能将对象预留在新生代，减少老年代GC的次数(本例中的第一种情况，对象都分配在老年代，显然为后续的老年代GC埋下了伏笔)。</p>
+<p>除了可以使用参数-Xmn指定新生代的绝对大小，还可以使用参数-XX:NewRatio来设置新生代和老年代的比例，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230549675.png" srcset="/img/loading.gif" lazyload alt="image-20230729230549675"></p>
-<p>(4)使用参数-Xmx20M -Xms20M-XX:NewRatio&#x3D;2 -XX:+PrintGCDetails运行上述代码， 输出如下：</p>
+<p>(4)使用参数-Xmx20M-Xms20M-XX:NewRatio&#x3D;2-XX:+PrintGCDetails运行上述代码，输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230601582.png" srcset="/img/loading.gif" lazyload alt="image-20230729230601582"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230609218.png" srcset="/img/loading.gif" lazyload alt="image-20230729230609218"></p>
-<p>此时，因为堆大小为20MB,新生代和老年代的比为1:2,故新生代大小为20MB×1&#x2F;3≈7MB, 老年代为13MB。由于在新生代GC时，from&#x2F;to空间不足以容纳任何一个1MB数组，影响了新 生代的正常回收，故在新生代回收时需要老年代进行空间担保。这导致两个1MB数组进入老年 代(在新生代GC时，尚有1MB数组幸存，理应进入from&#x2F;to,而from&#x2F;to只有640KB,不足以容纳)。</p>
-<p><strong>注意：</strong>-XX:SurvivorRatio可以设置eden区与survivor的比例。-XX:NewRatio可以设置 老年代与新生代的比例。</p>
+<p>此时，因为堆大小为20MB,新生代和老年代的比为1:2,故新生代大小为20MB×1&#x2F;3≈7MB,老年代为13MB。由于在新生代GC时，from&#x2F;to空间不足以容纳任何一个1MB数组，影响了新生代的正常回收，故在新生代回收时需要老年代进行空间担保。这导致两个1MB数组进入老年代(在新生代GC时，尚有1MB数组幸存，理应进入from&#x2F;to,而from&#x2F;to只有640KB,不足以容纳)。</p>
+<p><strong>注意：</strong>-XX:SurvivorRatio可以设置eden区与survivor的比例。-XX:NewRatio可以设置老年代与新生代的比例。</p>
 <p>图3.2显示了几个重要的堆分配参数的含义。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230654796.png" srcset="/img/loading.gif" lazyload alt="image-20230729230654796"></p>
-<h4 id="3-2-3-堆溢出处理"><a href="#3-2-3-堆溢出处理" class="headerlink" title="3.2.3 堆溢出处理"></a>3.2.3 堆溢出处理</h4><p>在Java程序的运行过程中，如果堆空间不足，则有可能抛出内存溢出错误，简称00M(Out Of Memory)。如下文字显示了典型的堆内存溢出：</p>
+<h4 id="3-2-3堆溢出处理"><a href="#3-2-3堆溢出处理" class="headerlink" title="3.2.3堆溢出处理"></a>3.2.3堆溢出处理</h4><p>在Java程序的运行过程中，如果堆空间不足，则有可能抛出内存溢出错误，简称00M(OutOfMemory)。如下文字显示了典型的堆内存溢出：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230724243.png" srcset="/img/loading.gif" lazyload alt="image-20230729230724243"></p>
-<p>一旦发生这类问题，系统就会被迫退出。如果发生在生产环境，可能会引起严重的业务中断。 为了能够不断改善系统，避免或减少这类错误发生，需要在发生错误时，获得尽可能多的现场信 息，以帮助研发人员排查问题。Java虚拟机提供了参数-XX:+HeapDumpOnOutOfMemoryError, 可以在内存溢出时导出整个堆的信息。和它配合使用的还有-XX:HeapDumpPath,可以指定导出堆的存放路径。</p>
+<p>一旦发生这类问题，系统就会被迫退出。如果发生在生产环境，可能会引起严重的业务中断。为了能够不断改善系统，避免或减少这类错误发生，需要在发生错误时，获得尽可能多的现场信息，以帮助研发人员排查问题。Java虚拟机提供了参数-XX:+HeapDumpOnOutOfMemoryError,可以在内存溢出时导出整个堆的信息。和它配合使用的还有-XX:HeapDumpPath,可以指定导出堆的存放路径。</p>
 <p>【示例3-4】以下代码合计分配了25MB内存空间。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230839791.png" srcset="/img/loading.gif" lazyload alt="image-20230729230839791"></p>
 <p>使用如下参数执行上述代码：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-title class_">Xmx20m</span> -<span class="hljs-title class_">Xms5m</span> -<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError</span> -<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:HeapDumpPath=d</span><span class="hljs-symbol">:/a</span>.dump<br></code></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-title class_">Xmx20m</span>-<span class="hljs-title class_">Xms5m</span>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError-XX</span><span class="hljs-symbol">:HeapDumpPath=d</span><span class="hljs-symbol">:/a</span>.dump<br></code></pre></td></tr></table></figure>
 
-<p>显然，20MB堆空间不能满足25MB内存需求，系统发生内存溢出。在发生错误后，控制 台输出如下：</p>
+<p>显然，20MB堆空间不能满足25MB内存需求，系统发生内存溢出。在发生错误后，控制台输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230915806.png" srcset="/img/loading.gif" lazyload alt="image-20230729230915806"></p>
-<p>可以看到，虚拟机将当前的堆信息导出，并保存到D:&#x2F;a.dump文件。使用MAT等工具打开 该文件进行分析，如图3.3所示，可以很容易地找到这些byte数组和保存它们的Vector对象实例。有关MAT等工具的使用方法，可以参阅第7章。</p>
-<p>除了在发生OOM时可以导出堆信息，虚拟机还允许在发生错误时执行一个脚本文件。该 文件可以用于崩溃的程序的自救、报警或者通知，也可以帮助开发人员获得更多的系统信息，如完整的线程转存(即Thread Dump或者Core Dump)文件。</p>
+<p>可以看到，虚拟机将当前的堆信息导出，并保存到D:&#x2F;a.dump文件。使用MAT等工具打开该文件进行分析，如图3.3所示，可以很容易地找到这些byte数组和保存它们的Vector对象实例。有关MAT等工具的使用方法，可以参阅第7章。</p>
+<p>除了在发生OOM时可以导出堆信息，虚拟机还允许在发生错误时执行一个脚本文件。该文件可以用于崩溃的程序的自救、报警或者通知，也可以帮助开发人员获得更多的系统信息，如完整的线程转存(即ThreadDump或者CoreDump)文件。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729230942754.png" srcset="/img/loading.gif" lazyload alt="image-20230729230942754"></p>
 <p>这里给出一个在发生OOM时导出线程转存的例子。准备printstack.bat脚本如下：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">D:<span class="hljs-regexp">/tools/</span>jdk1.<span class="hljs-number">7</span>_40<span class="hljs-regexp">/bin/</span>jstack -F s1 &gt; D:/a.txt<br></code></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">D:<span class="hljs-regexp">/tools/</span>jdk1.<span class="hljs-number">7</span>_40<span class="hljs-regexp">/bin/</span>jstack-Fs1&gt;D:/a.txt<br></code></pre></td></tr></table></figure>
 
 <p>以上脚本将会导出给定Java虚拟机进程的线程信息，并保存在D:&#x2F;a.txt文件中。</p>
 <p>使用如下参数执行上述代码：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-title class_">Xmx20m</span> -<span class="hljs-title class_">Xms5m</span><span class="hljs-string">&quot;-XX:OnoutOfMemoryError=D:/tools/jdk1.7_40/bin/printstack.bat sp&quot;</span><br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError</span> -<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:HeapDumpPath=d</span><span class="hljs-symbol">:/a</span>,dump<br></code></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ruby">-<span class="hljs-title class_">Xmx20m</span>-<span class="hljs-title class_">Xms5m</span><span class="hljs-string">&quot;-XX:OnoutOfMemoryError=D:/tools/jdk1.7_40/bin/printstack.batsp&quot;</span><br>-<span class="hljs-variable constant_">XX</span><span class="hljs-symbol">:+HeapDumpOnOutOfMemoryError-XX</span><span class="hljs-symbol">:HeapDumpPath=d</span><span class="hljs-symbol">:/a</span>,dump<br></code></pre></td></tr></table></figure>
 
-<p>在程序异常退出时，系统D盘会生成新文件a.txt,里面保存着线程转存信息。本例中，文 件路径“D:&#x2F;tools&#x2F;jdk1.7_40”为笔者的JDK安装目录，读者可以替换成自己的JAVA HOME目 录进行尝试。</p>
-<h3 id="3-3-别让性能有缺口：了解非堆内存的参数配置"><a href="#3-3-别让性能有缺口：了解非堆内存的参数配置" class="headerlink" title="3.3 别让性能有缺口：了解非堆内存的参数配置"></a>3.3 别让性能有缺口：了解非堆内存的参数配置</h3><p>除了堆内存，虚拟机还有一些内存用于方法区、线程栈和直接内存。它们与堆内存是相对独立的。与堆内存相比，虽然这些内存空间和应用程序本身的关系可能不那么密切，但是 从系统层面看，有效、合理地配置这些内存参数，对系统的性能和稳定性也有着重要作用。</p>
-<h4 id="3-3-1-方法区配置"><a href="#3-3-1-方法区配置" class="headerlink" title="3.3.1 方法区配置"></a>3.3.1 方法区配置</h4><p>方法区主要存放类的元信息。</p>
-<p>在JDK 1.6和JDK 1.7等版本中，可以使用-XX:PermSize和-XX:MaxPermSize配置永久区大小。其中，-XX:PermSize表示初始的永久区大小，-XX:MaxPermSize表示最大永久区大小。</p>
-<p>从JDK 1.8开始，永久区被彻底移除，使用了新的元数据区存放类的元数据。在默认情况 下，元数据区只受系统可用内存的限制，但依然可以使用参数-XX:MaxMetaspaceSize指定永久 区的最大可用值。方法区的详细使用和配置可以参考2.5节。</p>
-<h4 id="3-3-2-栈配置"><a href="#3-3-2-栈配置" class="headerlink" title="3.3.2 栈配置"></a>3.3.2 栈配置</h4><p>栈是每个线程私有的内存空间。在Java虚拟机中可以使用-Xss参数指定线程的栈大小。</p>
-<h4 id="3-3-3-直接内存配置"><a href="#3-3-3-直接内存配置" class="headerlink" title="3.3.3 直接内存配置"></a>3.3.3 直接内存配置</h4><p>直接内存也是Java程序中非常重要的组成部分，特别是在NIO被广泛使用后，直接内存的 使用也变得非常普遍。直接内存跳过了Java堆，使Java程序可以直接访问原生堆空间。因此， 从一定程度上加快了内存空间的访问速度。但是，武断地认为使用直接内存一定可以提高内存访问速度也是不正确的。</p>
-<p>最大可用直接内存可以使用参数-XX:MaxDirectMemorySize设置，如果不设置，默认值为 最大堆空间，即-Xmx的值。当直接内存使用量达到-XX:MaxDirectMemorySize时，就会触发垃 圾回收，如果垃圾回收不能有效释放足够的空间，直接内存溢出依然会引起系统的00M。</p>
-<p>【示例3-5】一般来说，直接内存的访问速度(读或者写)比堆内存快。下面的代码统计了 直接内存和堆内存的读写速度。</p>
+<p>在程序异常退出时，系统D盘会生成新文件a.txt,里面保存着线程转存信息。本例中，文件路径“D:&#x2F;tools&#x2F;jdk1.7_40”为笔者的JDK安装目录，读者可以替换成自己的JAVAHOME目录进行尝试。</p>
+<h3 id="3-3别让性能有缺口：了解非堆内存的参数配置"><a href="#3-3别让性能有缺口：了解非堆内存的参数配置" class="headerlink" title="3.3别让性能有缺口：了解非堆内存的参数配置"></a>3.3别让性能有缺口：了解非堆内存的参数配置</h3><p>除了堆内存，虚拟机还有一些内存用于方法区、线程栈和直接内存。它们与堆内存是相对独立的。与堆内存相比，虽然这些内存空间和应用程序本身的关系可能不那么密切，但是从系统层面看，有效、合理地配置这些内存参数，对系统的性能和稳定性也有着重要作用。</p>
+<h4 id="3-3-1方法区配置"><a href="#3-3-1方法区配置" class="headerlink" title="3.3.1方法区配置"></a>3.3.1方法区配置</h4><p>方法区主要存放类的元信息。</p>
+<p>在JDK1.6和JDK1.7等版本中，可以使用-XX:PermSize和-XX:MaxPermSize配置永久区大小。其中，-XX:PermSize表示初始的永久区大小，-XX:MaxPermSize表示最大永久区大小。</p>
+<p>从JDK1.8开始，永久区被彻底移除，使用了新的元数据区存放类的元数据。在默认情况下，元数据区只受系统可用内存的限制，但依然可以使用参数-XX:MaxMetaspaceSize指定永久区的最大可用值。方法区的详细使用和配置可以参考2.5节。</p>
+<h4 id="3-3-2栈配置"><a href="#3-3-2栈配置" class="headerlink" title="3.3.2栈配置"></a>3.3.2栈配置</h4><p>栈是每个线程私有的内存空间。在Java虚拟机中可以使用-Xss参数指定线程的栈大小。</p>
+<h4 id="3-3-3直接内存配置"><a href="#3-3-3直接内存配置" class="headerlink" title="3.3.3直接内存配置"></a>3.3.3直接内存配置</h4><p>直接内存也是Java程序中非常重要的组成部分，特别是在NIO被广泛使用后，直接内存的使用也变得非常普遍。直接内存跳过了Java堆，使Java程序可以直接访问原生堆空间。因此，从一定程度上加快了内存空间的访问速度。但是，武断地认为使用直接内存一定可以提高内存访问速度也是不正确的。</p>
+<p>最大可用直接内存可以使用参数-XX:MaxDirectMemorySize设置，如果不设置，默认值为最大堆空间，即-Xmx的值。当直接内存使用量达到-XX:MaxDirectMemorySize时，就会触发垃圾回收，如果垃圾回收不能有效释放足够的空间，直接内存溢出依然会引起系统的00M。</p>
+<p>【示例3-5】一般来说，直接内存的访问速度(读或者写)比堆内存快。下面的代码统计了直接内存和堆内存的读写速度。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231259327.png" srcset="/img/loading.gif" lazyload alt="image-20230729231259327"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231306985.png" srcset="/img/loading.gif" lazyload alt="image-20230729231306985"></p>
-<p>上述代码中，使用bufferAccess()方法进行堆内存读写，并进行耗时统计，使用directAccess() 方法对直接内存进行读写，并进行耗时统计。在笔者的计算机上，上述代码输出如下：</p>
+<p>上述代码中，使用bufferAccess()方法进行堆内存读写，并进行耗时统计，使用directAccess()方法对直接内存进行读写，并进行耗时统计。在笔者的计算机上，上述代码输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231318013.png" srcset="/img/loading.gif" lazyload alt="image-20230729231318013"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231325256.png" srcset="/img/loading.gif" lazyload alt="image-20230729231325256"></p>
-<p>在程序中，对bufferAccess()和directAccess()方法分别进行了两次调用，第一次视为热身代 码，这里忽略其输出，我们只关注第2次调用的输出结果。从结果可以看出，直接内存的访问 速度比堆内存快约40%，若使用-server参数执行上述代码(笔者的环境中默认为-client模式), 输出如下：</p>
+<p>在程序中，对bufferAccess()和directAccess()方法分别进行了两次调用，第一次视为热身代码，这里忽略其输出，我们只关注第2次调用的输出结果。从结果可以看出，直接内存的访问速度比堆内存快约40%，若使用-server参数执行上述代码(笔者的环境中默认为-client模式),输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231358622.png" srcset="/img/loading.gif" lazyload alt="image-20230729231358622"></p>
-<p>可以看到，直接内存被Server优化后，比堆内存的访问速度提升了将近一个数量级。 </p>
-<p>虽然在访问读写上直接内存有较大的优势，但是在内存空间申请时，直接内存毫无优势可 言。看以下代码：</p>
+<p>可以看到，直接内存被Server优化后，比堆内存的访问速度提升了将近一个数量级。</p>
+<p>虽然在访问读写上直接内存有较大的优势，但是在内存空间申请时，直接内存毫无优势可言。看以下代码：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231414847.png" srcset="/img/loading.gif" lazyload alt="image-20230729231414847"></p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231421223.png" srcset="/img/loading.gif" lazyload alt="image-20230729231421223"></p>
 <p>在笔者的环境中，其执行结果如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231430244.png" srcset="/img/loading.gif" lazyload alt="image-20230729231430244"></p>
 <p>可以看到，在申请内存空间时，堆空间的速度远远快于直接内存。</p>
-<p>由此可以得出结论：直接内存适合申请次数较少、访问较频繁的场合。如果需要频繁申请 内存空间，则并不适合使用直接内存。</p>
-<h3 id="3-4-Client和Server二选一：虚拟机的工作模式"><a href="#3-4-Client和Server二选一：虚拟机的工作模式" class="headerlink" title="3.4 Client和Server二选一：虚拟机的工作模式"></a>3.4 Client和Server二选一：虚拟机的工作模式</h3><p>目前Java虚拟机支持Client和Server两种运行模式。使用参数-client可以指定使用Client 模式，使用参数-server可以指定使用Server模式。在默认情况下，虚拟机会根据当前计算机系统环境自动选择运行模式。使用-version参数可以查看当前模式，如下所示：</p>
+<p>由此可以得出结论：直接内存适合申请次数较少、访问较频繁的场合。如果需要频繁申请内存空间，则并不适合使用直接内存。</p>
+<h3 id="3-4Client和Server二选一：虚拟机的工作模式"><a href="#3-4Client和Server二选一：虚拟机的工作模式" class="headerlink" title="3.4Client和Server二选一：虚拟机的工作模式"></a>3.4Client和Server二选一：虚拟机的工作模式</h3><p>目前Java虚拟机支持Client和Server两种运行模式。使用参数-client可以指定使用Client模式，使用参数-server可以指定使用Server模式。在默认情况下，虚拟机会根据当前计算机系统环境自动选择运行模式。使用-version参数可以查看当前模式，如下所示：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231505068.png" srcset="/img/loading.gif" lazyload alt="image-20230729231505068"></p>
 <p>使用-server参数后，就可以得到如下输出：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231601468.png" srcset="/img/loading.gif" lazyload alt="image-20230729231601468"></p>
-<p>与Client模式相比，Server模式的启动比较慢，因为Server模式会尝试收集更多的系统性 能信息，使用更复杂的优化算法对程序进行优化。因此，当系统完全启动并进入运行稳定期后， Server模式的执行速度会远远快于Client模式。所以，对于后台长期运行的系统来说；使用-server 参数启动对系统的整体性能可以有不小的帮助。但对于用户界面程序而言，运行时间不长，又 追求启动速度，Client模式也是不错的选择。</p>
-<p>虚拟机在Server模式和Client模式下的各种参数可能会有很大的不同，读者如果需要查看 给定参数的默认值，可以使用-XX:+PrintFlagsFinal参数。这里以JIT编译阈值和最大堆为例， 展示Client模式和Server模式的区别。</p>
+<p>与Client模式相比，Server模式的启动比较慢，因为Server模式会尝试收集更多的系统性能信息，使用更复杂的优化算法对程序进行优化。因此，当系统完全启动并进入运行稳定期后，Server模式的执行速度会远远快于Client模式。所以，对于后台长期运行的系统来说；使用-server参数启动对系统的整体性能可以有不小的帮助。但对于用户界面程序而言，运行时间不长，又追求启动速度，Client模式也是不错的选择。</p>
+<p>虚拟机在Server模式和Client模式下的各种参数可能会有很大的不同，读者如果需要查看给定参数的默认值，可以使用-XX:+PrintFlagsFinal参数。这里以JIT编译阈值和最大堆为例，展示Client模式和Server模式的区别。</p>
 <p>对于Client模式，参数如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231638428.png" srcset="/img/loading.gif" lazyload alt="image-20230729231638428"></p>
 <p>对于Server模式，参数如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729231646735.png" srcset="/img/loading.gif" lazyload alt="image-20230729231646735"></p>
-<p>可以看到，在Client模式下，CompileThreshold的默认值为1500,即函数被调用1500次后， 会进行JIT编译(有关JIT编译的更多细节请参阅第11章)。而在Server模式下，这个数值为 10000。因此，在Server模式下系统更有可能解释执行。而一旦进行编译，Server模式的优化效果会好于Client模式。对于系统最大堆，在Client模式下为约256MB,而在Server模式下约为 1GB。至于其他参数，读者可以使用类似的方式进行比较。</p>
-<h3 id="3-5-小结"><a href="#3-5-小结" class="headerlink" title="3.5 小结"></a>3.5 小结</h3><p>本章主要介绍了一些常用的Java虚拟机参数，如垃圾回收跟踪参数、类加载跟踪参数等。 同时也详细介绍了堆空间的配置方法及方法区、Java栈和直接内存配置。此外，还介绍了系统 发生内存溢出后的信息获取和补救方法。最后，简要介绍了虚拟机的Server和Client运行模式。</p>
-<h2 id="第4章-垃圾回收的概念与算法"><a href="#第4章-垃圾回收的概念与算法" class="headerlink" title="第4章 垃圾回收的概念与算法"></a>第4章 垃圾回收的概念与算法</h2><p>本章涉及的主要知识点有： </p>
+<p>可以看到，在Client模式下，CompileThreshold的默认值为1500,即函数被调用1500次后，会进行JIT编译(有关JIT编译的更多细节请参阅第11章)。而在Server模式下，这个数值为10000。因此，在Server模式下系统更有可能解释执行。而一旦进行编译，Server模式的优化效果会好于Client模式。对于系统最大堆，在Client模式下为约256MB,而在Server模式下约为1GB。至于其他参数，读者可以使用类似的方式进行比较。</p>
+<h3 id="3-5小结"><a href="#3-5小结" class="headerlink" title="3.5小结"></a>3.5小结</h3><p>本章主要介绍了一些常用的Java虚拟机参数，如垃圾回收跟踪参数、类加载跟踪参数等。同时也详细介绍了堆空间的配置方法及方法区、Java栈和直接内存配置。此外，还介绍了系统发生内存溢出后的信息获取和补救方法。最后，简要介绍了虚拟机的Server和Client运行模式。</p>
+<h2 id="第4章垃圾回收的概念与算法"><a href="#第4章垃圾回收的概念与算法" class="headerlink" title="第4章垃圾回收的概念与算法"></a>第4章垃圾回收的概念与算法</h2><p>本章涉及的主要知识点有：</p>
 <ul>
-<li>了解什么是垃圾回收。 </li>
-<li>学习几种常用的垃圾回收算法。 </li>
-<li>掌握可触及性的概念。 </li>
+<li>了解什么是垃圾回收。</li>
+<li>学习几种常用的垃圾回收算法。</li>
+<li>掌握可触及性的概念。</li>
 <li>理解Stop-The-World(STW)。</li>
 </ul>
-<h3 id="4-1-内存管理清洁工：认识垃圾回收"><a href="#4-1-内存管理清洁工：认识垃圾回收" class="headerlink" title="4.1 内存管理清洁工：认识垃圾回收"></a>4.1 内存管理清洁工：认识垃圾回收</h3><p>谈到垃圾回收(Garbage Collection,简称GC),需要先澄清什么是垃圾。GC中的垃圾，特指存在于内存中的、不会再被使用的对象，而“回收”也相当于把垃圾“倒掉”。这样内存里就会有区域被腾出来。如果 不及时对内存中的垃圾进行清理，这些垃圾对象所占的内存空间会一直被保留到应用程序结束， 被保留的空间无法被其他对象使用。如果大量不会被使用的对象一直占着空间，在需要内存空 间时有可能导致内存溢出。因此，对内存空间的管理来说，识别和清理垃圾对象是至关重要的。</p>
-<h3 id="4-2-清洁工具大PK-讨论常用的垃圾回收算法"><a href="#4-2-清洁工具大PK-讨论常用的垃圾回收算法" class="headerlink" title="4.2 清洁工具大PK:讨论常用的垃圾回收算法"></a>4.2 清洁工具大PK:讨论常用的垃圾回收算法</h3><h4 id="4-2-1-引用计数法-Reference-Counting"><a href="#4-2-1-引用计数法-Reference-Counting" class="headerlink" title="4.2.1 引用计数法(Reference Counting)"></a>4.2.1 引用计数法(Reference Counting)</h4><p>引用计数法的实现很简单，对于一个对象A,只要有任何一个对象引用了A,则A的引用 计数器就加1,当引用失效时，引用计数器就减1。只要对象A的引用计数器的值为0,则对象 A就不可能再被使用。</p>
-<p>引用计数器的实现也非常简单，只需要为每个对象配备一个整型的计数器即可。但是，引 用计数器有两个非常严重的问题：</p>
+<h3 id="4-1内存管理清洁工：认识垃圾回收"><a href="#4-1内存管理清洁工：认识垃圾回收" class="headerlink" title="4.1内存管理清洁工：认识垃圾回收"></a>4.1内存管理清洁工：认识垃圾回收</h3><p>谈到垃圾回收(GarbageCollection,简称GC),需要先澄清什么是垃圾。GC中的垃圾，特指存在于内存中的、不会再被使用的对象，而“回收”也相当于把垃圾“倒掉”。这样内存里就会有区域被腾出来。如果不及时对内存中的垃圾进行清理，这些垃圾对象所占的内存空间会一直被保留到应用程序结束，被保留的空间无法被其他对象使用。如果大量不会被使用的对象一直占着空间，在需要内存空间时有可能导致内存溢出。因此，对内存空间的管理来说，识别和清理垃圾对象是至关重要的。</p>
+<h3 id="4-2清洁工具大PK-讨论常用的垃圾回收算法"><a href="#4-2清洁工具大PK-讨论常用的垃圾回收算法" class="headerlink" title="4.2清洁工具大PK:讨论常用的垃圾回收算法"></a>4.2清洁工具大PK:讨论常用的垃圾回收算法</h3><h4 id="4-2-1引用计数法-ReferenceCounting"><a href="#4-2-1引用计数法-ReferenceCounting" class="headerlink" title="4.2.1引用计数法(ReferenceCounting)"></a>4.2.1引用计数法(ReferenceCounting)</h4><p>引用计数法的实现很简单，对于一个对象A,只要有任何一个对象引用了A,则A的引用计数器就加1,当引用失效时，引用计数器就减1。只要对象A的引用计数器的值为0,则对象A就不可能再被使用。</p>
+<p>引用计数器的实现也非常简单，只需要为每个对象配备一个整型的计数器即可。但是，引用计数器有两个非常严重的问题：</p>
 <ol>
 <li>无法处理循环引用。因此，在Java的垃圾回收器中没有使用这种算法。</li>
-<li>引用计算器要求在每次引用产生和消除的时候，伴随一个加法操作和一个减法操作， 对系统性能会有一定的影响。</li>
+<li>引用计算器要求在每次引用产生和消除的时候，伴随一个加法操作和一个减法操作，对系统性能会有一定的影响。</li>
 </ol>
-<p>一个简单的循环引用问题描述如下。有对象A和对象B,对象A中含有对象B的引用，对 象B中含有对象A的引用。此时，对象A和对象B的引用计数器都不为0。但是，在系统中却不存在任何第3个对象引用了对象A或对象B。也就是说，对象A和对象B是应该被回收的垃 圾对象，但由于垃圾对象间相互引用，使垃圾回收器无法识别，引起了内存泄漏。</p>
+<p>一个简单的循环引用问题描述如下。有对象A和对象B,对象A中含有对象B的引用，对象B中含有对象A的引用。此时，对象A和对象B的引用计数器都不为0。但是，在系统中却不存在任何第3个对象引用了对象A或对象B。也就是说，对象A和对象B是应该被回收的垃圾对象，但由于垃圾对象间相互引用，使垃圾回收器无法识别，引起了内存泄漏。</p>
 <p>如图4.1所示，不可达的对象出现循环引用，它的引用计数器均不为0。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232053648.png" srcset="/img/loading.gif" lazyload alt="image-20230729232053648"></p>
 <p><strong>注意：</strong>由于单纯的引用计数法隐含着循环引用及性能问题，Java虚拟机并未选择此算法作为垃圾回收算法。</p>
-<p><strong>【名词解释】</strong> </p>
+<p><strong>【名词解释】</strong></p>
 <ul>
-<li>可达对象：指通过根对象进行引用搜索，最终可以达到的对象。 </li>
+<li>可达对象：指通过根对象进行引用搜索，最终可以达到的对象。</li>
 <li>不可达对象：指通过根对象进行引用搜索，最终没有被引用到的对象。</li>
 </ul>
-<h4 id="4-2-2-标记清除法-Mark-Sweep"><a href="#4-2-2-标记清除法-Mark-Sweep" class="headerlink" title="4.2.2 标记清除法(Mark-Sweep)"></a>4.2.2 标记清除法(Mark-Sweep)</h4><p>标记清除法将垃圾回收分为两个阶段：标记阶段和清除阶段。</p>
-<p>在标记阶段，首先通过根节点标记所有从根节点开始的可达对象。因此，未被标记的对象 就是未被引用的垃圾对象。然后，在清除阶段，清除所有未被标记的对象。标记清除法的最大问题是可能产生空间碎片。</p>
-<p>如图4.2所示，使用标记清除法对一块连续的内存空间进行回收。从根节点开始(这里显 示了2个根节点),所有的有引用关系的对象均被标记为存活对象(箭头表示引用)。从根节点起，不可达对象均为垃圾对象。在标记操作完成后，系统回收所有不可达对象的空间。</p>
+<h4 id="4-2-2标记清除法-Mark-Sweep"><a href="#4-2-2标记清除法-Mark-Sweep" class="headerlink" title="4.2.2标记清除法(Mark-Sweep)"></a>4.2.2标记清除法(Mark-Sweep)</h4><p>标记清除法将垃圾回收分为两个阶段：标记阶段和清除阶段。</p>
+<p>在标记阶段，首先通过根节点标记所有从根节点开始的可达对象。因此，未被标记的对象就是未被引用的垃圾对象。然后，在清除阶段，清除所有未被标记的对象。标记清除法的最大问题是可能产生空间碎片。</p>
+<p>如图4.2所示，使用标记清除法对一块连续的内存空间进行回收。从根节点开始(这里显示了2个根节点),所有的有引用关系的对象均被标记为存活对象(箭头表示引用)。从根节点起，不可达对象均为垃圾对象。在标记操作完成后，系统回收所有不可达对象的空间。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232220307.png" srcset="/img/loading.gif" lazyload alt="image-20230729232220307"></p>
-<p>如图4.2所示，回收后的空间是不连续的。在对象的堆空间分配过程中，尤其是大对象的 内存分配，不连续内存空间的工作效率要低于连续空间。因此，这也是该算法的最大缺点。</p>
-<p><strong>注意：</strong>标记清除法先通过根节点标记所有的可达对象，然后清除所有的不可达对象， 完成垃圾回收。</p>
-<h4 id="4-2-3-复制算法-Copying"><a href="#4-2-3-复制算法-Copying" class="headerlink" title="4.2.3 复制算法(Copying)"></a>4.2.3 复制算法(Copying)</h4><p>复制算法的核心思想是：将原有的内存空间分为两块，每次只使用其中一块，在进行垃圾 回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后清除正在使用的内存 块中的所有对象，交换两个内存的角色，完成垃圾回收。</p>
-<p>如果系统中的垃圾对象很多，复制算法需要复制的存活对象数量就会相对较少。因此，在 真正需要垃圾回收的时刻，复制算法的效率是很高的。又由于对象是在垃圾回收过程中统一被 复制到新的内存空间中的，可确保回收后的内存空间是没有碎片的。虽然有以上两大优点，但 是复制算法的代价却是将系统内存折半，因此，单纯的复制算法也很难让人接受。</p>
-<p>如图4.3所示，A、B两块相同的内存空间，A在进行垃圾回收时，将存活对象复制到B中， B在复制后保持连续。复制完成后，清空A,并将空间B设置为当前使用空间。</p>
+<p>如图4.2所示，回收后的空间是不连续的。在对象的堆空间分配过程中，尤其是大对象的内存分配，不连续内存空间的工作效率要低于连续空间。因此，这也是该算法的最大缺点。</p>
+<p><strong>注意：</strong>标记清除法先通过根节点标记所有的可达对象，然后清除所有的不可达对象，完成垃圾回收。</p>
+<h4 id="4-2-3复制算法-Copying"><a href="#4-2-3复制算法-Copying" class="headerlink" title="4.2.3复制算法(Copying)"></a>4.2.3复制算法(Copying)</h4><p>复制算法的核心思想是：将原有的内存空间分为两块，每次只使用其中一块，在进行垃圾回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后清除正在使用的内存块中的所有对象，交换两个内存的角色，完成垃圾回收。</p>
+<p>如果系统中的垃圾对象很多，复制算法需要复制的存活对象数量就会相对较少。因此，在真正需要垃圾回收的时刻，复制算法的效率是很高的。又由于对象是在垃圾回收过程中统一被复制到新的内存空间中的，可确保回收后的内存空间是没有碎片的。虽然有以上两大优点，但是复制算法的代价却是将系统内存折半，因此，单纯的复制算法也很难让人接受。</p>
+<p>如图4.3所示，A、B两块相同的内存空间，A在进行垃圾回收时，将存活对象复制到B中，B在复制后保持连续。复制完成后，清空A,并将空间B设置为当前使用空间。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232334230.png" srcset="/img/loading.gif" lazyload alt="image-20230729232334230"></p>
-<p>在Java的新生代串行垃圾回收器中，使用了复制算法的思想。新生代分为eden区、from区 和to区3个部分。其中from区和to区可以视为用于复制的两块大小相同、地位相等且可进行角 色互换的空间。from区和to区也称为survivor区，即幸存者空间，用于存放未被回收的对象。</p>
-<p><strong>【名词解释】</strong> </p>
+<p>在Java的新生代串行垃圾回收器中，使用了复制算法的思想。新生代分为eden区、from区和to区3个部分。其中from区和to区可以视为用于复制的两块大小相同、地位相等且可进行角色互换的空间。from区和to区也称为survivor区，即幸存者空间，用于存放未被回收的对象。</p>
+<p><strong>【名词解释】</strong></p>
 <ul>
-<li>新生代：存放年轻对象的堆空间。年轻对象指刚刚创建的或者经历垃圾回收次数不多的 对象。 </li>
+<li>新生代：存放年轻对象的堆空间。年轻对象指刚刚创建的或者经历垃圾回收次数不多的对象。</li>
 <li>老年代：存放老年对象的堆空间。老年对象指经历多次垃圾回收后依然存活的对象。</li>
 </ul>
-<p>在进行垃圾回收时，eden区的存活对象会被复制到未使用的survivor区(假设是to区), 正在使用的survivor区(假设是from)的年轻对象也会被复制到to区(大对象或者老年对象会 直接进入老年代，如果to区已满，则对象也会直接进入老年代)。此时，eden区和from区的 剩余对象就是垃圾对象，可以直接清空，to区则存放此次回收后的存活对象。这种改进的复制 算法，既保证了空间的连续性，又避免了大量的内存空间浪费，如图4.4所示，显示了复制算 法的实际回收过程。当所有存活对象都复制到survivor区(图中为to)后，简单地清空eden区 和备用的survivor区(图中为from)即可。</p>
+<p>在进行垃圾回收时，eden区的存活对象会被复制到未使用的survivor区(假设是to区),正在使用的survivor区(假设是from)的年轻对象也会被复制到to区(大对象或者老年对象会直接进入老年代，如果to区已满，则对象也会直接进入老年代)。此时，eden区和from区的剩余对象就是垃圾对象，可以直接清空，to区则存放此次回收后的存活对象。这种改进的复制算法，既保证了空间的连续性，又避免了大量的内存空间浪费，如图4.4所示，显示了复制算法的实际回收过程。当所有存活对象都复制到survivor区(图中为to)后，简单地清空eden区和备用的survivor区(图中为from)即可。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232438457.png" srcset="/img/loading.gif" lazyload alt="image-20230729232438457"></p>
 <p><strong>注意：</strong>复制算法比较适合新生代，因为在新生代垃圾对象通常会多于存活对象，复制算法的效果会比较好。</p>
-<h4 id="4-2-4-标记压缩法-Mark-Compact"><a href="#4-2-4-标记压缩法-Mark-Compact" class="headerlink" title="4.2.4 标记压缩法(Mark-Compact)"></a>4.2.4 标记压缩法(Mark-Compact)</h4><p>复制算法的高效性是建立在存活对象少、垃圾对象多的前提下的。这种情况在新生代经常发 生，但是在老年代，更常见的情况是大部分对象都是存活对象。如果依然使用复制算法，由于存 活对象较多，复制的成本将很高。因此，基于老年代垃圾回收的特性，需要使用其他算法。</p>
-<p>标记压缩法是一种老年代的回收算法。它在标记清除法的基础上做了一些优化。和标记清 除法一样，标记压缩法首先也需要从根节点开始，对所有可达对象做一次标记。但之后，它并 不只是简单地清理未标记的对象，而是将所有的存活对象压缩到内存的一端。然后，清理边界外所有的空间。这种方法既避免了碎片的产生，又不需要两块相同的内存空间，性价比较高。</p>
-<p>如图4.5所示，在通过根节点标记出所有的可达对象后，沿虚线进行对象移动，将所有的 可达对象都移动到一端，并保持它们之间的引用关系，最后清理边界外的空间，即可完成垃圾回收工作。</p>
+<h4 id="4-2-4标记压缩法-Mark-Compact"><a href="#4-2-4标记压缩法-Mark-Compact" class="headerlink" title="4.2.4标记压缩法(Mark-Compact)"></a>4.2.4标记压缩法(Mark-Compact)</h4><p>复制算法的高效性是建立在存活对象少、垃圾对象多的前提下的。这种情况在新生代经常发生，但是在老年代，更常见的情况是大部分对象都是存活对象。如果依然使用复制算法，由于存活对象较多，复制的成本将很高。因此，基于老年代垃圾回收的特性，需要使用其他算法。</p>
+<p>标记压缩法是一种老年代的回收算法。它在标记清除法的基础上做了一些优化。和标记清除法一样，标记压缩法首先也需要从根节点开始，对所有可达对象做一次标记。但之后，它并不只是简单地清理未标记的对象，而是将所有的存活对象压缩到内存的一端。然后，清理边界外所有的空间。这种方法既避免了碎片的产生，又不需要两块相同的内存空间，性价比较高。</p>
+<p>如图4.5所示，在通过根节点标记出所有的可达对象后，沿虚线进行对象移动，将所有的可达对象都移动到一端，并保持它们之间的引用关系，最后清理边界外的空间，即可完成垃圾回收工作。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232537549.png" srcset="/img/loading.gif" lazyload alt="image-20230729232537549"></p>
-<p>标记压缩法的最终效果等同于标记清除法执行完成后再进行一次内存碎片整理，因此，也 可以把它称为标记清除压缩法。</p>
-<h4 id="4-2-5-分代算法-Generational-Collecting"><a href="#4-2-5-分代算法-Generational-Collecting" class="headerlink" title="4.2.5 分代算法(Generational Collecting)"></a>4.2.5 分代算法(Generational Collecting)</h4><p>在前面介绍的算法中，没有一种算法可以完全替代其他算法，它们都有自己的优势和特点。 根据垃圾回收对象的特性，使用合适的算法，才是明智的选择。 </p>
-<p>分代算法就基于这种思想，它将内存区间根据对象的特点分成几块，根据每块内存区间的 特点使用不同的回收算法，以提高垃圾回收的效率。</p>
-<p>一般来说，Java虚拟机会将所有的新建对象都放入称为新生代的内存区域，新生代的特点 是对象朝生夕灭，大约90??新建对象会被很快回收，因此新生代比较适合使用复制算法。当 一个对象经过几次回收后依然存活，对象就会被放入称为老年代的内存空间。在老年代中，几 乎所有的对象都是经过几次垃圾回收依然得以存活的。因此，可以认为这些对象在一段时期内， 甚至在应用程序的整个生命周期中，将是常驻内存的。</p>
-<p>在极端情况下，老年代对象的存活率可以达到100??如果依然使用复制算法回收老年代， 将需要复制大量对象。再加上老年代的回收性价比也低于新生代，因此这种做法是不可取的。 根据分代的思想，可以对老年代的回收使用与新生代不同的标记压缩法或标记清除法，以提高垃圾回收效率。如图4.6所示，显示了这种分代回收的思想。</p>
+<p>标记压缩法的最终效果等同于标记清除法执行完成后再进行一次内存碎片整理，因此，也可以把它称为标记清除压缩法。</p>
+<h4 id="4-2-5分代算法-GenerationalCollecting"><a href="#4-2-5分代算法-GenerationalCollecting" class="headerlink" title="4.2.5分代算法(GenerationalCollecting)"></a>4.2.5分代算法(GenerationalCollecting)</h4><p>在前面介绍的算法中，没有一种算法可以完全替代其他算法，它们都有自己的优势和特点。根据垃圾回收对象的特性，使用合适的算法，才是明智的选择。</p>
+<p>分代算法就基于这种思想，它将内存区间根据对象的特点分成几块，根据每块内存区间的特点使用不同的回收算法，以提高垃圾回收的效率。</p>
+<p>一般来说，Java虚拟机会将所有的新建对象都放入称为新生代的内存区域，新生代的特点是对象朝生夕灭，大约90??新建对象会被很快回收，因此新生代比较适合使用复制算法。当一个对象经过几次回收后依然存活，对象就会被放入称为老年代的内存空间。在老年代中，几乎所有的对象都是经过几次垃圾回收依然得以存活的。因此，可以认为这些对象在一段时期内，甚至在应用程序的整个生命周期中，将是常驻内存的。</p>
+<p>在极端情况下，老年代对象的存活率可以达到100??如果依然使用复制算法回收老年代，将需要复制大量对象。再加上老年代的回收性价比也低于新生代，因此这种做法是不可取的。根据分代的思想，可以对老年代的回收使用与新生代不同的标记压缩法或标记清除法，以提高垃圾回收效率。如图4.6所示，显示了这种分代回收的思想。</p>
 <p><strong>注意：</strong>分代回收的思想被现有的虚拟机广泛使用。几乎所有的垃圾回收器都区分新生代和老年代。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232659166.png" srcset="/img/loading.gif" lazyload alt="image-20230729232659166"></p>
-<p>对于新生代和老年代来说，通常新生代回收的频率很高，但是每次回收的耗时很短，而老 年代回收的频率比较低，但是会消耗更多的时间。为了支持高频率的新生代回收，虚拟机可能 使用一种叫作卡表(Card Table)的数据结构。卡表为一个比特位集合，每一个比特位可以用来 表示老年代的某一区域中的所有对象是否持有新生代对象的引用。这样在新生代GC时，可以不用花大量时间扫描所有的老年代对象来确定每一个对象的引用关系，可以先扫描卡表，只有 当卡表的标记位为1时，才需要扫描给定区域的老年代对象，而卡表位为0的老年代对象，一 定不含有新生代对象的引用。如图4.7所示，卡表中每一位表示老年代4KB的空间，卡表记录 为0的老年代区域没有任何对象指向新生代，只有卡表位为1的区域才有对象包含新生代引用， 因此，在新生代GC时只需要扫描卡表位为1的老年代空间。使用这种方式，可以大大加快新生代的回收速度。</p>
+<p>对于新生代和老年代来说，通常新生代回收的频率很高，但是每次回收的耗时很短，而老年代回收的频率比较低，但是会消耗更多的时间。为了支持高频率的新生代回收，虚拟机可能使用一种叫作卡表(CardTable)的数据结构。卡表为一个比特位集合，每一个比特位可以用来表示老年代的某一区域中的所有对象是否持有新生代对象的引用。这样在新生代GC时，可以不用花大量时间扫描所有的老年代对象来确定每一个对象的引用关系，可以先扫描卡表，只有当卡表的标记位为1时，才需要扫描给定区域的老年代对象，而卡表位为0的老年代对象，一定不含有新生代对象的引用。如图4.7所示，卡表中每一位表示老年代4KB的空间，卡表记录为0的老年代区域没有任何对象指向新生代，只有卡表位为1的区域才有对象包含新生代引用，因此，在新生代GC时只需要扫描卡表位为1的老年代空间。使用这种方式，可以大大加快新生代的回收速度。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232738447.png" srcset="/img/loading.gif" lazyload alt="image-20230729232738447"></p>
-<h4 id="4-2-6-分区算法-Region"><a href="#4-2-6-分区算法-Region" class="headerlink" title="4.2.6 分区算法(Region)"></a>4.2.6 分区算法(Region)</h4><p>分代算法将按照对象的生命周期长短划分成两个部分，分区算法将整个堆空间划分成连续 的不同小区间，如图4.8所示。每一个小区间都独立使用，独立回收。这种算法的好处是可以控制一次回收小区间的数量。</p>
-<p>一般来说，在相同条件下，堆空间越大，一次GC所需要的时间就越长，从而产生的停顿 也越长(GC产生的停顿请参见4.4节)。为了更好地控制GC产生的停顿时间，将一块大的内 存区域分割成多个小块，根据目标停顿时间，每次合理地回收若干个小区间，而不是回收整个 堆空间，从而减少一次GC所产生的停顿。</p>
+<h4 id="4-2-6分区算法-Region"><a href="#4-2-6分区算法-Region" class="headerlink" title="4.2.6分区算法(Region)"></a>4.2.6分区算法(Region)</h4><p>分代算法将按照对象的生命周期长短划分成两个部分，分区算法将整个堆空间划分成连续的不同小区间，如图4.8所示。每一个小区间都独立使用，独立回收。这种算法的好处是可以控制一次回收小区间的数量。</p>
+<p>一般来说，在相同条件下，堆空间越大，一次GC所需要的时间就越长，从而产生的停顿也越长(GC产生的停顿请参见4.4节)。为了更好地控制GC产生的停顿时间，将一块大的内存区域分割成多个小块，根据目标停顿时间，每次合理地回收若干个小区间，而不是回收整个堆空间，从而减少一次GC所产生的停顿。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232828895.png" srcset="/img/loading.gif" lazyload alt="image-20230729232828895"></p>
-<h3 id="4-3-谁才是真正的垃圾：判断可触及性"><a href="#4-3-谁才是真正的垃圾：判断可触及性" class="headerlink" title="4.3 谁才是真正的垃圾：判断可触及性"></a>4.3 谁才是真正的垃圾：判断可触及性</h3><p>垃圾回收的基本思想是考查每一个对象的可触及性，即从根节点开始是否可以访问这个对 象，如果可以，则说明当前对象正在被使用，如果从所有的根节点开始都无法访问到某个对象， 说明该对象已经不再使用了，一般来说，该对象需要被回收。但事实上，一个无法触及的对象 有可能在某个条件下使自己“复活”,如果是这样的情况，那么对它的回收就是不合理的，为 此，需要给出一个对象可触及性状态的定义，并规定在什么状态下才可以安全地回收对象。</p>
-<p>简单来说，可触及性包含以下3种状态。 </p>
+<h3 id="4-3谁才是真正的垃圾：判断可触及性"><a href="#4-3谁才是真正的垃圾：判断可触及性" class="headerlink" title="4.3谁才是真正的垃圾：判断可触及性"></a>4.3谁才是真正的垃圾：判断可触及性</h3><p>垃圾回收的基本思想是考查每一个对象的可触及性，即从根节点开始是否可以访问这个对象，如果可以，则说明当前对象正在被使用，如果从所有的根节点开始都无法访问到某个对象，说明该对象已经不再使用了，一般来说，该对象需要被回收。但事实上，一个无法触及的对象有可能在某个条件下使自己“复活”,如果是这样的情况，那么对它的回收就是不合理的，为此，需要给出一个对象可触及性状态的定义，并规定在什么状态下才可以安全地回收对象。</p>
+<p>简单来说，可触及性包含以下3种状态。</p>
 <ul>
-<li>可触及的：从根节点开始，可以到达这个对象。 </li>
-<li>可复活的：对象的所有引用都被释放，但是对象有可能在finalize()函数中复活。 </li>
-<li>不可触及的：对象的finalize()函数被调用，并且没有复活，那么就会进入不可触及状态， 不可触及的对象不可能被复活，因为finalize()函数只会被调用一次。</li>
+<li>可触及的：从根节点开始，可以到达这个对象。</li>
+<li>可复活的：对象的所有引用都被释放，但是对象有可能在finalize()函数中复活。</li>
+<li>不可触及的：对象的finalize()函数被调用，并且没有复活，那么就会进入不可触及状态，不可触及的对象不可能被复活，因为finalize()函数只会被调用一次。</li>
 </ul>
 <p>以上3种状态中，只有在对象不可触及时才可以被回收。</p>
-<h4 id="4-3-1-对象的复活"><a href="#4-3-1-对象的复活" class="headerlink" title="4.3.1 对象的复活"></a>4.3.1 对象的复活</h4><p>【示例4-1】前文中已经提到，对象有可能在finalize()函数中使自己复活，这里给出一个例子。</p>
+<h4 id="4-3-1对象的复活"><a href="#4-3-1对象的复活" class="headerlink" title="4.3.1对象的复活"></a>4.3.1对象的复活</h4><p>【示例4-1】前文中已经提到，对象有可能在finalize()函数中使自己复活，这里给出一个例子。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232933787.png" srcset="/img/loading.gif" lazyload alt="image-20230729232933787"></p>
 <p>运行以上代码，输出如下：</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232943539.png" srcset="/img/loading.gif" lazyload alt="image-20230729232943539"></p>
-<p>可以看到，在代码第15行将obj设置为null后，进行GC,结果发现obj对象复活了。在 第24行，再次释放对象引用并进行GC,对象才真正被回收。这是因为第一次进行GC时，在 finalize()函数调用之前，虽然系统中的引用已经被清除，但是作为实例方法finalize(),对象的this 引用依然会被传入方法内部，如果引用外泄，对象就会复活，此时，对象又变为可触及状态。 而finalize()函数只会被调用一次，在第2次清除对象时，对象就再无机会复活，因此就会被回收。</p>
-<h4 id="4-3-2-引用和可触及性的强度"><a href="#4-3-2-引用和可触及性的强度" class="headerlink" title="4.3.2 引用和可触及性的强度"></a>4.3.2 引用和可触及性的强度</h4><p>在Java中提供了4个级别的引用：强引用、软引用、弱引用和虚引用。除强引用外，其他 3种引用均可以在java.lang.ref包中找到。如图4.9所示，显示了这3种引用类型对应的类，开 发人员可以在应用程序中直接使用它们。其中FinalReference为“最终”引用，它用以实现对象 的finalize()函数(更多相关内容请参见5.5.6节)。</p>
+<p>可以看到，在代码第15行将obj设置为null后，进行GC,结果发现obj对象复活了。在第24行，再次释放对象引用并进行GC,对象才真正被回收。这是因为第一次进行GC时，在finalize()函数调用之前，虽然系统中的引用已经被清除，但是作为实例方法finalize(),对象的this引用依然会被传入方法内部，如果引用外泄，对象就会复活，此时，对象又变为可触及状态。而finalize()函数只会被调用一次，在第2次清除对象时，对象就再无机会复活，因此就会被回收。</p>
+<h4 id="4-3-2引用和可触及性的强度"><a href="#4-3-2引用和可触及性的强度" class="headerlink" title="4.3.2引用和可触及性的强度"></a>4.3.2引用和可触及性的强度</h4><p>在Java中提供了4个级别的引用：强引用、软引用、弱引用和虚引用。除强引用外，其他3种引用均可以在java.lang.ref包中找到。如图4.9所示，显示了这3种引用类型对应的类，开发人员可以在应用程序中直接使用它们。其中FinalReference为“最终”引用，它用以实现对象的finalize()函数(更多相关内容请参见5.5.6节)。</p>
 <p><img src="/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729233058589.png" srcset="/img/loading.gif" lazyload alt="image-20230729233058589"></p>
-<p>强引用就是程序中一般使用的引用类型，强引用的对象是可触及的，不会被回收。软引用、 弱引用和虚引用的对象是软可触及、弱可触及和虚可触及的，在一定条件下都是可以被回收的。</p>
+<p>强引用就是程序中一般使用的引用类型，强引用的对象是可触及的，不会被回收。软引用、弱引用和虚引用的对象是软可触及、弱可触及和虚可触及的，在一定条件下都是可以被回收的。</p>
 
                 
               </div>
@@ -741,34 +739,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/JVM/" class="category-chain-item">JVM</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
-      
-    </div>
   
 </div>
 
@@ -778,7 +748,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>实战Java虚拟机-JVM故障诊断与性能优化</div>
+      <div></div>
       <div>https://jokerzxxx.github.io/2023/07/28/实战Java虚拟机-JVM故障诊断与性能优化/</div>
     </div>
     <div class="license-meta">
@@ -822,6 +792,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/07/31/JavaWeb/" title="JavaWeb">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
