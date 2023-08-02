@@ -16,12 +16,12 @@
   <meta name="author" content="Jokerz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加">
+    <meta name="description" content="第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为方法区的内存空间中。除了类的信息，方法区中可能还会存放运行时常量池信">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java从入门到放弃">
+<meta property="og:title" content="实战Java虚拟机-JVM故障诊断与性能优化">
 <meta property="og:url" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Java从入门到放弃">
-<meta property="og:description" content="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加">
+<meta property="og:description" content="第2章认识Java虚拟机的基本结构本章涉及的主要知识点有：  认识Java虚拟机中的堆。 了解有关栈的概念和使用。 了解存放类型描述的永久区和元数据区。  2.1谋全局者才能成大器：看穿Java虚拟机的架构Java虚拟机的基本结构如图2.1所示。  类加载子系统负责从文件系统或者网络中加载Class信息，加载的类信息存放于一块称为方法区的内存空间中。除了类的信息，方法区中可能还会存放运行时常量池信">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728222927631-1690644721021-1.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728224708388-1690644721021-3.png">
@@ -118,15 +118,16 @@
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232933787.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729232943539.png">
 <meta property="og:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230729233058589.png">
-<meta property="article:published_time" content="2023-07-28T14:15:33.110Z">
-<meta property="article:modified_time" content="2023-07-31T00:45:56.768Z">
+<meta property="article:published_time" content="2023-07-28T14:15:33.000Z">
+<meta property="article:modified_time" content="2023-08-02T02:07:55.430Z">
 <meta property="article:author" content="Jokerz">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jokerzxxx.github.io/2023/07/28/%E5%AE%9E%E6%88%98Java%E8%99%9A%E6%8B%9F%E6%9C%BA-JVM%E6%95%85%E9%9A%9C%E8%AF%8A%E6%96%AD%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/image-20230728222927631-1690644721021-1.png">
   
   
   
-  <title>Java从入门到放弃</title>
+  <title>实战Java虚拟机-JVM故障诊断与性能优化 - Java从入门到放弃</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -292,7 +293,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="实战Java虚拟机-JVM故障诊断与性能优化"></span>
           
         </div>
 
@@ -326,7 +327,7 @@
         
         
         
-          194 mins
+          193 mins
         
       </span>
     
@@ -363,13 +364,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">实战Java虚拟机-JVM故障诊断与性能优化</h1>
             
             
               <div class="markdown-body">
                 
-                <hr>
-<h2 id="title-实战Java虚拟机-JVM故障诊断与性能优化date-2023-07-2822-15-33tags-JVMcategory-读书笔记"><a href="#title-实战Java虚拟机-JVM故障诊断与性能优化date-2023-07-2822-15-33tags-JVMcategory-读书笔记" class="headerlink" title="title:实战Java虚拟机-JVM故障诊断与性能优化date:2023-07-2822:15:33tags:JVMcategory:读书笔记"></a>title:实战Java虚拟机-JVM故障诊断与性能优化<br>date:2023-07-2822:15:33<br>tags:JVM<br>category:读书笔记</h2><h2 id="第2章认识Java虚拟机的基本结构"><a href="#第2章认识Java虚拟机的基本结构" class="headerlink" title="第2章认识Java虚拟机的基本结构"></a>第2章认识Java虚拟机的基本结构</h2><p>本章涉及的主要知识点有：</p>
+                <h2 id="第2章认识Java虚拟机的基本结构"><a href="#第2章认识Java虚拟机的基本结构" class="headerlink" title="第2章认识Java虚拟机的基本结构"></a>第2章认识Java虚拟机的基本结构</h2><p>本章涉及的主要知识点有：</p>
 <ul>
 <li>认识Java虚拟机中的堆。</li>
 <li>了解有关栈的概念和使用。</li>
@@ -739,6 +739,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">读书笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
+      
+    </div>
   
 </div>
 
@@ -748,7 +776,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>实战Java虚拟机-JVM故障诊断与性能优化</div>
       <div>https://jokerzxxx.github.io/2023/07/28/实战Java虚拟机-JVM故障诊断与性能优化/</div>
     </div>
     <div class="license-meta">
