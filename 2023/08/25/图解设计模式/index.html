@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fff">
+  <meta name="author" content="Jokerz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第14 章 Chain of Responsibility 模式14.1 Chain of Responsibility模式我们首先看看什么是推卸责任。假设现在我们要去公司领取资料。首先我们向公司前台打听要 去哪里领取资料，她告诉我们应该去”营业窗口”。然后等我们到了“营业窗口”后，又被告知应 该去”售后部门”。等我们好不容易赶到了”售后部门”,又被告知应该去“资料中心”,因此最后 我们又不得不赶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解设计模式">
+<meta property="og:url" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Java从入门到放弃">
+<meta property="og:description" content="第14 章 Chain of Responsibility 模式14.1 Chain of Responsibility模式我们首先看看什么是推卸责任。假设现在我们要去公司领取资料。首先我们向公司前台打听要 去哪里领取资料，她告诉我们应该去”营业窗口”。然后等我们到了“营业窗口”后，又被告知应 该去”售后部门”。等我们好不容易赶到了”售后部门”,又被告知应该去“资料中心”,因此最后 我们又不得不赶">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163408834.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163416639.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163445812.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171037941.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171054565.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171112944.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171128120.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171141772.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171224463.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171229846.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171259554.png">
+<meta property="og:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171412452.png">
+<meta property="article:published_time" content="2023-08-25T08:29:22.000Z">
+<meta property="article:modified_time" content="2023-08-25T15:38:58.827Z">
+<meta property="article:author" content="Jokerz">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jokerzxxx.github.io/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163408834.png">
+  
+  
+  
+  <title>图解设计模式 - Java从入门到放弃</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jokerzxxx.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="图解设计模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-25 16:29" pubdate>
+          August 25, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">图解设计模式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="第14-章-Chain-of-Responsibility-模式"><a href="#第14-章-Chain-of-Responsibility-模式" class="headerlink" title="第14 章 Chain of Responsibility 模式"></a>第14 章 Chain of Responsibility 模式</h2><h3 id="14-1-Chain-of-Responsibility模式"><a href="#14-1-Chain-of-Responsibility模式" class="headerlink" title="14.1 Chain of Responsibility模式"></a>14.1 Chain of Responsibility模式</h3><p>我们首先看看什么是推卸责任。假设现在我们要去公司领取资料。首先我们向公司前台打听要 去哪里领取资料，她告诉我们应该去”营业窗口”。然后等我们到了“营业窗口”后，又被告知应 该去”售后部门”。等我们好不容易赶到了”售后部门”,又被告知应该去“资料中心”,因此最后 我们又不得不赶往“资料中心”。像这样，在找到合适的办事人之前，我们被不断地踢给一个又一 个人，这就是“推卸责任”。</p>
+<p>“推卸责任”听起来有些贬义的意思，但是有时候也确实存在需要“推卸责任”的情况。例如， 当外部请求程序进行某个处理，但程序暂时无法直接决定由哪个对象负责处理时，就需要推卸责任。这种情况下，我们可以考虑将<strong>多个对象组成一条职责链，然后按照它们在职责链上的顺序一个 一个地找出到底应该谁来负责处理。</strong>这种模式被称为Chain of Responsibility模式。</p>
+<p>使用Chain of Responsibility模式可以弱化“请求方”和“处理方”之间的关联关系，让双方各 自都成为可独立复用的组件。此外，程序还可以应对其他需求，如根据情况不同，负责处理的对象也会发生变化的这种需求。</p>
+<p>当一个人被要求做什么事情时，如果他可以做就自己做，如果不能做就将“要求”转给另外一 个人。下一个人如果可以自己处理，就自己做；如果也不能自己处理，就再转给另外一个人……这 就是Chain of Responsibility模式。</p>
+<h3 id="14-2-示例程序"><a href="#14-2-示例程序" class="headerlink" title="14.2 示例程序"></a>14.2 示例程序</h3><p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163408834.png" srcset="/img/loading.gif" lazyload alt="image-20230825163408834"></p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163416639.png" srcset="/img/loading.gif" lazyload alt="image-20230825163416639"></p>
+<h4 id="Trouble类"><a href="#Trouble类" class="headerlink" title="Trouble类"></a>Trouble类</h4><p>Trouble类(代码清单14-1)是表示发生的问题的类。number是问题编号。通过getNumber 方法可以获取问题编号。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825163445812.png" srcset="/img/loading.gif" lazyload alt="image-20230825163445812"></p>
+<h4 id="Support类"><a href="#Support类" class="headerlink" title="Support类"></a>Support类</h4><p>Support类(代码清单14-2)是用来解决问题的抽象类，它是职责链上的对象。</p>
+<p>next字段中指定了要推卸给的对象。可以通过setNext方法设定该对象。</p>
+<p>resolve方法是需要子类去实现的抽象方法。如果resolve返回true,则表示问题已经被 处理，如果返回false则表示问题还没有被处理(即需要被推卸给下一个对象)。Resolve有“解 决”的意思。</p>
+<p>support方法会调用resolve方法，如果resolve方法返回false,则support方法会 将问题转交给下一个对象。如果已经到达职责链中的最后一个对象，则表示没有人处理问题，将会 显示出处理失败的相关信息。在本例中我们只是简单地输出处理失败的相关信息，但根据需求不 同，有时候也需要抛出异常。</p>
+<p>顺便告诉大家，support方法调用了抽象方法resolve,因此它属于Template Method模式 (第3章)。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171037941.png" srcset="/img/loading.gif" lazyload alt="image-20230825171037941"></p>
+<h4 id="NoSupport类"><a href="#NoSupport类" class="headerlink" title="NoSupport类"></a>NoSupport类</h4><p>NoSupport类(代码清单14-3)是Support类的子类。NoSupport类的resolve方法总 是返回false。即它是一个永远“不解决问题”的类。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171054565.png" srcset="/img/loading.gif" lazyload alt="image-20230825171054565"></p>
+<h4 id="LimitSupport类"><a href="#LimitSupport类" class="headerlink" title="LimitSupport类"></a>LimitSupport类</h4><p>LimitSupport类(代码清单14-4)解决编号小于limit值的问题。resolve方法在判断编号小于limit值后，只是简单地返回true,但实际上这里应该是解决问题的代码。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171112944.png" srcset="/img/loading.gif" lazyload alt="image-20230825171112944"></p>
+<h4 id="OddSupport类"><a href="#OddSupport类" class="headerlink" title="OddSupport类"></a>OddSupport类</h4><p>OddSupport类(代码清单14-5)解决奇数编号的问题。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171128120.png" srcset="/img/loading.gif" lazyload alt="image-20230825171128120"></p>
+<h4 id="SpecialSupport类"><a href="#SpecialSupport类" class="headerlink" title="SpecialSupport类"></a>SpecialSupport类</h4><p>SpecialSupport类(代码清单14-6)只解决指定编号的问题。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171141772.png" srcset="/img/loading.gif" lazyload alt="image-20230825171141772"></p>
+<h4 id="Main类"><a href="#Main类" class="headerlink" title="Main类"></a>Main类</h4><p>Main类(代码清单14-7)首先生成了Alice至Fred等6个解决问题的实例。虽然此处定义的 变量都是Support类型的，但是实际上所保存的变量却是NoSupport、LimitSupprot、 SpecialSupport、Oddsupport等各个类的实例。</p>
+<p>接下来，Main类调用setNext方法将Alice至Fred这6个实例串联在职责链上。之后， Main类逐个生成问题，并将它们传递给alice,然后显示最终谁解决了该问题。请注意，这里的问题编号从0开始，增长步长为33。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171224463.png" srcset="/img/loading.gif" lazyload alt="image-20230825171224463"></p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171229846.png" srcset="/img/loading.gif" lazyload alt="image-20230825171229846"></p>
+<p>最开始Bob非常努力地解决了几个问题，当他无法解决 的时候会将问题交给Diana负责。在运行结果中，完全没有出现Alice的身影，这是因为Alice 会把所有的问题推给别人。当问题编号超过300后，不论是哪个LimitSupport类的实例都无法 解决了。不过，只要编号为奇数，OddSupport类的实例E1mo就可以帮我们解决问题。而Specialsupport类的实例Charlie只负责解决编号为429的问题，因此在运行结果中它只出 现了一次。</p>
+<p>图14-3展示了解决编号为363号问题时的时序图。在该时序图中，我们重点关注了support 方法的调用情况。实际上，每个support在调用下一个Support的support方法之前，都会先 调用自身的resolve方法。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171259554.png" srcset="/img/loading.gif" lazyload alt="image-20230825171259554"></p>
+<h3 id="14-3-Chain-of-Responsibility模式中的登场角色"><a href="#14-3-Chain-of-Responsibility模式中的登场角色" class="headerlink" title="14.3 Chain of Responsibility模式中的登场角色"></a>14.3 Chain of Responsibility模式中的登场角色</h3><ul>
+<li><strong>Handler(处理者)</strong></li>
+</ul>
+<p>Handler角色定义了处理请求的接口(API)。Handler角色知道“下一个处理者”是谁，如果自己无法处理请求，它会将请求转给“下一个处理者”。当然，“下一个处理者”也是Handler角色。 在示例程序中，由Support类扮演此角色。负责处理请求的是support方法。</p>
+<ul>
+<li><strong>ConcreteHandler(具体的处理者)</strong></li>
+</ul>
+<p>ConcreteVisitor角色是处理请求的具体角色。在示例程序中，由NoSupport、LimitSupport、 OddSupport、SpecialSupport等各个类扮演此角色。</p>
+<ul>
+<li><strong>Client(请求者)</strong></li>
+</ul>
+<p>Client角色是向第一个ConcreteHandler角色发送请求的角色。在示例程序中，由Main类扮演 此角色。</p>
+<p>Chain of Responsibility模式的类图如图14-4所示。</p>
+<p><img src="/2023/08/25/%E5%9B%BE%E8%A7%A3%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230825171412452.png" srcset="/img/loading.gif" lazyload alt="image-20230825171412452"></p>
+<h3 id="14-4-拓展思路的要点"><a href="#14-4-拓展思路的要点" class="headerlink" title="14.4 拓展思路的要点"></a>14.4 拓展思路的要点</h3><ul>
+<li>弱化了发出请求的人和处理请求的人之间的关系</li>
+</ul>
+<p>Chain of Responsibility模式的最大优点就在于它弱化了发出请求的人(Client角色)和处理请求 的人(ConcreteHandler角色)之间的关系。Client角色向第一个ConcreteHandler角色发出请求，然 后请求会在职责链中传播，直到某个ConcreteHandler角色处理该请求。</p>
+<p>如果不使用该模式，就必须有某个伟大的角色知道“谁应该处理什么请求”,这有点类似中央 集权制。而让“发出请求的人”知道“谁应该处理该请求”并不明智，因为如果发出请求的人不得 不知道处理请求的人各自的责任分担情况，就会降低其作为可复用的组件的独立性。</p>
+<p>**补充说明: **为了简单起见，在示例程序中，我们让扮演Client角色的Main类负责串联起 ConcreteHandler的职责链。</p>
+<ul>
+<li>可以动态地改变职责链</li>
+</ul>
+<p>在示例程序中，问题的解决是按照从Alice到Fred的固定顺序进行处理的。但是，我们还需要 考虑负责处理的各个ConcreteHandler角色之间的关系可能会发生变化的情况。如果使用Chain of Responsibility模式，通过委托推卸责任，就可以根据情况变化动态地重组职责链。</p>
+<p>如果不使用Chain of Responsibility模式，而是在程序中固定写明“某个请求需要谁处理”这样 的对应关系，那么很难在程序运行中去改变请求的处理者。</p>
+<ul>
+<li>专注于自己的工作</li>
+</ul>
+<p>“推卸”这个词虽然有贬义，但是反过来想，这样才可以使每个对象更专注于自己的工作，即 每个ConcreteHandler角色都专注于自己所负责的处理。当自己无法处理时，ConcreteHandler 角色就会干脆地对下一个处理者说一句”嘿，交给你了”,然后将请求转出去。这样，每个 ConcreteHandler角色就能只处理它应该负责的请求了。</p>
+<p>如果我们不使用Chain of Responsibility模式又会怎样呢?这时，我们需要编写一个“决定谁应该负责什么样的处理”的方法。亦或是让每个ConcreteHandler角色自己负责“任务分配”工作， 即”如果自己不能处理，就转交给那个人。如果他也不能处理，那就根据系统情况将请求再转交给 另外一个人”。</p>
+<ul>
+<li>推卸请求会导致处理延迟吗</li>
+</ul>
+<p>使用Chain of Responsibility模式可以推卸请求，直至找到合适的处理请求的对象，这样确实提 高了程序的灵活性，但是难道不会导致处理延迟吗?</p>
+<p>确实如此，与“事先确定哪个对象负责什么样的处理，当接收到请求时，立即让相应的对象去 处理请求”相比，使用Chain of Responsibility模式确实导致处理请求发生了延迟。</p>
+<p>不过，这是一个需要权衡的问题。如果请求和处理者之间的关系是确定的，而且需要非常快的处理速度时，不使用Chain of Responsibility模式会更好。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-chain-item">设计模式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="print-no-link">#设计模式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>图解设计模式</div>
+      <div>https://jokerzxxx.github.io/2023/08/25/图解设计模式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Jokerz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 25, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/24/Redis/" title="Redis">
+                        <span class="hidden-mobile">Redis</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
