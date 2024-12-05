@@ -17,16 +17,23 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>学习记录</title>
+  <title>CAN协议 - 学习记录</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="学习记录">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="Legend - CAN 参数说明 - CAN         Property 属性 Description 描述   Msg Name 报文名称 Message name 报文名称   Msg Type 报文类型 Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文   Msg ID 报文标识符 Message identifier 报文标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAN协议">
+<meta property="og:url" content="http://example.com/2024/12/05/CAN%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="学习记录">
+<meta property="og:description" content="Legend - CAN 参数说明 - CAN         Property 属性 Description 描述   Msg Name 报文名称 Message name 报文名称   Msg Type 报文类型 Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文   Msg ID 报文标识符 Message identifier 报文标">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="d:\hexo\source_posts\CAN%E5%8D%8F%E8%AE%AE.assets\image-20241205102857315.png">
+<meta property="og:image" content="d:\hexo\source_posts\CAN%E5%8D%8F%E8%AE%AE.assets\image-20241205102912579.png">
+<meta property="article:published_time" content="2024-12-05T02:20:45.000Z">
+<meta property="article:modified_time" content="2024-12-05T02:30:37.117Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:\hexo\source_posts\CAN%E5%8D%8F%E8%AE%AE.assets\image-20241205102857315.png">
   
   
   
@@ -45,7 +52,7 @@
 </head>
 <body>
 
-<div class="l_body s:aa index tech" id="start" layout="undefined" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">学习记录</div></a></div></header>
@@ -57,53 +64,174 @@
 <nav class="menu dis-select"></nav>
 </div>
 <div class="widgets">
+
+
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/12/05/Android-Studio/"><span class="title">Android Studio</span></a><a class="item title" href="/2024/12/05/CAN%E5%8D%8F%E8%AE%AE/"><span class="title">CAN协议</span></a><a class="item title" href="/2024/12/05/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CStellar%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/"><span class="title">使用Hexo和Stellar搭建个人博客网站</span></a><a class="item title" href="/2024/12/05/hello-world/"><span class="title">Hello World</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">学习记录</div></a></div></header>
 
 
 
 
-<div class="navbar top"><nav class="post"><a class="active" href="/">Recent</a><a href="/archives">Archives</a></nav></div>
-<div class="post-list post"><a class="post-card post" href="/2024/12/05/CAN%E5%8D%8F%E8%AE%AE/">
-<article class="md-text"><h2 class="post-title">CAN协议</h2><div class="excerpt"><p>
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-12-05T02:20:45.000Z">2024-12-05</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-12-05T02:30:37.117Z">2024-12-05</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>CAN协议</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><table>
+<thead>
+<tr>
+<th>Legend - CAN 参数说明 - CAN</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="D:\hexo\source_posts\CAN协议.assets\image-20241205102857315.png" alt="image-20241205102857315"></td>
+<td><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="D:\hexo\source_posts\CAN协议.assets\image-20241205102912579.png"></td>
+</tr>
+<tr>
+<td>Property 属性</td>
+<td>Description 描述</td>
+</tr>
+<tr>
+<td>Msg Name 报文名称</td>
+<td>Message name 报文名称</td>
+</tr>
+<tr>
+<td>Msg Type 报文类型</td>
+<td>Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文</td>
+</tr>
+<tr>
+<td>Msg ID 报文标识符</td>
+<td>Message identifier 报文标识符</td>
+</tr>
+<tr>
+<td>Msg Send Type 报文发送类型</td>
+<td>Send type for the message. 报文的发送类型 Send type:”Cycle”, “Event”, “IfActive”, “CE” and “CA”  发送类型：”Cycle”, “Event”, “IfActive”, “CE” and “CA”</td>
+</tr>
+<tr>
+<td>Msg Cycle Time (ms) 报文周期时间</td>
+<td>Cycle time of the message if it should be sent cyclically 报文发送周期时间（仅对周期性发送报文）</td>
+</tr>
+<tr>
+<td>Msg Length (Byte) 报文长度</td>
+<td>Byte length of the message 报文的字节长度</td>
+</tr>
+<tr>
+<td>Signal Name 信号名称</td>
+<td>Signal Name 信号名称</td>
+</tr>
+<tr>
+<td>Signal Description 信号描述</td>
+<td>Comment for the signal 信号描述</td>
+</tr>
+<tr>
+<td>Byte Order 排列格式</td>
+<td>Description the byte order, intel or mortoral 描述了字节排布顺序</td>
+</tr>
+<tr>
+<td>Start Byte 起始字节</td>
+<td></td>
+</tr>
+<tr>
+<td>Start Bit 起始位</td>
+<td></td>
+</tr>
+<tr>
+<td>Signal Send Type 信号发送类型</td>
+<td>Send type for the signal 信号的发送类型</td>
+</tr>
+<tr>
+<td>Bit Length (Bit) 信号长度</td>
+<td>Bit length of the signal 信号的位长度</td>
+</tr>
+<tr>
+<td>Date Type 数据类型</td>
+<td>Date type of the signal 信号的数据类型 Date type: Unsigned, Signed, IEEE float, IEEE Double 数据类型：Unsigned, Signed, IEEE float, IEEE Double</td>
+</tr>
+<tr>
+<td>Resolution 精度</td>
+<td>Resolution value is to calculate the physical value of the signal. 十六进制值的比例因子是为了计算信号的物理值。</td>
+</tr>
+<tr>
+<td>Offset 偏移量</td>
+<td>Offset value is to calculate the physical value of the signal. 偏移量用来计算信号的物理值。</td>
+</tr>
+<tr>
+<td>Signal Min. Value (phys) 物理最小值</td>
+<td>Physical minimum value of the signal in physical value 信号的物理最小值</td>
+</tr>
+<tr>
+<td>Signal Max. Value(phys) 物理最大值</td>
+<td>Physical maximum value of the signal in physical value 信号的物理最大值</td>
+</tr>
+<tr>
+<td>Signal Min. Value (Hex) 总线最小值</td>
+<td>minimum value of the signal in Hex value 信号的总线最小值</td>
+</tr>
+<tr>
+<td>Signal Max. Value(Hex) 总线值最大值</td>
+<td>maximum value of the signal in Hex value 信号的总线最大值</td>
+</tr>
+<tr>
+<td>Initial Value(Hex) 初始值</td>
+<td>If no valid signal is available after network startup, the predefined value (refer to the functional requirement) shall be sent. The valid value shall be available within this time from the startup. 如果在网络启动后没有可用的有效信号，预定义的值将被发送（取决于功能需求）。有效值必须在启动后此时间内可用。</td>
+</tr>
+<tr>
+<td>Invalid Value(Hex) 无效值</td>
+<td>Invalid value in hex value 十六进制表示的无效值</td>
+</tr>
+<tr>
+<td>Inactive Value(Hex) 非使能值</td>
+<td>Inactive value in hex value if the message sent type is ifActive and PA 十六进制表述的非使能值,仅用于使能型及周期使能型报文</td>
+</tr>
+<tr>
+<td>Unit 单位</td>
+<td>Unit of the signal physical value 信号物理值的单位</td>
+</tr>
+<tr>
+<td>Signal Value Description 信号值描述</td>
+<td>Hex-physics representation of the signal value 信号十六进制值所代表的物理值</td>
+</tr>
+<tr>
+<td>Msg Cycle Time Fast(ms) 报文发送的快速周期(ms)</td>
+<td>The fast cycle time of message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，报文发送的快速周期。</td>
+</tr>
+<tr>
+<td>Msg Nr. Of Reption 报文快速发送的次数</td>
+<td>The reption number of message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，报文快速发送的次数。</td>
+</tr>
+<tr>
+<td>Msg Delay Time(ms) 报文延时时间(ms)</td>
+<td>The min time between the same ID message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，相同ID报文之间的最小间隔。</td>
+</tr>
+</tbody></table>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/12/05/Android-Studio/">Android Studio</a></div></section></div>
 
 
-Legend - CAN 参数说明 - CAN
 
 
-
-
-
-
-
-
-Property 属性
-Description 描述
-
-
-Msg Name 报文名称
-Message name 报文名称
-
-
-Msg Type 报文类型
-Msg Type: Nor...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-12-05T02:20:45.000Z">2024-12-05</time></span></div></article>
-</a><a class="post-card post" href="/2024/12/05/Android-Studio/">
-<article class="md-text"><h2 class="post-title">Android Studio</h2><div class="excerpt"><p>关闭 Performing Analyze CodeSettings -&gt; Version Control -&gt; Commit -&gt; Analyze Code
-快捷键
-Ctrl + Space（Windows&#x2F;Linux）...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-12-05T02:10:31.000Z">2024-12-05</time></span></div></article>
-</a><a class="post-card post" href="/2024/12/05/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CStellar%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/">
-<article class="md-text"><h2 class="post-title">使用Hexo和Stellar搭建个人博客网站</h2><div class="excerpt"><p>安装 Git
-Windows：下载并安装 git。
-Mac：使用 Homebrew, MacPorts 或者下载 安装程序。
-Linux (Ubuntu, Debian)：sudo apt-get install git-core
-Linux (Fe...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-12-05T02:08:18.000Z">2024-12-05</time></span></div></article>
-</a><a class="post-card post" href="/2024/12/05/hello-world/">
-<article class="md-text"><h2 class="post-title">Hello World</h2><div class="excerpt"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, yo...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2024-12-05T01:38:33.146Z">2024-12-05</time></span></div></article>
-</a></div>
 
 
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">John Doe</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
