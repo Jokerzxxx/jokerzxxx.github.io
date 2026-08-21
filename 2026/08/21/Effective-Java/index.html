@@ -1,0 +1,1964 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Effective Java - 码上弦音</title>
+
+  
+    <meta name="description" content="Effective Java（原书第3版） 作者：Joshua Bloch全书共12章90条，316页，Java领域最经典的最佳实践书籍，涵盖对象创建、方法、类、泛型、枚举、Lambda、并发、序列化等核心主题。   第1章 引言本书的目标是帮助读者更有效地使用Java编程语言及其基本类库。每条规则都以”第N条：”的形式呈现，包含具体的建议、代码示例和反例。 核心原则：  清晰性和正确性优先于性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective Java">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/Effective-Java/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Effective Java（原书第3版） 作者：Joshua Bloch全书共12章90条，316页，Java领域最经典的最佳实践书籍，涵盖对象创建、方法、类、泛型、枚举、Lambda、并发、序列化等核心主题。   第1章 引言本书的目标是帮助读者更有效地使用Java编程语言及其基本类库。每条规则都以”第N条：”的形式呈现，包含具体的建议、代码示例和反例。 核心原则：  清晰性和正确性优先于性能">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T07:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T08:13:19.804Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="最佳实践">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="阅读,Java,最佳实践">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E5%BC%80%E5%8F%91/">Java开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T07:00:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T08:13:19.804Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Effective Java</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Effective-Java（原书第3版）"><a href="#Effective-Java（原书第3版）" class="headerlink" title="Effective Java（原书第3版）"></a>Effective Java（原书第3版）</h1><blockquote>
+<p>作者：Joshua Bloch<br>全书共12章90条，316页，Java领域最经典的最佳实践书籍，涵盖对象创建、方法、类、泛型、枚举、Lambda、并发、序列化等核心主题。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-引言"><a href="#第1章-引言" class="headerlink" title="第1章 引言"></a>第1章 引言</h2><p>本书的目标是帮助读者更有效地使用Java编程语言及其基本类库。每条规则都以”第N条：”的形式呈现，包含具体的建议、代码示例和反例。</p>
+<p><strong>核心原则</strong>：</p>
+<ul>
+<li>清晰性和正确性优先于性能</li>
+<li>代码应被阅读的次数远多于被编写的次数</li>
+<li>优先使用库而非自己实现</li>
+<li>避免使用语言中容易出问题的特性</li>
+</ul>
+<hr>
+<h2 id="第2章-创建和销毁对象"><a href="#第2章-创建和销毁对象" class="headerlink" title="第2章 创建和销毁对象"></a>第2章 创建和销毁对象</h2><h3 id="第1条：用静态工厂方法代替构造器"><a href="#第1条：用静态工厂方法代替构造器" class="headerlink" title="第1条：用静态工厂方法代替构造器"></a>第1条：用静态工厂方法代替构造器</h3><p>静态工厂方法是一个返回类实例的静态方法，相比构造器有以下优势：</p>
+<ul>
+<li><strong>有名称</strong>：方法名能清楚描述返回的对象（如<code>BigInteger.probablePrime</code>）</li>
+<li><strong>不必每次调用都创建新对象</strong>：可返回预构建的实例或缓存的实例（如<code>Boolean.valueOf</code>）</li>
+<li><strong>可返回原返回类型的任何子类型</strong>：隐藏实现类（如<code>Collections.unmodifiableList</code>返回不可修改列表）</li>
+<li><strong>返回对象的类可以随参数变化</strong>：如<code>EnumSet</code>根据元素数量返回<code>RegularEnumSet</code>或<code>JumboEnumSet</code></li>
+<li><strong>方法返回的对象在编写时可以不存在</strong>：服务提供者框架（如JDBC）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>只提供静态工厂方法而不提供public&#x2F;protected构造器，类不能被子类化</li>
+<li>程序员难以发现静态工厂方法（需查阅文档）</li>
+</ul>
+<p>常用命名：<code>from</code>、<code>of</code>、<code>valueOf</code>、<code>instance</code>、<code>getInstance</code>、<code>create</code>、<code>getType</code>、<code>newType</code>、<code>type</code>。</p>
+<h3 id="第2条：遇到多个构造器参数时要考虑使用构建器"><a href="#第2条：遇到多个构造器参数时要考虑使用构建器" class="headerlink" title="第2条：遇到多个构造器参数时要考虑使用构建器"></a>第2条：遇到多个构造器参数时要考虑使用构建器</h3><p>当类有多个可选参数时，传统方式有：</p>
+<ul>
+<li><strong>重叠构造器模式</strong>：参数多时代码难写难读</li>
+<li><strong>JavaBeans模式</strong>：调用无参构造器+setter，构造过程中对象可能不一致，无法做成不可变类</li>
+</ul>
+<p><strong>Builder模式</strong>：</p>
+<ul>
+<li>不直接生成对象，先调用构造器（或静态工厂）得到builder对象</li>
+<li>调用builder的setter-like方法设置参数</li>
+<li>调用build方法生成不可变对象</li>
+<li>可模拟具名可选参数，代码易读易写</li>
+<li>适用于参数多且多数可选的情况</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NutritionFacts</span> <span class="variable">cocaCola</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NutritionFacts</span>.Builder(<span class="number">240</span>, <span class="number">8</span>)</span><br><span class="line">    .calories(<span class="number">100</span>).sodium(<span class="number">35</span>).carbohydrate(<span class="number">27</span>).build();</span><br></pre></td></tr></table></figure>
+
+<p>Builder也适用于类层次结构，抽象类有抽象Builder，具体类有具体Builder。</p>
+<h3 id="第3条：用私有构造器或者枚举类型强化Singleton属性"><a href="#第3条：用私有构造器或者枚举类型强化Singleton属性" class="headerlink" title="第3条：用私有构造器或者枚举类型强化Singleton属性"></a>第3条：用私有构造器或者枚举类型强化Singleton属性</h3><p>Singleton是只被实例化一次的类。实现方式：</p>
+<ol>
+<li><strong>公有静态final成员</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Elvis</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Elvis</span>();</span><br><span class="line"><span class="keyword">private</span> <span class="title function_">Elvis</span><span class="params">()</span> &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>简单，但可通过反射调用私有构造器（需在构造器中防御）</li>
+</ul>
+<ol start="2">
+<li><strong>公有静态工厂方法</strong>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Elvis</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Elvis</span>();</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Elvis <span class="title function_">getInstance</span><span class="params">()</span> &#123; <span class="keyword">return</span> INSTANCE; &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>灵活，可改为非Singleton而不修改API</li>
+</ul>
+<ol start="3">
+<li><strong>单元素枚举类型</strong>（最佳方法）：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Elvis</span> &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">leaveTheBuilding</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>无偿提供序列化机制，防止多次实例化</li>
+<li>防反射攻击</li>
+<li>简洁，是实现Singleton的最佳方法</li>
+</ul>
+<h3 id="第4条：通过私有构造器强化不可实例化的能力"><a href="#第4条：通过私有构造器强化不可实例化的能力" class="headerlink" title="第4条：通过私有构造器强化不可实例化的能力"></a>第4条：通过私有构造器强化不可实例化的能力</h3><p>工具类（只包含静态方法和静态域的类）不应被实例化。</p>
+<ul>
+<li>声明为抽象类不能阻止实例化（可被子类化后实例化）</li>
+<li>正确做法：提供私有构造器，在构造器中抛AssertionError（防止内部意外调用）</li>
+<li>副作用：类不能被子类化</li>
+</ul>
+<h3 id="第5条：优先考虑依赖注入来引用资源"><a href="#第5条：优先考虑依赖注入来引用资源" class="headerlink" title="第5条：优先考虑依赖注入来引用资源"></a>第5条：优先考虑依赖注入来引用资源</h3><p>不要用Singleton或静态工具类来引用底层资源，而应将资源传入构造器（依赖注入）。</p>
+<ul>
+<li>不当做法：<code>SpellChecker</code>内部<code>new Dictionary()</code>，无法替换字典</li>
+<li>正确做法：构造器接收<code>Dictionary</code>参数，可传入不同字典实现</li>
+<li>依赖注入使类更灵活、可测试、可复用</li>
+<li>资源工厂也可传入（如<code>Supplier&lt;Dictionary&gt;</code>）</li>
+<li>大型项目可使用依赖注入框架（Dagger、Guice、Spring），但不要过度使用</li>
+</ul>
+<h3 id="第6条：避免创建不必要的对象"><a href="#第6条：避免创建不必要的对象" class="headerlink" title="第6条：避免创建不必要的对象"></a>第6条：避免创建不必要的对象</h3><p>重用对象比创建新对象更高效，尤其是不可变对象。</p>
+<ul>
+<li><code>String s = new String(&quot;bikini&quot;)</code> 会创建不必要的对象，应直接用<code>String s = &quot;bikini&quot;</code></li>
+<li>静态初始化重用昂贵对象（如<code>Pattern</code>实例，不要在方法内每次编译）</li>
+<li>优先使用基本类型而非装箱基本类型（避免无意识的自动装箱）</li>
+<li>注意：不要过度使用对象池，除非对象创建确实昂贵（如数据库连接）</li>
+</ul>
+<h3 id="第7条：消除过期的对象引用"><a href="#第7条：消除过期的对象引用" class="headerlink" title="第7条：消除过期的对象引用"></a>第7条：消除过期的对象引用</h3><p>Java虽然有垃圾回收，但仍可能发生内存泄漏。</p>
+<ul>
+<li>常见来源：自己管理内存的类（如Stack），弹出元素后未清空引用</li>
+<li>解决：对象引用过期后手动置空（<code>elements[size--] = null</code>）</li>
+<li>其他内存泄漏来源：<ul>
+<li>缓存：对象放入缓存后被遗忘（用WeakHashMap或定期清理）</li>
+<li>监听器和回调：注册后未取消注册（用弱引用）</li>
+</ul>
+</li>
+<li>清空对象引用是例外，不是规范，让作用域结束自然回收即可</li>
+</ul>
+<h3 id="第8条：避免使用终结方法和清除方法"><a href="#第8条：避免使用终结方法和清除方法" class="headerlink" title="第8条：避免使用终结方法和清除方法"></a>第8条：避免使用终结方法和清除方法</h3><p>终结方法（finalizer）和Java 9的清除方法（cleaner）不可预测、危险、通常不必要。</p>
+<ul>
+<li>不保证及时执行，甚至不保证执行（JVM退出时可能不运行）</li>
+<li>性能开销大</li>
+<li>安全问题：finalizer攻击（子类finalizer中复活对象）</li>
+<li>正确做法：类实现<code>AutoCloseable</code>，用try-with-resources确保资源释放</li>
+<li>清除方法仅作为安全网（防止客户端忘记关闭资源），且应在独立线程中运行</li>
+</ul>
+<h3 id="第9条：try-with-resources优先于try-finally"><a href="#第9条：try-with-resources优先于try-finally" class="headerlink" title="第9条：try-with-resources优先于try-finally"></a>第9条：try-with-resources优先于try-finally</h3><p>传统try-finally关闭资源有问题：</p>
+<ul>
+<li>多个资源时代码冗长嵌套</li>
+<li>try和finally中都可能抛异常，第二个异常会覆盖第一个（丢失原始异常信息）</li>
+</ul>
+<p>try-with-resources（Java 7+）：</p>
+<ul>
+<li>资源实现<code>AutoCloseable</code>接口</li>
+<li>自动关闭资源，代码简洁</li>
+<li>被抑制的异常不会丢失，可通过<code>getSuppressed()</code>获取</li>
+<li>可同时管理多个资源，用分号分隔</li>
+<li>可配合catch子句使用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(src);</span><br><span class="line">     <span class="type">OutputStream</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(dst)) &#123;</span><br><span class="line">    <span class="type">byte</span>[] buf = <span class="keyword">new</span> <span class="title class_">byte</span>[BUFFER_SIZE];</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> ((n = in.read(buf)) &gt;= <span class="number">0</span>)</span><br><span class="line">        out.write(buf, <span class="number">0</span>, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第3章-对于所有对象都通用的方法"><a href="#第3章-对于所有对象都通用的方法" class="headerlink" title="第3章 对于所有对象都通用的方法"></a>第3章 对于所有对象都通用的方法</h2><h3 id="第10条：覆盖equals时请遵守通用约定"><a href="#第10条：覆盖equals时请遵守通用约定" class="headerlink" title="第10条：覆盖equals时请遵守通用约定"></a>第10条：覆盖equals时请遵守通用约定</h3><p>不需要覆盖equals的情况：</p>
+<ul>
+<li>类的每个实例本质上都是唯一的（如Thread）</li>
+<li>不关心类是否提供”逻辑相等”测试</li>
+<li>超类已覆盖equals且行为适合子类</li>
+<li>类是私有的或包级私有的，确定不会调用equals</li>
+</ul>
+<p>必须覆盖equals的情况：类有逻辑相等概念，且超类未覆盖equals（如值类、Integer、Date）。</p>
+<p>equals约定：</p>
+<ol>
+<li><strong>自反性</strong>：<code>x.equals(x)</code>必须为true</li>
+<li><strong>对称性</strong>：<code>x.equals(y)</code>当且仅当<code>y.equals(x)</code></li>
+<li><strong>传递性</strong>：若<code>x.equals(y)</code>且<code>y.equals(z)</code>，则<code>x.equals(z)</code></li>
+<li><strong>一致性</strong>：多次调用结果一致</li>
+<li><strong>非空性</strong>：<code>x.equals(null)</code>必须为false</li>
+</ol>
+<p><strong>关键陷阱</strong>：无法在扩展可实例化类并增加新值组件的同时保留equals约定（如Point加color的ColorPoint）。解决：用组合代替继承，或用getClass()而非instanceof（但违反里氏替换原则）。</p>
+<p>实现equals的诀窍：</p>
+<ol>
+<li>用<code>==</code>检查是否为同一对象引用</li>
+<li>用<code>instanceof</code>检查类型</li>
+<li>转换为正确类型</li>
+<li>比较每个关键字段（基本类型用<code>==</code>，float&#x2F;double用<code>compare</code>，对象引用用<code>equals</code>，数组用<code>Arrays.equals</code>）</li>
+<li>写完后问自己：是否对称、传递、一致？</li>
+</ol>
+<h3 id="第11条：覆盖equals时总要覆盖hashCode"><a href="#第11条：覆盖equals时总要覆盖hashCode" class="headerlink" title="第11条：覆盖equals时总要覆盖hashCode"></a>第11条：覆盖equals时总要覆盖hashCode</h3><p>每个覆盖equals的类都必须覆盖hashCode，否则违反hashCode约定：</p>
+<ul>
+<li>相等的对象必须有相等的哈希码</li>
+<li>不覆盖hashCode会导致类在HashMap、HashSet等基于散列的集合中行为异常</li>
+</ul>
+<p>实现hashCode：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Short.hashCode(areaCode);</span><br><span class="line">    result = <span class="number">31</span> * result + Short.hashCode(prefix);</span><br><span class="line">    result = <span class="number">31</span> * result + Short.hashCode(lineNum);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用31作为乘数（奇素数，乘法可优化为移位减法）</li>
+<li>Java 7+可用<code>Objects.hash(field1, field2, ...)</code>（但有性能开销）</li>
+<li>不可变类且hashCode频繁使用时，可缓存hashCode</li>
+<li>不要试图从hashCode中排除重要字段来提高性能</li>
+</ul>
+<h3 id="第12条：始终要覆盖toString"><a href="#第12条：始终要覆盖toString" class="headerlink" title="第12条：始终要覆盖toString"></a>第12条：始终要覆盖toString</h3><p>toString的约定：建议所有子类覆盖此方法，返回简洁但信息丰富的表示。</p>
+<ul>
+<li>好的toString使类更易于使用和调试</li>
+<li>应返回对象中包含的所有值得关注的信息</li>
+<li>是否指定格式取决于需求：<ul>
+<li>值类（如PhoneNumber）应指定格式（文档化）</li>
+<li>不应指定格式的类，应保留灵活性</li>
+</ul>
+</li>
+<li>无论是否指定格式，都应为toString返回的值中包含的信息提供访问方法（getter），否则程序员只能解析字符串</li>
+</ul>
+<h3 id="第13条：谨慎地覆盖clone"><a href="#第13条：谨慎地覆盖clone" class="headerlink" title="第13条：谨慎地覆盖clone"></a>第13条：谨慎地覆盖clone</h3><p>Cloneable接口的目的是作为对象的mixin接口，表明对象允许克隆，但它有缺陷：</p>
+<ul>
+<li>没有声明clone方法，Object的clone是protected的</li>
+<li>实现Cloneable后，需覆盖clone并改为public</li>
+<li>clone方法的约定脆弱：创建并返回对象副本，x.clone() !&#x3D; x，x.clone().getClass() &#x3D;&#x3D; x.getClass()，x.clone().equals(x)</li>
+</ul>
+<p>实现clone的正确方式：</p>
+<ul>
+<li>调用super.clone()获取副本</li>
+<li>若域是基本类型或不可变对象引用，已完成</li>
+<li>若域引用可变对象，需递归克隆这些域（如数组、列表）</li>
+<li>不可变类永远不需要clone</li>
+<li>对于线程安全类，clone方法需同步</li>
+</ul>
+<p><strong>更好的替代方案</strong>：拷贝构造器或拷贝工厂（如<code>new ArrayList&lt;&gt;(list)</code>），比clone更安全、更简单，不依赖语言之外的机制，不要求遵守文档化的约定，不与final域冲突。</p>
+<h3 id="第14条：考虑实现Comparable接口"><a href="#第14条：考虑实现Comparable接口" class="headerlink" title="第14条：考虑实现Comparable接口"></a>第14条：考虑实现Comparable接口</h3><p>实现Comparable接口的类可以与集合框架和泛型算法协作（排序、搜索、最大值等）。</p>
+<p>compareTo约定：</p>
+<ul>
+<li>自反性、对称性、传递性（与equals类似）</li>
+<li>强烈建议<code>(x.compareTo(y)==0) == x.equals(y)</code>（但非必需，如BigDecimal）</li>
+</ul>
+<p>实现compareTo：</p>
+<ul>
+<li>从最关键的字段开始比较，若为0则比较下一个字段</li>
+<li>基本类型用<code>compare</code>方法（避免用<code>&lt;</code>和<code>&gt;</code>，有溢出风险）</li>
+<li>对象引用域递归调用compareTo</li>
+<li>Java 8+可用<code>Comparator.comparingInt</code>等构造比较器</li>
+<li>不要在compareTo中依赖脆弱的关系（如hashCode）</li>
+</ul>
+<hr>
+<h2 id="第4章-类和接口"><a href="#第4章-类和接口" class="headerlink" title="第4章 类和接口"></a>第4章 类和接口</h2><h3 id="第15条：使类和成员的可访问性最小化"><a href="#第15条：使类和成员的可访问性最小化" class="headerlink" title="第15条：使类和成员的可访问性最小化"></a>第15条：使类和成员的可访问性最小化</h3><p>信息隐藏（封装）是软件设计的基本原则。</p>
+<ul>
+<li>尽可能降低每个类和成员的可访问性</li>
+<li>顶层类和接口：包级私有（package-private）优于公有（public）</li>
+<li>成员（域、方法、嵌套类）：<ul>
+<li>private：仅本类可访问</li>
+<li>package-private：同包可访问</li>
+<li>protected：同包+子类可访问</li>
+<li>public：所有可访问</li>
+</ul>
+</li>
+<li>公有类的实例域应尽量非public（见第16条）</li>
+<li>公有静态final域应是不可变的（基本类型或不可变对象引用）</li>
+<li>长度非零的数组永远是可变的，公有静态final数组域是安全漏洞（应返回不可变列表或数组克隆）</li>
+</ul>
+<h3 id="第16条：要在公有类而非公有域中使用访问方法"><a href="#第16条：要在公有类而非公有域中使用访问方法" class="headerlink" title="第16条：要在公有类而非公有域中使用访问方法"></a>第16条：要在公有类而非公有域中使用访问方法</h3><p>公有类不应暴露可变域。</p>
+<ul>
+<li>公有可变域使类无法强制执行约束（如范围检查）</li>
+<li>无法在域被修改时采取行动（如通知监听器）</li>
+<li>正确做法：私有域+公有访问方法（getter&#x2F;setter）</li>
+<li>不可变域可以是公有的（公有final域），但仍建议用访问方法保持灵活性</li>
+<li>包级私有或私有顶层类暴露域危害较小</li>
+</ul>
+<h3 id="第17条：使可变性最小化"><a href="#第17条：使可变性最小化" class="headerlink" title="第17条：使可变性最小化"></a>第17条：使可变性最小化</h3><p>不可变类是实例不能被修改的类，所有信息在对象创建时固定。</p>
+<ul>
+<li>Java平台库中的不可变类：String、基本类型包装类、BigInteger、BigDecimal</li>
+</ul>
+<p>不可变类的规则：</p>
+<ol>
+<li>不要提供修改对象状态的方法（mutator）</li>
+<li>确保类不会被扩展（final类或私有构造器+静态工厂）</li>
+<li>使所有域都是final</li>
+<li>使所有域都是private</li>
+<li>确保对任何可变组件的互斥访问（构造器、访问方法、readObject中防御性拷贝）</li>
+</ol>
+<p>不可变类的优点：</p>
+<ul>
+<li>简单，状态不变</li>
+<li>线程安全，无需同步</li>
+<li>可自由共享（包括内部域）</li>
+<li>可作为缓存的键</li>
+<li>失败原子性（不会处于不一致状态）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>每个不同的值都需要一个单独的对象，创建大对象开销大</li>
+<li>解决：提供配套的可变伙伴类（如StringBuilder）</li>
+</ul>
+<h3 id="第18条：复合优先于继承"><a href="#第18条：复合优先于继承" class="headerlink" title="第18条：复合优先于继承"></a>第18条：复合优先于继承</h3><p>继承是实现代码重用的强大方式，但不总是最佳工具。</p>
+<ul>
+<li>继承打破封装：子类依赖超类的实现细节，超类变化可能破坏子类</li>
+<li>方法调用在子类和超类间可能产生意外交互（如HashSet的addAll内部调用add，子类重写add后计数错误）</li>
+<li>即使超类API设计良好，继承也会带来不必要的脆弱性</li>
+</ul>
+<p><strong>复合（Composition）</strong>：</p>
+<ul>
+<li>在新类中包含私有域，引用现有类的实例</li>
+<li>现有类成为新类的组件</li>
+<li>新类的方法调用现有类实例的对应方法（转发，forwarding）</li>
+<li>新类不依赖现有类的实现细节</li>
+<li>适用于包装类（Wrapper Class），如Collections的checkedList、synchronizedList</li>
+</ul>
+<p>继承仅适用于真正的子类型关系（is-a），且超类是为继承而设计的。否则用复合。</p>
+<h3 id="第19条：要么设计继承并提供文档说明，要么禁止继承"><a href="#第19条：要么设计继承并提供文档说明，要么禁止继承" class="headerlink" title="第19条：要么设计继承并提供文档说明，要么禁止继承"></a>第19条：要么设计继承并提供文档说明，要么禁止继承</h3><p>为继承而设计的类需要：</p>
+<ul>
+<li>文档化自用（self-use）的可覆盖方法：哪些方法调用了哪些可覆盖方法</li>
+<li>类必须通过其构造器调用可覆盖方法吗？（不应，因为超类构造器先于子类构造器运行，子类重写的方法会看到未初始化的域）</li>
+<li>Cloneable和Serializable接口在为继承设计时更加困难（clone和readObject类似构造器，不能调用可覆盖方法）</li>
+<li>为继承设计的类应尽可能少的实现，尽可能多的文档化</li>
+</ul>
+<p><strong>禁止继承</strong>：</p>
+<ul>
+<li>类声明为final</li>
+<li>或构造器私有&#x2F;包级私有，通过静态工厂创建实例</li>
+<li>对于不是为继承而安全设计的类，应禁止继承</li>
+</ul>
+<h3 id="第20条：接口优于抽象类"><a href="#第20条：接口优于抽象类" class="headerlink" title="第20条：接口优于抽象类"></a>第20条：接口优于抽象类</h3><p>接口和抽象类都允许定义带实现的方法（Java 8+接口有默认方法），但接口更灵活。</p>
+<p>接口的优势：</p>
+<ul>
+<li>现有类可以轻松实现新接口（只需添加方法，类层次不变）</li>
+<li>接口是定义mixin的理想选择（如Comparable、Iterable）</li>
+<li>接口允许构建非层次化的类型框架（类可实现多个接口）</li>
+<li>接口通过包装类模式提供安全的增强功能</li>
+</ul>
+<p>接口与抽象类结合的骨架实现（Skeletal Implementation）：</p>
+<ul>
+<li>接口定义类型</li>
+<li>抽象类提供骨架实现（如AbstractCollection、AbstractSet、AbstractList）</li>
+<li>程序员可继承骨架实现，也可直接实现接口</li>
+<li>模拟多重继承</li>
+</ul>
+<h3 id="第21条：为后代设计接口"><a href="#第21条：为后代设计接口" class="headerlink" title="第21条：为后代设计接口"></a>第21条：为后代设计接口</h3><p>Java 8的默认方法使接口可以演化，但添加默认方法到现有接口有风险：</p>
+<ul>
+<li>默认方法可能注入到现有实现类中，与类的现有方法冲突或破坏不变式</li>
+<li>默认方法不能假设实现类的内部状态</li>
+<li>集合框架的removeIf默认方法在某些实现中导致问题（如同步集合）</li>
+</ul>
+<p>设计接口时：</p>
+<ul>
+<li>尽可能在发布前测试接口（多个实现）</li>
+<li>默认方法应是通用的，不依赖特定实现</li>
+<li>即使有默认方法，也不是所有接口都能安全演化</li>
+</ul>
+<h3 id="第22条：接口只用于定义类型"><a href="#第22条：接口只用于定义类型" class="headerlink" title="第22条：接口只用于定义类型"></a>第22条：接口只用于定义类型</h3><p>接口应只用于定义类型，不应被滥用为常量接口。</p>
+<ul>
+<li>常量接口（Constant Interface）：只包含静态final常量，无方法</li>
+<li>类实现常量接口只是为了不用类名限定常量名</li>
+<li>问题：<ul>
+<li>实现细节泄漏到API中</li>
+<li>误导用户（类实现接口暗示类是该类型）</li>
+<li>二进制兼容性问题（常量值编译进实现类）</li>
+</ul>
+</li>
+<li>正确做法：常量放在不可实例化的工具类中，或用枚举类型</li>
+</ul>
+<h3 id="第23条：类层次优于标签类"><a href="#第23条：类层次优于标签类" class="headerlink" title="第23条：类层次优于标签类"></a>第23条：类层次优于标签类</h3><p>标签类（Tagged Class）：用一个域（标签）表示对象的多种风格。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Figure</span> &#123;</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">Shape</span> &#123; RECTANGLE, CIRCLE &#125;;</span><br><span class="line">    <span class="keyword">final</span> Shape shape;</span><br><span class="line">    <span class="type">double</span> length, width; <span class="comment">// 仅矩形用</span></span><br><span class="line">    <span class="type">double</span> radius; <span class="comment">// 仅圆用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>标签类的缺点：</p>
+<ul>
+<li>冗长、易错、效率低</li>
+<li>域不能是final（不同风格用不同域）</li>
+<li>无法在编译时检查类型安全</li>
+<li>添加新风格需修改所有方法，容易遗漏</li>
+</ul>
+<p><strong>类层次</strong>：</p>
+<ul>
+<li>抽象超类定义公共类型和方法</li>
+<li>每个具体子类表示一种风格</li>
+<li>每个子类只有需要的域，可为final</li>
+<li>编译时类型安全</li>
+<li>添加新风格只需添加新子类，不修改现有代码</li>
+</ul>
+<h3 id="第24条：静态成员类优于非静态成员类"><a href="#第24条：静态成员类优于非静态成员类" class="headerlink" title="第24条：静态成员类优于非静态成员类"></a>第24条：静态成员类优于非静态成员类</h3><p>嵌套类（Nested Class）有四种：</p>
+<ol>
+<li><strong>静态成员类</strong>：不持有外部类引用，可独立存在</li>
+<li><strong>非静态成员类（内部类）</strong>：持有外部类引用，可访问外部类实例成员</li>
+<li><strong>匿名类</strong>：无名称，在使用点声明和实例化</li>
+<li><strong>局部类</strong>：在方法中声明</li>
+</ol>
+<p>非静态成员类的每个实例都持有外部类引用，增加内存和时间开销，可能导致外部类无法被GC。</p>
+<ul>
+<li>若嵌套类不需要访问外部类实例，应声明为static</li>
+<li>常见错误：声明非静态成员类但实际不需要外部类引用</li>
+<li>私有静态成员类常用于表示外部类的组件（如Map.Entry）</li>
+<li>匿名类常用于创建函数对象（Java 8前），现在优先用Lambda</li>
+<li>局部类用得最少，在需要命名类型且只在方法内使用时</li>
+</ul>
+<h3 id="第25条：限制源文件为单个顶级类"><a href="#第25条：限制源文件为单个顶级类" class="headerlink" title="第25条：限制源文件为单个顶级类"></a>第25条：限制源文件为单个顶级类</h3><p>不要在一个源文件中放多个顶级类。</p>
+<ul>
+<li>可能导致编译顺序依赖，产生难以诊断的问题</li>
+<li>若多个顶级类必须在一起，考虑用静态成员类放入一个类中</li>
+<li>或将类放入不同源文件</li>
+</ul>
+<hr>
+<h2 id="第5章-泛型"><a href="#第5章-泛型" class="headerlink" title="第5章 泛型"></a>第5章 泛型</h2><h3 id="第26条：请不要使用原生态类型"><a href="#第26条：请不要使用原生态类型" class="headerlink" title="第26条：请不要使用原生态类型"></a>第26条：请不要使用原生态类型</h3><p>泛型（Generic）在编译时提供类型安全检查。</p>
+<ul>
+<li>原生态类型（Raw Type）：如<code>List</code>而非<code>List&lt;String&gt;</code></li>
+<li>使用原生态类型会失去泛型的所有安全性和表达性优势</li>
+<li>错误会延迟到运行时（ClassCastException）而非编译时</li>
+<li><code>List&lt;Object&gt;</code>与原生态<code>List</code>不同：前者是参数化类型，编译器会检查；后者逃避检查</li>
+<li><code>List&lt;?&gt;</code>（无限制通配符）是安全的，可放入任何元素但不能添加（除null）</li>
+</ul>
+<p>例外：</p>
+<ul>
+<li>必须在类字面量中使用原生态类型（<code>List.class</code>合法，<code>List&lt;String&gt;.class</code>不合法）</li>
+<li><code>instanceof</code>操作中必须用原生态类型（<code>o instanceof Set</code>），之后转换为通配符类型<code>Set&lt;?&gt;</code></li>
+</ul>
+<h3 id="第27条：消除非受检的警告"><a href="#第27条：消除非受检的警告" class="headerlink" title="第27条：消除非受检的警告"></a>第27条：消除非受检的警告</h3><p>非受检警告（Unchecked Warning）表示编译器无法保证类型安全。</p>
+<ul>
+<li>应尽可能消除所有非受检警告</li>
+<li>若无法消除，但能证明代码类型安全，用<code>@SuppressWarnings(&quot;unchecked&quot;)</code>注解抑制警告</li>
+<li>注解应放在尽可能小的作用域（局部变量声明优于方法）</li>
+<li>每次使用SuppressWarnings都应加注释说明为什么安全</li>
+</ul>
+<h3 id="第28条：列表优于数组"><a href="#第28条：列表优于数组" class="headerlink" title="第28条：列表优于数组"></a>第28条：列表优于数组</h3><p>数组和泛型有重要区别：</p>
+<ol>
+<li><strong>数组是协变的（covariant）</strong>：Sub是Super的子类型，则<code>Sub[]</code>是<code>Super[]</code>的子类型。这会导致运行时异常（ArrayStoreException）。</li>
+<li><strong>泛型是不变的（invariant）</strong>：<code>List&lt;Sub&gt;</code>不是<code>List&lt;Super&gt;</code>的子类型，编译时就能发现错误。</li>
+<li><strong>数组是具体化的（reified）</strong>：运行时知道并检查元素类型。</li>
+<li><strong>泛型是通过擦除（erasure）实现的</strong>：运行时元素类型被擦除，只在编译时强化。</li>
+</ol>
+<p>由于这些区别，数组和泛型不能很好地混合。</p>
+<ul>
+<li>不能创建泛型数组（<code>new List&lt;String&gt;[]</code>不合法）</li>
+<li>优先使用<code>List&lt;E&gt;</code>而非<code>E[]</code></li>
+<li>泛型在编译时提供类型安全，数组在运行时才检查</li>
+<li>唯一需要数组的场景是性能（列表有包装开销），但通常不值得</li>
+</ul>
+<h3 id="第29条：优先考虑泛型"><a href="#第29条：优先考虑泛型" class="headerlink" title="第29条：优先考虑泛型"></a>第29条：优先考虑泛型</h3><p>泛型类比需要客户端转换的类更安全、更易用。</p>
+<ul>
+<li>将类泛型化通常是值得的</li>
+<li>常见障碍：泛型数组创建不合法<ul>
+<li>解决1：用<code>Object[]</code>存储，读取时强转（有警告但安全）</li>
+<li>解决2：用<code>List&lt;E&gt;</code>代替数组（类型安全但可能有性能差异）</li>
+</ul>
+</li>
+<li>泛型类的类型参数通常用单个大写字母（E表示元素类型，K&#x2F;V表示键&#x2F;值，T表示类型）</li>
+</ul>
+<h3 id="第30条：优先考虑泛型方法"><a href="#第30条：优先考虑泛型方法" class="headerlink" title="第30条：优先考虑泛型方法"></a>第30条：优先考虑泛型方法</h3><p>方法也可以泛型化，尤其是静态工具方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; Set&lt;E&gt; <span class="title function_">union</span><span class="params">(Set&lt;E&gt; s1, Set&lt;E&gt; s2)</span> &#123;</span><br><span class="line">    Set&lt;E&gt; result = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;(s1);</span><br><span class="line">    result.addAll(s2);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>泛型方法不需要像泛型类那样在创建实例时指定类型参数</li>
+<li>类型参数从方法参数推断</li>
+<li>泛型单例工厂：为不可变但适用于多种类型的对象创建泛型工厂（如<code>Collections.reverseOrder</code>）</li>
+<li>递归类型限制（Recursive Type Bound）：<code>&lt;T extends Comparable&lt;T&gt;&gt;</code>表示T可与自身比较</li>
+</ul>
+<h3 id="第31条：利用有限制通配符来提升API的灵活性"><a href="#第31条：利用有限制通配符来提升API的灵活性" class="headerlink" title="第31条：利用有限制通配符来提升API的灵活性"></a>第31条：利用有限制通配符来提升API的灵活性</h3><p>泛型是不变的，有时需要更灵活的类型。</p>
+<ul>
+<li><strong>PECS原则</strong>：Producer-Extends, Consumer-Super<ul>
+<li>生产者（从集合读取）用<code>? extends T</code></li>
+<li>消费者（向集合写入）用<code>? super T</code></li>
+</ul>
+</li>
+<li>示例：<code>Stack&lt;E&gt;.pushAll(Iterable&lt;? extends E&gt; src)</code>，<code>popAll(Collection&lt;? super E&gt; dst)</code></li>
+<li>通配符使方法能接受更广泛的类型</li>
+<li>返回类型不要用通配符（会强制客户端处理通配符）</li>
+<li>比较器（Comparator）通常用<code>? super T</code>（消费者）</li>
+<li>若类型参数在方法声明中只出现一次，考虑用通配符替代</li>
+</ul>
+<h3 id="第32条：谨慎并用泛型和可变参数"><a href="#第32条：谨慎并用泛型和可变参数" class="headerlink" title="第32条：谨慎并用泛型和可变参数"></a>第32条：谨慎并用泛型和可变参数</h3><p>泛型和可变参数（varargs）混合有问题：</p>
+<ul>
+<li>可变参数数组是泛型数组，编译器会创建<code>Object[]</code></li>
+<li>向泛型可变参数数组存储值会导致堆污染（Heap Pollution）</li>
+<li><code>@SafeVarargs</code>注解可抑制警告，但必须确保方法安全</li>
+</ul>
+<p>安全规则：</p>
+<ul>
+<li>不要让泛型可变参数数组对客户端可见（不要返回它）</li>
+<li>不要在泛型可变参数数组中存储值</li>
+<li>安全的用法：只从数组读取，或将数组传给另一个安全方法</li>
+<li>优先用<code>List&lt;E&gt;</code>代替可变参数（类型安全）</li>
+<li><code>@SafeVarargs</code>只能用于不能被重写的方法（static、final、private构造器）</li>
+</ul>
+<h3 id="第33条：优先考虑类型安全的异构容器"><a href="#第33条：优先考虑类型安全的异构容器" class="headerlink" title="第33条：优先考虑类型安全的异构容器"></a>第33条：优先考虑类型安全的异构容器</h3><p>泛型的常见用法是集合（如<code>List&lt;E&gt;</code>），类型参数被限制为固定数量。</p>
+<ul>
+<li>异构容器（Heterogeneous Container）：键是泛型的，每个键可有不同的类型参数</li>
+<li>示例：类型安全的异构容器<code>Favorites</code>，用<code>Class&lt;T&gt;</code>作为键，存储任意类型的对象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">putFavorite</span><span class="params">(Class&lt;T&gt; type, T instance)</span> &#123;</span><br><span class="line">    favorites.put(Objects.requireNonNull(type), type.cast(instance));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T <span class="title function_">getFavorite</span><span class="params">(Class&lt;T&gt; type)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> type.cast(favorites.get(type));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><code>Class.cast</code>方法是动态的<code>instanceof</code>和转换</li>
+<li>限制：不能用不可具体化的类型（如<code>List&lt;String&gt;.class</code>不存在）</li>
+<li>用<code>@SuppressWarnings</code>处理必要的非受检警告</li>
+</ul>
+<hr>
+<h2 id="第6章-枚举和注解"><a href="#第6章-枚举和注解" class="headerlink" title="第6章 枚举和注解"></a>第6章 枚举和注解</h2><h3 id="第34条：用enum代替int常量"><a href="#第34条：用enum代替int常量" class="headerlink" title="第34条：用enum代替int常量"></a>第34条：用enum代替int常量</h3><p>枚举类型是定义一组固定常量的最佳方式。</p>
+<ul>
+<li>int枚举模式（<code>public static final int APPLE_FUJI = 0</code>）有缺陷：<ul>
+<li>无类型安全，可传入任意int</li>
+<li>无命名空间，需前缀</li>
+<li>打印时只显示数字，无意义</li>
+<li>脆弱，int值编译进客户端，值变化需重新编译</li>
+</ul>
+</li>
+<li>Java枚举是完整的类，功能强大：<ul>
+<li>编译时类型安全</li>
+<li>有命名空间</li>
+<li>可添加方法和域</li>
+<li>可实现接口</li>
+<li>可遍历（values()）</li>
+<li>每个枚举常量是单例</li>
+</ul>
+</li>
+<li>枚举常量关联数据：构造器传入数据，用域存储</li>
+<li>枚举常量关联行为：用抽象方法，每个常量实现不同行为（策略枚举）</li>
+</ul>
+<h3 id="第35条：用实例域代替序数"><a href="#第35条：用实例域代替序数" class="headerlink" title="第35条：用实例域代替序数"></a>第35条：用实例域代替序数</h3><p>所有枚举都有<code>ordinal()</code>方法返回常量在枚举中的位置。</p>
+<ul>
+<li>不要依赖ordinal()的值（如用它作为数组索引或计算值）</li>
+<li>问题：常量顺序变化会导致ordinal变化，破坏代码</li>
+<li>正确做法：用实例域存储值<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Ensemble</span> &#123;</span><br><span class="line">    SOLO(<span class="number">1</span>), DUET(<span class="number">2</span>), TRIO(<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> numberOfMusicians;</span><br><span class="line">    Ensemble(<span class="type">int</span> size) &#123; <span class="built_in">this</span>.numberOfMusicians = size; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numberOfMusicians</span><span class="params">()</span> &#123; <span class="keyword">return</span> numberOfMusicians; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>ordinal()仅用于像EnumSet和EnumMap这样的通用数据结构，大多数程序员不需要使用它</li>
+</ul>
+<h3 id="第36条：用EnumSet代替位域"><a href="#第36条：用EnumSet代替位域" class="headerlink" title="第36条：用EnumSet代替位域"></a>第36条：用EnumSet代替位域</h3><p>位域（Bit Field）用int的每一位表示一个选项：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">STYLE_BOLD</span> <span class="operator">=</span> <span class="number">1</span> &lt;&lt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">STYLE_ITALIC</span> <span class="operator">=</span> <span class="number">1</span> &lt;&lt; <span class="number">1</span>;</span><br><span class="line">text.applyStyles(STYLE_BOLD | STYLE_ITALIC);</span><br></pre></td></tr></table></figure>
+<p>缺点：</p>
+<ul>
+<li>类型不安全，int枚举模式的所有问题</li>
+<li>打印时是位模式，难以理解</li>
+<li>需手动遍历所有位</li>
+</ul>
+<p><strong>EnumSet</strong>：</p>
+<ul>
+<li>基于位域实现，性能相当</li>
+<li>类型安全，是Set的实现</li>
+<li>丰富的Set操作（removeAll、retainAll等）</li>
+<li>不可变？不，EnumSet是可变的（但可用Collections.unmodifiableSet包装）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.applyStyles(EnumSet.of(Style.BOLD, Style.ITALIC));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="第37条：用EnumMap代替序数索引"><a href="#第37条：用EnumMap代替序数索引" class="headerlink" title="第37条：用EnumMap代替序数索引"></a>第37条：用EnumMap代替序数索引</h3><p>不要用<code>ordinal()</code>作为数组索引。</p>
+<ul>
+<li>问题：数组与枚举的对应关系脆弱，枚举变化需同步修改数组</li>
+<li>正确做法：用EnumMap<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Plant.LifeCycle, Set&lt;Plant&gt;&gt; plantsByLifeCycle = <span class="keyword">new</span> <span class="title class_">EnumMap</span>&lt;&gt;(Plant.LifeCycle.class);</span><br></pre></td></tr></table></figure></li>
+<li>EnumMap内部用数组实现，性能与序数索引相当</li>
+<li>类型安全，键是枚举类型</li>
+<li>可嵌套使用（EnumMap的EnumMap）</li>
+</ul>
+<h3 id="第38条：用接口模拟可扩展的枚举"><a href="#第38条：用接口模拟可扩展的枚举" class="headerlink" title="第38条：用接口模拟可扩展的枚举"></a>第38条：用接口模拟可扩展的枚举</h3><p>枚举类型不可扩展（不能继承另一个枚举），但有时需要可扩展的操作集合。</p>
+<ul>
+<li>用接口定义操作类型，枚举实现接口</li>
+<li>客户端可定义新枚举实现同一接口，扩展操作</li>
+<li>示例：<code>Operation</code>接口，<code>BasicOperation</code>枚举实现它，<code>ExtendedOperation</code>枚举扩展它</li>
+<li>限制：枚举实现不能互相继承（但可通过接口共享行为）</li>
+<li>用<code>Class&lt;? extends Operation&gt;</code>传递枚举类型，用<code>getEnumConstants()</code>获取所有常量</li>
+</ul>
+<h3 id="第39条：注解优先于命名模式"><a href="#第39条：注解优先于命名模式" class="headerlink" title="第39条：注解优先于命名模式"></a>第39条：注解优先于命名模式</h3><p>命名模式（Naming Pattern）用方法名约定表示特殊含义（如JUnit 3的<code>testXxx</code>方法）。<br>缺点：</p>
+<ul>
+<li>拼写错误不会报错（<code>tsetXxx</code>不会被识别）</li>
+<li>无法保证只用于正确的程序元素</li>
+<li>没有参数化能力</li>
+</ul>
+<p><strong>注解（Annotation）</strong>：</p>
+<ul>
+<li>编译时检查，拼写错误立即报错</li>
+<li>可限定适用的程序元素（@Target）</li>
+<li>可带参数</li>
+<li>示例：JUnit 4的@Test注解</li>
+<li>自定义注解：声明注解类型，用元注解（@Retention、@Target），编写注解处理器</li>
+</ul>
+<h3 id="第40条：坚持使用Override注解"><a href="#第40条：坚持使用Override注解" class="headerlink" title="第40条：坚持使用Override注解"></a>第40条：坚持使用Override注解</h3><p>在想要覆盖超类方法的方法声明上始终使用<code>@Override</code>注解。</p>
+<ul>
+<li>编译器会检查是否真的覆盖了方法</li>
+<li>防止因签名错误导致的”覆盖”变成”重载”（如参数类型错误）</li>
+<li>覆盖接口方法也应使用@Override（虽然不是必须，但保持一致）</li>
+<li>唯一例外：抽象方法覆盖（抽象方法覆盖抽象方法不需要，但用了也无害）</li>
+</ul>
+<h3 id="第41条：用标记接口定义类型"><a href="#第41条：用标记接口定义类型" class="headerlink" title="第41条：用标记接口定义类型"></a>第41条：用标记接口定义类型</h3><p>标记接口（Marker Interface）是不含方法声明的接口，仅用于标记类具有某种属性（如Serializable、Cloneable、RandomAccess）。</p>
+<p>标记接口 vs 标记注解：</p>
+<ul>
+<li>标记接口的优势：<ul>
+<li>定义类型，可在编译时检查（<code>if (o instanceof Marker)</code>）</li>
+<li>可被更精确地限定（接口只能被类实现，注解可用于任何元素）</li>
+</ul>
+</li>
+<li>标记注解的优势：<ul>
+<li>可带参数（更灵活）</li>
+<li>可在框架中统一处理（如JUnit的@Test）</li>
+</ul>
+</li>
+<li>选择：<ul>
+<li>若标记定义类型且需要编译时检查 → 标记接口</li>
+<li>若标记需要参数或只用于类&#x2F;方法以外的元素 → 标记注解</li>
+<li>若标记用于框架且可能演化 → 标记注解</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第7章-Lambda和Stream"><a href="#第7章-Lambda和Stream" class="headerlink" title="第7章 Lambda和Stream"></a>第7章 Lambda和Stream</h2><h3 id="第42条：Lambda优先于匿名类"><a href="#第42条：Lambda优先于匿名类" class="headerlink" title="第42条：Lambda优先于匿名类"></a>第42条：Lambda优先于匿名类</h3><p>Lambda表达式是创建函数对象的简洁方式，Java 8引入。</p>
+<ul>
+<li>匿名类冗长，Lambda简洁<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匿名类</span></span><br><span class="line">Collections.sort(words, <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(String s1, String s2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Integer.compare(s1.length(), s2.length());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// Lambda</span></span><br><span class="line">Collections.sort(words, (s1, s2) -&gt; Integer.compare(s1.length(), s2.length()));</span><br></pre></td></tr></table></figure></li>
+<li>Lambda的类型从上下文推断（目标类型）</li>
+<li>Lambda参数类型通常可省略</li>
+<li>方法引用进一步简化（见第43条）</li>
+<li>Lambda不能引用自身（this指向外部类），需要递归时用方法引用或匿名类</li>
+<li>Lambda不应序列化（用匿名类或方法引用替代）</li>
+</ul>
+<h3 id="第43条：方法引用优先于Lambda"><a href="#第43条：方法引用优先于Lambda" class="headerlink" title="第43条：方法引用优先于Lambda"></a>第43条：方法引用优先于Lambda</h3><p>方法引用（Method Reference）是Lambda的更简洁形式。</p>
+<ul>
+<li>四种方法引用：<ul>
+<li>静态方法：<code>Integer::parseInt</code> → <code>x -&gt; Integer.parseInt(x)</code></li>
+<li>实例方法（绑定接收者）：<code>Instant.now()::isAfter</code> → <code>t -&gt; Instant.now().isAfter(t)</code></li>
+<li>实例方法（未绑定接收者）：<code>String::toLowerCase</code> → <code>s -&gt; s.toLowerCase()</code></li>
+<li>构造器：<code>TreeMap&lt;K,V&gt;::new</code> → <code>() -&gt; new TreeMap&lt;&gt;()</code></li>
+</ul>
+</li>
+<li>方法引用通常比Lambda更简洁、更清晰</li>
+<li>若Lambda比方法引用更短或更清晰，用Lambda（罕见）</li>
+</ul>
+<h3 id="第44条：坚持使用标准的函数接口"><a href="#第44条：坚持使用标准的函数接口" class="headerlink" title="第44条：坚持使用标准的函数接口"></a>第44条：坚持使用标准的函数接口</h3><p>Java 8在<code>java.util.function</code>包中提供了43个标准函数接口。</p>
+<ul>
+<li>优先使用这些标准接口，而非自己定义</li>
+<li>六大基础接口：<ul>
+<li><code>UnaryOperator&lt;T&gt;</code>：T→T</li>
+<li><code>BinaryOperator&lt;T&gt;</code>：(T,T)→T</li>
+<li><code>Predicate&lt;T&gt;</code>：T→boolean</li>
+<li><code>Function&lt;T,R&gt;</code>：T→R</li>
+<li><code>Supplier&lt;T&gt;</code>：→T</li>
+<li><code>Consumer&lt;T&gt;</code>：T→void</li>
+</ul>
+</li>
+<li>基本类型变体：<code>IntPredicate</code>、<code>LongFunction</code>等（避免装箱）</li>
+<li>何时自定义函数接口：<ul>
+<li>需要特殊命名（如<code>Comparator&lt;T&gt;</code>虽可被<code>BiFunction</code>替代，但命名有价值）</li>
+<li>有严格契约（如<code>Comparator</code>的契约）</li>
+<li>从自定义接口受益</li>
+</ul>
+</li>
+<li>用<code>@FunctionalInterface</code>注解标记函数接口（防止意外添加抽象方法）</li>
+</ul>
+<h3 id="第45条：谨慎使用Stream"><a href="#第45条：谨慎使用Stream" class="headerlink" title="第45条：谨慎使用Stream"></a>第45条：谨慎使用Stream</h3><p>Stream API（Java 8）提供声明式数据处理，但不应过度使用。</p>
+<ul>
+<li>Stream由源（集合、数组等）、中间操作（filter、map等）、终端操作（collect、forEach等）组成</li>
+<li>中间操作是惰性的，直到终端操作才执行</li>
+<li>Stream的优势：简洁、声明式、可并行</li>
+<li>过度使用Stream的问题：<ul>
+<li>代码难以阅读和维护</li>
+<li>某些操作在Stream中不自然（如需要跟踪多个中间值）</li>
+</ul>
+</li>
+<li>经验法则：<ul>
+<li>任务适合用Stream时用Stream（数据转换、过滤、聚合）</li>
+<li>不适合时用迭代（需要修改局部变量、复杂控制流）</li>
+<li>可以混合使用（Stream处理一部分，迭代处理另一部分）</li>
+</ul>
+</li>
+<li>不要用Stream并行处理，除非有充分理由（见第48条）</li>
+</ul>
+<h3 id="第46条：优先选择Stream中无副作用的函数"><a href="#第46条：优先选择Stream中无副作用的函数" class="headerlink" title="第46条：优先选择Stream中无副作用的函数"></a>第46条：优先选择Stream中无副作用的函数</h3><p>Stream管道中的函数应是无副作用的（pure function）。</p>
+<ul>
+<li>不要在forEach中做有副作用的操作（如修改外部集合）</li>
+<li>forEach应仅用于报告Stream计算结果，而非计算本身</li>
+<li>正确做法：用collect终端操作将结果收集到集合中</li>
+<li>Collectors类提供丰富的收集器：<ul>
+<li><code>toList()</code>、<code>toSet()</code>、<code>toMap()</code></li>
+<li><code>groupingBy()</code>：分组</li>
+<li><code>joining()</code>：字符串连接</li>
+<li><code>counting()</code>、<code>summingInt()</code>、<code>averagingDouble()</code></li>
+<li><code>maxBy()</code>、<code>minBy()</code></li>
+<li><code>partitioningBy()</code>：分区</li>
+</ul>
+</li>
+<li>收集器（Collector）是Stream的强大工具，应熟悉并使用</li>
+</ul>
+<h3 id="第47条：Stream要优先用Collection作为返回类型"><a href="#第47条：Stream要优先用Collection作为返回类型" class="headerlink" title="第47条：Stream要优先用Collection作为返回类型"></a>第47条：Stream要优先用Collection作为返回类型</h3><p>编写返回多个元素的方法时，优先返回Collection（或其子类型），而非Stream。</p>
+<ul>
+<li>Collection是Iterable，可用于for-each循环</li>
+<li>Collection可转换为Stream（stream()）</li>
+<li>Stream不能直接用于for-each（需先转换）</li>
+<li>返回Stream迫使调用者在需要迭代时做额外工作</li>
+<li>若返回的集合可能很大且内存是问题，可考虑返回Stream（但需文档化）</li>
+<li>标准库中<code>Files.lines()</code>返回Stream是因为文件可能很大</li>
+<li>对于大多数方法，返回合适的Collection（List、Set）是最佳选择</li>
+</ul>
+<h3 id="第48条：谨慎使用Stream并行"><a href="#第48条：谨慎使用Stream并行" class="headerlink" title="第48条：谨慎使用Stream并行"></a>第48条：谨慎使用Stream并行</h3><p>Stream的<code>parallel()</code>方法可使管道并行执行，但不总是提高性能。</p>
+<ul>
+<li>并行Stream在ForkJoinPool中执行</li>
+<li>并行的前提：<ul>
+<li>数据源可高效拆分（ArrayList、数组、IntStream.range效果好；LinkedList、Stream.iterate效果差）</li>
+<li>终端操作可高效合并（reduce、collect效果好；forEach效果差）</li>
+<li>操作是无状态的、CPU密集的</li>
+</ul>
+</li>
+<li>并行可能降低性能（线程管理开销、拆分开销）</li>
+<li>并行可能导致错误（有状态的lambda）</li>
+<li>并行仅在数据量大、操作耗时、CPU有空闲核心时才值得</li>
+<li>不要在生产代码中随意使用parallel，应先测量性能</li>
+<li>并行Stream使用公共ForkJoinPool，一个慢任务可能影响其他并行Stream</li>
+</ul>
+<hr>
+<h2 id="第8章-方法"><a href="#第8章-方法" class="headerlink" title="第8章 方法"></a>第8章 方法</h2><h3 id="第49条：检查参数的有效性"><a href="#第49条：检查参数的有效性" class="headerlink" title="第49条：检查参数的有效性"></a>第49条：检查参数的有效性</h3><p>大多数方法和构造器对参数有约束。</p>
+<ul>
+<li>应在方法开头检查参数有效性，违反约束时抛出适当异常</li>
+<li>公有方法用Javadoc的<code>@throws</code>文档化异常</li>
+<li>常见异常：<ul>
+<li><code>NullPointerException</code>：参数为null</li>
+<li><code>IllegalArgumentException</code>：参数值非法</li>
+<li><code>IndexOutOfBoundsException</code>：索引越界</li>
+<li><code>IllegalStateException</code>：对象状态不允许调用</li>
+</ul>
+</li>
+<li><code>Objects.requireNonNull</code>检查非空（灵活简洁）</li>
+<li>非公有方法可用断言（assert）检查参数（断言可在运行时禁用）</li>
+<li>检查参数有效性不仅是为了错误检测，也是为了文档化方法约束</li>
+<li>有时参数有效性检查代价大，可在计算过程中自然检测（如排序时的比较）</li>
+</ul>
+<h3 id="第50条：必要时进行保护性拷贝"><a href="#第50条：必要时进行保护性拷贝" class="headerlink" title="第50条：必要时进行保护性拷贝"></a>第50条：必要时进行保护性拷贝</h3><p>Java是安全的语言，但仍需主动防御以保护类的不变式。</p>
+<ul>
+<li>若方法接收可变对象参数，且方法需要存储该对象或其引用，应进行保护性拷贝</li>
+<li>否则客户端可在方法返回后修改对象，破坏类的不变式</li>
+<li>示例：Period类的构造器接收Date参数，应拷贝后存储<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Period</span><span class="params">(Date start, Date end)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.start = <span class="keyword">new</span> <span class="title class_">Date</span>(start.getTime());</span><br><span class="line">    <span class="built_in">this</span>.end = <span class="keyword">new</span> <span class="title class_">Date</span>(end.getTime());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>访问方法也应返回可变域的拷贝（而非原始引用）</li>
+<li>保护性拷贝在参数检查之前进行（防止TOCTOU攻击：检查后、使用前被修改）</li>
+<li>对于不可变参数（如String、Integer），无需拷贝</li>
+<li>保护性拷贝有性能代价，仅在必要时使用</li>
+</ul>
+<h3 id="第51条：谨慎设计方法签名"><a href="#第51条：谨慎设计方法签名" class="headerlink" title="第51条：谨慎设计方法签名"></a>第51条：谨慎设计方法签名</h3><p>好的方法签名应易于记忆和使用。</p>
+<ul>
+<li>方法名应符合命名惯例，可理解、自解释</li>
+<li>避免过长的参数列表（目标≤4个）<ul>
+<li>若参数多，可拆分方法（每个方法处理部分参数）</li>
+<li>用辅助类（如Builder模式）封装参数</li>
+<li>用对象适配器（将参数组合为对象）</li>
+</ul>
+</li>
+<li>参数类型优先用接口而非类（如Map而非HashMap）</li>
+<li>优先用基本类型而非装箱基本类型（避免NPE和性能开销）</li>
+<li>避免使用相同类型的多个连续参数（容易传反，编译时不报错）</li>
+</ul>
+<h3 id="第52条：慎用重载"><a href="#第52条：慎用重载" class="headerlink" title="第52条：慎用重载"></a>第52条：慎用重载</h3><p>重载（Overloading）方法的选择在编译时决定（静态分派），与重写（Override，运行时决定）不同。</p>
+<ul>
+<li>重载方法的选择基于参数的编译时类型，而非运行时类型</li>
+<li>这可能导致意外行为：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译时类型是Collection，运行时可能是List/Set</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">classify</span><span class="params">(Set&lt;?&gt; s)</span> &#123; <span class="keyword">return</span> <span class="string">&quot;Set&quot;</span>; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">classify</span><span class="params">(List&lt;?&gt; l)</span> &#123; <span class="keyword">return</span> <span class="string">&quot;List&quot;</span>; &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">classify</span><span class="params">(Collection&lt;?&gt; c)</span> &#123; <span class="keyword">return</span> <span class="string">&quot;Unknown Collection&quot;</span>; &#125;</span><br><span class="line"><span class="comment">// 遍历Collection&lt;?&gt;，每个元素调用classify，都会调用Collection版本</span></span><br></pre></td></tr></table></figure></li>
+<li>安全的重载策略：<ul>
+<li>避免多个重载方法有相同数量的参数</li>
+<li>若参数数量相同，确保参数类型有根本差异（不能互相转换）</li>
+<li>可使用不同方法名而非重载（如ObjectOutputStream的writeInt、writeLong等）</li>
+</ul>
+</li>
+<li>构造器重载特别危险（无法用不同方法名），可用静态工厂替代</li>
+</ul>
+<h3 id="第53条：慎用可变参数"><a href="#第53条：慎用可变参数" class="headerlink" title="第53条：慎用可变参数"></a>第53条：慎用可变参数</h3><p>可变参数（varargs）方法接受0个或多个指定类型的参数。</p>
+<ul>
+<li>每次调用可变参数方法都会创建并初始化一个数组</li>
+<li>若性能关键且方法频繁调用，可重载固定参数数量的版本（如<code>EnumSet.of</code>有1到5个参数的重载，超过5个才用varargs）</li>
+<li>可变参数方法可接受0个参数，若至少需要1个参数，应声明1个固定参数+可变参数</li>
+<li>不要在可变参数方法中返回数组（可能暴露内部数组）</li>
+<li>泛型与可变参数混合有问题（见第32条）</li>
+</ul>
+<h3 id="第54条：返回零长度的数组或者集合，而不是null"><a href="#第54条：返回零长度的数组或者集合，而不是null" class="headerlink" title="第54条：返回零长度的数组或者集合，而不是null"></a>第54条：返回零长度的数组或者集合，而不是null</h3><p>返回null的方法迫使调用者在每次使用前检查null。</p>
+<ul>
+<li>零长度数组或集合是合法的返回值，表示”没有元素”</li>
+<li>返回null容易导致NPE（调用者忘记检查）</li>
+<li>零长度数组可重用（不可变的零长度数组是单例）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Cheese[] EMPTY_CHEESE_ARRAY = <span class="keyword">new</span> <span class="title class_">Cheese</span>[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">public</span> Cheese[] getCheeses() &#123;</span><br><span class="line">    <span class="keyword">return</span> cheesesInStock.toArray(EMPTY_CHEESE_ARRAY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>集合返回<code>Collections.emptyList()</code>、<code>emptySet()</code>、<code>emptyMap()</code></li>
+<li>不要为了”性能”返回null（零长度集合&#x2F;数组开销极小）</li>
+</ul>
+<h3 id="第55条：谨慎返回Optional"><a href="#第55条：谨慎返回Optional" class="headerlink" title="第55条：谨慎返回Optional"></a>第55条：谨慎返回Optional</h3><p><code>Optional&lt;T&gt;</code>表示可能缺失的返回值，是不可变的容器，可包含0或1个非null元素。</p>
+<ul>
+<li>无法返回结果时，返回Optional比返回null更安全（强迫调用者处理缺失情况）</li>
+<li>但Optional不应被滥用：<ul>
+<li>容器类型（集合、映射、Stream、数组）不应包装在Optional中（返回空集合即可）</li>
+<li>基本类型不应使用Optional（用OptionalInt等，或直接返回默认值）</li>
+</ul>
+</li>
+<li>Optional的方法：<ul>
+<li><code>isPresent()</code>：检查是否有值</li>
+<li><code>get()</code>：获取值（无值抛异常，应避免直接用）</li>
+<li><code>orElse(default)</code>：有值返回值，无值返回默认</li>
+<li><code>orElseGet(supplier)</code>：有值返回值，无值从supplier获取</li>
+<li><code>orElseThrow(exceptionSupplier)</code>：有值返回值，无值抛异常</li>
+<li><code>ifPresent(consumer)</code>：有值则执行consumer</li>
+<li><code>map()</code>、<code>flatMap()</code>、<code>filter()</code>：Stream-like操作</li>
+</ul>
+</li>
+<li>永远不要返回null的Optional（应返回Optional.empty()）</li>
+<li>Optional是为返回值设计的，不应作为域、参数或集合元素</li>
+</ul>
+<h3 id="第56条：为所有导出的API元素编写文档注释"><a href="#第56条：为所有导出的API元素编写文档注释" class="headerlink" title="第56条：为所有导出的API元素编写文档注释"></a>第56条：为所有导出的API元素编写文档注释</h3><p>API文档是API最重要的部分之一。</p>
+<ul>
+<li>Javadoc工具从文档注释生成HTML文档</li>
+<li>应为每个导出的类、接口、方法、构造器、字段编写文档注释</li>
+<li>方法文档应描述：<ul>
+<li>方法做什么（而非怎么做）</li>
+<li>前置条件（@param约束）</li>
+<li>后置条件</li>
+<li>副作用（如修改全局状态）</li>
+<li>参数说明（@param）</li>
+<li>返回值说明（@return）</li>
+<li>异常说明（@throws，包括未检查异常）</li>
+<li>线程安全性</li>
+<li>序列化形式</li>
+</ul>
+</li>
+<li>Javadoc标签：<code>@param</code>、<code>@return</code>、<code>@throws</code>、<code>@see</code>、<code>@since</code>、<code>@serial</code>、<code>@deprecated</code></li>
+<li>文档注释应在代码之前，用<code>/** ... */</code></li>
+<li>生成文档时用<code>-Xdoclint:all</code>检查问题</li>
+<li>文档注释应简洁、准确、可读</li>
+</ul>
+<hr>
+<h2 id="第9章-通用编程"><a href="#第9章-通用编程" class="headerlink" title="第9章 通用编程"></a>第9章 通用编程</h2><h3 id="第57条：将局部变量的作用域最小化"><a href="#第57条：将局部变量的作用域最小化" class="headerlink" title="第57条：将局部变量的作用域最小化"></a>第57条：将局部变量的作用域最小化</h3><p>局部变量的作用域应尽可能小。</p>
+<ul>
+<li>在第一次使用变量的地方声明它</li>
+<li>几乎每个局部变量声明都应包含初始化器（若初始化依赖条件，用最小的if块）</li>
+<li>优先使用for循环而非while循环（for循环的循环变量作用域限制在循环内）</li>
+<li>for-each循环优先于传统for循环（见第58条）</li>
+<li>方法小而聚焦（大方法中变量作用域自然更大）</li>
+</ul>
+<h3 id="第58条：for-each循环优先于传统的for循环"><a href="#第58条：for-each循环优先于传统的for循环" class="headerlink" title="第58条：for-each循环优先于传统的for循环"></a>第58条：for-each循环优先于传统的for循环</h3><p>for-each循环（增强for循环）在Java 5引入，遍历集合和数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Element e : elements) &#123;</span><br><span class="line">    <span class="comment">// 使用e</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>优点：<ul>
+<li>简洁，无索引变量和边界检查</li>
+<li>避免索引越界</li>
+<li>避免循环变量错误（如嵌套循环中用错索引）</li>
+<li>对任何Iterable都有效</li>
+</ul>
+</li>
+<li>三种不能用for-each的情况：<ol>
+<li>需要删除元素（需用显式迭代器的remove方法，Java 8+可用removeIf）</li>
+<li>需要替换元素（数组或列表，需索引）</li>
+<li>需要并行遍历多个集合</li>
+</ol>
+</li>
+<li>for-each循环有微小性能开销，但通常可忽略</li>
+</ul>
+<h3 id="第59条：了解和使用类库"><a href="#第59条：了解和使用类库" class="headerlink" title="第59条：了解和使用类库"></a>第59条：了解和使用类库</h3><p>标准类库提供了大量经过测试、优化的功能。</p>
+<ul>
+<li>优先使用标准库而非自己实现</li>
+<li>优点：<ul>
+<li>经过充分测试，bug少</li>
+<li>性能优化（专家实现）</li>
+<li>维护成本低</li>
+<li>代码可读性高（其他程序员熟悉）</li>
+</ul>
+</li>
+<li>常见被忽视的类库：<ul>
+<li><code>java.util</code>：集合框架</li>
+<li><code>java.util.concurrent</code>：并发工具</li>
+<li><code>java.math</code>：BigInteger、BigDecimal</li>
+<li><code>java.util.regex</code>：正则表达式</li>
+<li><code>java.security</code>：安全相关</li>
+</ul>
+</li>
+<li>每个主要版本都应了解新类库功能</li>
+<li>不要重复造轮子</li>
+</ul>
+<h3 id="第60条：如果需要精确的答案，请避免使用float和double"><a href="#第60条：如果需要精确的答案，请避免使用float和double" class="headerlink" title="第60条：如果需要精确的答案，请避免使用float和double"></a>第60条：如果需要精确的答案，请避免使用float和double</h3><p>float和double是二进制浮点类型，不适合精确计算（如货币）。</p>
+<ul>
+<li>0.1不能精确表示为二进制浮点数</li>
+<li><code>1.00 - 9 * 0.10</code>结果不是0.10，而是0.09999999999999998</li>
+<li>解决方案：<ul>
+<li><code>BigDecimal</code>：完全精确，但性能差、代码冗长</li>
+<li><code>int</code>或<code>long</code>：用最小单位计算（如货币用分而非元），性能好</li>
+</ul>
+</li>
+<li>float和double适用于科学计算、工程计算（近似值可接受）</li>
+<li>不要用<code>==</code>比较浮点数（用误差范围比较）</li>
+</ul>
+<h3 id="第61条：基本类型优先于装箱基本类型"><a href="#第61条：基本类型优先于装箱基本类型" class="headerlink" title="第61条：基本类型优先于装箱基本类型"></a>第61条：基本类型优先于装箱基本类型</h3><p>基本类型（int、double等）和装箱基本类型（Integer、Double等）有重要区别：</p>
+<ol>
+<li>基本类型只有值，装箱类型有身份（引用）</li>
+<li>基本类型有功能完备的值，装箱类型有非功能值null</li>
+<li>基本类型时间和空间效率更高</li>
+</ol>
+<p>问题：</p>
+<ul>
+<li><code>Integer</code>的<code>==</code>比较身份而非值（两个值相同的Integer可能不相等）</li>
+<li>装箱类型为null时自动拆箱抛NPE</li>
+<li>自动装箱&#x2F;拆箱有性能开销</li>
+<li>混合比较时，装箱类型被拆箱（可能NPE）</li>
+</ul>
+<p>选择：</p>
+<ul>
+<li>优先用基本类型</li>
+<li>装箱类型用于：泛型类型参数（不能用基本类型）、需要null表示、反射</li>
+<li>不要用<code>==</code>比较装箱类型（用<code>equals</code>或先拆箱）</li>
+</ul>
+<h3 id="第62条：如果其他类型更适合，则尽量避免使用字符串"><a href="#第62条：如果其他类型更适合，则尽量避免使用字符串" class="headerlink" title="第62条：如果其他类型更适合，则尽量避免使用字符串"></a>第62条：如果其他类型更适合，则尽量避免使用字符串</h3><p>字符串被滥用的情况：</p>
+<ul>
+<li>用字符串表示枚举值（应用枚举类型，见第34条）</li>
+<li>用字符串表示聚合类型（应用类，如姓名+年龄+地址）</li>
+<li>用字符串表示能力（用接口或标记接口）</li>
+<li>用字符串编码数据（如用<code>&quot;key=value&quot;</code>字符串，应用Map或类）</li>
+</ul>
+<p>字符串的问题：</p>
+<ul>
+<li>不灵活，难以操作</li>
+<li>性能差（字符串解析开销）</li>
+<li>容易出错（拼写错误、格式错误）</li>
+<li>无法编译时检查</li>
+</ul>
+<p>只有当数据确实是文本时才用字符串。</p>
+<h3 id="第63条：了解字符串连接的性能"><a href="#第63条：了解字符串连接的性能" class="headerlink" title="第63条：了解字符串连接的性能"></a>第63条：了解字符串连接的性能</h3><p>字符串连接操作符<code>+</code>是构建字符串的便捷方式，但不适合大规模使用。</p>
+<ul>
+<li>每次<code>+</code>操作创建新字符串，复制所有字符</li>
+<li>n个字符串连接用<code>+</code>的时间复杂度是O(n²)</li>
+<li>大量连接时用<code>StringBuilder</code>（或<code>StringBuffer</code>，线程安全但慢）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"><span class="keyword">for</span> (String s : strings) &#123;</span><br><span class="line">    sb.append(s);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> sb.toString();</span><br></pre></td></tr></table></figure></li>
+<li>少量连接（如固定几个字符串）用<code>+</code>没问题（编译器会优化）</li>
+<li>不要在循环中用<code>+=</code>连接字符串</li>
+<li><code>StringBuilder</code>应指定初始容量（避免多次扩容）</li>
+</ul>
+<h3 id="第64条：通过接口引用对象"><a href="#第64条：通过接口引用对象" class="headerlink" title="第64条：通过接口引用对象"></a>第64条：通过接口引用对象</h3><p>应使用接口类型而非实现类引用对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 好</span></span><br><span class="line">List&lt;Subscriber&gt; subscribers = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">// 不好</span></span><br><span class="line">ArrayList&lt;Subscriber&gt; subscribers = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>优点：<ul>
+<li>程序更灵活（可轻松替换实现，如ArrayList→LinkedList）</li>
+<li>API更稳定（接口比实现更稳定）</li>
+</ul>
+</li>
+<li>若需要实现类特有的方法（如ArrayList的ensureCapacity），可用实现类引用</li>
+<li>若没有合适的接口（如String、value class），用类引用</li>
+<li>框架基类（如AbstractList）比实现类好，但接口更好</li>
+</ul>
+<h3 id="第65条：接口优先于反射机制"><a href="#第65条：接口优先于反射机制" class="headerlink" title="第65条：接口优先于反射机制"></a>第65条：接口优先于反射机制</h3><p>反射（Reflection）允许程序在运行时访问类信息、调用方法、访问域。</p>
+<ul>
+<li>反射的代价：<ul>
+<li>失去编译时类型检查（错误延迟到运行时）</li>
+<li>代码冗长笨拙</li>
+<li>性能开销（反射调用比直接调用慢）</li>
+</ul>
+</li>
+<li>反射适用于：<ul>
+<li>工具（如调试器、分析器、代码生成器）</li>
+<li>依赖注入框架（如Spring）</li>
+<li>序列化框架</li>
+</ul>
+</li>
+<li>普通应用程序应避免反射</li>
+<li>若必须使用反射，用接口限制反射的使用范围：<ul>
+<li>反射创建实例，用接口类型引用</li>
+<li>只在创建对象时用反射，调用方法用接口</li>
+</ul>
+</li>
+<li>反射可能抛出运行时异常（ClassNotFoundException、NoSuchMethodException等），需处理</li>
+</ul>
+<h3 id="第66条：谨慎地使用本地方法"><a href="#第66条：谨慎地使用本地方法" class="headerlink" title="第66条：谨慎地使用本地方法"></a>第66条：谨慎地使用本地方法</h3><p>JNI（Java Native Interface）允许Java调用C&#x2F;C++等本地方法。</p>
+<ul>
+<li>本地方法的用途：<ul>
+<li>访问平台特定功能（如注册表）</li>
+<li>访问遗留C代码库</li>
+<li>性能关键部分（但现代JVM的JIT编译器通常足够快）</li>
+</ul>
+</li>
+<li>本地方法的缺点：<ul>
+<li>不安全（内存错误、缓冲区溢出）</li>
+<li>不可移植（需为每个平台编译）</li>
+<li>调试困难</li>
+<li>性能不一定更好（JNI调用有开销，JIT无法优化跨边界代码）</li>
+<li>增加构建复杂度</li>
+</ul>
+</li>
+<li>除非必要，不要使用本地方法</li>
+<li>若使用，尽量减少本地代码量， thorough测试</li>
+</ul>
+<h3 id="第67条：谨慎地进行优化"><a href="#第67条：谨慎地进行优化" class="headerlink" title="第67条：谨慎地进行优化"></a>第67条：谨慎地进行优化</h3><p>优化有三条规则：</p>
+<ol>
+<li>不要优化</li>
+<li>（仅对专家）不要优化，先确保正确</li>
+<li>优化前先测量（profile）</li>
+</ol>
+<ul>
+<li>不成熟的优化是万恶之源</li>
+<li>优化可能引入bug、降低可读性、增加维护成本</li>
+<li>大多数性能问题来自算法和数据结构选择，而非代码微调</li>
+<li>优化前用profiler测量，找到瓶颈</li>
+<li>优化后再次测量，确认改进</li>
+<li>好的API设计比微优化更重要（好的API自然高效）</li>
+<li>考虑性能时关注大O复杂度，而非常数因子</li>
+</ul>
+<h3 id="第68条：遵守普遍接受的命名惯例"><a href="#第68条：遵守普遍接受的命名惯例" class="headerlink" title="第68条：遵守普遍接受的命名惯例"></a>第68条：遵守普遍接受的命名惯例</h3><p>Java有完善的命名惯例，应遵守。</p>
+<ul>
+<li><strong>类和接口</strong>：PascalCase（如<code>Timer</code>、<code>FutureTask</code>），缩写全大写（如<code>HTTPURLConnection</code>，现代风格<code>HttpURLConnection</code>）</li>
+<li><strong>方法</strong>：camelCase（如<code>remove</code>、<code>ensureCapacity</code>），动词或动词短语</li>
+<li><strong>域（字段）</strong>：<ul>
+<li>非final实例域：camelCase（如<code>width</code>）</li>
+<li>final静态常量：UPPER_SNAKE_CASE（如<code>MAX_VALUE</code>）</li>
+<li>其他静态域：camelCase</li>
+</ul>
+</li>
+<li><strong>局部变量</strong>：camelCase，可缩写（如<code>i</code>、<code>j</code>、<code>buf</code>）</li>
+<li><strong>包</strong>：全小写，点分隔（如<code>com.google.common.collect</code>），不用下划线</li>
+<li>类型参数：单个大写字母（如<code>T</code>、<code>E</code>、<code>K</code>、<code>V</code>、<code>R</code>、<code>X</code>、<code>T1</code>、<code>T2</code>）</li>
+<li>命名应传达含义，避免无意义名称（如<code>a</code>、<code>b</code>，除非循环变量）</li>
+<li>遵守惯例使代码更易读、更易维护</li>
+</ul>
+<hr>
+<h2 id="第10章-异常"><a href="#第10章-异常" class="headerlink" title="第10章 异常"></a>第10章 异常</h2><h3 id="第69条：只针对异常的情况才使用异常"><a href="#第69条：只针对异常的情况才使用异常" class="headerlink" title="第69条：只针对异常的情况才使用异常"></a>第69条：只针对异常的情况才使用异常</h3><p>异常不应用于正常控制流。</p>
+<ul>
+<li>异常的设计目的是处理异常情况</li>
+<li>用异常控制流的问题：<ul>
+<li>代码意图不清晰</li>
+<li>性能差（JVM不会优化异常路径）</li>
+<li>可能掩盖真正的bug（异常被catch后忽略）</li>
+</ul>
+</li>
+<li>示例：不要用<code>try &#123; while(true) iterator.next(); &#125; catch(NoSuchElementException e) &#123;&#125;</code>遍历迭代器，应用<code>hasNext()</code>检查</li>
+<li>正确做法：用状态检查方法（<code>hasNext()</code>、<code>isClosed()</code>）或返回Optional&#x2F;特殊值表示可预期的结果</li>
+</ul>
+<h3 id="第70条：对可恢复的情况使用受检异常，对编程错误使用运行时异常"><a href="#第70条：对可恢复的情况使用受检异常，对编程错误使用运行时异常" class="headerlink" title="第70条：对可恢复的情况使用受检异常，对编程错误使用运行时异常"></a>第70条：对可恢复的情况使用受检异常，对编程错误使用运行时异常</h3><p>Java有三种可抛出结构：受检异常、运行时异常、错误。</p>
+<ul>
+<li><strong>受检异常（Checked Exception）</strong>：编译器要求处理（catch或声明throws）<ul>
+<li>用于可恢复的情况（如文件不存在、网络中断）</li>
+<li>调用者可合理地恢复</li>
+<li>每个受检异常都应提供恢复所需的信息（如getter方法）</li>
+</ul>
+</li>
+<li><strong>运行时异常（RuntimeException）</strong>：未受检，不要求处理<ul>
+<li>用于编程错误（如数组越界、空指针、非法参数）</li>
+<li>通常是不可恢复的（修复代码bug）</li>
+<li>所有未受检异常应继承RuntimeException</li>
+</ul>
+</li>
+<li><strong>错误（Error）</strong>：未受检，用于JVM资源不足、不变式失败等<ul>
+<li>程序通常无法恢复，不应catch</li>
+<li>所有Error应继承Error</li>
+</ul>
+</li>
+<li>不要定义不是受检异常、运行时异常、错误的Throwable子类</li>
+</ul>
+<h3 id="第71条：避免不必要地使用受检异常"><a href="#第71条：避免不必要地使用受检异常" class="headerlink" title="第71条：避免不必要地使用受检异常"></a>第71条：避免不必要地使用受检异常</h3><p>受检异常迫使调用者处理异常，增加代码复杂度。</p>
+<ul>
+<li>若调用者无法合理恢复，用运行时异常</li>
+<li>若方法可通过状态检查避免异常，提供状态检查方法（如<code>Iterator.hasNext()</code>）</li>
+<li>若无法避免且可恢复，用受检异常</li>
+<li>受检异常使API更难使用（尤其是Lambda和Stream中）</li>
+<li>可用Optional返回值替代”无结果”的受检异常</li>
+</ul>
+<h3 id="第72条：优先使用标准的异常"><a href="#第72条：优先使用标准的异常" class="headerlink" title="第72条：优先使用标准的异常"></a>第72条：优先使用标准的异常</h3><p>重用标准异常使API更易学习和使用。</p>
+<ul>
+<li>常用标准异常：<ul>
+<li><code>IllegalArgumentException</code>：参数值非法</li>
+<li><code>IllegalStateException</code>：对象状态不允许操作</li>
+<li><code>NullPointerException</code>：参数为null（用Objects.requireNonNull）</li>
+<li><code>IndexOutOfBoundsException</code>：索引越界</li>
+<li><code>ConcurrentModificationException</code>：并发修改检测</li>
+<li><code>UnsupportedOperationException</code>：不支持的操作</li>
+<li><code>ArithmeticException</code>：算术错误</li>
+<li><code>NumberFormatException</code>：数字格式错误</li>
+</ul>
+</li>
+<li>不要重复发明异常类型</li>
+<li>选择最贴切的异常（如参数非法用IllegalArgumentException而非通用Exception）</li>
+<li>可继承标准异常添加域（但通常不需要）</li>
+</ul>
+<h3 id="第73条：抛出与抽象相对应的异常"><a href="#第73条：抛出与抽象相对应的异常" class="headerlink" title="第73条：抛出与抽象相对应的异常"></a>第73条：抛出与抽象相对应的异常</h3><p>方法抛出的异常应与方法的抽象层次一致。</p>
+<ul>
+<li>低层异常不应直接泄漏到高层（如SQLException从业务方法抛出）</li>
+<li>异常转译（Exception Translation）：捕获低层异常，抛出对应高层抽象的异常<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 使用低层资源</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (LowerLevelException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">HigherLevelException</span>(...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>异常链（Exception Chaining）：将原始异常作为cause传入新异常（<code>new HigherLevelException(cause)</code>），保留原始信息</li>
+<li>并非所有异常都需转译（若低层异常恰好适合高层抽象，可直接传播）</li>
+<li>转译不应过度（不要每层都转译）</li>
+</ul>
+<h3 id="第74条：每个方法抛出的所有异常都要有文档"><a href="#第74条：每个方法抛出的所有异常都要有文档" class="headerlink" title="第74条：每个方法抛出的所有异常都要有文档"></a>第74条：每个方法抛出的所有异常都要有文档</h3><p>文档化异常是API文档的重要部分。</p>
+<ul>
+<li>用Javadoc的<code>@throws</code>标签文档化每个受检异常</li>
+<li>未受检异常也应文档化（虽然编译器不要求）</li>
+<li>文档应说明：<ul>
+<li>什么情况下抛出异常</li>
+<li>异常的含义</li>
+<li>如何恢复（若可恢复）</li>
+</ul>
+</li>
+<li>接口方法的异常文档应适用于所有实现</li>
+<li>不要在文档中列出”可能抛出”的异常（应精确）</li>
+<li>用<code>@throws</code>而非<code>@exception</code>（后者已过时）</li>
+</ul>
+<h3 id="第75条：在细节消息中包含能捕获失败的信息"><a href="#第75条：在细节消息中包含能捕获失败的信息" class="headerlink" title="第75条：在细节消息中包含能捕获失败的信息"></a>第75条：在细节消息中包含能捕获失败的信息</h3><p>异常的详细消息（detail message）应包含足够信息诊断失败。</p>
+<ul>
+<li>应包含：<ul>
+<li>失败相关的参数值</li>
+<li>失败相关的对象状态</li>
+<li>失败的原因</li>
+</ul>
+</li>
+<li>示例：<code>IndexOutOfBoundsException</code>应包含下界、上界、索引值</li>
+<li>不要在详细消息中包含敏感信息（密码、密钥等）</li>
+<li>详细消息是给程序员看的（诊断用），不是给用户看的</li>
+<li>为异常提供getter方法获取失败信息（而非仅依赖字符串消息）</li>
+</ul>
+<h3 id="第76条：努力使失败保持原子性"><a href="#第76条：努力使失败保持原子性" class="headerlink" title="第76条：努力使失败保持原子性"></a>第76条：努力使失败保持原子性</h3><p>失败的方法调用应使对象保持在调用前的状态（失败原子性）。</p>
+<ul>
+<li>实现方式：<ol>
+<li>不可变对象（天然失败原子性）</li>
+<li>在修改对象前检查参数有效性（先验证后修改）</li>
+<li>调整操作顺序，使可能失败的部分在修改对象之前</li>
+<li>在对象的临时拷贝上操作，成功后替换原对象</li>
+<li>编写恢复代码，回滚到之前状态（复杂，少用）</li>
+</ol>
+</li>
+<li>并非所有方法都能保证失败原子性（如并发修改、I&#x2F;O操作）</li>
+<li>若无法保证，应文档化失败后对象的状态</li>
+</ul>
+<h3 id="第77条：不要忽略异常"><a href="#第77条：不要忽略异常" class="headerlink" title="第77条：不要忽略异常"></a>第77条：不要忽略异常</h3><p>空catch块（忽略异常）是危险的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 操作</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (SomeException e) &#123;</span><br><span class="line">    <span class="comment">// 空！忽略异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>忽略异常可能导致：<ul>
+<li>程序在错误状态下继续运行</li>
+<li>难以诊断的bug</li>
+<li>数据损坏</li>
+</ul>
+</li>
+<li>至少应：<ul>
+<li>记录异常（用日志框架）</li>
+<li>重新抛出（让上层处理）</li>
+<li>转换为更合适的异常</li>
+</ul>
+</li>
+<li>若确实可以忽略异常（如关闭资源时的异常），应加注释说明原因，并将异常变量命名为<code>ignored</code></li>
+<li>空catch块是代码审查的重点</li>
+</ul>
+<hr>
+<h2 id="第11章-并发"><a href="#第11章-并发" class="headerlink" title="第11章 并发"></a>第11章 并发</h2><h3 id="第78条：同步访问共享的可变数据"><a href="#第78条：同步访问共享的可变数据" class="headerlink" title="第78条：同步访问共享的可变数据"></a>第78条：同步访问共享的可变数据</h3><p><code>synchronized</code>关键字确保同一时刻只有一个线程执行方法或代码块。</p>
+<ul>
+<li>同步不仅是互斥，也是内存可见性（Java内存模型）</li>
+<li>若没有同步，一个线程的修改可能对其他线程不可见（由于寄存器、缓存、指令重排序）</li>
+<li>共享可变数据必须同步访问</li>
+<li>不可变数据不需要同步</li>
+<li>尽量避免共享可变数据（线程限制、不可变对象、并发数据结构）</li>
+<li><code>volatile</code>关键字保证可见性但不保证原子性（适合状态标志位，不适合计数器）</li>
+<li>长整型<code>long</code>和<code>double</code>的读写不是原子的（除非volatile）</li>
+<li>优先使用<code>java.util.concurrent</code>中的并发工具（原子类、并发集合、同步器）</li>
+</ul>
+<h3 id="第79条：避免过度同步"><a href="#第79条：避免过度同步" class="headerlink" title="第79条：避免过度同步"></a>第79条：避免过度同步</h3><p>过度同步会导致性能问题、死锁、活性失败。</p>
+<ul>
+<li>同步方法或块中不要调用外来方法（可被重写的方法、客户端传入的方法）<ul>
+<li>外来方法可能获取其他锁（死锁）</li>
+<li>外来方法可能耗时过长（性能问题）</li>
+<li>外来方法可能修改对象状态（破坏不变式）</li>
+</ul>
+</li>
+<li>应将外来方法移到同步块之外（先在同步块中获取数据，再在同步块外调用方法）</li>
+<li>同步块应尽可能短（只保护需要保护的操作）</li>
+<li>不要在同步块中做耗时操作（I&#x2F;O、等待）</li>
+<li>对于活跃的并发数据结构，用内部细粒度同步而非外部粗粒度同步</li>
+</ul>
+<h3 id="第80条：executor、task和stream优先于线程"><a href="#第80条：executor、task和stream优先于线程" class="headerlink" title="第80条：executor、task和stream优先于线程"></a>第80条：executor、task和stream优先于线程</h3><p><code>java.util.concurrent.Executor</code>框架是管理线程的标准方式。</p>
+<ul>
+<li>不要直接创建和管理线程（<code>new Thread(r).start()</code>）</li>
+<li>用<code>ExecutorService</code>：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ExecutorService</span> <span class="variable">exec</span> <span class="operator">=</span> Executors.newSingleThreadExecutor();</span><br><span class="line">exec.execute(runnable);</span><br><span class="line">exec.shutdown();</span><br></pre></td></tr></table></figure></li>
+<li>线程池的优势：<ul>
+<li>复用线程（避免创建销毁开销）</li>
+<li>控制并发数</li>
+<li>任务队列</li>
+<li>统计和监控</li>
+</ul>
+</li>
+<li>选择线程池：<ul>
+<li><code>newFixedThreadPool</code>：固定线程数</li>
+<li><code>newCachedThreadPool</code>：弹性线程数（适合短任务）</li>
+<li><code>newSingleThreadExecutor</code>：单线程（保证顺序）</li>
+<li><code>newScheduledThreadPool</code>：定时任务</li>
+</ul>
+</li>
+<li>对于大程序，用自定义ThreadPoolExecutor（控制核心线程数、最大线程数、队列、拒绝策略）</li>
+<li>ForkJoinPool用于并行Stream和分治任务</li>
+<li>不要用<code>Timer</code>（用ScheduledThreadPoolExecutor替代，Timer有线程泄漏和异常处理问题）</li>
+</ul>
+<h3 id="第81条：并发工具优先于wait和notify"><a href="#第81条：并发工具优先于wait和notify" class="headerlink" title="第81条：并发工具优先于wait和notify"></a>第81条：并发工具优先于wait和notify</h3><p><code>java.util.concurrent</code>提供高级并发工具，优于底层的wait&#x2F;notify。</p>
+<ul>
+<li>并发工具分类：<ol>
+<li><strong>执行器框架</strong>（Executor）：见第80条</li>
+<li><strong>并发集合</strong>：ConcurrentHashMap、ConcurrentLinkedQueue、BlockingQueue等</li>
+<li><strong>同步器</strong>：CountDownLatch、Semaphore、CyclicBarrier、Exchanger、Phaser</li>
+</ol>
+</li>
+<li>并发集合内部已同步，性能优于外部同步的集合<ul>
+<li>ConcurrentHashMap：高并发哈希表</li>
+<li>CopyOnWriteArrayList：读多写少场景</li>
+<li>BlockingQueue：生产者-消费者模式</li>
+</ul>
+</li>
+<li>同步器用于线程间协调：<ul>
+<li>CountDownLatch：一个或多个线程等待其他线程完成</li>
+<li>Semaphore：限制并发数</li>
+<li>CyclicBarrier：多个线程互相等待到达屏障</li>
+</ul>
+</li>
+<li>wait&#x2F;notify是底层机制，难以正确使用（易丢失信号、虚假唤醒）</li>
+<li>若必须用wait&#x2F;notify，用while循环检查条件（而非if），在同步块中调用</li>
+</ul>
+<h3 id="第82条：线程安全性的文档化"><a href="#第82条：线程安全性的文档化" class="headerlink" title="第82条：线程安全性的文档化"></a>第82条：线程安全性的文档化</h3><p>线程安全性是API承诺的一部分，应文档化。</p>
+<ul>
+<li>线程安全性级别：<ol>
+<li><strong>不可变</strong>：类实例不可变，无需外部同步（如String、Long）</li>
+<li><strong>无条件线程安全</strong>：类实例可变，但内部有足够同步，可自由使用（如AtomicLong、ConcurrentHashMap）</li>
+<li><strong>有条件线程安全</strong>：某些方法组合需要外部同步（如Collections.synchronized集合的迭代）</li>
+<li><strong>非线程安全</strong>：类实例可变，使用时需外部同步（如ArrayList、HashMap）</li>
+<li><strong>线程对立</strong>：即使外部同步也不安全（罕见，如Thread.stop）</li>
+</ol>
+</li>
+<li>应在类的Javadoc中说明线程安全性级别</li>
+<li>有条件线程安全应说明哪些方法组合需要同步、用什么锁</li>
+<li>不要在文档中说”线程安全”而不说明含义</li>
+<li>私有锁对象（<code>private final Object lock = new Object()</code>）可防止客户端代码干扰同步</li>
+</ul>
+<h3 id="第83条：慎用延迟初始化"><a href="#第83条：慎用延迟初始化" class="headerlink" title="第83条：慎用延迟初始化"></a>第83条：慎用延迟初始化</h3><p>延迟初始化（Lazy Initialization）是在第一次需要时才初始化域。</p>
+<ul>
+<li>目的：<ul>
+<li>避免不必要的初始化开销（若域从不使用）</li>
+<li>打破初始化循环</li>
+</ul>
+</li>
+<li>代价：<ul>
+<li>代码复杂</li>
+<li>可能引入线程安全问题</li>
+<li>访问延迟初始化域有性能开销</li>
+</ul>
+</li>
+<li>大多数情况下，正常初始化（声明时初始化）优于延迟初始化</li>
+<li>若需要延迟初始化：<ul>
+<li>单线程环境：简单检查即可</li>
+<li>多线程环境：<ul>
+<li>静态域：用holder class模式（初始化器类）</li>
+<li>实例域：用双重检查锁定模式（double-check locking）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 双重检查锁定</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> FieldType field;</span><br><span class="line"><span class="keyword">private</span> FieldType <span class="title function_">getField</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">FieldType</span> <span class="variable">result</span> <span class="operator">=</span> field;</span><br><span class="line">    <span class="keyword">if</span> (result == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="built_in">this</span>) &#123;</span><br><span class="line">            result = field;</span><br><span class="line">            <span class="keyword">if</span> (result == <span class="literal">null</span>) &#123;</span><br><span class="line">                field = result = computeFieldValue();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不要用延迟初始化作为性能优化的借口（先测量确认需要）</li>
+</ul>
+<h3 id="第84条：不要依赖于线程调度器"><a href="#第84条：不要依赖于线程调度器" class="headerlink" title="第84条：不要依赖于线程调度器"></a>第84条：不要依赖于线程调度器</h3><p>线程调度器决定哪些线程运行、运行多久。</p>
+<ul>
+<li>程序正确性不应依赖线程调度器的具体行为</li>
+<li><code>Thread.yield()</code>和线程优先级是高度不可移植的</li>
+<li>不要用<code>Thread.yield()</code>或线程优先级”修复”并发问题</li>
+<li>若程序某些线程无法获得CPU时间，应减少线程数或用Executor控制并发</li>
+<li>线程优先级可用于改善服务质量（如后台线程低优先级），但不应依赖它保证正确性</li>
+<li>忙等待（busy-waiting）是糟糕的实践（浪费CPU，依赖调度器），用wait&#x2F;notify或并发工具替代</li>
+</ul>
+<hr>
+<h2 id="第12章-序列化"><a href="#第12章-序列化" class="headerlink" title="第12章 序列化"></a>第12章 序列化</h2><h3 id="第85条：Java序列化优先考虑其他方式"><a href="#第85条：Java序列化优先考虑其他方式" class="headerlink" title="第85条：Java序列化优先考虑其他方式"></a>第85条：Java序列化优先考虑其他方式</h3><p>Java序列化（Serialization）是危险的，应优先考虑其他方式。</p>
+<ul>
+<li>Java序列化的问题：<ul>
+<li>攻击面大（反序列化漏洞可导致远程代码执行）</li>
+<li>复杂且难以正确实现</li>
+<li>性能差</li>
+<li>不跨语言</li>
+</ul>
+</li>
+<li>替代方案：<ul>
+<li>JSON（Jackson、Gson）：文本格式，跨语言，人类可读</li>
+<li>Protocol Buffers（protobuf）：二进制格式，跨语言，高效，有schema</li>
+<li>Apache Avro：二进制格式，schema演化</li>
+<li>XML：冗长但成熟</li>
+</ul>
+</li>
+<li>这些格式不支持引用共享和循环引用，但通常不需要</li>
+<li>若必须使用Java序列化（如遗留系统），严格遵循后续条目</li>
+</ul>
+<h3 id="第86条：谨慎地实现Serializable"><a href="#第86条：谨慎地实现Serializable" class="headerlink" title="第86条：谨慎地实现Serializable"></a>第86条：谨慎地实现Serializable</h3><p>实现Serializable接口有代价，应谨慎。</p>
+<ul>
+<li>实现Serializable的代价：<ul>
+<li>降低类改变的灵活性（序列化形式成为API的一部分）</li>
+<li>增加bug和安全漏洞的可能性</li>
+<li>增加测试负担</li>
+<li>内部表示泄漏（私有域也被序列化）</li>
+</ul>
+</li>
+<li>为继承而设计的类应尽量不实现Serializable（除非必要）</li>
+<li>内部类不应实现Serializable（编译器生成的字段不稳定）</li>
+<li>若类可序列化，需认真设计序列化形式</li>
+<li>考虑自定义序列化形式（writeObject&#x2F;readObject）而非默认形式</li>
+</ul>
+<h3 id="第87条：考虑使用自定义的序列化形式"><a href="#第87条：考虑使用自定义的序列化形式" class="headerlink" title="第87条：考虑使用自定义的序列化形式"></a>第87条：考虑使用自定义的序列化形式</h3><p>默认序列化形式编码对象的物理表示（所有非transient域），可能不适合。</p>
+<ul>
+<li>选择序列化形式的原则：<ul>
+<li>应编码对象的逻辑内容，而非物理表示</li>
+<li>应尽量独立于类的实现</li>
+</ul>
+</li>
+<li>若默认形式合理（域表示逻辑状态，无循环引用），可用默认形式</li>
+<li>若默认形式不合理（如表示链表、树、稀疏数组），应自定义形式</li>
+<li>自定义序列化：<ul>
+<li>声明非逻辑域为transient</li>
+<li>实现writeObject和readObject</li>
+<li>writeObject先调用defaultWriteObject（若有非transient域），再写自定义数据</li>
+<li>readObject先调用defaultReadObject，再读自定义数据</li>
+</ul>
+</li>
+<li>序列化形式应文档化（用@serial、@serialField、@serialData标签）</li>
+</ul>
+<h3 id="第88条：保护性地编写readObject方法"><a href="#第88条：保护性地编写readObject方法" class="headerlink" title="第88条：保护性地编写readObject方法"></a>第88条：保护性地编写readObject方法</h3><p>readObject方法相当于一个”隐式构造器”，必须像构造器一样检查参数有效性。</p>
+<ul>
+<li>反序列化时，readObject接收字节流，可能是恶意构造的</li>
+<li>readObject必须：<ol>
+<li>检查参数有效性（对象不变式）</li>
+<li>进行保护性拷贝（可变域）</li>
+<li>不要调用可被重写的方法</li>
+</ol>
+</li>
+<li>反序列化的对象可能处于非法状态，必须验证</li>
+<li>对于引用其他对象的域，反序列化后可能被篡改（攻击者可修改字节流中的引用）</li>
+<li>解决方案：反序列化后检查引用是否指向预期类型，或用保护性拷贝重建对象</li>
+<li>若类有安全敏感的不变式，用readResolve或序列化代理模式</li>
+</ul>
+<h3 id="第89条：对于实例控制，枚举类型优先于readResolve"><a href="#第89条：对于实例控制，枚举类型优先于readResolve" class="headerlink" title="第89条：对于实例控制，枚举类型优先于readResolve"></a>第89条：对于实例控制，枚举类型优先于readResolve</h3><p>readResolve方法允许替换反序列化的对象，用于实例控制（如Singleton）。</p>
+<ul>
+<li>若Singleton实现Serializable，反序列化会创建新实例（破坏Singleton）</li>
+<li>readResolve返回替换对象（如INSTANCE），反序列化的对象被丢弃</li>
+<li>但readResolve有问题：<ul>
+<li>若域是对象引用类型，攻击者可在readResolve之前窃取引用</li>
+<li>需将所有域声明为transient（否则攻击面大）</li>
+</ul>
+</li>
+<li>更好的方式：用单元素枚举实现Singleton（见第3条）<ul>
+<li>枚举无偿提供序列化保护</li>
+<li>防反射攻击</li>
+<li>简洁</li>
+</ul>
+</li>
+<li>若不能用枚举（如必须继承其他类），用readResolve并确保所有域为transient或基本类型</li>
+</ul>
+<h3 id="第90条：考虑用序列化代理代替序列化实例"><a href="#第90条：考虑用序列化代理代替序列化实例" class="headerlink" title="第90条：考虑用序列化代理代替序列化实例"></a>第90条：考虑用序列化代理代替序列化实例</h3><p>序列化代理模式（Serialization Proxy Pattern）是实现安全序列化的最佳方式。</p>
+<ul>
+<li>思路：<ol>
+<li>定义私有静态嵌套类作为序列化代理（包含外部类的逻辑状态）</li>
+<li>外部类的writeObject抛出异常（防止直接序列化），或用writeReplace返回代理</li>
+<li>代理的writeObject序列化代理状态</li>
+<li>代理的readResolve重建外部类实例</li>
+</ol>
+</li>
+<li>优点：<ul>
+<li>外部类的不变式在readResolve中通过构造器检查（自动验证）</li>
+<li>不受字节流篡改影响（代理只包含逻辑状态）</li>
+<li>不需要readObject的复杂检查</li>
+<li>可反序列化为不同实现类</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>代码略多</li>
+<li>有微小性能开销</li>
+</ul>
+</li>
+<li>序列化代理模式是实现Serializable的最安全方式，应优先考虑</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Effective Java》是Java领域最经典的最佳实践书籍，由Joshua Bloch（Java集合框架、java.math包的设计者）撰写。第3版覆盖Java 7、8、9的新特性。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第2章</td>
+<td>创建和销毁对象</td>
+<td>静态工厂、Builder、Singleton、依赖注入、避免不必要对象、try-with-resources</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>所有对象通用方法</td>
+<td>equals、hashCode、toString、clone、Comparable</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>类和接口</td>
+<td>封装、不可变性、复合优先继承、接口优于抽象类、嵌套类</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>泛型</td>
+<td>原生态类型、列表优于数组、泛型类&#x2F;方法、通配符、异构容器</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>枚举和注解</td>
+<td>enum代替int常量、EnumSet&#x2F;EnumMap、注解优先命名模式、标记接口</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>Lambda和Stream</td>
+<td>Lambda、方法引用、函数接口、Stream谨慎使用、无副作用函数、并行谨慎</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>方法</td>
+<td>参数检查、保护性拷贝、方法签名、重载、可变参数、Optional、文档注释</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>通用编程</td>
+<td>局部变量作用域、for-each、类库、基本类型、字符串、反射、优化、命名</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>异常</td>
+<td>异常用于异常情况、受检vs运行时、标准异常、异常转译、失败原子性</td>
+</tr>
+<tr>
+<td>第11章</td>
+<td>并发</td>
+<td>同步共享可变数据、避免过度同步、Executor、并发工具、线程安全文档</td>
+</tr>
+<tr>
+<td>第12章</td>
+<td>序列化</td>
+<td>序列化替代方案、谨慎实现Serializable、自定义序列化、readObject安全、序列化代理</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>本书不是通读型书籍，而是参考型书籍，可按主题查阅</li>
+<li>每条规则都有代码示例和反例，建议动手实践</li>
+<li>第2-4章是基础，所有Java开发者都应掌握</li>
+<li>第7章（Lambda&#x2F;Stream）是Java 8+的核心，现代Java开发必备</li>
+<li>第11章（并发）是进阶内容，多线程开发必须掌握</li>
+<li>第12章（序列化）提醒我们Java序列化的危险性，实际开发中优先用JSON&#x2F;protobuf</li>
+<li>配合《Java核心技术》或《Java编程思想》学习效果更好</li>
+<li>代码审查时可将本书规则作为检查清单</li>
+</ul>
+<p>这本书适合所有Java开发者，从初学者到资深工程师都能从中受益，是Java领域必读的经典之作。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/Effective-Java/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/Effective-Java/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式：可复用面向对象软件的基础</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/">算法导论</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Effective-Java%EF%BC%88%E5%8E%9F%E4%B9%A6%E7%AC%AC3%E7%89%88%EF%BC%89"><span class="toc-text">Effective Java（原书第3版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%BC%95%E8%A8%80"><span class="toc-text">第1章 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1"><span class="toc-text">第2章 创建和销毁对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E5%AF%B9%E4%BA%8E%E6%89%80%E6%9C%89%E5%AF%B9%E8%B1%A1%E9%83%BD%E9%80%9A%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">第3章 对于所有对象都通用的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3"><span class="toc-text">第4章 类和接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E6%B3%9B%E5%9E%8B"><span class="toc-text">第5章 泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3"><span class="toc-text">第6章 枚举和注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-Lambda%E5%92%8CStream"><span class="toc-text">第7章 Lambda和Stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E6%96%B9%E6%B3%95"><span class="toc-text">第8章 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B"><span class="toc-text">第9章 通用编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%BC%82%E5%B8%B8"><span class="toc-text">第10章 异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-%E5%B9%B6%E5%8F%91"><span class="toc-text">第11章 并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">第12章 序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

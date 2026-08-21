@@ -1,0 +1,1477 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Android进阶解密 - 码上弦音</title>
+
+  
+    <meta name="description" content="Android进阶解密 作者：刘望舒全书共17章，613页，深入Android Framework源码，涵盖系统启动、进程启动、四大组件、Context、AMS、WMS、JNI、JVM、Dalvik&#x2F;ART、ClassLoader、热修复、Hook、插件化和性能优化。   第1章 Android系统架构1.1 Android系统架构Android系统采用分层架构，从上到下分为：  应用层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android进阶解密">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Android进阶解密 作者：刘望舒全书共17章，613页，深入Android Framework源码，涵盖系统启动、进程启动、四大组件、Context、AMS、WMS、JNI、JVM、Dalvik&#x2F;ART、ClassLoader、热修复、Hook、插件化和性能优化。   第1章 Android系统架构1.1 Android系统架构Android系统采用分层架构，从上到下分为：  应用层">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T03:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T06:13:11.885Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Framework">
+<meta property="article:tag" content="阅读">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,Framework,阅读">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T03:30:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T06:13:11.885Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Android进阶解密</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Android进阶解密"><a href="#Android进阶解密" class="headerlink" title="Android进阶解密"></a>Android进阶解密</h1><blockquote>
+<p>作者：刘望舒<br>全书共17章，613页，深入Android Framework源码，涵盖系统启动、进程启动、四大组件、Context、AMS、WMS、JNI、JVM、Dalvik&#x2F;ART、ClassLoader、热修复、Hook、插件化和性能优化。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-Android系统架构"><a href="#第1章-Android系统架构" class="headerlink" title="第1章 Android系统架构"></a>第1章 Android系统架构</h2><h3 id="1-1-Android系统架构"><a href="#1-1-Android系统架构" class="headerlink" title="1.1 Android系统架构"></a>1.1 Android系统架构</h3><p>Android系统采用分层架构，从上到下分为：</p>
+<ol>
+<li><strong>应用层（Applications）</strong>：系统应用和第三方应用，运行在ART虚拟机中</li>
+<li><strong>应用框架层（Application Framework）</strong>：Java API框架，包括ActivityManager、WindowManager、ContentProvider、View System、Package Manager、Telephony Manager等</li>
+<li><strong>系统运行库层（Libraries &amp; Android Runtime）</strong>：<ul>
+<li>C&#x2F;C++库：SurfaceFlinger、Media Framework、SQLite、OpenGL ES、WebKit、SGL、FreeType</li>
+<li>Android运行时：ART虚拟机（Android 5.0+）+ 核心Java库</li>
+</ul>
+</li>
+<li><strong>硬件抽象层（HAL）</strong>：封装硬件驱动，向上提供标准接口</li>
+<li><strong>Linux内核层（Linux Kernel）</strong>：进程管理、内存管理、网络协议栈、驱动程序、安全机制</li>
+</ol>
+<h3 id="1-2-Android系统源码目录"><a href="#1-2-Android系统源码目录" class="headerlink" title="1.2 Android系统源码目录"></a>1.2 Android系统源码目录</h3><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>frameworks/base/</code></td>
+<td>核心框架（Java API、系统服务、资源）</td>
+</tr>
+<tr>
+<td><code>frameworks/native/</code></td>
+<td>Native框架（SurfaceFlinger、Binder、SensorService）</td>
+</tr>
+<tr>
+<td><code>system/core/</code></td>
+<td>系统核心（init、adbd、logcat、libcutils）</td>
+</tr>
+<tr>
+<td><code>system/media/</code></td>
+<td>多媒体系统（AudioFlinger、CameraService）</td>
+</tr>
+<tr>
+<td><code>hardware/</code></td>
+<td>硬件抽象层（HAL）</td>
+</tr>
+<tr>
+<td><code>art/</code></td>
+<td>ART虚拟机</td>
+</tr>
+<tr>
+<td><code>dalvik/</code></td>
+<td>Dalvik虚拟机</td>
+</tr>
+<tr>
+<td><code>external/</code></td>
+<td>第三方开源库</td>
+</tr>
+<tr>
+<td><code>packages/</code></td>
+<td>系统应用</td>
+</tr>
+<tr>
+<td><code>kernel/</code></td>
+<td>Linux内核</td>
+</tr>
+<tr>
+<td><code>build/</code></td>
+<td>编译系统（Soong&#x2F;Ninja&#x2F;Make）</td>
+</tr>
+<tr>
+<td><code>prebuilts/</code></td>
+<td>预编译工具链</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-源码阅读"><a href="#1-3-源码阅读" class="headerlink" title="1.3 源码阅读"></a>1.3 源码阅读</h3><p><strong>阅读方法</strong>：</p>
+<ul>
+<li>从宏观到微观，先理解整体架构再深入细节</li>
+<li>结合调用链追踪，从入口方法一路跟到底层</li>
+<li>善用工具：SourceInsight、Android Studio（AOSP导入）、grep&#x2F;ripgrep</li>
+<li>关注关键类和关键方法，不必逐行阅读</li>
+<li>结合时序图和类图理解复杂流程</li>
+</ul>
+<hr>
+<h2 id="第2章-Android系统启动"><a href="#第2章-Android系统启动" class="headerlink" title="第2章 Android系统启动"></a>第2章 Android系统启动</h2><h3 id="2-1-init进程启动过程"><a href="#2-1-init进程启动过程" class="headerlink" title="2.1 init进程启动过程"></a>2.1 init进程启动过程</h3><p>init是Linux系统中用户空间的第一个进程（PID&#x3D;1），是所有进程的父进程。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>内核加载完成后，启动init进程</li>
+<li>init解析<code>/init.rc</code>和<code>/init.&lt;硬件&gt;.rc</code>脚本</li>
+<li>创建文件系统挂载点（&#x2F;dev、&#x2F;proc、&#x2F;sys等）</li>
+<li>启动属性服务（property service）</li>
+<li>启动关键守护进程（ueventd、logd、healthd等）</li>
+<li>启动zygote进程（通过app_process）</li>
+<li>启动servicemanager（Binder服务管理者）</li>
+<li>启动mediaserver、installd等系统服务</li>
+</ol>
+<h3 id="2-2-Zygote进程启动过程"><a href="#2-2-Zygote进程启动过程" class="headerlink" title="2.2 Zygote进程启动过程"></a>2.2 Zygote进程启动过程</h3><p>Zygote（孵化器）是Android系统的核心进程，所有应用进程和SystemServer都由Zygote fork而来。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>init启动app_process，传入参数启动Zygote</li>
+<li>app_process调用AndroidRuntime.start，启动虚拟机</li>
+<li>注册JNI方法</li>
+<li>预加载类和资源（preloadClasses、preloadResources）</li>
+<li>启动SystemServer进程（forkSystemServer）</li>
+<li>进入Zygote循环（runSelectLoop），通过LocalSocket等待创建应用进程的请求</li>
+</ol>
+<p><strong>Zygote的作用</strong>：</p>
+<ul>
+<li>预加载类和资源，子进程fork后共享，减少应用启动时间和内存占用</li>
+<li>统一管理应用进程的创建</li>
+</ul>
+<h3 id="2-3-SystemServer处理过程"><a href="#2-3-SystemServer处理过程" class="headerlink" title="2.3 SystemServer处理过程"></a>2.3 SystemServer处理过程</h3><p>SystemServer是Android系统的核心服务进程，所有重要的系统服务（AMS、WMS、PMS等）都运行在这个进程中。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>Zygote fork出SystemServer进程</li>
+<li>启动Binder线程池</li>
+<li>创建SystemServer对象</li>
+<li>引导服务（Bootstrap Services）：ActivityManagerService、PowerManagerService、PackageManagerService等</li>
+<li>核心服务（Core Services）：BatteryService、UsageStatsService、WebViewUpdateService等</li>
+<li>其他服务（Other Services）：WindowManagerService、InputManagerService、AccessibilityManagerService等</li>
+<li>进入Looper循环</li>
+</ol>
+<h3 id="2-4-Launcher启动过程"><a href="#2-4-Launcher启动过程" class="headerlink" title="2.4 Launcher启动过程"></a>2.4 Launcher启动过程</h3><p>Launcher是Android的桌面应用，是用户看到的第一个界面。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>SystemServer启动完成后，AMS发送开机广播</li>
+<li>AMS调用startHomeActivityLocked启动Launcher</li>
+<li>Launcher的onCreate中加载已安装应用列表</li>
+<li>通过PackageManager获取所有应用信息</li>
+<li>显示应用图标和名称到桌面</li>
+</ol>
+<h3 id="2-5-Android系统启动流程"><a href="#2-5-Android系统启动流程" class="headerlink" title="2.5 Android系统启动流程"></a>2.5 Android系统启动流程</h3><p>完整启动链：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BootROM → BootLoader → Linux Kernel → init → Zygote → SystemServer → 各种系统服务 → Launcher</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第3章-应用程序进程启动过程"><a href="#第3章-应用程序进程启动过程" class="headerlink" title="第3章 应用程序进程启动过程"></a>第3章 应用程序进程启动过程</h2><h3 id="3-1-应用程序进程简介"><a href="#3-1-应用程序进程简介" class="headerlink" title="3.1 应用程序进程简介"></a>3.1 应用程序进程简介</h3><p>每个Android应用运行在独立的进程中，由Zygote fork创建。进程名默认为应用包名，可通过android:process指定。</p>
+<h3 id="3-2-应用程序进程启动过程介绍"><a href="#3-2-应用程序进程启动过程介绍" class="headerlink" title="3.2 应用程序进程启动过程介绍"></a>3.2 应用程序进程启动过程介绍</h3><p><strong>启动流程</strong>：</p>
+<ol>
+<li>调用startActivity启动一个新应用的Activity</li>
+<li>AMS检查应用进程是否存在，不存在则调用startProcessLocked</li>
+<li>AMS通过Process.start向Zygote发送创建进程请求</li>
+<li>Zygote通过LocalSocket接收请求，fork出子进程</li>
+<li>子进程中调用ActivityThread.main</li>
+<li>创建ApplicationThread（Binder对象，用于与AMS通信）</li>
+<li>调用attach方法，向AMS注册ApplicationThread</li>
+<li>AMS调用bindApplication，通过ApplicationThread回调handleBindApplication</li>
+<li>handleBindApplication中创建Application，调用onCreate</li>
+<li>启动目标Activity</li>
+</ol>
+<h3 id="3-3-Binder线程池启动过程"><a href="#3-3-Binder线程池启动过程" class="headerlink" title="3.3 Binder线程池启动过程"></a>3.3 Binder线程池启动过程</h3><p>每个应用进程启动时会创建Binder线程池，用于处理来自系统服务的IPC请求。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>ActivityThread.main中调用Looper.prepareMainLooper</li>
+<li>调用attach(false)，内部调用IActivityManager.attachApplication</li>
+<li>AMS处理attachApplication，调用bindApplication</li>
+<li>应用进程的ApplicationThread.bindApplication中发送消息</li>
+<li>handleBindApplication中初始化各种系统服务客户端</li>
+<li>Binder线程池在进程启动时由AndroidRuntime自动创建（openBinderDriver、startThreadPool）</li>
+</ol>
+<h3 id="3-4-消息循环创建过程"><a href="#3-4-消息循环创建过程" class="headerlink" title="3.4 消息循环创建过程"></a>3.4 消息循环创建过程</h3><p>应用进程的主线程消息循环在ActivityThread.main中创建：</p>
+<ol>
+<li>Looper.prepareMainLooper()：创建主线程Looper和MessageQueue</li>
+<li>创建ActivityThread对象</li>
+<li>Looper.loop()：进入消息循环，不断从MessageQueue取消息并处理</li>
+</ol>
+<hr>
+<h2 id="第4章-四大组件的工作过程"><a href="#第4章-四大组件的工作过程" class="headerlink" title="第4章 四大组件的工作过程"></a>第4章 四大组件的工作过程</h2><h3 id="4-1-根Activity的启动过程"><a href="#4-1-根Activity的启动过程" class="headerlink" title="4.1 根Activity的启动过程"></a>4.1 根Activity的启动过程</h3><p>根Activity是应用启动的第一个Activity。</p>
+<p><strong>启动流程</strong>：</p>
+<ol>
+<li>Launcher点击应用图标，调用startActivity</li>
+<li>Instrumentation.execStartActivity → ActivityManagerService.startActivity</li>
+<li>AMS通过ActivityStarter处理启动请求，检查权限、创建ActivityRecord</li>
+<li>AMS检查应用进程是否存在，不存在则先创建进程（见第3章）</li>
+<li>进程创建后，AMS通过ApplicationThread调用scheduleLaunchActivity</li>
+<li>ActivityThread的H Handler收到LAUNCH_ACTIVITY消息</li>
+<li>handleLaunchActivity → performLaunchActivity</li>
+<li>performLaunchActivity中：<ul>
+<li>通过ClassLoader加载Activity类</li>
+<li>创建Activity实例</li>
+<li>调用attach（创建PhoneWindow、设置WindowManager）</li>
+<li>调用onCreate</li>
+<li>调用onStart</li>
+</ul>
+</li>
+<li>handleResumeActivity → 调用onResume → wm.addView显示DecorView</li>
+</ol>
+<h3 id="4-2-Service的启动过程"><a href="#4-2-Service的启动过程" class="headerlink" title="4.2 Service的启动过程"></a>4.2 Service的启动过程</h3><ol>
+<li>startService → ContextImpl.startService → AMS.startService</li>
+<li>AMS通过ActiveServices处理，创建ServiceRecord</li>
+<li>若进程不存在则先创建进程</li>
+<li>AMS通过ApplicationThread调用scheduleCreateService</li>
+<li>ActivityThread.handleCreateService：加载Service类、创建实例、attach、onCreate</li>
+<li>AMS调用scheduleServiceArgs → handleServiceArgs → onStartCommand</li>
+</ol>
+<h3 id="4-3-Service的绑定过程"><a href="#4-3-Service的绑定过程" class="headerlink" title="4.3 Service的绑定过程"></a>4.3 Service的绑定过程</h3><ol>
+<li>bindService → ContextImpl.bindService → AMS.bindService</li>
+<li>AMS通过ActiveServices处理，若Service未启动则先启动</li>
+<li>Service创建后，调用publishService（通过onBind返回IBinder）</li>
+<li>AMS通过ApplicationThread调用scheduleBindService</li>
+<li>handleBindService → onBind（首次绑定）→ onServiceConnected（ServiceConnection回调）</li>
+</ol>
+<h3 id="4-4-广播的注册、发送和接收过程"><a href="#4-4-广播的注册、发送和接收过程" class="headerlink" title="4.4 广播的注册、发送和接收过程"></a>4.4 广播的注册、发送和接收过程</h3><p><strong>静态注册</strong>：在AndroidManifest中声明，应用安装时由PMS解析，无需应用启动即可接收。</p>
+<p><strong>动态注册</strong>：Context.registerReceiver → AMS.registerReceiver，将ReceiverDispatcher存入AMS。</p>
+<p><strong>发送和接收</strong>：</p>
+<ol>
+<li>sendBroadcast → ContextImpl.sendBroadcast → AMS.broadcastIntent</li>
+<li>AMS通过BroadcastQueue处理，区分有序&#x2F;普通广播</li>
+<li>遍历匹配的Receiver，通过ApplicationThread回调scheduleRegisteredReceiver</li>
+<li>ReceiverDispatcher调用onReceive（动态注册）；静态注册则先启动进程再调用</li>
+</ol>
+<h3 id="4-5-ContentProvider的启动过程"><a href="#4-5-ContentProvider的启动过程" class="headerlink" title="4.5 ContentProvider的启动过程"></a>4.5 ContentProvider的启动过程</h3><ol>
+<li>应用启动时，ActivityThread.handleBindApplication中：<ul>
+<li>installContentProviders（启动ContentProvider）</li>
+<li>Application.onCreate</li>
+</ul>
+</li>
+<li>installContentProviders遍历providers列表，通过AMS.publishContentProviders发布</li>
+<li>ContentProvider创建时调用onCreate（先于Application.onCreate）</li>
+<li>其他应用通过ContentResolver访问时，ContentResolver通过AMS获取ContentProvider的Binder代理（IContentProvider），再通过IPC调用</li>
+</ol>
+<hr>
+<h2 id="第5章-理解上下文Context"><a href="#第5章-理解上下文Context" class="headerlink" title="第5章 理解上下文Context"></a>第5章 理解上下文Context</h2><h3 id="5-1-Context的关联类"><a href="#5-1-Context的关联类" class="headerlink" title="5.1 Context的关联类"></a>5.1 Context的关联类</h3><p>Context是抽象类，具体实现有：</p>
+<ul>
+<li><strong>ContextImpl</strong>：真正的实现类，所有Context方法的具体实现</li>
+<li><strong>ContextWrapper</strong>：Context的包装类，持有mBase（ContextImpl），方法委托给mBase</li>
+<li><strong>Application</strong>：继承ContextWrapper，应用级Context</li>
+<li><strong>Activity</strong>：继承ContextWrapper（通过ContextThemeWrapper），Activity级Context</li>
+<li><strong>Service</strong>：继承ContextWrapper，Service级Context</li>
+</ul>
+<h3 id="5-2-Application-Context的创建过程"><a href="#5-2-Application-Context的创建过程" class="headerlink" title="5.2 Application Context的创建过程"></a>5.2 Application Context的创建过程</h3><ol>
+<li>ActivityThread.handleBindApplication中创建LoadedApk</li>
+<li>LoadedApk.makeApplication创建Application</li>
+<li>创建ContextImpl，通过attach设置为Application的mBase</li>
+<li>调用Application.attach → attachBaseContext</li>
+<li>调用Application.onCreate</li>
+</ol>
+<h3 id="5-3-Application-Context的获取过程"><a href="#5-3-Application-Context的获取过程" class="headerlink" title="5.3 Application Context的获取过程"></a>5.3 Application Context的获取过程</h3><ul>
+<li>**getApplicationContext()**：ContextWrapper中调用mBase.getApplicationContext，返回Application对象</li>
+<li>**getApplication()**：仅Activity和Service有，返回Application对象</li>
+<li>两者返回的都是同一个Application对象</li>
+</ul>
+<h3 id="5-4-Activity的Context创建过程"><a href="#5-4-Activity的Context创建过程" class="headerlink" title="5.4 Activity的Context创建过程"></a>5.4 Activity的Context创建过程</h3><ol>
+<li>performLaunchActivity中创建Activity实例</li>
+<li>创建ContextImpl，设置为Activity的mBase</li>
+<li>调用Activity.attach → attachBaseContext</li>
+<li>attach中创建PhoneWindow，设置WindowManager</li>
+</ol>
+<h3 id="5-5-Service的Context创建过程"><a href="#5-5-Service的Context创建过程" class="headerlink" title="5.5 Service的Context创建过程"></a>5.5 Service的Context创建过程</h3><ol>
+<li>handleCreateService中创建Service实例</li>
+<li>创建ContextImpl，设置为Service的mBase</li>
+<li>调用Service.attach → attachBaseContext</li>
+</ol>
+<hr>
+<h2 id="第6章-理解ActivityManagerService"><a href="#第6章-理解ActivityManagerService" class="headerlink" title="第6章 理解ActivityManagerService"></a>第6章 理解ActivityManagerService</h2><h3 id="6-1-AMS家族"><a href="#6-1-AMS家族" class="headerlink" title="6.1 AMS家族"></a>6.1 AMS家族</h3><p>AMS相关类：</p>
+<ul>
+<li><strong>ActivityManagerService（AMS）</strong>：核心服务，管理四大组件和进程</li>
+<li><strong>ActivityManager</strong>：客户端API，通过Binder调用AMS</li>
+<li><strong>IActivityManager</strong>：AMS的Binder接口</li>
+<li><strong>ActivityStack</strong>：管理一个Activity栈</li>
+<li><strong>ActivityStackSupervisor</strong>：管理所有ActivityStack</li>
+<li><strong>ActivityRecord</strong>：一个Activity的记录</li>
+<li><strong>TaskRecord</strong>：一个任务栈的记录</li>
+<li><strong>ProcessRecord</strong>：一个进程的记录</li>
+</ul>
+<h3 id="6-2-AMS的启动过程"><a href="#6-2-AMS的启动过程" class="headerlink" title="6.2 AMS的启动过程"></a>6.2 AMS的启动过程</h3><ol>
+<li>SystemServer启动时，在引导服务阶段创建AMS</li>
+<li>ActivityManagerService.Lifecycle.startService创建AMS实例</li>
+<li>AMS构造方法中初始化各种数据结构</li>
+<li>setSystemProcess设置系统进程信息</li>
+<li>installSystemProviders安装系统ContentProvider</li>
+<li>systemReady通知系统就绪，启动Launcher</li>
+</ol>
+<h3 id="6-3-AMS与应用程序进程"><a href="#6-3-AMS与应用程序进程" class="headerlink" title="6.3 AMS与应用程序进程"></a>6.3 AMS与应用程序进程</h3><p>AMS通过ProcessRecord管理每个应用进程：</p>
+<ul>
+<li>记录进程名、pid、uid、ApplicationInfo</li>
+<li>管理进程中的Activity、Service、BroadcastReceiver、ContentProvider</li>
+<li>管理进程的优先级（adj值），用于LowMemoryKiller杀进程</li>
+<li>通过ApplicationThread（Binder）与应用进程通信</li>
+</ul>
+<h3 id="6-4-AMS重要的数据结构"><a href="#6-4-AMS重要的数据结构" class="headerlink" title="6.4 AMS重要的数据结构"></a>6.4 AMS重要的数据结构</h3><ul>
+<li><strong>mProcessNames</strong>：进程名到ProcessRecord的映射</li>
+<li><strong>mPidsSelfLocked</strong>：pid到ProcessRecord的映射</li>
+<li><strong>mHistoryStack</strong>：Activity栈管理</li>
+<li><strong>mServices</strong>：ActiveServices，管理所有Service</li>
+<li><strong>mBroadcastQueues</strong>：广播队列（前台&#x2F;后台）</li>
+</ul>
+<h3 id="6-5-Activity栈管理"><a href="#6-5-Activity栈管理" class="headerlink" title="6.5 Activity栈管理"></a>6.5 Activity栈管理</h3><p>AMS通过ActivityStack和ActivityStackSupervisor管理Activity栈：</p>
+<ul>
+<li>每个ActivityRecord记录一个Activity的状态</li>
+<li>每个TaskRecord记录一个任务栈</li>
+<li>ActivityStack管理任务栈的顺序和Activity的生命周期</li>
+<li>支持多种启动模式（standard&#x2F;singleTop&#x2F;singleTask&#x2F;singleInstance）</li>
+<li>管理最近任务列表（RecentTasks）</li>
+</ul>
+<hr>
+<h2 id="第7章-理解WindowManager"><a href="#第7章-理解WindowManager" class="headerlink" title="第7章 理解WindowManager"></a>第7章 理解WindowManager</h2><h3 id="7-1-Window、WindowManager和WMS"><a href="#7-1-Window、WindowManager和WMS" class="headerlink" title="7.1 Window、WindowManager和WMS"></a>7.1 Window、WindowManager和WMS</h3><ul>
+<li><strong>Window</strong>：抽象类，具体实现PhoneWindow，代表一个窗口</li>
+<li><strong>WindowManager</strong>：接口，继承ViewManager，提供addView&#x2F;updateViewLayout&#x2F;removeView</li>
+<li><strong>WindowManagerImpl</strong>：WindowManager的实现类，委托给WindowManagerGlobal</li>
+<li><strong>WindowManagerGlobal</strong>：单例，管理所有Window的添加&#x2F;删除&#x2F;更新</li>
+<li><strong>WindowManagerService（WMS）</strong>：系统服务，运行在SystemServer，管理所有窗口的状态、层级、动画</li>
+</ul>
+<h3 id="7-2-WindowManager的关联类"><a href="#7-2-WindowManager的关联类" class="headerlink" title="7.2 WindowManager的关联类"></a>7.2 WindowManager的关联类</h3><ul>
+<li><strong>ViewRootImpl</strong>：每个Window对应一个ViewRootImpl，连接WindowManager和DecorView，负责View的三大流程（measure&#x2F;layout&#x2F;draw）和事件分发</li>
+<li><strong>WindowManager.LayoutParams</strong>：Window的布局参数，包括type（窗口类型）、flags（窗口标志）、gravity、x&#x2F;y</li>
+<li><strong>IWindowSession</strong>：WindowManager与WMS通信的Binder接口</li>
+<li><strong>IWindow</strong>：WMS回调应用进程的Binder接口（ViewRootImpl.W）</li>
+</ul>
+<h3 id="7-3-Window的属性"><a href="#7-3-Window的属性" class="headerlink" title="7.3 Window的属性"></a>7.3 Window的属性</h3><p><strong>Window类型（type）</strong>：</p>
+<ul>
+<li><strong>应用Window</strong>（1-99）：Activity的Window</li>
+<li><strong>子Window</strong>（1000-1999）：Dialog、PopupWindow，需依附于应用Window</li>
+<li><strong>系统Window</strong>（2000-2999）：Toast、状态栏、锁屏、系统提示，需要权限</li>
+</ul>
+<p>层级越高，显示越靠上。</p>
+<p><strong>Window标志（flags）</strong>：</p>
+<ul>
+<li>FLAG_NOT_FOCUSABLE：不获取焦点</li>
+<li>FLAG_NOT_TOUCH_MODAL：区域外事件传递给下层Window</li>
+<li>FLAG_SHOW_WHEN_LOCKED：锁屏上显示</li>
+<li>FLAG_KEEP_SCREEN_ON：保持屏幕常亮</li>
+<li>FLAG_FULLSCREEN：全屏</li>
+</ul>
+<h3 id="7-4-Window的操作"><a href="#7-4-Window的操作" class="headerlink" title="7.4 Window的操作"></a>7.4 Window的操作</h3><p><strong>添加Window</strong>：</p>
+<ol>
+<li>WindowManager.addView → WindowManagerGlobal.addView</li>
+<li>创建ViewRootImpl</li>
+<li>将View、LayoutParams、ViewRootImpl存入列表</li>
+<li>ViewRootImpl.setView → requestLayout → WindowSession.addWindow → WMS.addWindow</li>
+</ol>
+<p><strong>更新Window</strong>：</p>
+<ol>
+<li>WindowManager.updateViewLayout → WindowManagerGlobal.updateViewLayout</li>
+<li>更新LayoutParams</li>
+<li>ViewRootImpl.setLayoutParams → scheduleTraversals → WindowSession.relayout → WMS.relayout</li>
+</ol>
+<p><strong>删除Window</strong>：</p>
+<ol>
+<li>WindowManager.removeView → WindowManagerGlobal.removeView</li>
+<li>ViewRootImpl.die → dispatchDetachedFromWindow → WindowSession.remove → WMS.removeWindow</li>
+</ol>
+<hr>
+<h2 id="第8章-理解WindowManagerService"><a href="#第8章-理解WindowManagerService" class="headerlink" title="第8章 理解WindowManagerService"></a>第8章 理解WindowManagerService</h2><h3 id="8-1-WMS的职责"><a href="#8-1-WMS的职责" class="headerlink" title="8.1 WMS的职责"></a>8.1 WMS的职责</h3><p>WMS是Android系统的窗口管理服务，核心职责：</p>
+<ul>
+<li>管理所有窗口的添加、删除、更新</li>
+<li>管理窗口的层级（Z-order）和显示顺序</li>
+<li>管理窗口的动画（窗口切换动画、转场动画）</li>
+<li>管理输入事件的分发（通过InputManagerService）</li>
+<li>管理系统界面（状态栏、导航栏、锁屏）</li>
+<li>管理窗口的焦点（哪个Window接收按键事件）</li>
+</ul>
+<h3 id="8-2-WMS的创建过程"><a href="#8-2-WMS的创建过程" class="headerlink" title="8.2 WMS的创建过程"></a>8.2 WMS的创建过程</h3><ol>
+<li>SystemServer启动时，在其他服务阶段创建WMS</li>
+<li>DisplayThread线程中创建WMS（与显示相关的服务运行在这个线程）</li>
+<li>WMS构造方法中初始化：<ul>
+<li>DisplayManager（显示管理）</li>
+<li>InputManagerService（输入管理）</li>
+<li>WindowAnimator（窗口动画）</li>
+<li>WindowStateManager（窗口状态管理）</li>
+<li>各种窗口容器（DisplayContent）</li>
+</ul>
+</li>
+<li>调用systemReady通知系统就绪</li>
+</ol>
+<h3 id="8-3-WMS的重要成员"><a href="#8-3-WMS的重要成员" class="headerlink" title="8.3 WMS的重要成员"></a>8.3 WMS的重要成员</h3><ul>
+<li><strong>mRoot</strong>：RootWindowContainer，所有窗口容器的根</li>
+<li><strong>mDisplayContents</strong>：DisplayContent列表，每个屏幕对应一个</li>
+<li><strong>mWindowMap</strong>：IBinder到WindowState的映射，所有窗口记录</li>
+<li><strong>mAnimator</strong>：WindowAnimator，窗口动画管理</li>
+<li><strong>mInputManager</strong>：InputManagerService，输入事件管理</li>
+<li><strong>mPolicy</strong>：WindowManagerPolicy，窗口策略（PhoneWindowManager）</li>
+<li><strong>mH</strong>：Handler，处理WMS内部消息</li>
+</ul>
+<h3 id="8-4-Window的添加过程（WMS处理部分）"><a href="#8-4-Window的添加过程（WMS处理部分）" class="headerlink" title="8.4 Window的添加过程（WMS处理部分）"></a>8.4 Window的添加过程（WMS处理部分）</h3><ol>
+<li>应用进程通过WindowSession.addWindow调用WMS.addWindow</li>
+<li>WMS检查调用者权限（系统Window需要SYSTEM_ALERT_WINDOW权限）</li>
+<li>创建WindowState，代表一个窗口</li>
+<li>根据Window类型分配层级（layer）</li>
+<li>将WindowState加入对应DisplayContent的窗口列表</li>
+<li>调用updateFocusedWindowLocked更新焦点窗口</li>
+<li>调用performSurfacePlacement执行窗口布局</li>
+<li>创建Surface（通过SurfaceControl），用于绘制</li>
+</ol>
+<h3 id="8-5-Window的删除过程"><a href="#8-5-Window的删除过程" class="headerlink" title="8.5 Window的删除过程"></a>8.5 Window的删除过程</h3><ol>
+<li>应用进程通过WindowSession.remove调用WMS.removeWindow</li>
+<li>WMS从mWindowMap中移除WindowState</li>
+<li>从DisplayContent的窗口列表中移除</li>
+<li>播放退出动画</li>
+<li>动画结束后释放Surface</li>
+<li>更新焦点窗口和窗口布局</li>
+</ol>
+<hr>
+<h2 id="第9章-JNI原理"><a href="#第9章-JNI原理" class="headerlink" title="第9章 JNI原理"></a>第9章 JNI原理</h2><h3 id="9-1-系统源码中的JNI"><a href="#9-1-系统源码中的JNI" class="headerlink" title="9.1 系统源码中的JNI"></a>9.1 系统源码中的JNI</h3><p>JNI（Java Native Interface）是Java与C&#x2F;C++交互的桥梁。Android系统中大量使用JNI：</p>
+<ul>
+<li>Framework层调用Native层（如MediaPlayer、SurfaceFlinger）</li>
+<li>系统服务的Native实现</li>
+<li>图形、音频、数据库等底层库</li>
+</ul>
+<h3 id="9-2-MediaRecorder框架中的JNI"><a href="#9-2-MediaRecorder框架中的JNI" class="headerlink" title="9.2 MediaRecorder框架中的JNI"></a>9.2 MediaRecorder框架中的JNI</h3><p>以MediaRecorder为例：</p>
+<ol>
+<li>Java层MediaRecorder调用native方法（如native_start）</li>
+<li>JNI层（android_media_MediaRecorder.cpp）注册native方法</li>
+<li>JNI层调用Native层MediaRecorder</li>
+<li>Native层通过Binder调用MediaPlayerService</li>
+</ol>
+<h3 id="9-3-数据类型的转换"><a href="#9-3-数据类型的转换" class="headerlink" title="9.3 数据类型的转换"></a>9.3 数据类型的转换</h3><p><strong>基本类型映射</strong>：boolean→jboolean、byte→jbyte、char→jchar、short→jshort、int→jint、long→jlong、float→jfloat、double→jdouble。</p>
+<p><strong>引用类型映射</strong>：jobject（所有引用类型的基类）、jclass（Class）、jstring（String）、jarray（数组）、jobjectArray（对象数组）、jbooleanArray等（基本类型数组）。</p>
+<h3 id="9-4-方法签名"><a href="#9-4-方法签名" class="headerlink" title="9.4 方法签名"></a>9.4 方法签名</h3><p>JNI方法签名格式：<code>(参数类型签名)返回值类型签名</code></p>
+<ul>
+<li>基本类型：Z(boolean)、B(byte)、C(char)、S(short)、I(int)、J(long)、F(float)、D(double)、V(void)</li>
+<li>引用类型：<code>L全限定名;</code>（如<code>Ljava/lang/String;</code>）</li>
+<li>数组：<code>[类型签名</code>（如<code>[I</code>表示int[]）</li>
+</ul>
+<p>示例：<code>void setDataSource(String path)</code> → <code>(Ljava/lang/String;)V</code></p>
+<h3 id="9-5-解析JNIEnv"><a href="#9-5-解析JNIEnv" class="headerlink" title="9.5 解析JNIEnv"></a>9.5 解析JNIEnv</h3><p>JNIEnv是JNI环境指针，是Native代码调用Java功能的入口：</p>
+<ul>
+<li>每个线程有独立的JNIEnv，不能跨线程使用</li>
+<li>Native线程中通过JavaVM.AttachCurrentThread获取JNIEnv</li>
+<li>使用完后DetachCurrentThread</li>
+<li>JNIEnv提供大量方法：FindClass、GetMethodID、CallObjectMethod、NewStringUTF、GetArrayElements等</li>
+</ul>
+<h3 id="9-6-引用类型"><a href="#9-6-引用类型" class="headerlink" title="9.6 引用类型"></a>9.6 引用类型</h3><p>JNI中的引用分为三类：</p>
+<ul>
+<li><strong>局部引用（Local Reference）</strong>：Native方法调用期间有效，方法返回后自动释放。通过NewLocalRef创建，DeleteLocalRef释放。</li>
+<li><strong>全局引用（Global Reference）</strong>：跨方法、跨线程有效，需手动释放。通过NewGlobalRef创建，DeleteGlobalRef释放。</li>
+<li><strong>弱全局引用（Weak Global Reference）</strong>：类似全局引用，但不阻止GC回收。通过NewWeakGlobalRef创建。</li>
+</ul>
+<hr>
+<h2 id="第10章-Java虚拟机"><a href="#第10章-Java虚拟机" class="headerlink" title="第10章 Java虚拟机"></a>第10章 Java虚拟机</h2><h3 id="10-1-概述"><a href="#10-1-概述" class="headerlink" title="10.1 概述"></a>10.1 概述</h3><p>Java虚拟机（JVM）是Java程序运行的环境，负责加载字节码、解释&#x2F;编译执行、内存管理、垃圾回收。</p>
+<h3 id="10-2-Java虚拟机结构"><a href="#10-2-Java虚拟机结构" class="headerlink" title="10.2 Java虚拟机结构"></a>10.2 Java虚拟机结构</h3><p><strong>运行时数据区</strong>：</p>
+<ul>
+<li><strong>方法区（Method Area）</strong>：存储类信息、常量、静态变量、JIT编译后的代码。线程共享。</li>
+<li><strong>堆（Heap）</strong>：存储对象实例和数组，是GC的主要区域。线程共享。</li>
+<li><strong>虚拟机栈（VM Stack）</strong>：每个线程私有，存储局部变量表、操作数栈、动态链接、方法返回地址。</li>
+<li><strong>本地方法栈（Native Method Stack）</strong>：为Native方法服务。</li>
+<li><strong>程序计数器（PC Register）</strong>：记录当前线程执行的字节码行号。</li>
+</ul>
+<p><strong>执行引擎</strong>：解释器（逐条解释字节码）+ JIT编译器（热点代码编译为本地机器码）。</p>
+<h3 id="10-3-对象的创建"><a href="#10-3-对象的创建" class="headerlink" title="10.3 对象的创建"></a>10.3 对象的创建</h3><p>对象创建流程：</p>
+<ol>
+<li>类加载检查：检查new指令的参数是否能在常量池中定位到类符号引用，检查类是否已加载、解析、初始化</li>
+<li>分配内存：根据堆是否规整，使用”指针碰撞”（Bump the Pointer）或”空闲列表”（Free List）</li>
+<li>初始化零值：将分配的内存空间初始化为零值（不包括对象头）</li>
+<li>设置对象头：Mark Word（哈希码、GC分代年龄、锁状态）、类型指针（指向类元数据）</li>
+<li>执行<init>方法：调用构造函数，初始化对象</li>
+</ol>
+<h3 id="10-4-对象的堆内存布局"><a href="#10-4-对象的堆内存布局" class="headerlink" title="10.4 对象的堆内存布局"></a>10.4 对象的堆内存布局</h3><p>对象在堆内存中分为三部分：</p>
+<ul>
+<li><strong>对象头（Header）</strong>：Mark Word（8字节）+ 类型指针（8字节，开启压缩指针后4字节）+ 数组长度（4字节，仅数组对象）</li>
+<li><strong>实例数据（Instance Data）</strong>：对象的字段值，包括父类继承的字段</li>
+<li><strong>对齐填充（Padding）</strong>：对象大小必须是8字节的整数倍，不足则填充</li>
+</ul>
+<h3 id="10-5-oop-klass模型"><a href="#10-5-oop-klass模型" class="headerlink" title="10.5 oop-klass模型"></a>10.5 oop-klass模型</h3><p>HotSpot虚拟机采用oop-klass模型描述对象：</p>
+<ul>
+<li><strong>oop（Ordinary Object Pointer）</strong>：对象指针，描述对象实例本身。包括instanceOop（普通对象）、arrayOop（数组对象）、methodOop（方法）等。</li>
+<li><strong>klass</strong>：描述对象的元数据（类信息），相当于Java.lang.Class的Native表示。包括instanceKlass（普通类）、arrayKlass（数组类）等。</li>
+</ul>
+<p>oop存储在堆中，klass存储在方法区中。</p>
+<h3 id="10-6-垃圾标记算法"><a href="#10-6-垃圾标记算法" class="headerlink" title="10.6 垃圾标记算法"></a>10.6 垃圾标记算法</h3><p><strong>引用计数算法（Reference Counting）</strong>：每个对象维护一个引用计数器，被引用时+1，引用失效时-1，计数器为0时可回收。优点简单，缺点无法解决循环引用。</p>
+<p><strong>可达性分析算法（Reachability Analysis）</strong>：从GC Roots出发，遍历引用链，不可达的对象可回收。HotSpot使用此算法。</p>
+<p><strong>GC Roots包括</strong>：</p>
+<ul>
+<li>虚拟机栈中引用的对象（局部变量）</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI引用的对象</li>
+<li>活跃线程引用的对象</li>
+</ul>
+<h3 id="10-7-Java对象在虚拟机中的生命周期"><a href="#10-7-Java对象在虚拟机中的生命周期" class="headerlink" title="10.7 Java对象在虚拟机中的生命周期"></a>10.7 Java对象在虚拟机中的生命周期</h3><p>对象的生命周期：</p>
+<ol>
+<li><strong>创建阶段</strong>：类加载 → 分配内存 → 初始化 → 构造函数</li>
+<li><strong>应用阶段</strong>：对象被至少一个强引用持有，处于使用中</li>
+<li><strong>不可见阶段</strong>：程序不再持有对象的强引用，但可能被软引用&#x2F;弱引用持有</li>
+<li><strong>不可达阶段</strong>：从GC Roots不可达，可被GC回收</li>
+<li><strong>收集阶段</strong>：GC标记，若重写了finalize且未执行过，则放入F-Queue等待finalize执行</li>
+<li><strong>对象空间重分配阶段</strong>：GC回收对象占用的内存</li>
+</ol>
+<h3 id="10-8-垃圾收集算法"><a href="#10-8-垃圾收集算法" class="headerlink" title="10.8 垃圾收集算法"></a>10.8 垃圾收集算法</h3><p><strong>标记-清除（Mark-Sweep）</strong>：标记所有可达对象，清除未标记对象。缺点：产生内存碎片。</p>
+<p><strong>复制（Copying）</strong>：将内存分为两块，每次只用一块，回收时将存活对象复制到另一块。优点无碎片，缺点内存利用率低。新生代使用此算法（Eden+Survivor）。</p>
+<p><strong>标记-整理（Mark-Compact）</strong>：标记存活对象，将存活对象向一端移动，清除边界外的内存。优点无碎片，缺点需要移动对象。老年代使用此算法。</p>
+<p><strong>分代收集（Generational Collection）</strong>：根据对象存活周期分为新生代和老年代，新生代使用复制算法，老年代使用标记-清除或标记-整理。</p>
+<hr>
+<h2 id="第11章-Dalvik和ART"><a href="#第11章-Dalvik和ART" class="headerlink" title="第11章 Dalvik和ART"></a>第11章 Dalvik和ART</h2><h3 id="11-1-Dalvik虚拟机"><a href="#11-1-Dalvik虚拟机" class="headerlink" title="11.1 Dalvik虚拟机"></a>11.1 Dalvik虚拟机</h3><p>Dalvik是Android早期使用的虚拟机（Android 2.2-4.4）：</p>
+<ul>
+<li>基于寄存器架构（JVM基于栈架构），指令更短、执行更快</li>
+<li>执行dex（Dalvik Executable）格式字节码</li>
+<li>Android 2.2引入JIT（即时编译），热点代码编译为本地机器码</li>
+<li>内存管理：堆分为Zygote堆和Active堆，Zygote堆用于预加载，写时复制（COW）共享</li>
+<li>垃圾回收：CMS（Concurrent Mark Sweep）收集器</li>
+</ul>
+<h3 id="11-2-ART虚拟机"><a href="#11-2-ART虚拟机" class="headerlink" title="11.2 ART虚拟机"></a>11.2 ART虚拟机</h3><p>ART（Android Runtime）从Android 5.0开始取代Dalvik：</p>
+<ul>
+<li><strong>AOT（Ahead-Of-Time）编译</strong>：应用安装时将dex编译为本地机器码（oat文件），运行时直接执行，无需解释</li>
+<li>Android 7.0引入<strong>JIT + AOT混合模式</strong>：安装时不编译，运行时JIT编译热点代码，空闲时AOT编译保存</li>
+<li><strong>更好的垃圾回收</strong>：压缩GC（Compacting GC），减少内存碎片；并发GC，减少停顿</li>
+<li><strong>更好的调试支持</strong>：支持更多调试特性</li>
+<li><strong>64位支持</strong>：原生支持64位架构</li>
+</ul>
+<h3 id="11-3-DVM和ART的区别"><a href="#11-3-DVM和ART的区别" class="headerlink" title="11.3 DVM和ART的区别"></a>11.3 DVM和ART的区别</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Dalvik</th>
+<th>ART</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>执行方式</td>
+<td>解释 + JIT</td>
+<td>AOT + JIT（混合）</td>
+</tr>
+<tr>
+<td>编译时机</td>
+<td>运行时</td>
+<td>安装时&#x2F;运行时</td>
+</tr>
+<tr>
+<td>应用安装速度</td>
+<td>快</td>
+<td>慢（AOT编译）</td>
+</tr>
+<tr>
+<td>运行速度</td>
+<td>较慢</td>
+<td>较快</td>
+</tr>
+<tr>
+<td>占用空间</td>
+<td>小</td>
+<td>大（oat文件）</td>
+</tr>
+<tr>
+<td>GC</td>
+<td>CMS</td>
+<td>Compacting GC</td>
+</tr>
+<tr>
+<td>64位</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第12章-理解ClassLoader"><a href="#第12章-理解ClassLoader" class="headerlink" title="第12章 理解ClassLoader"></a>第12章 理解ClassLoader</h2><h3 id="12-1-Java中的ClassLoader"><a href="#12-1-Java中的ClassLoader" class="headerlink" title="12.1 Java中的ClassLoader"></a>12.1 Java中的ClassLoader</h3><p>Java类加载器负责将.class文件加载到JVM中。</p>
+<p><strong>类加载器分类</strong>：</p>
+<ul>
+<li><strong>启动类加载器（Bootstrap ClassLoader）</strong>：加载JRE核心类库（rt.jar），C++实现，无父加载器</li>
+<li><strong>扩展类加载器（Extension ClassLoader）</strong>：加载扩展类库（jre&#x2F;lib&#x2F;ext）</li>
+<li><strong>应用程序类加载器（Application ClassLoader）</strong>：加载用户类路径（classpath）上的类</li>
+</ul>
+<p><strong>双亲委托模型</strong>：类加载时先委托父加载器加载，父加载器无法加载时才自己加载。保证核心类库的安全性和一致性。</p>
+<h3 id="12-2-Android中的ClassLoader"><a href="#12-2-Android中的ClassLoader" class="headerlink" title="12.2 Android中的ClassLoader"></a>12.2 Android中的ClassLoader</h3><p>Android的ClassLoader加载dex文件（而非.class文件）。</p>
+<p><strong>Android中的类加载器</strong>：</p>
+<ul>
+<li><strong>BootClassLoader</strong>：加载Android Framework层的类（如android.app.Activity），是所有ClassLoader的父加载器</li>
+<li><strong>PathClassLoader</strong>：加载已安装应用的dex文件（&#x2F;data&#x2F;app&#x2F;xxx.apk），应用默认的类加载器</li>
+<li><strong>DexClassLoader</strong>：加载任意路径的dex&#x2F;jar&#x2F;apk文件，需要指定optimizedDirectory（odex输出目录），用于插件化和热修复</li>
+</ul>
+<p><strong>类加载流程</strong>：</p>
+<ol>
+<li>ClassLoader.loadClass → findLoadedClass检查是否已加载</li>
+<li>未加载则委托父加载器加载（双亲委托）</li>
+<li>父加载器无法加载则自己加载（findClass）</li>
+<li>DexClassLoader&#x2F;PathClassLoader的findClass通过BaseDexClassLoader实现，从dexElements数组中查找类</li>
+<li>dexElements是Element数组，每个Element对应一个dex文件</li>
+</ol>
+<p><strong>类加载器的应用</strong>：</p>
+<ul>
+<li>热修复：将修复后的dex插入dexElements数组头部，优先加载修复后的类</li>
+<li>插件化：通过DexClassLoader加载插件APK中的类</li>
+</ul>
+<hr>
+<h2 id="第13章-热修复原理"><a href="#第13章-热修复原理" class="headerlink" title="第13章 热修复原理"></a>第13章 热修复原理</h2><h3 id="13-1-热修复的产生"><a href="#13-1-热修复的产生" class="headerlink" title="13.1 热修复的产生"></a>13.1 热修复的产生</h3><p>热修复技术允许应用在不重新安装APK的情况下修复bug。产生背景：</p>
+<ul>
+<li>应用发布后发现bug，重新发版周期长、成本高</li>
+<li>用户升级率低，大量用户仍使用有bug的版本</li>
+<li>紧急bug需要快速修复</li>
+</ul>
+<h3 id="13-2-热修复框架的种类和对比"><a href="#13-2-热修复框架的种类和对比" class="headerlink" title="13.2 热修复框架的种类和对比"></a>13.2 热修复框架的种类和对比</h3><table>
+<thead>
+<tr>
+<th>框架</th>
+<th>原理</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>阿里Sophix</td>
+<td>综合方案（代码&#x2F;资源&#x2F;so）</td>
+<td>商业产品，功能全面</td>
+</tr>
+<tr>
+<td>腾讯Tinker</td>
+<td>类加载方案（dex差量）</td>
+<td>开源，需要重启生效，支持代码&#x2F;资源&#x2F;so</td>
+</tr>
+<tr>
+<td>美团Robust</td>
+<td>方法体替换（Instant Run原理）</td>
+<td>开源，即时生效，无需重启</td>
+</tr>
+<tr>
+<td>阿里AndFix</td>
+<td>Native层方法替换</td>
+<td>开源，即时生效，兼容性问题</td>
+</tr>
+<tr>
+<td>滴滴Aceso</td>
+<td>类加载方案</td>
+<td>开源</td>
+</tr>
+</tbody></table>
+<h3 id="13-3-资源修复"><a href="#13-3-资源修复" class="headerlink" title="13.3 资源修复"></a>13.3 资源修复</h3><p>资源修复的原理：</p>
+<ul>
+<li>将修复后的资源打包成补丁</li>
+<li>通过反射替换AssetManager，加载补丁中的资源</li>
+<li>替换Resources对象，使应用优先加载补丁中的资源</li>
+<li>类似插件化的资源加载方案</li>
+</ul>
+<h3 id="13-4-代码修复"><a href="#13-4-代码修复" class="headerlink" title="13.4 代码修复"></a>13.4 代码修复</h3><p>代码修复主要有三种方案：</p>
+<p><strong>类加载方案（Tinker）</strong>：</p>
+<ol>
+<li>将修复后的类打包成dex补丁</li>
+<li>应用启动时，通过反射将补丁dex插入PathClassLoader的dexElements数组头部</li>
+<li>类加载时优先从补丁dex中加载，实现修复</li>
+<li>需要重启应用生效（已加载的类无法替换）</li>
+</ol>
+<p><strong>方法体替换方案（Robust）</strong>：</p>
+<ol>
+<li>编译时在每个方法中插入代码：if (changeQuickRedirect !&#x3D; null) return changeQuickRedirect.accessDispatch(…)</li>
+<li>修复时，将修复后的方法封装为Patch对象</li>
+<li>通过反射将changeQuickRedirect设置为修复后的方法代理</li>
+<li>方法执行时走修复后的逻辑，即时生效</li>
+</ol>
+<p><strong>Native层方法替换（AndFix）</strong>：</p>
+<ol>
+<li>通过JNI修改ArtMethod结构体中的方法入口指针</li>
+<li>将修复后的方法地址替换原方法地址</li>
+<li>调用原方法时跳转到修复方法</li>
+<li>即时生效，但兼容性差（不同Android版本ArtMethod结构不同）</li>
+</ol>
+<h3 id="13-5-动态链接库的修复"><a href="#13-5-动态链接库的修复" class="headerlink" title="13.5 动态链接库的修复"></a>13.5 动态链接库的修复</h3><p>so库修复：</p>
+<ul>
+<li>将修复后的so库放入补丁</li>
+<li>通过System.load加载补丁中的so库</li>
+<li>或通过反射替换NativeLibrary的加载路径</li>
+<li>Tinker等框架支持so库的差量修复</li>
+</ul>
+<hr>
+<h2 id="第14章-Hook技术"><a href="#第14章-Hook技术" class="headerlink" title="第14章 Hook技术"></a>第14章 Hook技术</h2><h3 id="14-1-Hook技术概述"><a href="#14-1-Hook技术概述" class="headerlink" title="14.1 Hook技术概述"></a>14.1 Hook技术概述</h3><p>Hook技术是指在程序运行时，拦截并修改方法调用的技术。通过Hook可以：</p>
+<ul>
+<li>监控方法调用（日志、统计）</li>
+<li>修改方法行为（替换参数、返回值）</li>
+<li>绕过某些限制（权限检查、签名验证）</li>
+<li>实现插件化（Hook系统服务）</li>
+</ul>
+<h3 id="14-2-Hook技术分类"><a href="#14-2-Hook技术分类" class="headerlink" title="14.2 Hook技术分类"></a>14.2 Hook技术分类</h3><ul>
+<li><strong>Java层Hook</strong>：通过反射和动态代理实现，Hook Java方法</li>
+<li><strong>Native层Hook</strong>：通过修改函数指针或指令实现，Hook Native方法</li>
+<li><strong>框架层Hook</strong>：Hook Android Framework层的系统服务（如AMS、WMS、PMS）</li>
+</ul>
+<h3 id="14-3-代理模式"><a href="#14-3-代理模式" class="headerlink" title="14.3 代理模式"></a>14.3 代理模式</h3><p>代理模式是Hook技术的基础：</p>
+<ul>
+<li><strong>静态代理</strong>：编译时生成代理类，实现与目标类相同的接口，持有目标类引用，方法调用时委托给目标类</li>
+<li><strong>动态代理</strong>：运行时通过Proxy.newProxyInstance生成代理类，通过InvocationHandler处理方法调用</li>
+<li>Hook时通常使用动态代理，替换系统服务的Binder代理对象</li>
+</ul>
+<h3 id="14-4-Hook-startActivity方法"><a href="#14-4-Hook-startActivity方法" class="headerlink" title="14.4 Hook startActivity方法"></a>14.4 Hook startActivity方法</h3><p>以Hook startActivity为例：</p>
+<ol>
+<li>找到Hook点：ActivityManager.getService()返回的IActivityManager单例</li>
+<li>通过反射获取IActivityManager实例（Singleton中的instance字段）</li>
+<li>创建动态代理，实现IActivityManager接口</li>
+<li>在InvocationHandler中拦截startActivity方法，修改Intent（如将插件Activity替换为占坑Activity）</li>
+<li>通过反射将代理对象设置回Singleton.instance</li>
+<li>后续startActivity调用都会经过代理，实现Hook</li>
+</ol>
+<p><strong>其他常见Hook点</strong>：</p>
+<ul>
+<li>Hook AMS：IActivityManager</li>
+<li>Hook WMS：IWindowManager</li>
+<li>Hook PMS：IPackageManager</li>
+<li>Hook ClipboardManager</li>
+<li>Hook Instrumentation（替换Activity启动逻辑）</li>
+</ul>
+<hr>
+<h2 id="第15章-插件化原理"><a href="#第15章-插件化原理" class="headerlink" title="第15章 插件化原理"></a>第15章 插件化原理</h2><h3 id="15-1-动态加载技术"><a href="#15-1-动态加载技术" class="headerlink" title="15.1 动态加载技术"></a>15.1 动态加载技术</h3><p>动态加载技术允许应用在运行时加载并执行外部的dex&#x2F;jar&#x2F;apk文件，是插件化的基础。核心技术：</p>
+<ul>
+<li><strong>类加载</strong>：DexClassLoader加载插件中的类</li>
+<li><strong>资源加载</strong>：反射AssetManager.addAssetPath加载插件资源</li>
+<li><strong>四大组件管理</strong>：通过占坑和Hook实现插件四大组件的生命周期管理</li>
+</ul>
+<h3 id="15-2-插件化的产生"><a href="#15-2-插件化的产生" class="headerlink" title="15.2 插件化的产生"></a>15.2 插件化的产生</h3><p>插件化产生背景：</p>
+<ul>
+<li>应用功能越来越多，APK体积增大</li>
+<li>模块化需求：不同业务模块独立开发、独立更新</li>
+<li>按需加载：减少主APK体积，用户按需下载功能模块</li>
+<li>热更新：不发版更新功能模块</li>
+</ul>
+<h3 id="15-3-插件化框架对比"><a href="#15-3-插件化框架对比" class="headerlink" title="15.3 插件化框架对比"></a>15.3 插件化框架对比</h3><table>
+<thead>
+<tr>
+<th>框架</th>
+<th>原理</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>滴滴VirtualAPK</td>
+<td>Hook系统服务 + 占坑</td>
+<td>轻量，四大组件支持完善</td>
+</tr>
+<tr>
+<td>360 DroidPlugin</td>
+<td>占坑 + Hook Binder</td>
+<td>功能全面，独立进程</td>
+</tr>
+<tr>
+<td>携程DynamicAPK</td>
+<td>占坑 + 资源修改</td>
+<td>修改aapt，资源隔离</td>
+</tr>
+<tr>
+<td>阿里Atlas</td>
+<td>容器化 + OSGi思想</td>
+<td>淘宝使用，支持热更新</td>
+</tr>
+<tr>
+<td>腾讯Shadow</td>
+<td>委托代理（非Hook）</td>
+<td>开源，避免Hook兼容性问题</td>
+</tr>
+</tbody></table>
+<h3 id="15-4-Activity插件化"><a href="#15-4-Activity插件化" class="headerlink" title="15.4 Activity插件化"></a>15.4 Activity插件化</h3><p>Activity插件化的核心是<strong>占坑式启动</strong>：</p>
+<ol>
+<li>在宿主AndroidManifest中预先声明多个占坑Activity（不同启动模式、不同process）</li>
+<li>启动插件Activity时，Hook IActivityManager.startActivity，将Intent中的插件Activity替换为占坑Activity</li>
+<li>AMS校验通过（占坑Activity已注册）</li>
+<li>在ActivityThread的H Handler中，Hook handleLaunchActivity，将占坑Activity的Intent还原为插件Activity</li>
+<li>使用插件的ClassLoader加载插件Activity类</li>
+<li>正常执行Activity生命周期</li>
+</ol>
+<h3 id="15-5-Service插件化"><a href="#15-5-Service插件化" class="headerlink" title="15.5 Service插件化"></a>15.5 Service插件化</h3><p>Service插件化同样使用占坑：</p>
+<ol>
+<li>宿主中声明占坑Service</li>
+<li>启动插件Service时，Hook IActivityManager.startService，替换为占坑Service</li>
+<li>AMS校验通过</li>
+<li>在ActivityThread中Hook handleCreateService，还原为插件Service</li>
+<li>使用插件ClassLoader加载插件Service类</li>
+<li>绑定服务类似处理</li>
+</ol>
+<h3 id="15-6-ContentProvider插件化"><a href="#15-6-ContentProvider插件化" class="headerlink" title="15.6 ContentProvider插件化"></a>15.6 ContentProvider插件化</h3><p>ContentProvider插件化：</p>
+<ol>
+<li>宿主中声明占坑ContentProvider</li>
+<li>Hook IContentProvider，将对插件Provider的访问转发到占坑Provider</li>
+<li>在占坑Provider中根据URI分发到实际的插件Provider</li>
+<li>或通过IContentProvider的动态代理直接转发</li>
+</ol>
+<h3 id="15-7-BroadcastReceiver的插件化"><a href="#15-7-BroadcastReceiver的插件化" class="headerlink" title="15.7 BroadcastReceiver的插件化"></a>15.7 BroadcastReceiver的插件化</h3><p>BroadcastReceiver插件化：</p>
+<ul>
+<li><strong>静态注册</strong>：解析插件APK中的AndroidManifest，提取静态注册的Receiver，在宿主中动态注册</li>
+<li><strong>动态注册</strong>：插件代码中直接调用registerReceiver，使用插件Context</li>
+</ul>
+<h3 id="15-8-资源的插件化"><a href="#15-8-资源的插件化" class="headerlink" title="15.8 资源的插件化"></a>15.8 资源的插件化</h3><p>资源插件化的核心：</p>
+<ol>
+<li>反射调用AssetManager.addAssetPath(pluginPath)，将插件APK加入资源搜索路径</li>
+<li>创建新的Resources对象，使用插件的AssetManager</li>
+<li>插件中使用插件Resources加载资源</li>
+<li>资源ID冲突问题：通过修改aapt（重命名资源ID前缀）或公共资源包解决</li>
+</ol>
+<h3 id="15-9-so的插件化"><a href="#15-9-so的插件化" class="headerlink" title="15.9 so的插件化"></a>15.9 so的插件化</h3><p>so库插件化：</p>
+<ol>
+<li>将插件中的so库解压到指定目录</li>
+<li>通过反射修改ApplicationInfo的nativeLibraryDir，加入插件so路径</li>
+<li>或通过System.load直接加载插件so库的绝对路径</li>
+</ol>
+<hr>
+<h2 id="第16章-绘制优化"><a href="#第16章-绘制优化" class="headerlink" title="第16章 绘制优化"></a>第16章 绘制优化</h2><h3 id="16-1-绘制性能分析"><a href="#16-1-绘制性能分析" class="headerlink" title="16.1 绘制性能分析"></a>16.1 绘制性能分析</h3><p><strong>绘制性能分析工具</strong>：</p>
+<ul>
+<li><strong>Hierarchy Viewer</strong>：分析View树层级和绘制时间（已废弃，推荐Layout Inspector）</li>
+<li><strong>Layout Inspector</strong>：Android Studio提供的布局检查器</li>
+<li><strong>Systrace</strong>：系统级性能分析工具，查看绘制流程</li>
+<li><strong>GPU过度绘制调试</strong>：开发者选项中开启，查看过度绘制</li>
+<li><strong>GPU呈现模式分析</strong>：开发者选项中开启，查看每帧绘制时间</li>
+</ul>
+<p><strong>性能标准</strong>：</p>
+<ul>
+<li>60fps要求每帧绘制时间不超过16.67ms</li>
+<li>超过16.67ms会出现掉帧、卡顿</li>
+<li>过度绘制：蓝色1次（可接受）、绿色2次、淡红3次、深红4次+（需优化）</li>
+</ul>
+<h3 id="16-2-布局优化"><a href="#16-2-布局优化" class="headerlink" title="16.2 布局优化"></a>16.2 布局优化</h3><p><strong>减少布局层级</strong>：</p>
+<ul>
+<li>使用ConstraintLayout减少嵌套</li>
+<li>避免不必要的嵌套布局</li>
+<li>使用Hierarchy Viewer&#x2F;Layout Inspector分析层级</li>
+</ul>
+<p><strong>使用include标签</strong>：复用布局，减少重复代码。</p>
+<p><strong>使用merge标签</strong>：当include的根布局与父布局相同时，使用merge减少一层布局。</p>
+<p><strong>使用ViewStub</strong>：延迟加载不常显示的布局（如错误页、加载更多）。ViewStub是轻量级View，不占用位置，inflate时才加载。</p>
+<p><strong>避免在onDraw中创建对象</strong>：onDraw会被频繁调用，创建对象会导致频繁GC。</p>
+<p><strong>避免过度绘制</strong>：</p>
+<ul>
+<li>移除不必要的背景</li>
+<li>使用clipRect减少绘制区域</li>
+<li>复杂布局使用自定义View减少层级</li>
+</ul>
+<hr>
+<h2 id="第17章-内存优化"><a href="#第17章-内存优化" class="headerlink" title="第17章 内存优化"></a>第17章 内存优化</h2><h3 id="17-1-避免可控的内存泄漏"><a href="#17-1-避免可控的内存泄漏" class="headerlink" title="17.1 避免可控的内存泄漏"></a>17.1 避免可控的内存泄漏</h3><p><strong>常见内存泄漏场景</strong>：</p>
+<ul>
+<li>静态变量持有Activity&#x2F;Context</li>
+<li>单例模式持有Activity Context</li>
+<li>非静态内部类&#x2F;匿名内部类（Handler、AsyncTask、Thread）持有外部类引用</li>
+<li>未取消注册的广播&#x2F;事件总线</li>
+<li>资源未关闭（Cursor、File、Socket、Stream）</li>
+<li>属性动画未停止</li>
+<li>WebView内存泄漏</li>
+<li>监听器未移除</li>
+</ul>
+<p><strong>避免方法</strong>：</p>
+<ul>
+<li>使用Application Context替代Activity Context</li>
+<li>静态内部类+弱引用</li>
+<li>在组件销毁时取消注册、关闭资源、停止动画</li>
+<li>WebView使用独立进程或正确销毁</li>
+</ul>
+<h3 id="17-2-Memory-Monitor"><a href="#17-2-Memory-Monitor" class="headerlink" title="17.2 Memory Monitor"></a>17.2 Memory Monitor</h3><p>Android Studio的Memory Monitor（已整合到Profiler）：</p>
+<ul>
+<li>实时显示应用内存使用情况</li>
+<li>查看内存分配和回收</li>
+<li>手动触发GC</li>
+<li>导出HPROF文件（堆转储）</li>
+</ul>
+<h3 id="17-3-Allocation-Tracker"><a href="#17-3-Allocation-Tracker" class="headerlink" title="17.3 Allocation Tracker"></a>17.3 Allocation Tracker</h3><p>Allocation Tracker（已整合到Profiler）：</p>
+<ul>
+<li>记录内存分配情况</li>
+<li>查看每个对象的分配位置、大小、线程</li>
+<li>分析内存分配热点</li>
+<li>发现不必要的对象创建</li>
+</ul>
+<h3 id="17-4-Heap-Dump"><a href="#17-4-Heap-Dump" class="headerlink" title="17.4 Heap Dump"></a>17.4 Heap Dump</h3><p>Heap Dump（堆转储）：</p>
+<ul>
+<li>导出当前堆内存快照（.hprof文件）</li>
+<li>包含所有对象的信息（类型、数量、引用关系）</li>
+<li>使用MAT工具分析</li>
+<li>发现内存泄漏的对象</li>
+</ul>
+<h3 id="17-5-内存分析工具MAT"><a href="#17-5-内存分析工具MAT" class="headerlink" title="17.5 内存分析工具MAT"></a>17.5 内存分析工具MAT</h3><p>MAT（Memory Analyzer Tool）：</p>
+<ul>
+<li><strong>Histogram</strong>：查看对象数量和占用内存</li>
+<li><strong>Dominator Tree</strong>：查看最大对象和引用链</li>
+<li><strong>Path to GC Roots</strong>：查看对象到GC Root的引用路径，定位泄漏原因</li>
+<li><strong>对比两个HPROF</strong>：操作前后对比，找出增长的对象</li>
+</ul>
+<p><strong>关键概念</strong>：</p>
+<ul>
+<li>Shallow Heap：对象自身大小</li>
+<li>Retained Heap：对象被回收后能释放的总内存</li>
+<li>GC Root：可达性分析的根节点</li>
+</ul>
+<h3 id="17-6-LeakCanary"><a href="#17-6-LeakCanary" class="headerlink" title="17.6 LeakCanary"></a>17.6 LeakCanary</h3><p>LeakCanary是Square出品的内存泄漏检测库：</p>
+<ul>
+<li>自动检测Activity&#x2F;Fragment的内存泄漏</li>
+<li>泄漏时显示通知和泄漏链</li>
+<li>开发阶段集成，自动发现内存泄漏</li>
+<li>原理：监听Activity生命周期，onDestroy后将对象放入WeakReference，GC后检查是否被回收，未回收则dump堆并分析泄漏链</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Android进阶解密》是一本深入Android Framework源码的进阶书籍，从系统启动到应用进程，从四大组件到系统服务，从虚拟机到热修复插件化，形成了完整的Android系统知识体系。</p>
+<p><strong>全书知识脉络：</strong></p>
+<ol>
+<li><strong>系统启动篇</strong>（第1-3章）：系统架构、系统启动流程（init→Zygote→SystemServer→Launcher）、应用进程启动</li>
+<li><strong>组件与服务篇</strong>（第4-8章）：四大组件工作过程、Context、AMS、WindowManager、WMS</li>
+<li><strong>底层原理篇</strong>（第9-12章）：JNI、Java虚拟机、Dalvik&#x2F;ART、ClassLoader</li>
+<li><strong>进阶技术篇</strong>（第13-15章）：热修复、Hook技术、插件化</li>
+<li><strong>性能优化篇</strong>（第16-17章）：绘制优化、内存优化</li>
+</ol>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>第2-3章（系统启动&#x2F;进程启动）是理解Android系统的基础，建议结合源码深入学习</li>
+<li>第4章（四大组件）和第6章（AMS）是面试高频考点</li>
+<li>第7-8章（WindowManager&#x2F;WMS）是理解GUI系统的关键</li>
+<li>第10章（JVM）和第12章（ClassLoader）是理解热修复&#x2F;插件化的基础</li>
+<li>第13-15章（热修复&#x2F;Hook&#x2F;插件化）是Android高级开发的进阶技能</li>
+</ul>
+<p>这本书适合有一定Android开发基础、希望深入Framework源码和系统原理的开发者阅读。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/">深入理解Android内核设计思想</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89/">Android进阶之光</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86"><span class="toc-text">Android进阶解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">第1章 Android系统架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8"><span class="toc-text">第2章 Android系统启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-text">第3章 应用程序进程启动过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">第4章 四大组件的工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E7%90%86%E8%A7%A3%E4%B8%8A%E4%B8%8B%E6%96%87Context"><span class="toc-text">第5章 理解上下文Context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E7%90%86%E8%A7%A3ActivityManagerService"><span class="toc-text">第6章 理解ActivityManagerService</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E7%90%86%E8%A7%A3WindowManager"><span class="toc-text">第7章 理解WindowManager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E7%90%86%E8%A7%A3WindowManagerService"><span class="toc-text">第8章 理解WindowManagerService</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-JNI%E5%8E%9F%E7%90%86"><span class="toc-text">第9章 JNI原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-Java%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">第10章 Java虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-Dalvik%E5%92%8CART"><span class="toc-text">第11章 Dalvik和ART</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-%E7%90%86%E8%A7%A3ClassLoader"><span class="toc-text">第12章 理解ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%8E%9F%E7%90%86"><span class="toc-text">第13章 热修复原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-Hook%E6%8A%80%E6%9C%AF"><span class="toc-text">第14章 Hook技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC15%E7%AB%A0-%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86"><span class="toc-text">第15章 插件化原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC16%E7%AB%A0-%E7%BB%98%E5%88%B6%E4%BC%98%E5%8C%96"><span class="toc-text">第16章 绘制优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC17%E7%AB%A0-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96"><span class="toc-text">第17章 内存优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

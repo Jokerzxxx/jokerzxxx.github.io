@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="500" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+  <title id="title">Intel 小端字节序示意图</title>
+  <desc id="desc">以十六位原始值 0x1234 为例，低字节 0x34 位于 Data 0，高字节 0x12 位于 Data 1。</desc>
+
+  <rect width="960" height="500" rx="24" fill="#f8fafc"/>
+  <rect x="1" y="1" width="958" height="498" rx="23" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+
+  <text x="48" y="62" fill="#0f172a" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="30" font-weight="700">
+    Intel（Little Endian）字节序
+  </text>
+  <text x="48" y="96" fill="#475569" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18">
+    示例：16 位原始值 Raw = 0x1234
+  </text>
+
+  <rect x="48" y="130" width="390" height="222" rx="18" fill="#ffffff" stroke="#ccfbf1" stroke-width="2"/>
+  <text x="76" y="166" fill="#115e59" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">
+    总线中的字节排列
+  </text>
+
+  <rect x="76" y="196" width="146" height="104" rx="14" fill="#0f766e"/>
+  <text x="149" y="226" fill="#ccfbf1" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="16">
+    Data[0]
+  </text>
+  <text x="149" y="265" fill="#ffffff" text-anchor="middle" font-family="Consolas, monospace" font-size="34" font-weight="700">
+    0x34
+  </text>
+  <text x="149" y="288" fill="#ccfbf1" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14">
+    低有效字节 LSB
+  </text>
+
+  <path d="M235 248H270" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M262 239L273 248L262 257" fill="none" stroke="#64748b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="286" y="196" width="124" height="104" rx="14" fill="#14b8a6"/>
+  <text x="348" y="226" fill="#f0fdfa" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="16">
+    Data[1]
+  </text>
+  <text x="348" y="265" fill="#ffffff" text-anchor="middle" font-family="Consolas, monospace" font-size="34" font-weight="700">
+    0x12
+  </text>
+  <text x="348" y="288" fill="#f0fdfa" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="14">
+    高有效字节 MSB
+  </text>
+
+  <text x="76" y="330" fill="#334155" font-family="Consolas, 'Microsoft YaHei', monospace" font-size="18">
+    Raw = Data[0] | (Data[1] &lt;&lt; 8)
+  </text>
+
+  <rect x="466" y="130" width="446" height="222" rx="18" fill="#ffffff" stroke="#ccfbf1" stroke-width="2"/>
+  <text x="494" y="166" fill="#115e59" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" font-weight="700">
+    单个字节内的位权
+  </text>
+
+  <g font-family="Arial, 'Microsoft YaHei', sans-serif" text-anchor="middle">
+    <g fill="#64748b" font-size="14">
+      <text x="526" y="205">Bit 7</text>
+      <text x="576" y="205">Bit 6</text>
+      <text x="626" y="205">Bit 5</text>
+      <text x="676" y="205">Bit 4</text>
+      <text x="726" y="205">Bit 3</text>
+      <text x="776" y="205">Bit 2</text>
+      <text x="826" y="205">Bit 1</text>
+      <text x="876" y="205">Bit 0</text>
+    </g>
+
+    <g stroke="#99f6e4" stroke-width="2">
+      <rect x="502" y="220" width="48" height="58" rx="6" fill="#ccfbf1"/>
+      <rect x="552" y="220" width="48" height="58" rx="6" fill="#f0fdfa"/>
+      <rect x="602" y="220" width="48" height="58" rx="6" fill="#ccfbf1"/>
+      <rect x="652" y="220" width="48" height="58" rx="6" fill="#f0fdfa"/>
+      <rect x="702" y="220" width="48" height="58" rx="6" fill="#ccfbf1"/>
+      <rect x="752" y="220" width="48" height="58" rx="6" fill="#f0fdfa"/>
+      <rect x="802" y="220" width="48" height="58" rx="6" fill="#ccfbf1"/>
+      <rect x="852" y="220" width="48" height="58" rx="6" fill="#f0fdfa"/>
+    </g>
+
+    <g fill="#0f172a" font-family="Consolas, monospace" font-size="22" font-weight="700">
+      <text x="526" y="257">b7</text>
+      <text x="576" y="257">b6</text>
+      <text x="626" y="257">b5</text>
+      <text x="676" y="257">b4</text>
+      <text x="726" y="257">b3</text>
+      <text x="776" y="257">b2</text>
+      <text x="826" y="257">b1</text>
+      <text x="876" y="257">b0</text>
+    </g>
+  </g>
+
+  <path d="M886 305H516" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M524 296L513 305L524 314" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="701" y="332" fill="#475569" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="15">
+    位权从低有效位递增到高有效位
+  </text>
+
+  <rect x="48" y="382" width="864" height="82" rx="16" fill="#f0fdfa"/>
+  <circle cx="82" cy="423" r="18" fill="#0f766e"/>
+  <text x="82" y="430" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700">i</text>
+  <text x="116" y="414" fill="#115e59" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="17" font-weight="700">
+    Intel 多字节信号先放低有效字节，再放高有效字节。
+  </text>
+  <text x="116" y="441" fill="#475569" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="16">
+    字节序只决定多字节排列；Start Bit 与位编号仍需按照当前协议或 DBC 工具定义解释。
+  </text>
+</svg>

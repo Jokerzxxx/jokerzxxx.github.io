@@ -1,0 +1,1479 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Android开发艺术探索 - 码上弦音</title>
+
+  
+    <meta name="description" content="Android开发艺术探索 作者：任玉刚全书共15章，522页，涵盖Activity、IPC、View、动画、Window、四大组件、消息机制、线程、Bitmap、性能优化等Android核心技术领域。  第1章 Activity的生命周期和启动模式1.1 Activity的生命周期全面分析1.1.1 典型情况下的生命周期Activity在正常情况下的生命周期回调顺序：  onCreate：Act">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发艺术探索">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/20/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Android开发艺术探索 作者：任玉刚全书共15章，522页，涵盖Activity、IPC、View、动画、Window、四大组件、消息机制、线程、Bitmap、性能优化等Android核心技术领域。  第1章 Activity的生命周期和启动模式1.1 Activity的生命周期全面分析1.1.1 典型情况下的生命周期Activity在正常情况下的生命周期回调顺序：  onCreate：Act">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-20T08:50:00.000Z">
+<meta property="article:modified_time" content="2026-08-20T08:40:36.240Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="阅读">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,阅读">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-20T08:50:00.000Z">2026-08-20</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-20T08:40:36.240Z">2026-08-20</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Android开发艺术探索</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Android开发艺术探索"><a href="#Android开发艺术探索" class="headerlink" title="Android开发艺术探索"></a>Android开发艺术探索</h1><blockquote>
+<p>作者：任玉刚<br>全书共15章，522页，涵盖Activity、IPC、View、动画、Window、四大组件、消息机制、线程、Bitmap、性能优化等Android核心技术领域。</p>
+</blockquote>
+<h2 id="第1章-Activity的生命周期和启动模式"><a href="#第1章-Activity的生命周期和启动模式" class="headerlink" title="第1章 Activity的生命周期和启动模式"></a>第1章 Activity的生命周期和启动模式</h2><h3 id="1-1-Activity的生命周期全面分析"><a href="#1-1-Activity的生命周期全面分析" class="headerlink" title="1.1 Activity的生命周期全面分析"></a>1.1 Activity的生命周期全面分析</h3><h4 id="1-1-1-典型情况下的生命周期"><a href="#1-1-1-典型情况下的生命周期" class="headerlink" title="1.1.1 典型情况下的生命周期"></a>1.1.1 典型情况下的生命周期</h4><p>Activity在正常情况下的生命周期回调顺序：</p>
+<ol>
+<li><strong>onCreate</strong>：Activity正在创建，做初始化工作（加载布局、绑定数据）</li>
+<li><strong>onStart</strong>：Activity正在启动，已可见但不在前台，无法交互</li>
+<li><strong>onResume</strong>：Activity已可见且在前台，可交互</li>
+<li><strong>onPause</strong>：Activity正在停止，应存储数据、停止动画，但不能做耗时操作</li>
+<li><strong>onStop</strong>：Activity即将停止，可做稍微重量级的回收工作</li>
+<li><strong>onDestroy</strong>：Activity即将销毁，做最终资源释放</li>
+<li><strong>onRestart</strong>：Activity从停止状态重新启动，后接onStart</li>
+</ol>
+<blockquote>
+<p><strong>关键结论</strong>：onPause和onStop中都不能执行耗时操作。onPause中尤其不能做耗时操作，因为新Activity的onResume必须等旧Activity的onPause执行完才会调用。</p>
+</blockquote>
+<h4 id="1-1-2-异常情况下的生命周期"><a href="#1-1-2-异常情况下的生命周期" class="headerlink" title="1.1.2 异常情况下的生命周期"></a>1.1.2 异常情况下的生命周期</h4><p>资源相关的系统配置发生改变（如屏幕旋转）或系统内存不足时，Activity可能被异常销毁重建。</p>
+<p><strong>异常销毁的数据保存与恢复</strong>：</p>
+<ul>
+<li><strong>onSaveInstanceState</strong>：在onStop之前调用（不一定在onPause之前还是之后），用于保存临时数据</li>
+<li><strong>onRestoreInstanceState</strong>：在onStart之后调用，用于恢复数据</li>
+<li>系统默认会为每个View保存状态（如EditText的输入内容、ListView的滚动位置），前提是View需要指定id</li>
+</ul>
+<p><strong>避免重建</strong>：通过AndroidManifest中配置<code>android:configChanges=&quot;orientation|screenSize&quot;</code>，可在配置变化时不重建Activity，转而回调<code>onConfigurationChanged</code>。</p>
+<h3 id="1-2-Activity的启动模式"><a href="#1-2-Activity的启动模式" class="headerlink" title="1.2 Activity的启动模式"></a>1.2 Activity的启动模式</h3><h4 id="1-2-1-Activity的LaunchMode"><a href="#1-2-1-Activity的LaunchMode" class="headerlink" title="1.2.1 Activity的LaunchMode"></a>1.2.1 Activity的LaunchMode</h4><table>
+<thead>
+<tr>
+<th>启动模式</th>
+<th>行为</th>
+<th>典型应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>standard</td>
+<td>每次启动都创建新实例，谁启动它就运行在谁的任务栈中</td>
+<td>默认模式，大多数Activity</td>
+</tr>
+<tr>
+<td>singleTop</td>
+<td>栈顶复用：若新Activity已在栈顶，则不重建，回调onNewIntent；否则创建新实例</td>
+<td>通知栏点击启动的Activity、搜索页</td>
+</tr>
+<tr>
+<td>singleTask</td>
+<td>栈内复用：若任务栈中已存在则清除其上所有Activity并回调onNewIntent；可指定taskAffinity运行在指定栈中</td>
+<td>应用首页、主界面</td>
+</tr>
+<tr>
+<td>singleInstance</td>
+<td>单实例模式：独占一个任务栈，全局唯一</td>
+<td>来电界面、系统Launcher</td>
+</tr>
+</tbody></table>
+<h4 id="1-2-2-Activity的Flags"><a href="#1-2-2-Activity的Flags" class="headerlink" title="1.2.2 Activity的Flags"></a>1.2.2 Activity的Flags</h4><p>常用Flag（通过Intent.addFlags设置）：</p>
+<ul>
+<li><strong>FLAG_ACTIVITY_NEW_TASK</strong>：为singleTask模式效果，需配合taskAffinity</li>
+<li><strong>FLAG_ACTIVITY_SINGLE_TOP</strong>：为singleTop模式效果</li>
+<li><strong>FLAG_ACTIVITY_CLEAR_TOP</strong>：清除目标Activity之上的所有Activity，常与singleTask配合</li>
+<li><strong>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</strong>：不出现在最近任务列表中</li>
+</ul>
+<h3 id="1-3-IntentFilter的匹配规则"><a href="#1-3-IntentFilter的匹配规则" class="headerlink" title="1.3 IntentFilter的匹配规则"></a>1.3 IntentFilter的匹配规则</h3><p>隐式Intent启动Activity时，需同时匹配action、category、data三个过滤规则。</p>
+<ul>
+<li><strong>action匹配</strong>：Intent中的action必须与过滤规则中的某一个action完全匹配（区分大小写）</li>
+<li><strong>category匹配</strong>：Intent中的每个category都必须在过滤规则中存在；Intent不设置category时系统默认添加<code>android.intent.category.DEFAULT</code>，因此隐式调用的Activity必须在filter中声明DEFAULT</li>
+<li><strong>data匹配</strong>：由mimeType和URI组成，URI包含scheme、host、port、path等部分；data匹配要求Intent中data的各部分与过滤规则一致</li>
+</ul>
+<h2 id="第2章-IPC机制"><a href="#第2章-IPC机制" class="headerlink" title="第2章 IPC机制"></a>第2章 IPC机制</h2><h3 id="2-1-Android-IPC简介"><a href="#2-1-Android-IPC简介" class="headerlink" title="2.1 Android IPC简介"></a>2.1 Android IPC简介</h3><p>IPC（Inter-Process Communication）即跨进程通信，Android中基于Binder实现。</p>
+<h3 id="2-2-Android中的多进程模式"><a href="#2-2-Android中的多进程模式" class="headerlink" title="2.2 Android中的多进程模式"></a>2.2 Android中的多进程模式</h3><p>通过在AndroidManifest中为四大组件指定<code>android:process</code>属性即可开启多进程。</p>
+<blockquote>
+<p><strong>多进程的运行机制问题</strong>：Android为每个进程分配独立的虚拟机，不同进程之间内存不共享。这会导致：</p>
+<ul>
+<li>静态成员和单例模式完全失效</li>
+<li>线程同步机制完全失效（不同进程的锁不是同一把）</li>
+<li>SharedPreferences的可靠性下降（不支持多进程并发读写）</li>
+<li>Application会多次创建（每个进程启动时都会创建自己的Application）</li>
+</ul>
+</blockquote>
+<h3 id="2-3-IPC基础概念介绍"><a href="#2-3-IPC基础概念介绍" class="headerlink" title="2.3 IPC基础概念介绍"></a>2.3 IPC基础概念介绍</h3><h4 id="2-3-1-Serializable接口"><a href="#2-3-1-Serializable接口" class="headerlink" title="2.3.1 Serializable接口"></a>2.3.1 Serializable接口</h4><p>Java提供的序列化接口，使用简单但开销大，会产生大量临时对象引起频繁GC。通过<code>serialVersionUID</code>标识序列化版本，反序列化时若版本不一致会抛出InvalidClassException。</p>
+<h4 id="2-3-2-Parcelable接口"><a href="#2-3-2-Parcelable接口" class="headerlink" title="2.3.2 Parcelable接口"></a>2.3.2 Parcelable接口</h4><p>Android提供的序列化方式，效率高，是Android推荐的序列化方式。通过writeToParcel写入、CREATOR读取。Parcelable主要用于内存序列化，Serializable可用于网络传输和持久化存储。</p>
+<h4 id="2-3-3-Binder"><a href="#2-3-3-Binder" class="headerlink" title="2.3.3 Binder"></a>2.3.3 Binder</h4><p>Binder是Android中实现IPC的核心机制，是一种开放的、轻量级的高性能架构。从机制上看，Binder是一种跨进程通信方式；从模型上看，Binder采用C&#x2F;S架构，由Client、Server、ServiceManager和Binder驱动组成。</p>
+<h3 id="2-4-Android中的IPC方式"><a href="#2-4-Android中的IPC方式" class="headerlink" title="2.4 Android中的IPC方式"></a>2.4 Android中的IPC方式</h3><table>
+<thead>
+<tr>
+<th>IPC方式</th>
+<th>原理</th>
+<th>适用场景</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bundle</td>
+<td>四大组件间通过Intent传递Bundle数据</td>
+<td>Activity&#x2F;Service&#x2F;BroadcastReceiver间通信</td>
+<td>简单易用，仅支持可序列化数据类型</td>
+</tr>
+<tr>
+<td>文件共享</td>
+<td>通过读写同一个文件交换数据</td>
+<td>无并发场景下的数据交换</td>
+<td>简单，不适合高并发，不支持即时通信</td>
+</tr>
+<tr>
+<td>Messenger</td>
+<td>基于AIDL的轻量级IPC，串行处理消息</td>
+<td>低并发、简单的跨进程消息传递</td>
+<td>实现简单，串行处理无法高并发，仅支持消息传递</td>
+</tr>
+<tr>
+<td>AIDL</td>
+<td>基于Binder的接口定义语言，支持并发</td>
+<td>需要跨进程调用方法、高并发场景</td>
+<td>功能强大，支持并发和实时通信，实现稍复杂</td>
+</tr>
+<tr>
+<td>ContentProvider</td>
+<td>以表格形式对外暴露数据，底层也是Binder</td>
+<td>跨进程数据共享，如通讯录、媒体库</td>
+<td>适合结构化数据共享，提供CRUD操作</td>
+</tr>
+<tr>
+<td>Socket</td>
+<td>通过网络套接字通信，不限于本机</td>
+<td>跨设备&#x2F;跨网络通信</td>
+<td>灵活通用，需要处理网络权限和线程</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-Binder连接池"><a href="#2-5-Binder连接池" class="headerlink" title="2.5 Binder连接池"></a>2.5 Binder连接池</h3><p>当应用中需要多个AIDL接口时，为每个接口单独创建Service会浪费资源。Binder连接池的思想是：统一一个Service，通过一个Binder连接池（BinderPool）来管理所有AIDL的Binder，客户端通过queryBinder方法根据不同的code获取对应的Binder。</p>
+<h3 id="2-6-选用合适的IPC方式"><a href="#2-6-选用合适的IPC方式" class="headerlink" title="2.6 选用合适的IPC方式"></a>2.6 选用合适的IPC方式</h3><ul>
+<li>四大组件间传递小数据 → Bundle</li>
+<li>简单的跨进程消息传递 → Messenger</li>
+<li>需要跨进程调用方法且有并发需求 → AIDL</li>
+<li>结构化数据跨进程共享 → ContentProvider</li>
+<li>无并发的简单数据交换 → 文件共享</li>
+<li>跨网络通信 → Socket</li>
+</ul>
+<h2 id="第3章-View的事件体系"><a href="#第3章-View的事件体系" class="headerlink" title="第3章 View的事件体系"></a>第3章 View的事件体系</h2><h3 id="3-1-View基础知识"><a href="#3-1-View基础知识" class="headerlink" title="3.1 View基础知识"></a>3.1 View基础知识</h3><h4 id="3-1-1-什么是View"><a href="#3-1-1-什么是View" class="headerlink" title="3.1.1 什么是View"></a>3.1.1 什么是View</h4><p>View是Android中所有控件的基类，ViewGroup继承自View，是控件的容器。</p>
+<h4 id="3-1-2-View的位置参数"><a href="#3-1-2-View的位置参数" class="headerlink" title="3.1.2 View的位置参数"></a>3.1.2 View的位置参数</h4><ul>
+<li><strong>left&#x2F;top&#x2F;right&#x2F;bottom</strong>：View相对于父容器的原始左上右下坐标（getLeft()等）</li>
+<li><strong>x&#x2F;y</strong>：View左上角的当前坐标，x &#x3D; left + translationX，y &#x3D; top + translationY</li>
+<li><strong>translationX&#x2F;translationY</strong>：View左上角相对于父容器的偏移量，默认为0</li>
+<li><strong>elevation</strong>：View的Z轴高度（Android 5.0+）</li>
+</ul>
+<h4 id="3-1-3-MotionEvent和TouchSlop"><a href="#3-1-3-MotionEvent和TouchSlop" class="headerlink" title="3.1.3 MotionEvent和TouchSlop"></a>3.1.3 MotionEvent和TouchSlop</h4><p><strong>MotionEvent典型事件</strong>：</p>
+<ul>
+<li>ACTION_DOWN：手指刚接触屏幕</li>
+<li>ACTION_MOVE：手指在屏幕上移动</li>
+<li>ACTION_UP：手指从屏幕松开</li>
+<li>ACTION_CANCEL：事件被中断（如被父View拦截）</li>
+</ul>
+<p><strong>TouchSlop</strong>：系统识别的最小滑动距离，通过<code>ViewConfiguration.get(context).getScaledTouchSlop()</code>获取。小于这个距离的移动不被认为是滑动。</p>
+<h4 id="3-1-4-VelocityTracker、GestureDetector和Scroller"><a href="#3-1-4-VelocityTracker、GestureDetector和Scroller" class="headerlink" title="3.1.4 VelocityTracker、GestureDetector和Scroller"></a>3.1.4 VelocityTracker、GestureDetector和Scroller</h4><ul>
+<li><strong>VelocityTracker</strong>：速度追踪器，用于追踪手指在滑动过程中的速度（水平和垂直方向）。使用时需在onTouchEvent中添加追踪，computeCurrentVelocity计算速度，recycle回收资源。</li>
+<li><strong>GestureDetector</strong>：手势检测，辅助检测用户的单击、滑动、长按、双击等行为。通过OnGestureListener和OnDoubleTapListener回调。</li>
+<li><strong>Scroller</strong>：弹性滑动对象，用于实现View的弹性滑动（平滑移动）。本身不能让View滑动，需配合View的computeScroll方法使用。</li>
+</ul>
+<h3 id="3-2-View的滑动"><a href="#3-2-View的滑动" class="headerlink" title="3.2 View的滑动"></a>3.2 View的滑动</h3><table>
+<thead>
+<tr>
+<th>滑动方式</th>
+<th>原理</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>scrollTo&#x2F;scrollBy</td>
+<td>改变View内容的位置（mScrollX&#x2F;mScrollY），不改变View在布局中的位置</td>
+<td>操作简单，只能滑动View内容，不能滑动View本身</td>
+</tr>
+<tr>
+<td>动画</td>
+<td>通过View动画或属性动画改变View的位置</td>
+<td>属性动画可真正改变View位置；View动画只是影像移动，点击事件仍在原位置</td>
+</tr>
+<tr>
+<td>改变布局参数</td>
+<td>修改LayoutParams的margin等参数使View位置变化</td>
+<td>真正改变View位置，适合需要交互的滑动</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-弹性滑动"><a href="#3-3-弹性滑动" class="headerlink" title="3.3 弹性滑动"></a>3.3 弹性滑动</h3><p>弹性滑动的核心思想是将一次大的滑动拆分成多次小的滑动，在一段时间内完成。</p>
+<ul>
+<li><strong>使用Scroller</strong>：startScroll开始滑动 → invalidate触发重绘 → computeScroll中获取当前scroll值并scrollTo → postInvalidate继续重绘，直到滑动完成</li>
+<li><strong>通过动画</strong>：使用ValueAnimator的addUpdateListener，在动画更新时获取当前进度并执行scrollTo</li>
+<li><strong>使用延时策略</strong>：通过Handler的postDelayed或View的postDelayed，在每次延时中scrollTo一小段距离</li>
+</ul>
+<h3 id="3-4-View的事件分发机制"><a href="#3-4-View的事件分发机制" class="headerlink" title="3.4 View的事件分发机制"></a>3.4 View的事件分发机制</h3><h4 id="3-4-1-点击事件的传递规则"><a href="#3-4-1-点击事件的传递规则" class="headerlink" title="3.4.1 点击事件的传递规则"></a>3.4.1 点击事件的传递规则</h4><p>事件分发的三个核心方法：</p>
+<ol>
+<li>**dispatchTouchEvent(MotionEvent ev)**：进行事件分发。如果事件能传递给当前View，则此方法一定会被调用。返回值受当前View的onTouchEvent和下级View的dispatchTouchEvent影响。</li>
+<li>**onInterceptTouchEvent(MotionEvent ev)**：在dispatchTouchEvent内部调用，判断是否拦截某个事件。如果拦截，则同一事件序列中此方法不再被调用，转而调用onTouchEvent。</li>
+<li>**onTouchEvent(MotionEvent ev)**：处理点击事件。返回false表示不消费当前事件，返回true表示消费。</li>
+</ol>
+<blockquote>
+<p><strong>事件分发伪代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">consume</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (onInterceptTouchEvent(ev)) &#123;</span><br><span class="line">        consume = onTouchEvent(ev);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        consume = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>关键结论</strong>：</p>
+<ul>
+<li>同一事件序列（DOWN→MOVE→UP）一旦被某个View拦截消费，后续事件都直接交给它处理，不再调用onInterceptTouchEvent</li>
+<li>View的onTouchEvent默认消费事件（返回true），除非它是不可点击的（clickable和longClickable都为false）</li>
+<li>enable不影响onTouchEvent的默认返回值，即使View disable，只要clickable为true仍消费事件</li>
+<li>onTouchListener优先级高于onTouchEvent；onClickListener优先级最低（在onTouchEvent的UP事件中触发）</li>
+<li>如果一个View不消费ACTION_DOWN事件（onTouchEvent返回false），则同一事件序列的后续事件都不会再交给它</li>
+</ul>
+<h4 id="3-4-2-事件分发的源码解析"><a href="#3-4-2-事件分发的源码解析" class="headerlink" title="3.4.2 事件分发的源码解析"></a>3.4.2 事件分发的源码解析</h4><p>事件从Activity.dispatchTouchEvent开始，经PhoneWindow.superDispatchTouchEvent传递到DecorView，再逐层向下分发到子View。如果所有View都不消费事件，则最终回到Activity的onTouchEvent处理。</p>
+<h3 id="3-5-View的滑动冲突"><a href="#3-5-View的滑动冲突" class="headerlink" title="3.5 View的滑动冲突"></a>3.5 View的滑动冲突</h3><h4 id="3-5-1-常见的滑动冲突场景"><a href="#3-5-1-常见的滑动冲突场景" class="headerlink" title="3.5.1 常见的滑动冲突场景"></a>3.5.1 常见的滑动冲突场景</h4><ol>
+<li>外部滑动方向和内部滑动方向不一致（如ViewPager嵌套ListView）</li>
+<li>外部滑动方向和内部滑动方向一致（如ScrollView嵌套ListView）</li>
+<li>上述两种情况的嵌套</li>
+</ol>
+<h4 id="3-5-2-滑动冲突的处理规则"><a href="#3-5-2-滑动冲突的处理规则" class="headerlink" title="3.5.2 滑动冲突的处理规则"></a>3.5.2 滑动冲突的处理规则</h4><p>对于场景1，根据滑动是水平还是竖直来判断谁来拦截事件。判断依据：滑动过程中水平距离大则为水平滑动，竖直距离大则为竖直滑动。</p>
+<h4 id="3-5-3-滑动冲突的解决方式"><a href="#3-5-3-滑动冲突的解决方式" class="headerlink" title="3.5.3 滑动冲突的解决方式"></a>3.5.3 滑动冲突的解决方式</h4><ul>
+<li><strong>外部拦截法</strong>：在父容器的onInterceptTouchEvent中处理。DOWN事件不拦截（否则子元素无法收到事件），MOVE事件根据需要决定是否拦截，UP事件不拦截（拦截UP会导致子元素无法触发点击事件）</li>
+<li><strong>内部拦截法</strong>：在子元素的dispatchTouchEvent中处理，配合父容器的requestDisallowInterceptTouchEvent方法。子元素在DOWN时调用requestDisallowInterceptTouchEvent(true)禁止父容器拦截，在MOVE时根据需要调用false允许父容器拦截</li>
+</ul>
+<h2 id="第4章-View的工作原理"><a href="#第4章-View的工作原理" class="headerlink" title="第4章 View的工作原理"></a>第4章 View的工作原理</h2><h3 id="4-1-初识ViewRoot和DecorView"><a href="#4-1-初识ViewRoot和DecorView" class="headerlink" title="4.1 初识ViewRoot和DecorView"></a>4.1 初识ViewRoot和DecorView</h3><ul>
+<li><strong>ViewRoot</strong>：对应ViewRootImpl类，是连接WindowManager和DecorView的纽带。View的三大流程（measure、layout、draw）均通过ViewRoot完成。</li>
+<li><strong>DecorView</strong>：顶级View，本质是FrameLayout，包含一个竖直方向的LinearLayout（标题栏+内容栏）。内容栏id为android.R.id.content，setContentView就是将布局添加到内容栏中。</li>
+</ul>
+<p>Activity的Window创建后，DecorView尚未被WindowManager识别，直到ActivityThread的handleResumeActivity中调用wm.addView(decor, l)后，DecorView才真正完成创建和显示。</p>
+<h3 id="4-2-理解MeasureSpec"><a href="#4-2-理解MeasureSpec" class="headerlink" title="4.2 理解MeasureSpec"></a>4.2 理解MeasureSpec</h3><h4 id="4-2-1-MeasureSpec"><a href="#4-2-1-MeasureSpec" class="headerlink" title="4.2.1 MeasureSpec"></a>4.2.1 MeasureSpec</h4><p>MeasureSpec代表一个32位int值，高2位代表SpecMode（测量模式），低30位代表SpecSize（测量大小）。</p>
+<table>
+<thead>
+<tr>
+<th>SpecMode</th>
+<th>含义</th>
+<th>对应LayoutParams</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UNSPECIFIED</td>
+<td>父容器不对View做任何限制，要多大给多大</td>
+<td>一般用于系统内部，如ScrollView</td>
+</tr>
+<tr>
+<td>EXACTLY</td>
+<td>父容器已检测出View所需的精确大小，View的最终大小就是SpecSize</td>
+<td>match_parent或具体数值</td>
+</tr>
+<tr>
+<td>AT_MOST</td>
+<td>父容器指定了一个可用大小SpecSize，View的大小不能大于这个值</td>
+<td>wrap_content</td>
+</tr>
+</tbody></table>
+<h4 id="4-2-2-MeasureSpec和LayoutParams的对应关系"><a href="#4-2-2-MeasureSpec和LayoutParams的对应关系" class="headerlink" title="4.2.2 MeasureSpec和LayoutParams的对应关系"></a>4.2.2 MeasureSpec和LayoutParams的对应关系</h4><p>系统通过父容器的MeasureSpec和View自身的LayoutParams来确定View的MeasureSpec。对于顶级View（DecorView），其MeasureSpec由窗口尺寸和自身LayoutParams决定。</p>
+<h3 id="4-3-View的工作流程"><a href="#4-3-View的工作流程" class="headerlink" title="4.3 View的工作流程"></a>4.3 View的工作流程</h3><h4 id="4-3-1-measure过程"><a href="#4-3-1-measure过程" class="headerlink" title="4.3.1 measure过程"></a>4.3.1 measure过程</h4><ul>
+<li><strong>View的measure</strong>：通过onMeasure方法完成。setMeasuredDimension设置测量宽高。getDefaultSize方法中，对于AT_MOST和EXACTLY模式都返回specSize，这意味着如果自定义View不重写onMeasure，wrap_content和match_parent效果相同。</li>
+<li><strong>ViewGroup的measure</strong>：除了完成自己的measure，还会遍历调用所有子元素的measure方法。ViewGroup是抽象类，没有重写onMeasure，具体测量逻辑由各子类（如LinearLayout、FrameLayout）实现。</li>
+</ul>
+<blockquote>
+<p><strong>自定义View处理wrap_content</strong>：重写onMeasure时，当widthMode或heightMode为AT_MOST时，需要给View设置一个默认的内部宽高（如指定一个mWidth&#x2F;mHeight），否则wrap_content会表现为match_parent。</p>
+</blockquote>
+<h4 id="4-3-2-layout过程"><a href="#4-3-2-layout过程" class="headerlink" title="4.3.2 layout过程"></a>4.3.2 layout过程</h4><p>layout方法确定View的位置。通过setFrame方法设定View的四个顶点位置（mLeft、mTop、mRight、mBottom），然后调用onLayout确定子元素的位置。View的onLayout是空实现，ViewGroup的onLayout是抽象方法。</p>
+<h4 id="4-3-3-draw过程"><a href="#4-3-3-draw过程" class="headerlink" title="4.3.3 draw过程"></a>4.3.3 draw过程</h4><p>draw过程将View绘制到屏幕上，步骤如下：</p>
+<ol>
+<li>绘制背景（drawBackground）</li>
+<li>绘制自己（onDraw）</li>
+<li>绘制子元素（dispatchDraw）</li>
+<li>绘制装饰（滚动条等，onDrawForeground）</li>
+</ol>
+<p>View的绘制通过dispatchDraw来遍历调用子View的draw方法。setWillNotDraw(true)可优化：如果一个View不需要绘制任何内容（如纯容器ViewGroup），设置此标志后系统不会执行onDraw。</p>
+<h3 id="4-4-自定义View"><a href="#4-4-自定义View" class="headerlink" title="4.4 自定义View"></a>4.4 自定义View</h3><h4 id="4-4-1-自定义View的分类"><a href="#4-4-1-自定义View的分类" class="headerlink" title="4.4.1 自定义View的分类"></a>4.4.1 自定义View的分类</h4><ol>
+<li><strong>继承View重写onDraw方法</strong>：实现不规则效果，需自己支持wrap_content和padding</li>
+<li><strong>继承特定ViewGroup（如LinearLayout）</strong>：实现组合布局，不需要自己处理measure和layout</li>
+<li><strong>继承特定View（如TextView、Button）</strong>：扩展已有控件功能</li>
+<li><strong>继承ViewGroup重写onMeasure和onLayout</strong>：实现自定义布局，需处理测量和布局逻辑</li>
+</ol>
+<h4 id="4-4-2-自定义View须知"><a href="#4-4-2-自定义View须知" class="headerlink" title="4.4.2 自定义View须知"></a>4.4.2 自定义View须知</h4><ul>
+<li>支持wrap_content：重写onMeasure处理AT_MOST模式</li>
+<li>支持padding：在onDraw和onLayout中考虑padding</li>
+<li>尽量不要在View中使用Handler：View内部已提供post系列方法</li>
+<li>View中如有线程或动画，在onDetachedFromWindow中停止</li>
+<li>处理滑动冲突：根据场景使用外部拦截或内部拦截</li>
+</ul>
+<h4 id="4-4-3-自定义View示例"><a href="#4-4-3-自定义View示例" class="headerlink" title="4.4.3 自定义View示例"></a>4.4.3 自定义View示例</h4><p>书中给出了一个圆形进度条的自定义View示例，通过继承View重写onDraw绘制圆弧和文字。</p>
+<h4 id="4-4-4-自定义View的思想"><a href="#4-4-4-自定义View的思想" class="headerlink" title="4.4.4 自定义View的思想"></a>4.4.4 自定义View的思想</h4><p>掌握自定义View的核心在于理解measure、layout、draw三大流程，以及事件分发机制。多数需求可以通过组合现有控件实现，真正需要继承View的场景主要是不规则绘制和自定义布局。</p>
+<h2 id="第5章-理解RemoteViews"><a href="#第5章-理解RemoteViews" class="headerlink" title="第5章 理解RemoteViews"></a>第5章 理解RemoteViews</h2><h3 id="5-1-RemoteViews的应用"><a href="#5-1-RemoteViews的应用" class="headerlink" title="5.1 RemoteViews的应用"></a>5.1 RemoteViews的应用</h3><p>RemoteViews表示一种可以在其他进程中显示的View结构，主要用于通知栏和桌面小部件。</p>
+<h4 id="5-1-1-RemoteViews在通知栏上的应用"><a href="#5-1-1-RemoteViews在通知栏上的应用" class="headerlink" title="5.1.1 RemoteViews在通知栏上的应用"></a>5.1.1 RemoteViews在通知栏上的应用</h4><p>通过NotificationCompat.Builder构建通知，使用setContent设置RemoteViews自定义通知布局。RemoteViews通过setTextViewText、setImageViewResource等方法设置控件内容，通过setOnClickPendingIntent设置点击事件。</p>
+<h4 id="5-1-2-RemoteViews在桌面小部件上的应用"><a href="#5-1-2-RemoteViews在桌面小部件上的应用" class="headerlink" title="5.1.2 RemoteViews在桌面小部件上的应用"></a>5.1.2 RemoteViews在桌面小部件上的应用</h4><p>桌面小部件通过AppWidgetProvider实现（本质是BroadcastReceiver）。在onUpdate中通过RemoteViews更新小部件界面，通过AppWidgetManager更新。</p>
+<h4 id="5-1-3-PendingIntent概述"><a href="#5-1-3-PendingIntent概述" class="headerlink" title="5.1.3 PendingIntent概述"></a>5.1.3 PendingIntent概述</h4><p>PendingIntent表示一种处于待定状态的Intent，在未来某个时刻被触发。三种获取方式：</p>
+<ul>
+<li><strong>getActivity</strong>：获取一个用于启动Activity的PendingIntent</li>
+<li><strong>getService</strong>：获取一个用于启动Service的PendingIntent</li>
+<li><strong>getBroadcast</strong>：获取一个用于发送广播的PendingIntent</li>
+</ul>
+<p>PendingIntent的匹配规则：Intent相同且requestCode相同则认为是同一个PendingIntent。Intent的匹配考虑componentName和intent-filter（data不参与匹配）。flags常用值：</p>
+<ul>
+<li>FLAG_ONE_SHOT：只能使用一次</li>
+<li>FLAG_NO_CREATE：若不存在则返回null</li>
+<li>FLAG_CANCEL_CURRENT：若已存在则取消当前的并创建新的</li>
+<li>FLAG_UPDATE_CURRENT：若已存在则更新其extra数据</li>
+</ul>
+<h3 id="5-2-RemoteViews的内部机制"><a href="#5-2-RemoteViews的内部机制" class="headerlink" title="5.2 RemoteViews的内部机制"></a>5.2 RemoteViews的内部机制</h3><p>RemoteViews的工作流程：</p>
+<ol>
+<li>RemoteViews在本地进程中通过一系列set方法设置操作（这些操作被封装成Action对象存入列表）</li>
+<li>通过Binder将RemoteViews传递到远程进程（SystemServer中的通知服务或桌面进程）</li>
+<li>远程进程通过apply方法执行所有Action，完成界面更新</li>
+</ol>
+<p>RemoteViews不支持所有View和方法，仅支持部分布局（FrameLayout、LinearLayout、RelativeLayout、GridLayout等）和部分控件（TextView、Button、ImageView、ProgressBar等），且不支持findViewById直接操作控件。</p>
+<h3 id="5-3-RemoteViews的意义"><a href="#5-3-RemoteViews的意义" class="headerlink" title="5.3 RemoteViews的意义"></a>5.3 RemoteViews的意义</h3><p>RemoteViews的核心价值在于跨进程更新UI。它通过Action列表的方式将UI操作序列化后跨进程传递，避免了大量Binder调用。除了通知栏和桌面小部件，也可用于应用内跨进程UI更新（如两个进程通过RemoteViews交换界面）。</p>
+<h2 id="第6章-Android的Drawable"><a href="#第6章-Android的Drawable" class="headerlink" title="第6章 Android的Drawable"></a>第6章 Android的Drawable</h2><h3 id="6-1-Drawable简介"><a href="#6-1-Drawable简介" class="headerlink" title="6.1 Drawable简介"></a>6.1 Drawable简介</h3><p>Drawable是一种可绘制对象的抽象概念，可以是图片、颜色、图形等。Drawable的优点：使用简单，比自定义View成本低；非图片类型的Drawable占用空间小。</p>
+<p>Drawable的内部宽高通过getIntrinsicWidth&#x2F;getIntrinsicHeight获取，图片Drawable有原始尺寸，纯颜色Drawable无固有尺寸（返回-1）。Drawable没有大小概念，作为View背景时会被拉伸至View大小。</p>
+<h3 id="6-2-Drawable的分类"><a href="#6-2-Drawable的分类" class="headerlink" title="6.2 Drawable的分类"></a>6.2 Drawable的分类</h3><table>
+<thead>
+<tr>
+<th>Drawable类型</th>
+<th>XML标签</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BitmapDrawable</td>
+<td><code>&lt;bitmap&gt;</code></td>
+<td>引用一张图片，可设置tileMode平铺、gravity对齐等</td>
+</tr>
+<tr>
+<td>ShapeDrawable</td>
+<td><code>&lt;shape&gt;</code></td>
+<td>通过XML绘制图形（矩形&#x2F;椭圆&#x2F;线&#x2F;环），支持solid渐变、stroke描边、corners圆角、padding</td>
+</tr>
+<tr>
+<td>LayerDrawable</td>
+<td><code>&lt;layer-list&gt;</code></td>
+<td>分层叠加多个Drawable，每层可设置left&#x2F;top&#x2F;right&#x2F;bottom偏移</td>
+</tr>
+<tr>
+<td>StateListDrawable</td>
+<td><code>&lt;selector&gt;</code></td>
+<td>根据View状态切换不同Drawable（如按钮按下&#x2F;正常&#x2F;禁用）</td>
+</tr>
+<tr>
+<td>LevelListDrawable</td>
+<td><code>&lt;level-list&gt;</code></td>
+<td>根据level值切换Drawable，通过setLevel设置（如电量显示）</td>
+</tr>
+<tr>
+<td>TransitionDrawable</td>
+<td><code>&lt;transition&gt;</code></td>
+<td>两层Drawable之间的淡入淡出切换，startTransition&#x2F;reverseTransition</td>
+</tr>
+<tr>
+<td>InsetDrawable</td>
+<td><code>&lt;inset&gt;</code></td>
+<td>将Drawable内嵌并设置四周留白，常用于需要比View小的背景</td>
+</tr>
+<tr>
+<td>ScaleDrawable</td>
+<td><code>&lt;scale&gt;</code></td>
+<td>根据level将Drawable缩放到一定比例，level&#x3D;0时不可见，需设置level&gt;0才显示</td>
+</tr>
+<tr>
+<td>ClipDrawable</td>
+<td><code>&lt;clip&gt;</code></td>
+<td>根据level裁剪Drawable，level从0到10000，0表示完全裁剪（不可见）</td>
+</tr>
+</tbody></table>
+<h3 id="6-3-自定义Drawable"><a href="#6-3-自定义Drawable" class="headerlink" title="6.3 自定义Drawable"></a>6.3 自定义Drawable</h3><p>继承Drawable重写以下方法：</p>
+<ul>
+<li>**draw(Canvas canvas)**：绘制内容</li>
+<li>**setAlpha(int alpha)**：设置透明度</li>
+<li>**setColorFilter(ColorFilter cf)**：设置颜色滤镜</li>
+<li>**getOpacity()**：返回透明度模式（PixelFormat.TRANSLUCENT等）</li>
+</ul>
+<p>自定义Drawable的优势在于可以用代码绘制复杂效果，且占用内存小。在onBoundsChange中获取Drawable的尺寸。</p>
+<h2 id="第7章-Android动画深入分析"><a href="#第7章-Android动画深入分析" class="headerlink" title="第7章 Android动画深入分析"></a>第7章 Android动画深入分析</h2><h3 id="7-1-View动画"><a href="#7-1-View动画" class="headerlink" title="7.1 View动画"></a>7.1 View动画</h3><h4 id="7-1-1-View动画的种类"><a href="#7-1-1-View动画的种类" class="headerlink" title="7.1.1 View动画的种类"></a>7.1.1 View动画的种类</h4><table>
+<thead>
+<tr>
+<th>动画类型</th>
+<th>XML标签</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>平移动画</td>
+<td><code>&lt;translate&gt;</code></td>
+<td>移动View位置，fromXDelta&#x2F;toXDelta等</td>
+</tr>
+<tr>
+<td>缩放动画</td>
+<td><code>&lt;scale&gt;</code></td>
+<td>放大缩小View，pivotX&#x2F;pivotY指定缩放中心</td>
+</tr>
+<tr>
+<td>旋转动画</td>
+<td><code>&lt;rotate&gt;</code></td>
+<td>旋转View，fromDegrees&#x2F;toDegrees</td>
+</tr>
+<tr>
+<td>透明度动画</td>
+<td><code>&lt;alpha&gt;</code></td>
+<td>改变View透明度，fromAlpha&#x2F;toAlpha</td>
+</tr>
+</tbody></table>
+<p>通过AnimationUtils.loadAnimation加载XML动画，view.startAnimation启动。也可通过代码创建Animation对象。setFillAfter(true)保持动画结束后的状态。</p>
+<h4 id="7-1-2-自定义View动画"><a href="#7-1-2-自定义View动画" class="headerlink" title="7.1.2 自定义View动画"></a>7.1.2 自定义View动画</h4><p>继承Animation，重写initialize和applyTransformation方法。在applyTransformation中通过Matrix变换实现自定义动画效果，interpolatedTime参数表示动画当前进度（0~1）。</p>
+<h4 id="7-1-3-帧动画"><a href="#7-1-3-帧动画" class="headerlink" title="7.1.3 帧动画"></a>7.1.3 帧动画</h4><p>通过<code>&lt;animation-list&gt;</code>定义一系列Drawable，按顺序播放。使用AnimationDrawable，注意不能在onCreate中调用start（此时View还未完全附着到窗口），应在onWindowFocusChanged中或通过post方式启动。</p>
+<h3 id="7-2-View动画的特殊使用场景"><a href="#7-2-View动画的特殊使用场景" class="headerlink" title="7.2 View动画的特殊使用场景"></a>7.2 View动画的特殊使用场景</h3><h4 id="7-2-1-LayoutAnimation"><a href="#7-2-1-LayoutAnimation" class="headerlink" title="7.2.1 LayoutAnimation"></a>7.2.1 LayoutAnimation</h4><p>用于为ViewGroup的子元素设置出场动画，每个子元素按一定顺序和延迟播放动画。通过<code>android:layoutAnimation</code>属性或LayoutAnimationController设置。delay属性指定每个子元素动画的延迟比例（如0.5表示每个子元素延迟前一个动画时长的50%）。animationOrder可选normal（顺序）、reverse（逆序）、random（随机）。</p>
+<h4 id="7-2-2-Activity的切换效果"><a href="#7-2-2-Activity的切换效果" class="headerlink" title="7.2.2 Activity的切换效果"></a>7.2.2 Activity的切换效果</h4><p>通过overridePendingTransition(int enterAnim, int exitAnim)在startActivity或finish之后调用，设置Activity的进入和退出动画。Fragment的切换通过FragmentTransaction的setCustomAnimations设置。</p>
+<h3 id="7-3-属性动画"><a href="#7-3-属性动画" class="headerlink" title="7.3 属性动画"></a>7.3 属性动画</h3><h4 id="7-3-1-使用属性动画"><a href="#7-3-1-使用属性动画" class="headerlink" title="7.3.1 使用属性动画"></a>7.3.1 使用属性动画</h4><p>属性动画（Android 3.0+引入）可以对任意对象的任意属性做动画，不仅仅是View。核心类：</p>
+<ul>
+<li><strong>ValueAnimator</strong>：属性动画的核心，负责计算属性值的变化，不直接操作对象</li>
+<li><strong>ObjectAnimator</strong>：继承ValueAnimator，可直接对对象的属性做动画（需属性有getter&#x2F;setter）</li>
+<li><strong>AnimatorSet</strong>：动画集合，可编排多个动画的先后&#x2F;同时关系</li>
+</ul>
+<p>常用方法：ofFloat、ofInt、ofArgb、ofObject。通过setDuration设置时长，setInterpolator设置插值器，addListener设置监听器。</p>
+<h4 id="7-3-2-理解插值器和估值器"><a href="#7-3-2-理解插值器和估值器" class="headerlink" title="7.3.2 理解插值器和估值器"></a>7.3.2 理解插值器和估值器</h4><ul>
+<li><strong>插值器（Interpolator&#x2F;TimeInterpolator）</strong>：根据时间流逝的百分比计算出当前属性值改变的百分比。如AccelerateDecelerateInterpolator（先加速后减速）、LinearInterpolator（匀速）、DecelerateInterpolator（减速）。</li>
+<li><strong>估值器（TypeEvaluator）</strong>：根据当前属性改变的百分比计算改变后的属性值。如IntEvaluator、FloatEvaluator、ArgbEvaluator。自定义估值器可实现对任意类型的动画。</li>
+</ul>
+<h4 id="7-3-3-属性动画的监听器"><a href="#7-3-3-属性动画的监听器" class="headerlink" title="7.3.3 属性动画的监听器"></a>7.3.3 属性动画的监听器</h4><ul>
+<li>AnimatorListener：监听动画的开始、结束、取消、重复</li>
+<li>AnimatorUpdateListener：监听动画的每一帧更新，在onAnimationUpdate中可获取当前属性值</li>
+</ul>
+<h4 id="7-3-4-对任意属性做动画"><a href="#7-3-4-对任意属性做动画" class="headerlink" title="7.3.4 对任意属性做动画"></a>7.3.4 对任意属性做动画</h4><p>ObjectAnimator要求动画属性有getter和setter方法。如果属性没有setter（如View的width），有三种解决方法：</p>
+<ol>
+<li>给对象加上get&#x2F;set方法（如果有权限）</li>
+<li>用一个类来包装原始对象，间接为其提供get&#x2F;set方法</li>
+<li>采用ValueAnimator，监听动画过程，自己实现属性的改变</li>
+</ol>
+<h4 id="7-3-5-属性动画的工作原理"><a href="#7-3-5-属性动画的工作原理" class="headerlink" title="7.3.5 属性动画的工作原理"></a>7.3.5 属性动画的工作原理</h4><p>属性动画通过不断调用set方法改变对象属性值来实现动画。系统内部维护一个动画处理器（AnimationHandler），通过Choreographer（与VSYNC同步）驱动动画帧的计算。每帧计算当前的fraction（进度），通过插值器转换为插值后的fraction，再通过估值器计算出当前属性值，最后调用set方法设置。</p>
+<h3 id="7-4-使用动画的注意事项"><a href="#7-4-使用动画的注意事项" class="headerlink" title="7.4 使用动画的注意事项"></a>7.4 使用动画的注意事项</h3><ul>
+<li><strong>OOM问题</strong>：帧动画图片过多过大时容易OOM，尽量避免使用大量大图的帧动画</li>
+<li><strong>内存泄漏</strong>：属性动画中有无限循环动画（如旋转），应在Activity退出时停止动画，否则Activity无法释放</li>
+<li><strong>兼容性问题</strong>：属性动画在Android 3.0以下不兼容，可使用nineoldandroids兼容库（其内部在低版本上实际是通过View动画代理实现）</li>
+<li><strong>View动画问题</strong>：View动画是对View影像做动画，View的真实位置不变，点击事件仍在原位置。属性动画则真正改变View属性。</li>
+<li><strong>不要使用px</strong>：动画中尽量使用dp，避免不同分辨率设备效果不一致</li>
+<li><strong>开启硬件加速</strong>：动画过程中建议开启硬件加速（android:hardwareAccelerated&#x3D;”true”），提升流畅度</li>
+</ul>
+<h2 id="第8章-理解Window和WindowManager"><a href="#第8章-理解Window和WindowManager" class="headerlink" title="第8章 理解Window和WindowManager"></a>第8章 理解Window和WindowManager</h2><h3 id="8-1-Window和WindowManager"><a href="#8-1-Window和WindowManager" class="headerlink" title="8.1 Window和WindowManager"></a>8.1 Window和WindowManager</h3><p>Window是一个抽象类，具体实现是PhoneWindow。WindowManager是外界访问Window的入口，Window的具体实现位于WindowManagerService中，二者交互是IPC过程。</p>
+<p>WindowManager继承自ViewManager，提供三个核心方法：</p>
+<ul>
+<li>**addView(View view, LayoutParams params)**：添加Window</li>
+<li>**updateViewLayout(View view, LayoutParams params)**：更新Window参数</li>
+<li>**removeView(View view)**：移除Window</li>
+</ul>
+<p>WindowManager.LayoutParams的关键参数：</p>
+<ul>
+<li><strong>type</strong>：Window类型，分为应用Window（1<del>99）、子Window（1000</del>1999）、系统Window（2000~2999）。层级越高越靠上显示。</li>
+<li><strong>flags</strong>：Window标志位，控制Window的显示特性。如FLAG_NOT_FOCUSABLE（不获取焦点）、FLAG_NOT_TOUCH_MODAL（区域外事件传递给下层Window）、FLAG_SHOW_WHEN_LOCKED（锁屏上显示）。</li>
+<li><strong>gravity</strong>：Window的对齐方式</li>
+<li><strong>x&#x2F;y</strong>：Window的位置</li>
+</ul>
+<h3 id="8-2-Window的内部机制"><a href="#8-2-Window的内部机制" class="headerlink" title="8.2 Window的内部机制"></a>8.2 Window的内部机制</h3><p>Window的添加、删除、更新均通过WindowManagerImpl实现，而WindowManagerImpl又委托给WindowManagerGlobal（单例模式）处理。</p>
+<h4 id="8-2-1-Window的添加过程"><a href="#8-2-1-Window的添加过程" class="headerlink" title="8.2.1 Window的添加过程"></a>8.2.1 Window的添加过程</h4><ol>
+<li>WindowManagerGlobal.addView：创建ViewRootImpl，将View、LayoutParams、ViewRootImpl存入对应列表</li>
+<li>ViewRootImpl.setView：通过requestLayout触发异步刷新，然后通过WindowSession（IWindowSession Binder对象）调用WindowManagerService的addWindow方法完成最终添加</li>
+</ol>
+<h4 id="8-2-2-Window的删除过程"><a href="#8-2-2-Window的删除过程" class="headerlink" title="8.2.2 Window的删除过程"></a>8.2.2 Window的删除过程</h4><p>通过WindowManagerGlobal.removeView → ViewRootImpl.die → dispatchDetachedFromWindow → WindowSession.removeWindow完成。removeView是异步删除，removeViewImmediate是同步删除（不推荐使用，可能导致问题）。</p>
+<h4 id="8-2-3-Window的更新过程"><a href="#8-2-3-Window的更新过程" class="headerlink" title="8.2.3 Window的更新过程"></a>8.2.3 Window的更新过程</h4><p>通过updateViewLayout → ViewRootImpl.setLayoutParams → scheduleTraversals触发View重绘 → WindowSession.relayout更新Window参数。</p>
+<h3 id="8-3-Window的创建过程"><a href="#8-3-Window的创建过程" class="headerlink" title="8.3 Window的创建过程"></a>8.3 Window的创建过程</h3><h4 id="8-3-1-Activity的Window创建过程"><a href="#8-3-1-Activity的Window创建过程" class="headerlink" title="8.3.1 Activity的Window创建过程"></a>8.3.1 Activity的Window创建过程</h4><ol>
+<li>ActivityThread.performLaunchActivity中创建Activity，调用attach方法</li>
+<li>attach中创建PhoneWindow（mWindow &#x3D; new PhoneWindow），并设置WindowManager</li>
+<li>setContentView中：PhoneWindow.installDecor创建DecorView，inflate加载布局到mContentParent</li>
+<li>handleResumeActivity中调用wm.addView(decor, l)，DecorView正式显示</li>
+</ol>
+<h4 id="8-3-2-Dialog的Window创建过程"><a href="#8-3-2-Dialog的Window创建过程" class="headerlink" title="8.3.2 Dialog的Window创建过程"></a>8.3.2 Dialog的Window创建过程</h4><ol>
+<li>Dialog构造方法中创建PhoneWindow</li>
+<li>show方法中：创建DecorView，通过WindowManager.addView添加DecorView</li>
+<li>dismiss方法中：通过ViewRootImpl的die方法移除DecorView</li>
+</ol>
+<p>Dialog必须使用Activity的Context，不能用Application的Context（因为需要应用Window token），除非是系统级Dialog（需要SYSTEM_ALERT_WINDOW权限）。</p>
+<h4 id="8-3-3-Toast的Window创建过程"><a href="#8-3-3-Toast的Window创建过程" class="headerlink" title="8.3.3 Toast的Window创建过程"></a>8.3.3 Toast的Window创建过程</h4><p>Toast基于NotificationManagerService（NMS）实现，通过IPC调用NMS的enqueueToast方法。NMS内部通过ToastRecord维护Toast队列，通过回调ITransientNotification（TN，Binder对象）的show&#x2F;hide方法显示&#x2F;隐藏Toast。TN的show方法中通过handle发送消息，在Handler中通过WindowManager.addView添加Toast的View。Toast有两类：普通Toast（内部有Handler，需在有Looper的线程中使用）和系统级Toast。</p>
+<h2 id="第9章-四大组件的工作过程"><a href="#第9章-四大组件的工作过程" class="headerlink" title="第9章 四大组件的工作过程"></a>第9章 四大组件的工作过程</h2><h3 id="9-1-四大组件的运行状态"><a href="#9-1-四大组件的运行状态" class="headerlink" title="9.1 四大组件的运行状态"></a>9.1 四大组件的运行状态</h3><p>四大组件中除了BroadcastReceiver可以在代码中动态注册外，其他三种（Activity、Service、ContentProvider）都必须在AndroidManifest中注册。四大组件的启动都离不开ApplicationThread（ActivityThread的内部类，Binder对象，用于与AMS通信）。</p>
+<h3 id="9-2-Activity的工作过程"><a href="#9-2-Activity的工作过程" class="headerlink" title="9.2 Activity的工作过程"></a>9.2 Activity的工作过程</h3><ol>
+<li>调用startActivity → Instrumentation.execStartActivity → 通过ActivityManagerService（AMS）的代理对象调用startActivity</li>
+<li>AMS内部通过ActivityStackSupervisor和ActivityStack管理Activity栈，检查调用者权限、创建ActivityRecord等</li>
+<li>AMS通过ApplicationThread（Binder回调）调用scheduleLaunchActivity</li>
+<li>ActivityThread的H（Handler）收到LAUNCH_ACTIVITY消息，调用handleLaunchActivity</li>
+<li>handleLaunchActivity中：performLaunchActivity（通过ClassLoader加载Activity类、调用attach创建Window、调用onCreate）→ handleResumeActivity（调用onResume、wm.addView显示DecorView）</li>
+</ol>
+<h3 id="9-3-Service的工作过程"><a href="#9-3-Service的工作过程" class="headerlink" title="9.3 Service的工作过程"></a>9.3 Service的工作过程</h3><h4 id="9-3-1-Service的启动过程"><a href="#9-3-1-Service的启动过程" class="headerlink" title="9.3.1 Service的启动过程"></a>9.3.1 Service的启动过程</h4><ol>
+<li>startService → ContextImpl.startService → AMS.startService</li>
+<li>AMS通过ActiveServices处理，创建ServiceRecord，通过ApplicationThread回调scheduleCreateService</li>
+<li>ActivityThread的H收到CREATE_SERVICE消息 → handleCreateService：加载Service类、创建实例、调用attach、调用onCreate</li>
+<li>随后AMS通过ApplicationThread回调scheduleServiceArgs → handleServiceArgs → onStartCommand</li>
+</ol>
+<h4 id="9-3-2-Service的绑定过程"><a href="#9-3-2-Service的绑定过程" class="headerlink" title="9.3.2 Service的绑定过程"></a>9.3.2 Service的绑定过程</h4><ol>
+<li>bindService → ContextImpl.bindService → AMS.bindService</li>
+<li>AMS通过ActiveServices处理，若Service未启动则先启动（同启动过程）</li>
+<li>Service创建后，AMS调用publishService（通过Service的onBind返回的IBinder）</li>
+<li>AMS通过ApplicationThread回调scheduleBindService → handleBindService → onBind（若首次绑定）→ onServiceConnected（ServiceConnection回调）</li>
+</ol>
+<h3 id="9-4-BroadcastReceiver的工作过程"><a href="#9-4-BroadcastReceiver的工作过程" class="headerlink" title="9.4 BroadcastReceiver的工作过程"></a>9.4 BroadcastReceiver的工作过程</h3><h4 id="9-4-1-广播的注册过程"><a href="#9-4-1-广播的注册过程" class="headerlink" title="9.4.1 广播的注册过程"></a>9.4.1 广播的注册过程</h4><p><strong>静态注册</strong>：在AndroidManifest中声明，应用安装时由PackageManagerService解析并注册，无需应用启动即可接收广播。</p>
+<p><strong>动态注册</strong>：通过Context.registerReceiver注册，最终通过AMS的registerReceiver完成。动态注册的广播必须在组件销毁时unregisterReceiver，否则会内存泄漏。</p>
+<h4 id="9-4-2-广播的发送和接收过程"><a href="#9-4-2-广播的发送和接收过程" class="headerlink" title="9.4.2 广播的发送和接收过程"></a>9.4.2 广播的发送和接收过程</h4><ol>
+<li>sendBroadcast → ContextImpl.sendBroadcast → AMS.broadcastIntent</li>
+<li>AMS通过BroadcastQueue处理广播，区分有序广播和普通广播</li>
+<li>AMS遍历匹配的BroadcastReceiver，通过ApplicationThread回调scheduleRegisteredReceiver</li>
+<li>ActivityThread通过LoadedApk的ReceiverDispatcher调用onReceive（动态注册）；静态注册则通过scheduleReceiver启动进程后调用onReceive</li>
+</ol>
+<h3 id="9-5-ContentProvider的工作过程"><a href="#9-5-ContentProvider的工作过程" class="headerlink" title="9.5 ContentProvider的工作过程"></a>9.5 ContentProvider的工作过程</h3><ol>
+<li>应用启动时，ActivityThread.handleBindApplication中：创建Application → installContentProviders（启动ContentProvider）→ Application.onCreate</li>
+<li>installContentProviders中：遍历providers列表，通过AMS.publishContentProviders发布</li>
+<li>ContentProvider创建时调用onCreate（注意：ContentProvider的onCreate先于Application的onCreate执行）</li>
+<li>其他应用通过ContentResolver的query&#x2F;insert&#x2F;update&#x2F;delete访问ContentProvider，ContentResolver通过AMS获取ContentProvider的Binder代理（IContentProvider），然后通过IPC调用对应方法</li>
+</ol>
+<blockquote>
+<p><strong>重要顺序</strong>：应用启动时的执行顺序为：ContentProvider.onCreate → Application.onCreate。ContentProvider的onCreate中应避免耗时操作，因为它会阻塞应用启动。</p>
+</blockquote>
+<h2 id="第10章-Android的消息机制"><a href="#第10章-Android的消息机制" class="headerlink" title="第10章 Android的消息机制"></a>第10章 Android的消息机制</h2><h3 id="10-1-Android的消息机制概述"><a href="#10-1-Android的消息机制概述" class="headerlink" title="10.1 Android的消息机制概述"></a>10.1 Android的消息机制概述</h3><p>Android的消息机制主要指Handler的运行机制，Handler的运行需要底层的MessageQueue和Looper支撑。MessageQueue是消息队列，采用单链表数据结构存储消息；Looper是消息循环，不断从MessageQueue中取出消息并处理。ThreadLocal用于在每个线程中存储Looper实例。</p>
+<h3 id="10-2-Android的消息机制分析"><a href="#10-2-Android的消息机制分析" class="headerlink" title="10.2 Android的消息机制分析"></a>10.2 Android的消息机制分析</h3><h4 id="10-2-1-ThreadLocal的工作原理"><a href="#10-2-1-ThreadLocal的工作原理" class="headerlink" title="10.2.1 ThreadLocal的工作原理"></a>10.2.1 ThreadLocal的工作原理</h4><p>ThreadLocal是一个线程内部的数据存储类，通过它可以在指定线程中存储数据，数据存储后只有在指定线程中才能获取到。对于Handler来说，它需要获取当前线程的Looper，不同线程的Looper不同，通过ThreadLocal可以轻松实现。</p>
+<p>ThreadLocal的内部实现：每个线程（Thread）内部有一个ThreadLocalMap成员变量，ThreadLocal的set方法将值存入当前线程的ThreadLocalMap中（key为ThreadLocal的弱引用，value为存储的值），get方法从当前线程的ThreadLocalMap中取值。</p>
+<h4 id="10-2-2-消息队列的工作原理"><a href="#10-2-2-消息队列的工作原理" class="headerlink" title="10.2.2 消息队列的工作原理"></a>10.2.2 消息队列的工作原理</h4><p>MessageQueue虽然叫队列，但内部实现是单链表（便于插入和删除）。两个核心操作：</p>
+<ul>
+<li><strong>enqueueMessage</strong>：插入一条消息，按时间（when）排序插入链表</li>
+<li><strong>next</strong>：从消息队列中取出一条消息并移除。next方法是一个无限循环，若没有消息则阻塞（nativePollOnce），等待新消息到来时唤醒。</li>
+</ul>
+<h4 id="10-2-3-Looper的工作原理"><a href="#10-2-3-Looper的工作原理" class="headerlink" title="10.2.3 Looper的工作原理"></a>10.2.3 Looper的工作原理</h4><ul>
+<li><strong>构造方法</strong>：创建MessageQueue，保存当前线程引用</li>
+<li>**prepare()**：为当前线程创建Looper并存入ThreadLocal。一个线程只能有一个Looper，重复调用会抛异常。prepareMainLooper为主线程创建Looper。</li>
+<li>**loop()**：进入消息循环，无限调用MessageQueue.next获取消息，然后调用msg.target.dispatchMessage(msg)分发消息（target即发送消息的Handler）。如果next返回null则退出循环。loop方法中调用msg.recycleUnchecked回收消息。</li>
+<li>**quit()**：直接退出Looper；quitSafely()：设定退出标记，等消息队列中已有消息处理完后退出。子线程的Looper使用完后应主动quit。</li>
+</ul>
+<h4 id="10-2-4-Handler的工作原理"><a href="#10-2-4-Handler的工作原理" class="headerlink" title="10.2.4 Handler的工作原理"></a>10.2.4 Handler的工作原理</h4><p>Handler的工作包括消息发送和消息接收两部分。</p>
+<p><strong>消息发送</strong>：通过post&#x2F;send系列方法发送消息，最终调用enqueueMessage → MessageQueue.enqueueMessage将消息插入队列。enqueueMessage中会将msg.target设为当前Handler。</p>
+<p><strong>消息接收</strong>：Looper的loop中调用dispatchMessage，处理流程：</p>
+<ol>
+<li>若msg.callback（Runnable对象）不为空，调用handleCallback（执行Runnable）</li>
+<li>否则若Handler的mCallback（Callback接口）不为空，调用mCallback.handleMessage，返回true则结束</li>
+<li>否则调用Handler自身的handleMessage方法</li>
+</ol>
+<blockquote>
+<p><strong>Handler的构造方法</strong>：Handler会通过ThreadLocal获取当前线程的Looper，如果当前线程没有Looper则会抛出”Can’t create handler inside thread that has not called Looper.prepare()”。因此在子线程中使用Handler前必须先调用Looper.prepare()。</p>
+</blockquote>
+<h3 id="10-3-主线程的消息循环"><a href="#10-3-主线程的消息循环" class="headerlink" title="10.3 主线程的消息循环"></a>10.3 主线程的消息循环</h3><p>Android的主线程就是ActivityThread，主线程的入口方法为main。在main方法中：</p>
+<ol>
+<li>Looper.prepareMainLooper()：创建主线程的Looper和MessageQueue</li>
+<li>创建ActivityThread对象（其内部的H是一个Handler，处理四大组件的生命周期等消息）</li>
+<li>Looper.loop()：进入主线程消息循环</li>
+</ol>
+<p>主线程的消息循环一旦停止，应用就会ANR或退出。四大组件的生命周期调用都是通过H（Handler）来调度的。</p>
+<h2 id="第11章-Android的线程和线程池"><a href="#第11章-Android的线程和线程池" class="headerlink" title="第11章 Android的线程和线程池"></a>第11章 Android的线程和线程池</h2><h3 id="11-1-主线程和子线程"><a href="#11-1-主线程和子线程" class="headerlink" title="11.1 主线程和子线程"></a>11.1 主线程和子线程</h3><p><strong>主线程（UI线程）</strong>：负责界面的交互和绘制，Android 3.0+禁止在主线程中进行网络访问（NetworkOnMainThreadException）。主线程中不能执行耗时操作，否则会ANR（Activity 5秒、BroadcastReceiver 10秒、Service 20秒）。</p>
+<p><strong>子线程</strong>：用于执行耗时任务。Android中线程形态包括传统Thread、AsyncTask、HandlerThread、IntentService等。</p>
+<h3 id="11-2-Android中的线程形态"><a href="#11-2-Android中的线程形态" class="headerlink" title="11.2 Android中的线程形态"></a>11.2 Android中的线程形态</h3><h4 id="11-2-1-AsyncTask"><a href="#11-2-1-AsyncTask" class="headerlink" title="11.2.1 AsyncTask"></a>11.2.1 AsyncTask</h4><p>AsyncTask是一个轻量级的异步任务类，封装了线程池和Handler，可以在线程池中执行后台任务，然后将执行进度和结果传递到主线程更新UI。</p>
+<p><strong>三个泛型参数</strong>：</p>
+<ul>
+<li>Params：执行任务时传入的参数类型</li>
+<li>Progress：后台任务执行进度的类型</li>
+<li>Result：后台任务返回结果的类型</li>
+</ul>
+<p><strong>四个核心方法</strong>：</p>
+<ul>
+<li><strong>onPreExecute</strong>：主线程执行，任务开始前的准备工作</li>
+<li><strong>doInBackground</strong>：线程池中执行，具体的后台任务，可调用publishProgress更新进度</li>
+<li><strong>onProgressUpdate</strong>：主线程执行，更新进度</li>
+<li><strong>onPostExecute</strong>：主线程执行，任务结束后处理结果</li>
+</ul>
+<blockquote>
+<p><strong>AsyncTask的使用条件和限制</strong>：</p>
+<ul>
+<li>AsyncTask的类必须在主线程中加载（Android 4.1+已自动完成）</li>
+<li>AsyncTask的对象必须在主线程中创建</li>
+<li>execute方法必须在主线程中调用</li>
+<li>不要在程序中直接调用onPreExecute&#x2F;onPostExecute&#x2F;doInBackground&#x2F;onProgressUpdate</li>
+<li>一个AsyncTask对象只能执行一次execute，否则会抛异常</li>
+<li>Android 1.6之前串行执行，1.6~2.3并行执行，3.0+默认串行执行（可通过executeOnExecutor指定并行）</li>
+</ul>
+</blockquote>
+<h4 id="11-2-2-AsyncTask的工作原理"><a href="#11-2-2-AsyncTask的工作原理" class="headerlink" title="11.2.2 AsyncTask的工作原理"></a>11.2.2 AsyncTask的工作原理</h4><p>AsyncTask内部有两个线程池（SerialExecutor和THREAD_POOL_EXECUTOR）和一个Handler（InternalHandler）。</p>
+<ul>
+<li><strong>SerialExecutor</strong>：默认的串行执行器，将任务按顺序排队，一个接一个执行</li>
+<li><strong>THREAD_POOL_EXECUTOR</strong>：真正执行任务的线程池，核心线程数为CPU核心数+1，最大线程数为CPU核心数*2+1，队列容量128</li>
+<li><strong>InternalHandler</strong>：将执行环境从线程池切换到主线程，用于发送进度更新和结果</li>
+</ul>
+<p>执行流程：execute → executeOnExecutor → SerialExecutor.execute（将任务加入队列）→ 取出任务调用THREAD_POOL_EXECUTOR.execute → FutureTask.run → doInBackground → publishProgress → InternalHandler发送消息 → onProgressUpdate&#x2F;onPostExecute。</p>
+<h4 id="11-2-3-HandlerThread"><a href="#11-2-3-HandlerThread" class="headerlink" title="11.2.3 HandlerThread"></a>11.2.3 HandlerThread</h4><p>HandlerThread是一种自带Looper的Thread，继承自Thread。在run方法中调用Looper.prepare()和Looper.loop()，创建了消息循环。通过getLooper获取其Looper，然后可创建Handler与之绑定。</p>
+<p>特点：HandlerThread的run方法是无限循环，使用完后需通过quit或quitSafely终止。适合用于需要在子线程中处理消息队列的场景（如IntentService内部就使用了HandlerThread）。</p>
+<h4 id="11-2-4-IntentService"><a href="#11-2-4-IntentService" class="headerlink" title="11.2.4 IntentService"></a>11.2.4 IntentService</h4><p>IntentService是一个特殊的Service，继承自Service，内部使用HandlerThread和ServiceHandler来处理异步请求。</p>
+<p>工作流程：</p>
+<ol>
+<li>onCreate中创建HandlerThread并启动，获取其Looper创建ServiceHandler</li>
+<li>onStartCommand中调用onStart，将Intent封装为Message发送给ServiceHandler</li>
+<li>ServiceHandler的handleMessage中调用onHandleIntent（抽象方法，子类实现）</li>
+<li>onHandleIntent执行完后调用stopSelf(msg.arg1)，尝试停止Service（若还有未处理的消息则不停止）</li>
+</ol>
+<p>特点：IntentService按顺序处理请求，处理完所有请求后自动停止，无需手动调用stopService。适合执行后台耗时任务，任务执行完自动结束。</p>
+<h3 id="11-3-Android中的线程池"><a href="#11-3-Android中的线程池" class="headerlink" title="11.3 Android中的线程池"></a>11.3 Android中的线程池</h3><h4 id="11-3-1-ThreadPoolExecutor"><a href="#11-3-1-ThreadPoolExecutor" class="headerlink" title="11.3.1 ThreadPoolExecutor"></a>11.3.1 ThreadPoolExecutor</h4><p>线程池的优点：复用线程减少创建销毁开销、控制最大并发数避免资源竞争、对线程进行简单管理（定时&#x2F;周期执行）。</p>
+<p><strong>核心参数</strong>：</p>
+<ul>
+<li><strong>corePoolSize</strong>：核心线程数，默认情况下核心线程会一直存活（即使闲置），allowCoreThreadTimeOut(true)时核心线程也会超时回收</li>
+<li><strong>maximumPoolSize</strong>：最大线程数，活动线程数不能超过此值</li>
+<li><strong>keepAliveTime</strong>：非核心线程闲置超时时长，超过则回收。allowCoreThreadTimeOut(true)时也作用于核心线程</li>
+<li><strong>unit</strong>：keepAliveTime的时间单位</li>
+<li><strong>workQueue</strong>：任务队列，通过线程池的execute方法提交的Runnable对象存储在此</li>
+<li><strong>threadFactory</strong>：线程工厂，为线程池创建新线程</li>
+<li><strong>rejectedExecutionHandler</strong>：拒绝策略，当队列满且达到最大线程数时的处理策略（AbortPolicy默认抛异常、CallerRunsPolicy用调用者线程执行、DiscardPolicy直接丢弃、DiscardOldestPolicy丢弃队列中最早的任务）</li>
+</ul>
+<p><strong>任务执行规则</strong>：</p>
+<ol>
+<li>线程数 &lt; corePoolSize → 启动核心线程执行任务</li>
+<li>线程数 ≥ corePoolSize且队列未满 → 任务加入队列等待</li>
+<li>队列满且线程数 &lt; maximumPoolSize → 启动非核心线程执行任务</li>
+<li>队列满且线程数 ≥ maximumPoolSize → 执行拒绝策略</li>
+</ol>
+<h4 id="11-3-2-线程池的分类"><a href="#11-3-2-线程池的分类" class="headerlink" title="11.3.2 线程池的分类"></a>11.3.2 线程池的分类</h4><table>
+<thead>
+<tr>
+<th>线程池类型</th>
+<th>创建方法</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FixedThreadPool</td>
+<td>Executors.newFixedThreadPool</td>
+<td>核心线程数&#x3D;最大线程数，无超时，队列无界。所有线程都是核心线程，适合执行长期任务。</td>
+</tr>
+<tr>
+<td>CachedThreadPool</td>
+<td>Executors.newCachedThreadPool</td>
+<td>核心线程数0，最大线程数Integer.MAX_VALUE，超时60秒，队列SynchronousQueue。线程数按需创建回收，适合执行大量耗时少的任务。</td>
+</tr>
+<tr>
+<td>ScheduledThreadPool</td>
+<td>Executors.newScheduledThreadPool</td>
+<td>核心线程数固定，最大线程数Integer.MAX_VALUE，队列DelayedWorkQueue。支持定时和周期任务。</td>
+</tr>
+<tr>
+<td>SingleThreadExecutor</td>
+<td>Executors.newSingleThreadExecutor</td>
+<td>核心线程数&#x3D;最大线程数&#x3D;1，单线程串行执行所有任务，保证任务按顺序执行。</td>
+</tr>
+</tbody></table>
+<h2 id="第12章-Bitmap的加载和Cache"><a href="#第12章-Bitmap的加载和Cache" class="headerlink" title="第12章 Bitmap的加载和Cache"></a>第12章 Bitmap的加载和Cache</h2><h3 id="12-1-Bitmap的高效加载"><a href="#12-1-Bitmap的高效加载" class="headerlink" title="12.1 Bitmap的高效加载"></a>12.1 Bitmap的高效加载</h3><p>Bitmap在Android中指的是一张图片。加载Bitmap的核心是通过BitmapFactory的四个方法：decodeFile、decodeResource、decodeStream、decodeByteArray。其中decodeFile和decodeResource间接调用decodeStream。</p>
+<p><strong>高效加载的核心思想——采样率压缩（inSampleSize）</strong>：</p>
+<ol>
+<li>将BitmapFactory.Options的inJustDecodeBounds设为true，此时只加载图片的原始宽高信息（outWidth&#x2F;outHeight），不真正加载图片到内存</li>
+<li>根据目标View的尺寸和图片原始尺寸计算inSampleSize（采样率）。inSampleSize必须是2的指数（如1、2、4、8），系统会向下取整到最近的2的指数。inSampleSize&#x3D;2表示宽高都变为原来的1&#x2F;2，像素数变为1&#x2F;4，内存占用变为1&#x2F;4。</li>
+<li>将inJustDecodeBounds设为false，设置计算好的inSampleSize，重新加载图片</li>
+</ol>
+<blockquote>
+<p><strong>采样率计算规则</strong>：如果inSampleSize大于1，则按inSampleSize的比例缩小宽高。例如原图1024×1024，inSampleSize&#x3D;4，加载后为256×256。计算时取max(原宽&#x2F;目标宽, 原高&#x2F;目标高)，然后取最接近的2的指数。</p>
+</blockquote>
+<h3 id="12-2-Android中的缓存策略"><a href="#12-2-Android中的缓存策略" class="headerlink" title="12.2 Android中的缓存策略"></a>12.2 Android中的缓存策略</h3><h4 id="12-2-1-LruCache"><a href="#12-2-1-LruCache" class="headerlink" title="12.2.1 LruCache"></a>12.2.1 LruCache</h4><p>LruCache是Android 3.1+提供的缓存类，采用LRU（Least Recently Used，最近最少使用）算法。内部通过LinkedHashMap（accessOrder&#x3D;true，访问顺序排序）实现，当缓存满时，优先淘汰最近最少使用的缓存对象。</p>
+<p>使用要点：</p>
+<ul>
+<li>构造方法传入缓存总大小（通常为进程可用内存的1&#x2F;8）</li>
+<li>重写sizeOf方法计算每个缓存对象的大小（Bitmap的大小用getByteCount或getRowBytes*getHeight）</li>
+<li>put添加缓存，get获取缓存，remove移除缓存</li>
+<li>可重写entryRemoved方法在缓存被移除时做资源回收</li>
+</ul>
+<h4 id="12-2-2-DiskLruCache"><a href="#12-2-2-DiskLruCache" class="headerlink" title="12.2.2 DiskLruCache"></a>12.2.2 DiskLruCache</h4><p>DiskLruCache用于实现磁盘缓存（存储设备缓存），不是Android官方SDK的类，需手动引入源码。</p>
+<p>使用要点：</p>
+<ul>
+<li><strong>open方法</strong>：创建DiskLruCache实例，参数包括目录、版本号、每个key对应的值的数量（通常为1）、总缓存大小</li>
+<li><strong>写入缓存</strong>：通过Editor编辑，editor.newOutputStream获取输出流写入数据，editor.commit提交，editor.abort放弃</li>
+<li><strong>读取缓存</strong>：通过get方法获取Snapshot，snapshot.getInputStream获取输入流读取</li>
+<li><strong>key的处理</strong>：key只能包含字母、数字、下划线和横线，不能有特殊字符。通常将URL通过MD5或SHA-256哈希后作为key</li>
+<li><strong>remove&#x2F;delete&#x2F;flush</strong>：remove删除指定缓存，delete清空并关闭缓存，flush将缓存日志写入磁盘（建议在Activity的onPause中调用）</li>
+</ul>
+<h4 id="12-2-3-ImageLoader的实现"><a href="#12-2-3-ImageLoader的实现" class="headerlink" title="12.2.3 ImageLoader的实现"></a>12.2.3 ImageLoader的实现</h4><p>一个完整的ImageLoader应包含：</p>
+<ol>
+<li><strong>图片压缩</strong>：根据ImageView尺寸对图片进行采样率压缩</li>
+<li><strong>内存缓存</strong>：LruCache作为一级缓存</li>
+<li><strong>磁盘缓存</strong>：DiskLruCache作为二级缓存</li>
+<li><strong>网络加载</strong>：从网络下载图片，写入磁盘缓存</li>
+<li><strong>同步加载</strong>：loadBitmap方法，按内存→磁盘→网络的顺序查找</li>
+<li><strong>异步加载</strong>：bindBitmap方法，在线程池中执行同步加载，通过Handler切换到主线程设置图片</li>
+<li><strong>列表错位问题</strong>：给ImageView设置tag（图片URL），加载完成后检查tag是否匹配，避免列表复用时图片错位</li>
+</ol>
+<h3 id="12-3-ImageLoader的使用"><a href="#12-3-ImageLoader的使用" class="headerlink" title="12.3 ImageLoader的使用"></a>12.3 ImageLoader的使用</h3><h4 id="12-3-1-照片墙效果"><a href="#12-3-1-照片墙效果" class="headerlink" title="12.3.1 照片墙效果"></a>12.3.1 照片墙效果</h4><p>使用GridView或RecyclerView展示大量图片，通过ImageLoader异步加载图片。在getView&#x2F;onBindViewHolder中调用bindBitmap加载图片。注意在滚动时（onScrollStateChanged中SCROLL_STATE_FLING状态）暂停加载，停止滚动后恢复加载，可提升流畅度。</p>
+<h4 id="12-3-2-优化列表的卡顿现象"><a href="#12-3-2-优化列表的卡顿现象" class="headerlink" title="12.3.2 优化列表的卡顿现象"></a>12.3.2 优化列表的卡顿现象</h4><ul>
+<li>不要在getView&#x2F;onBindViewHolder中做耗时操作</li>
+<li>控制异步任务的执行频率，列表滑动时暂停加载</li>
+<li>开启硬件加速</li>
+<li>使用ViewHolder&#x2F;RecycledViewPool复用视图</li>
+<li>避免过度绘制</li>
+</ul>
+<h2 id="第13章-综合技术"><a href="#第13章-综合技术" class="headerlink" title="第13章 综合技术"></a>第13章 综合技术</h2><h3 id="13-1-使用CrashHandler来获取应用的crash信息"><a href="#13-1-使用CrashHandler来获取应用的crash信息" class="headerlink" title="13.1 使用CrashHandler来获取应用的crash信息"></a>13.1 使用CrashHandler来获取应用的crash信息</h3><p>通过实现Thread.UncaughtExceptionHandler接口，在uncaughtException方法中捕获崩溃信息并存储到SD卡，可上传到服务器。</p>
+<p>实现步骤：</p>
+<ol>
+<li>创建CrashHandler类实现UncaughtExceptionHandler</li>
+<li>在init方法中通过Thread.setDefaultUncaughtExceptionHandler(this)设置为默认异常处理器</li>
+<li>在uncaughtException中：收集崩溃信息（设备信息、系统版本、崩溃堆栈）→ 写入文件 → 可通过Thread.sleep等待写入完成 → 调用原默认处理器的uncaughtException（或直接杀死进程）</li>
+<li>在Application的onCreate中初始化CrashHandler</li>
+</ol>
+<h3 id="13-2-使用multidex来解决方法数越界"><a href="#13-2-使用multidex来解决方法数越界" class="headerlink" title="13.2 使用multidex来解决方法数越界"></a>13.2 使用multidex来解决方法数越界</h3><p>Android中单个DEX文件的方法数不能超过65536（64K）。当应用方法数超过限制时，需要使用multidex方案将应用拆分成多个DEX文件。</p>
+<p><strong>使用步骤</strong>：</p>
+<ol>
+<li>build.gradle中添加multiDexEnabled true和依赖com.android.support:multidex</li>
+<li>Application继承MultiDexApplication（或在attachBaseContext中调用MultiDex.install(this)）</li>
+</ol>
+<p><strong>局限性</strong>：</p>
+<ul>
+<li>Android 4.0以下可能因Dalvik的linearAlloc限制（5MB）而启动失败</li>
+<li>首次启动时因需要加载多个DEX可能导致ANR（主DEX中的类不能太多）</li>
+<li>需要通过–multi-dex-keep-list配置主DEX中必须包含的类（Application、四大组件等）</li>
+</ul>
+<h3 id="13-3-Android的动态加载技术"><a href="#13-3-Android的动态加载技术" class="headerlink" title="13.3 Android的动态加载技术"></a>13.3 Android的动态加载技术</h3><p>动态加载（插件化）技术允许应用在不安装新APK的情况下加载并运行外部的DEX&#x2F;APK文件。核心技术点：</p>
+<ul>
+<li><strong>类加载</strong>：通过DexClassLoader加载外部DEX中的类。DexClassLoader需要一个optimizedDirectory（odex文件输出目录）。</li>
+<li><strong>资源加载</strong>：通过AssetManager的addAssetPath方法（反射调用）将外部APK的资源加入AssetManager，然后创建新的Resources对象加载外部资源。</li>
+<li><strong>Activity生命周期管理</strong>：插件Activity需要由宿主的代理Activity（ProxyActivity）来管理生命周期。通过反射调用插件Activity的生命周期方法。</li>
+<li><strong>占坑式启动</strong>：在AndroidManifest中预先声明一些占坑Activity，启动插件Activity时先启动占坑Activity，然后在Instrumentation或ActivityThread的Handler中替换为真正的插件Activity。</li>
+</ul>
+<p>常见的动态加载框架：DynamicLoadApk、DL、Small、RePlugin等。</p>
+<h3 id="13-4-反编译初步"><a href="#13-4-反编译初步" class="headerlink" title="13.4 反编译初步"></a>13.4 反编译初步</h3><h4 id="13-4-1-使用dex2jar和jd-gui反编译apk"><a href="#13-4-1-使用dex2jar和jd-gui反编译apk" class="headerlink" title="13.4.1 使用dex2jar和jd-gui反编译apk"></a>13.4.1 使用dex2jar和jd-gui反编译apk</h4><ol>
+<li>将APK改名为.zip解压，取出classes.dex</li>
+<li>使用dex2jar工具：d2j-dex2jar.bat classes.dex，生成classes-dex2jar.jar</li>
+<li>使用jd-gui打开jar文件，查看Java源代码</li>
+</ol>
+<h4 id="13-4-2-使用apktool对apk进行二次打包"><a href="#13-4-2-使用apktool对apk进行二次打包" class="headerlink" title="13.4.2 使用apktool对apk进行二次打包"></a>13.4.2 使用apktool对apk进行二次打包</h4><ol>
+<li>apktool d xxx.apk：反编译APK，得到smali代码、资源文件、AndroidManifest等</li>
+<li>修改smali代码或资源</li>
+<li>apktool b xxx：重新打包成APK</li>
+<li>使用jarsigner或apksigner对APK签名</li>
+<li>zipalign对齐优化</li>
+</ol>
+<p>注意：反编译需遵守法律法规，仅用于学习和安全研究目的。</p>
+<h2 id="第14章-JNI和NDK编程"><a href="#第14章-JNI和NDK编程" class="headerlink" title="第14章 JNI和NDK编程"></a>第14章 JNI和NDK编程</h2><h3 id="14-1-JNI的开发流程"><a href="#14-1-JNI的开发流程" class="headerlink" title="14.1 JNI的开发流程"></a>14.1 JNI的开发流程</h3><p>JNI（Java Native Interface）是Java与Native代码（C&#x2F;C++）交互的桥梁。</p>
+<p><strong>开发步骤</strong>：</p>
+<ol>
+<li>在Java中声明native方法（如public native String getStringFromNative();）</li>
+<li>编译Java文件生成.class文件（javac）</li>
+<li>使用javah生成C&#x2F;C++头文件（javah -jni com.example.Test），头文件中包含native方法的函数声明</li>
+<li>实现C&#x2F;C++源文件，实现头文件中的函数</li>
+<li>编译C&#x2F;C++代码生成动态链接库（.so文件）</li>
+<li>在Java中通过System.loadLibrary(“xxx”)加载so库</li>
+<li>调用native方法</li>
+</ol>
+<h3 id="14-2-NDK的开发流程"><a href="#14-2-NDK的开发流程" class="headerlink" title="14.2 NDK的开发流程"></a>14.2 NDK的开发流程</h3><p>NDK（Native Development Kit）是Android提供的工具集，用于在Android中开发C&#x2F;C++代码。</p>
+<p><strong>传统NDK开发（Android.mk + Application.mk）</strong>：</p>
+<ol>
+<li>在项目中创建jni目录</li>
+<li>编写Android.mk（描述编译规则、源文件、库名等）和Application.mk（指定ABI平台、STL等）</li>
+<li>编写C&#x2F;C++源文件</li>
+<li>在jni目录下执行ndk-build编译生成so库</li>
+<li>so库自动放入libs&#x2F;对应ABI目录</li>
+</ol>
+<p><strong>现代NDK开发（CMake + build.gradle）</strong>：</p>
+<ol>
+<li>在build.gradle中配置externalNativeBuild { cmake { path “CMakeLists.txt” } }</li>
+<li>编写CMakeLists.txt（描述编译规则）</li>
+<li>编写C&#x2F;C++源文件</li>
+<li>通过Android Studio编译运行</li>
+</ol>
+<h3 id="14-3-JNI的数据类型和类型签名"><a href="#14-3-JNI的数据类型和类型签名" class="headerlink" title="14.3 JNI的数据类型和类型签名"></a>14.3 JNI的数据类型和类型签名</h3><h4 id="14-3-1-基本数据类型映射"><a href="#14-3-1-基本数据类型映射" class="headerlink" title="14.3.1 基本数据类型映射"></a>14.3.1 基本数据类型映射</h4><table>
+<thead>
+<tr>
+<th>Java类型</th>
+<th>JNI类型</th>
+<th>C&#x2F;C++类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>jboolean</td>
+<td>unsigned char</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>jbyte</td>
+<td>signed char</td>
+</tr>
+<tr>
+<td>char</td>
+<td>jchar</td>
+<td>unsigned short</td>
+</tr>
+<tr>
+<td>short</td>
+<td>jshort</td>
+<td>short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>jint</td>
+<td>int</td>
+</tr>
+<tr>
+<td>long</td>
+<td>jlong</td>
+<td>long long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>jfloat</td>
+<td>float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>jdouble</td>
+<td>double</td>
+</tr>
+<tr>
+<td>void</td>
+<td>void</td>
+<td>void</td>
+</tr>
+</tbody></table>
+<h4 id="14-3-2-引用数据类型"><a href="#14-3-2-引用数据类型" class="headerlink" title="14.3.2 引用数据类型"></a>14.3.2 引用数据类型</h4><p>Java的引用类型在JNI中都以jobject为基类，如jclass（Class）、jstring（String）、jarray（数组）、jobjectArray（对象数组）、jbooleanArray等基本类型数组。</p>
+<h4 id="14-3-3-类型签名"><a href="#14-3-3-类型签名" class="headerlink" title="14.3.3 类型签名"></a>14.3.3 类型签名</h4><p>JNI中通过类型签名标识Java类型：</p>
+<ul>
+<li>基本类型：Z(boolean)、B(byte)、C(char)、S(short)、I(int)、J(long)、F(float)、D(double)、V(void)</li>
+<li>引用类型：L + 全限定名 + ; （如Ljava&#x2F;lang&#x2F;String;）</li>
+<li>数组：[ + 类型签名 （如[I表示int[]，[Ljava&#x2F;lang&#x2F;String;表示String[]）</li>
+<li>方法签名：(参数类型签名)返回值类型签名 （如(ILjava&#x2F;lang&#x2F;String;)V表示void method(int, String)）</li>
+</ul>
+<h3 id="14-4-JNI调用Java方法的流程"><a href="#14-4-JNI调用Java方法的流程" class="headerlink" title="14.4 JNI调用Java方法的流程"></a>14.4 JNI调用Java方法的流程</h3><p>Native代码中调用Java方法的步骤：</p>
+<ol>
+<li>通过FindClass获取Java类的jclass引用</li>
+<li>通过GetMethodID获取方法ID（需传入类引用、方法名、方法签名）</li>
+<li>通过CallObjectMethod&#x2F;CallIntMethod&#x2F;CallVoidMethod等调用方法（需传入对象引用、方法ID、参数）</li>
+<li>对于静态方法，使用GetStaticMethodID和CallStaticXxxMethod</li>
+<li>对于字段，使用GetFieldID&#x2F;GetStaticFieldID和GetXxxField&#x2F;SetXxxField</li>
+</ol>
+<p><strong>JNIEnv</strong>：JNI环境指针，是Native代码调用Java功能的入口。每个线程有独立的JNIEnv，不能跨线程使用。在Native线程中需要通过JavaVM的AttachCurrentThread获取JNIEnv，使用完后DetachCurrentThread。</p>
+<h2 id="第15章-Android性能优化"><a href="#第15章-Android性能优化" class="headerlink" title="第15章 Android性能优化"></a>第15章 Android性能优化</h2><h3 id="15-1-Android的性能优化方法"><a href="#15-1-Android的性能优化方法" class="headerlink" title="15.1 Android的性能优化方法"></a>15.1 Android的性能优化方法</h3><h4 id="15-1-1-布局优化"><a href="#15-1-1-布局优化" class="headerlink" title="15.1.1 布局优化"></a>15.1.1 布局优化</h4><ul>
+<li><strong>减少布局层级</strong>：布局层级越深，测量和绘制越耗时。优先使用ConstraintLayout或RelativeLayout减少嵌套，避免不必要的嵌套。</li>
+<li>**使用<code>&lt;include&gt;</code>**：复用布局文件，减少重复代码。</li>
+<li>**使用<code>&lt;merge&gt;</code>**：当include的根布局与父布局相同时，使用merge减少一层布局。merge必须作为根标签，被include时直接合并到父布局中。</li>
+<li>**使用<code>&lt;ViewStub&gt;</code>**：延迟加载布局。ViewStub是轻量级View，不占用布局位置，初始不可见，inflate时才加载目标布局。适合用于网络错误页、加载更多等不常显示的布局。</li>
+<li><strong>使用Hierarchy Viewer</strong>：分析布局层级，找出性能瓶颈。</li>
+</ul>
+<h4 id="15-1-2-绘制优化"><a href="#15-1-2-绘制优化" class="headerlink" title="15.1.2 绘制优化"></a>15.1.2 绘制优化</h4><ul>
+<li><strong>避免在onDraw中执行耗时操作</strong>：onDraw会被频繁调用，不应创建新对象（会导致频繁GC）、不应做循环计算。</li>
+<li><strong>避免过度绘制</strong>：通过手机开发者选项中的”调试GPU过度绘制”查看。蓝色为1次过度绘制（可接受），绿色2次，淡红3次，深红4次及以上（需优化）。优化方法：移除不必要的背景、使用clipRect减少绘制区域。</li>
+</ul>
+<h4 id="15-1-3-内存泄露优化"><a href="#15-1-3-内存泄露优化" class="headerlink" title="15.1.3 内存泄露优化"></a>15.1.3 内存泄露优化</h4><p>常见的内存泄露场景：</p>
+<ul>
+<li><strong>静态变量持有Activity&#x2F;Context</strong>：静态变量生命周期与进程一致，会导致Activity无法回收。应使用Application Context或弱引用。</li>
+<li><strong>单例模式持有Context</strong>：单例应使用Application Context而非Activity Context。</li>
+<li><strong>非静态内部类&#x2F;匿名内部类</strong>：非静态内部类默认持有外部类引用。如Handler、AsyncTask、Thread作为非静态内部类持有Activity，在Activity销毁时任务未完成会导致泄露。应使用静态内部类+弱引用。</li>
+<li><strong>未取消注册的广播&#x2F;事件总线</strong>：动态注册的BroadcastReceiver、EventBus等在组件销毁时必须unregister。</li>
+<li><strong>资源未关闭</strong>：Cursor、File、Socket、Stream等使用完后必须关闭。</li>
+<li><strong>属性动画未停止</strong>：无限循环的属性动画在Activity销毁时必须cancel。</li>
+<li><strong>WebView</strong>：WebView存在内存泄露问题，应在独立进程中使用，销毁时调用WebView.destroy并从父布局中移除。</li>
+</ul>
+<h4 id="15-1-4-响应速度优化和ANR日志分析"><a href="#15-1-4-响应速度优化和ANR日志分析" class="headerlink" title="15.1.4 响应速度优化和ANR日志分析"></a>15.1.4 响应速度优化和ANR日志分析</h4><p><strong>ANR（Application Not Responding）</strong>：应用无响应。触发条件：</p>
+<ul>
+<li>Activity：前台5秒内无响应（输入事件或BroadcastReceiver）</li>
+<li>BroadcastReceiver：onReceive 10秒内未执行完（前台）&#x2F; 60秒（后台）</li>
+<li>Service：前台20秒&#x2F;后台200秒内未执行完</li>
+</ul>
+<p><strong>ANR优化</strong>：主线程中不做耗时操作，将耗时操作放到子线程。使用StrictMode（严格模式）检测主线程中的磁盘读写和网络访问。</p>
+<p><strong>ANR日志分析</strong>：ANR发生后系统会在&#x2F;data&#x2F;anr&#x2F;traces.txt中记录堆栈信息。通过分析traces.txt找到主线程的阻塞点。关键信息包括：进程名、主线程状态、各线程堆栈、CPU使用率。</p>
+<h4 id="15-1-5-ListView和Bitmap优化"><a href="#15-1-5-ListView和Bitmap优化" class="headerlink" title="15.1.5 ListView和Bitmap优化"></a>15.1.5 ListView和Bitmap优化</h4><ul>
+<li><strong>ListView优化</strong>：使用ViewHolder复用convertView；getView中避免耗时操作和创建对象；滑动时暂停图片加载；使用硬件加速；分页加载数据。</li>
+<li><strong>Bitmap优化</strong>：使用inSampleSize压缩图片；使用LruCache和DiskLruCache缓存；及时recycle不再使用的Bitmap（Android 3.0+Bitmap像素数据存放在堆中，GC可自动回收，但大图片仍建议主动recycle）；使用inBitmap复用Bitmap内存（Android 3.0+）。</li>
+</ul>
+<h4 id="15-1-6-线程优化"><a href="#15-1-6-线程优化" class="headerlink" title="15.1.6 线程优化"></a>15.1.6 线程优化</h4><ul>
+<li>使用线程池代替直接new Thread，减少线程创建销毁开销，控制并发数</li>
+<li>避免在主线程中执行耗时操作</li>
+<li>合理设置线程池参数，避免线程过多导致CPU资源竞争</li>
+<li>AsyncTask适用于短时间的异步任务，长时间任务建议使用IntentService或线程池</li>
+</ul>
+<h4 id="15-1-7-一些性能优化建议"><a href="#15-1-7-一些性能优化建议" class="headerlink" title="15.1.7 一些性能优化建议"></a>15.1.7 一些性能优化建议</h4><ul>
+<li><strong>避免创建过多对象</strong>：尤其是在循环和onDraw中，减少GC频率</li>
+<li><strong>避免过度使用枚举</strong>：枚举比静态常量占用更多内存（可用@IntDef&#x2F;@StringDef替代）</li>
+<li><strong>使用SparseArray代替HashMap</strong>：SparseArray是Android提供的高效数据结构，key为int，避免了自动装箱，内存更紧凑。类似的有SparseBooleanArray、SparseIntArray、LongSparseArray。</li>
+<li><strong>避免在循环中调用getSystemService</strong>：应在初始化时获取一次</li>
+<li><strong>使用Intent传递数据时避免大数据</strong>：Intent中传递大数据可能导致TransactionTooLargeException（Binder缓冲区限制约1MB）</li>
+<li><strong>合理使用多进程</strong>：将WebView、推送服务等放到独立进程，减少主进程内存占用</li>
+<li><strong>优化启动速度</strong>：Application的onCreate中不做耗时操作，延迟初始化非必要组件；使用冷启动预览主题（windowBackground）减少白屏</li>
+</ul>
+<h3 id="15-2-内存泄露分析之MAT工具"><a href="#15-2-内存泄露分析之MAT工具" class="headerlink" title="15.2 内存泄露分析之MAT工具"></a>15.2 内存泄露分析之MAT工具</h3><p>MAT（Memory Analyzer Tool）是Eclipse提供的Java堆内存分析工具，用于分析内存泄露。</p>
+<p><strong>使用步骤</strong>：</p>
+<ol>
+<li>通过DDMS或Android Studio的Memory Monitor导出HPROF文件（堆转储文件）</li>
+<li>使用hprof-conv工具将Android HPROF转换为标准Java HPROF格式</li>
+<li>用MAT打开转换后的HPROF文件</li>
+<li>使用Histogram视图查看对象数量和占用内存</li>
+<li>使用Dominator Tree查看最大的对象和引用链</li>
+<li>使用Path to GC Roots查看对象到GC Root的引用路径，定位泄露原因</li>
+<li>对比两个HPROF文件（操作前和操作后），找出增长的对象</li>
+</ol>
+<p><strong>关键概念</strong>：</p>
+<ul>
+<li><strong>Shallow Heap</strong>：对象自身占用的内存大小</li>
+<li><strong>Retained Heap</strong>：对象被GC回收后能释放的总内存（包括它引用的对象）</li>
+<li><strong>GC Root</strong>：可达性分析的根节点，包括线程栈中的引用、静态变量、JNI引用等。从GC Root不可达的对象可被GC回收。</li>
+</ul>
+<h3 id="15-3-提高程序的可维护性"><a href="#15-3-提高程序的可维护性" class="headerlink" title="15.3 提高程序的可维护性"></a>15.3 提高程序的可维护性</h3><ul>
+<li><strong>代码风格统一</strong>：遵循统一的命名规范、代码格式，使用Lint检查代码</li>
+<li><strong>合理的架构设计</strong>：使用MVP&#x2F;MVVM&#x2F;MVI等架构模式，分层清晰，职责单一</li>
+<li><strong>模块化&#x2F;组件化</strong>：将应用拆分为多个模块，降低耦合，便于团队协作和维护</li>
+<li><strong>注释和文档</strong>：关键代码添加注释，公共接口编写文档</li>
+<li><strong>单元测试</strong>：为核心逻辑编写单元测试，保证代码质量和重构安全</li>
+<li><strong>版本控制规范</strong>：合理使用Git分支策略，规范提交信息</li>
+<li><strong>错误处理统一</strong>：统一的异常处理、错误码定义、日志规范</li>
+<li><strong>配置管理</strong>：将常量、配置项集中管理，避免硬编码</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Android开发艺术探索》是一本深入讲解Android核心机制的经典书籍，涵盖了从UI层（View、动画、Window）到系统层（四大组件工作过程、消息机制、IPC、Binder）再到性能优化（布局优化、内存优化、ANR分析、MAT工具）的全方位知识。书中不仅讲解了”怎么用”，更深入源码分析了”为什么”，适合有一定Android开发基础、希望深入理解系统原理的开发者阅读。</p>
+<p><strong>重点章节推荐</strong>：第3章（View事件体系）、第4章（View工作原理）、第8章（Window和WindowManager）、第10章（消息机制）、第15章（性能优化）是面试高频考点，建议重点掌握。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/20/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/20/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/%E7%BA%B3%E7%93%A6%E5%B0%94%E5%AE%9D%E5%85%B8/">纳瓦尔宝典</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/android-cockpit-app-interview/">汽车智能座舱Android应用开发面试知识点全面梳理</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2"><span class="toc-text">Android开发艺术探索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">第1章 Activity的生命周期和启动模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-IPC%E6%9C%BA%E5%88%B6"><span class="toc-text">第2章 IPC机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-View%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BD%93%E7%B3%BB"><span class="toc-text">第3章 View的事件体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-View%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">第4章 View的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E7%90%86%E8%A7%A3RemoteViews"><span class="toc-text">第5章 理解RemoteViews</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-Android%E7%9A%84Drawable"><span class="toc-text">第6章 Android的Drawable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-Android%E5%8A%A8%E7%94%BB%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90"><span class="toc-text">第7章 Android动画深入分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E7%90%86%E8%A7%A3Window%E5%92%8CWindowManager"><span class="toc-text">第8章 理解Window和WindowManager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">第9章 四大组件的工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-Android%E7%9A%84%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6"><span class="toc-text">第10章 Android的消息机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-Android%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-text">第11章 Android的线程和线程池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-Bitmap%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%92%8CCache"><span class="toc-text">第12章 Bitmap的加载和Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-%E7%BB%BC%E5%90%88%E6%8A%80%E6%9C%AF"><span class="toc-text">第13章 综合技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-JNI%E5%92%8CNDK%E7%BC%96%E7%A8%8B"><span class="toc-text">第14章 JNI和NDK编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC15%E7%AB%A0-Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">第15章 Android性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

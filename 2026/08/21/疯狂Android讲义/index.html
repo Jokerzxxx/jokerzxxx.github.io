@@ -1,0 +1,2026 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>疯狂Android讲义 - 码上弦音</title>
+
+  
+    <meta name="description" content="疯狂Android讲义（第四版） 作者：李刚全书共约20章，768页，Android开发入门到进阶的经典教材，内容全面，涵盖Android应用开发的方方面面，配有大量实战案例。   第1章 Android应用开发基础Android简介Android是基于Linux内核的开源移动操作系统，由Google主导开发。  应用层：Java&#x2F;Kotlin编写的应用 应用框架层：Java API 系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="疯狂Android讲义">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="疯狂Android讲义（第四版） 作者：李刚全书共约20章，768页，Android开发入门到进阶的经典教材，内容全面，涵盖Android应用开发的方方面面，配有大量实战案例。   第1章 Android应用开发基础Android简介Android是基于Linux内核的开源移动操作系统，由Google主导开发。  应用层：Java&#x2F;Kotlin编写的应用 应用框架层：Java API 系">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T08:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T08:26:37.987Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="入门">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,阅读,入门">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T08:30:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T08:26:37.987Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>疯狂Android讲义</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="疯狂Android讲义（第四版）"><a href="#疯狂Android讲义（第四版）" class="headerlink" title="疯狂Android讲义（第四版）"></a>疯狂Android讲义（第四版）</h1><blockquote>
+<p>作者：李刚<br>全书共约20章，768页，Android开发入门到进阶的经典教材，内容全面，涵盖Android应用开发的方方面面，配有大量实战案例。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-Android应用开发基础"><a href="#第1章-Android应用开发基础" class="headerlink" title="第1章 Android应用开发基础"></a>第1章 Android应用开发基础</h2><h3 id="Android简介"><a href="#Android简介" class="headerlink" title="Android简介"></a>Android简介</h3><p>Android是基于Linux内核的开源移动操作系统，由Google主导开发。</p>
+<ul>
+<li>应用层：Java&#x2F;Kotlin编写的应用</li>
+<li>应用框架层：Java API</li>
+<li>系统运行库层：C&#x2F;C++库 + ART</li>
+<li>HAL：硬件抽象层</li>
+<li>Linux内核：驱动、进程管理、内存管理</li>
+</ul>
+<h3 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h3><ul>
+<li>JDK安装配置</li>
+<li>Android Studio安装</li>
+<li>SDK下载配置</li>
+<li>AVD（Android虚拟设备）创建</li>
+<li>真机调试配置（USB调试、驱动）</li>
+</ul>
+<h3 id="第一个Android应用"><a href="#第一个Android应用" class="headerlink" title="第一个Android应用"></a>第一个Android应用</h3><ul>
+<li>创建项目：选择模板、配置包名、最低SDK版本</li>
+<li>项目结构：<ul>
+<li><code>app/src/main/java/</code>：Java&#x2F;Kotlin源码</li>
+<li><code>app/src/main/res/</code>：资源文件（layout、drawable、values等）</li>
+<li><code>app/src/main/AndroidManifest.xml</code>：清单文件</li>
+<li><code>build.gradle</code>：构建配置</li>
+</ul>
+</li>
+<li>运行应用：模拟器或真机</li>
+<li>应用打包：生成APK</li>
+</ul>
+<h3 id="Android应用结构"><a href="#Android应用结构" class="headerlink" title="Android应用结构"></a>Android应用结构</h3><ul>
+<li>Activity：界面，用户交互</li>
+<li>Service：后台服务，无界面</li>
+<li>BroadcastReceiver：广播接收者</li>
+<li>ContentProvider：数据共享</li>
+<li>清单文件：声明组件、权限、SDK版本</li>
+<li>资源：布局、字符串、图片、颜色、尺寸</li>
+</ul>
+<hr>
+<h2 id="第2章-Android应用界面编程"><a href="#第2章-Android应用界面编程" class="headerlink" title="第2章 Android应用界面编程"></a>第2章 Android应用界面编程</h2><h3 id="View与ViewGroup"><a href="#View与ViewGroup" class="headerlink" title="View与ViewGroup"></a>View与ViewGroup</h3><ul>
+<li>View是所有UI控件的基类</li>
+<li>ViewGroup是控件容器，继承自View</li>
+<li>View树：DecorView为根</li>
+</ul>
+<h3 id="常用布局"><a href="#常用布局" class="headerlink" title="常用布局"></a>常用布局</h3><ul>
+<li><strong>LinearLayout</strong>：线性布局，水平或垂直排列<ul>
+<li>orientation：horizontal&#x2F;vertical</li>
+<li>layout_weight：权重分配</li>
+</ul>
+</li>
+<li><strong>RelativeLayout</strong>：相对布局，相对位置排列<ul>
+<li>layout_above、layout_below、layout_toLeftOf等</li>
+</ul>
+</li>
+<li><strong>FrameLayout</strong>：帧布局，层叠排列</li>
+<li><strong>TableLayout</strong>：表格布局</li>
+<li><strong>GridLayout</strong>：网格布局</li>
+<li><strong>ConstraintLayout</strong>：约束布局，灵活强大，推荐使用<ul>
+<li>相对约束、链、屏障、Guideline</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用控件"><a href="#常用控件" class="headerlink" title="常用控件"></a>常用控件</h3><ul>
+<li><strong>TextView</strong>：文本显示<ul>
+<li>text、textSize、textColor、textStyle、gravity</li>
+</ul>
+</li>
+<li><strong>EditText</strong>：文本输入<ul>
+<li>inputType、hint、maxLength、imeOptions</li>
+</ul>
+</li>
+<li><strong>Button</strong>：按钮<ul>
+<li>onClick事件</li>
+</ul>
+</li>
+<li><strong>ImageView</strong>：图片显示<ul>
+<li>src、scaleType（fitXY、centerCrop、fitCenter等）</li>
+</ul>
+</li>
+<li><strong>CheckBox&#x2F;RadioButton</strong>：复选框&#x2F;单选按钮<ul>
+<li>RadioGroup管理单选</li>
+</ul>
+</li>
+<li><strong>Spinner</strong>：下拉选择</li>
+<li><strong>ProgressBar</strong>：进度条</li>
+<li><strong>SeekBar</strong>：拖动条</li>
+<li><strong>Switch&#x2F;ToggleButton</strong>：开关</li>
+<li><strong>ListView&#x2F;GridView</strong>：列表&#x2F;网格视图</li>
+<li><strong>RecyclerView</strong>：高级列表（推荐）</li>
+</ul>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><ul>
+<li><strong>基于监听的事件处理</strong>：<ul>
+<li>OnClickListener、OnLongClickListener、OnTouchListener、OnFocusChangeListener、OnKeyListener</li>
+<li>实现方式：匿名内部类、内部类、Activity实现接口、布局XML中onClick属性</li>
+</ul>
+</li>
+<li><strong>基于回调的事件处理</strong>：<ul>
+<li>重写View的回调方法：onKeyDown、onTouchEvent、onTrackballEvent</li>
+<li>事件传播顺序：监听器优先，然后回调方法</li>
+</ul>
+</li>
+<li><strong>Handler消息传递</strong>：<ul>
+<li>Handler.sendMessage、post</li>
+<li>Looper、MessageQueue</li>
+<li>子线程更新UI</li>
+</ul>
+</li>
+</ul>
+<h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><ul>
+<li><strong>AlertDialog</strong>：警告对话框<ul>
+<li>标题、消息、按钮（确定&#x2F;取消&#x2F;中性）</li>
+<li>列表对话框、单选&#x2F;多选对话框</li>
+<li>自定义布局对话框</li>
+</ul>
+</li>
+<li><strong>ProgressDialog</strong>：进度对话框</li>
+<li><strong>DatePickerDialog&#x2F;TimePickerDialog</strong>：日期&#x2F;时间选择对话框</li>
+<li><strong>PopupWindow</strong>：弹出窗口</li>
+<li><strong>Toast</strong>：短暂提示</li>
+<li><strong>Snackbar</strong>：底部提示（Material Design）</li>
+</ul>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><ul>
+<li><strong>选项菜单（Options Menu）</strong>：<ul>
+<li>onCreateOptionsMenu创建</li>
+<li>onOptionsItemSelected处理</li>
+<li>XML定义菜单（res&#x2F;menu&#x2F;）</li>
+</ul>
+</li>
+<li><strong>上下文菜单（Context Menu）</strong>：<ul>
+<li>长按触发</li>
+<li>onCreateContextMenu、onContextItemSelected</li>
+<li>registerForContextMenu注册</li>
+</ul>
+</li>
+<li><strong>弹出菜单（PopupMenu）</strong>：<ul>
+<li>锚定到View的弹出菜单</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第3章-Activity与Intent"><a href="#第3章-Activity与Intent" class="headerlink" title="第3章 Activity与Intent"></a>第3章 Activity与Intent</h2><h3 id="Activity概述"><a href="#Activity概述" class="headerlink" title="Activity概述"></a>Activity概述</h3><p>Activity是Android应用的界面组件，负责用户交互。</p>
+<ul>
+<li>每个Activity是一个界面</li>
+<li>应用通常由多个Activity组成</li>
+<li>Activity间通过Intent通信</li>
+</ul>
+<h3 id="Activity生命周期"><a href="#Activity生命周期" class="headerlink" title="Activity生命周期"></a>Activity生命周期</h3><ul>
+<li><strong>onCreate</strong>：创建，初始化</li>
+<li><strong>onStart</strong>：可见，但不可交互</li>
+<li><strong>onResume</strong>：可见且可交互（运行态）</li>
+<li><strong>onPause</strong>：暂停，部分可见，不可交互</li>
+<li><strong>onStop</strong>：停止，不可见</li>
+<li><strong>onDestroy</strong>：销毁</li>
+<li><strong>onRestart</strong>：重新启动（从停止态恢复）</li>
+</ul>
+<p>生命周期转换：</p>
+<ul>
+<li>启动：onCreate → onStart → onResume</li>
+<li>按Home：onPause → onStop</li>
+<li>回到应用：onRestart → onStart → onResume</li>
+<li>按返回：onPause → onStop → onDestroy</li>
+<li>横竖屏切换：onPause → onStop → onDestroy → onCreate → onStart → onResume</li>
+</ul>
+<h3 id="Activity启动模式"><a href="#Activity启动模式" class="headerlink" title="Activity启动模式"></a>Activity启动模式</h3><ul>
+<li><strong>standard</strong>：标准模式，每次启动创建新实例</li>
+<li><strong>singleTop</strong>：栈顶复用，若目标Activity在栈顶则复用，否则创建新实例</li>
+<li><strong>singleTask</strong>：栈内复用，若目标Activity在栈内则复用并清除其上所有Activity，否则创建新实例</li>
+<li><strong>singleInstance</strong>：单实例，独占一个任务栈</li>
+</ul>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><p>Intent是组件间通信的消息对象。</p>
+<ul>
+<li><strong>显式Intent</strong>：指定组件名，用于应用内跳转</li>
+<li><strong>隐式Intent</strong>：通过Action、Category、Data匹配，用于跨应用调用</li>
+<li>Intent属性：<ul>
+<li>Component：目标组件</li>
+<li>Action：动作（ACTION_VIEW、ACTION_CALL等）</li>
+<li>Category：类别</li>
+<li>Data：数据（URI + MIME类型）</li>
+<li>Extras：附加数据（Bundle）</li>
+<li>Flags：标志</li>
+</ul>
+</li>
+</ul>
+<h3 id="Activity间数据传递"><a href="#Activity间数据传递" class="headerlink" title="Activity间数据传递"></a>Activity间数据传递</h3><ul>
+<li><strong>Intent传递数据</strong>：<ul>
+<li>putExtra：基本类型、String、Serializable、Parcelable</li>
+<li>getXxxExtra：获取数据</li>
+</ul>
+</li>
+<li><strong>Bundle</strong>：数据容器，可放入Intent</li>
+<li><strong>startActivityForResult</strong>：<ul>
+<li>启动Activity并接收返回结果</li>
+<li>onActivityResult回调</li>
+<li>setResult设置结果</li>
+</ul>
+</li>
+<li>大数据传递：避免Intent传递大数据（限制1MB），用静态变量、文件、数据库</li>
+</ul>
+<hr>
+<h2 id="第4章-数据存储"><a href="#第4章-数据存储" class="headerlink" title="第4章 数据存储"></a>第4章 数据存储</h2><h3 id="SharedPreferences"><a href="#SharedPreferences" class="headerlink" title="SharedPreferences"></a>SharedPreferences</h3><ul>
+<li>轻量级存储，键值对形式</li>
+<li>存储基本类型：boolean、float、int、long、String</li>
+<li>存储位置：&#x2F;data&#x2F;data&#x2F;&lt;包名&gt;&#x2F;shared_prefs&#x2F;</li>
+<li>使用：<ul>
+<li>getSharedPreferences(name, mode)获取实例</li>
+<li>edit()获取Editor</li>
+<li>putXxx存入数据</li>
+<li>apply()&#x2F;commit()提交</li>
+</ul>
+</li>
+<li>适用：配置信息、用户偏好、小量数据</li>
+</ul>
+<h3 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h3><ul>
+<li><strong>内部存储</strong>：<ul>
+<li>&#x2F;data&#x2F;data&#x2F;&lt;包名&gt;&#x2F;files&#x2F;</li>
+<li>仅应用自己可访问</li>
+<li>openFileInput&#x2F;openFileOutput</li>
+</ul>
+</li>
+<li><strong>外部存储</strong>：<ul>
+<li>&#x2F;sdcard&#x2F;</li>
+<li>所有应用可访问，需权限</li>
+<li>Environment.getExternalStorageDirectory()</li>
+<li>Android 10+分区存储（Scoped Storage）</li>
+</ul>
+</li>
+<li><strong>资源文件</strong>：<ul>
+<li>res&#x2F;raw&#x2F;：原始资源，通过openRawResource读取</li>
+<li>assets&#x2F;：资产文件，通过AssetManager读取</li>
+</ul>
+</li>
+<li>文件操作：FileInputStream、FileOutputStream、BufferedReader、BufferedWriter</li>
+</ul>
+<h3 id="SQLite数据库"><a href="#SQLite数据库" class="headerlink" title="SQLite数据库"></a>SQLite数据库</h3><ul>
+<li>轻量级关系型数据库，嵌入式</li>
+<li>Android内置SQLite</li>
+<li><strong>SQLiteOpenHelper</strong>：<ul>
+<li>继承SQLiteOpenHelper</li>
+<li>onCreate：创建数据库</li>
+<li>onUpgrade：升级数据库</li>
+<li>getWritableDatabase&#x2F;getReadableDatabase获取数据库实例</li>
+</ul>
+</li>
+<li><strong>CRUD操作</strong>：<ul>
+<li>insert：插入</li>
+<li>delete：删除</li>
+<li>update：更新</li>
+<li>query：查询，返回Cursor</li>
+</ul>
+</li>
+<li><strong>Cursor</strong>：查询结果集，moveToFirst&#x2F;moveToNext&#x2F;getXxx遍历</li>
+<li><strong>事务</strong>：<ul>
+<li>beginTransaction开始</li>
+<li>setTransactionSuccessful标记成功</li>
+<li>endTransaction结束</li>
+</ul>
+</li>
+<li>适用：结构化数据、大量数据、需查询&#x2F;排序</li>
+</ul>
+<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><ul>
+<li>跨应用数据共享</li>
+<li>通过URI标识数据</li>
+<li>ContentResolver操作ContentProvider</li>
+<li>系统ContentProvider：联系人、短信、媒体库、日历等</li>
+<li>自定义ContentProvider：<ul>
+<li>继承ContentProvider</li>
+<li>实现onCreate、query、insert、update、delete、getType</li>
+<li>UriMatcher匹配URI</li>
+</ul>
+</li>
+<li>适用：跨应用数据共享</li>
+</ul>
+<hr>
+<h2 id="第5章-广播接收者"><a href="#第5章-广播接收者" class="headerlink" title="第5章 广播接收者"></a>第5章 广播接收者</h2><h3 id="BroadcastReceiver概述"><a href="#BroadcastReceiver概述" class="headerlink" title="BroadcastReceiver概述"></a>BroadcastReceiver概述</h3><ul>
+<li>广播接收者，监听系统&#x2F;应用广播</li>
+<li>系统广播：开机完成、网络变化、电量变化、短信、电话等</li>
+<li>应用广播：应用内&#x2F;跨应用自定义广播</li>
+</ul>
+<h3 id="广播类型"><a href="#广播类型" class="headerlink" title="广播类型"></a>广播类型</h3><ul>
+<li><strong>标准广播（Normal Broadcast）</strong>：<ul>
+<li>异步，所有接收者同时接收</li>
+<li>不可截断</li>
+</ul>
+</li>
+<li><strong>有序广播（Ordered Broadcast）</strong>：<ul>
+<li>同步，按优先级顺序接收</li>
+<li>可截断（abortBroadcast）</li>
+<li>可传递数据（setResultData）</li>
+</ul>
+</li>
+<li><strong>本地广播（Local Broadcast）</strong>：<ul>
+<li>应用内广播，不跨应用</li>
+<li>LocalBroadcastManager管理</li>
+<li>更安全高效</li>
+</ul>
+</li>
+<li><strong>粘性广播（Sticky Broadcast）</strong>：<ul>
+<li>广播后保留，新注册的接收者也能收到</li>
+<li>已废弃（API 21+）</li>
+</ul>
+</li>
+</ul>
+<h3 id="注册方式"><a href="#注册方式" class="headerlink" title="注册方式"></a>注册方式</h3><ul>
+<li><strong>静态注册</strong>：<ul>
+<li>AndroidManifest.xml中声明</li>
+<li>应用未启动也能接收（部分系统广播）</li>
+<li>Android 8.0+对静态注册隐式广播有限制</li>
+</ul>
+</li>
+<li><strong>动态注册</strong>：<ul>
+<li>registerReceiver注册</li>
+<li>unregisterReceiver注销</li>
+<li>必须在组件生命周期内注册注销</li>
+<li>更灵活，推荐使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h3><ul>
+<li>sendBroadcast：发送标准广播</li>
+<li>sendOrderedBroadcast：发送有序广播</li>
+<li>LocalBroadcastManager.sendBroadcast：发送本地广播</li>
+<li>Intent指定Action，可附加数据</li>
+</ul>
+<h3 id="常用系统广播"><a href="#常用系统广播" class="headerlink" title="常用系统广播"></a>常用系统广播</h3><ul>
+<li>ACTION_BOOT_COMPLETED：开机完成</li>
+<li>ACTION_CONNECTIVITY_CHANGE：网络变化</li>
+<li>ACTION_BATTERY_CHANGED：电量变化</li>
+<li>ACTION_POWER_CONNECTED&#x2F;DISCONNECTED：充电&#x2F;断电</li>
+<li>ACTION_SCREEN_ON&#x2F;OFF：亮屏&#x2F;灭屏</li>
+<li>ACTION_PACKAGE_ADDED&#x2F;REMOVED：应用安装&#x2F;卸载</li>
+<li>SMS_RECEIVED：接收短信（需权限）</li>
+</ul>
+<hr>
+<h2 id="第6章-服务"><a href="#第6章-服务" class="headerlink" title="第6章 服务"></a>第6章 服务</h2><h3 id="Service概述"><a href="#Service概述" class="headerlink" title="Service概述"></a>Service概述</h3><p>Service是Android的后台服务组件，无界面，在后台运行。</p>
+<ul>
+<li>长期运行的后台任务</li>
+<li>不与用户交互</li>
+<li>运行在主线程（耗时操作需开子线程）</li>
+</ul>
+<h3 id="Service生命周期"><a href="#Service生命周期" class="headerlink" title="Service生命周期"></a>Service生命周期</h3><ul>
+<li><strong>onCreate</strong>：创建</li>
+<li><strong>onStartCommand</strong>：启动服务（startService方式）</li>
+<li><strong>onBind</strong>：绑定服务（bindService方式）</li>
+<li><strong>onUnbind</strong>：解绑</li>
+<li><strong>onDestroy</strong>：销毁</li>
+</ul>
+<h3 id="启动方式"><a href="#启动方式" class="headerlink" title="启动方式"></a>启动方式</h3><ul>
+<li><strong>startService</strong>：<ul>
+<li>启动服务，服务独立于启动者</li>
+<li>调用onStartCommand</li>
+<li>stopService停止</li>
+<li>服务可在后台长期运行</li>
+</ul>
+</li>
+<li><strong>bindService</strong>：<ul>
+<li>绑定服务，服务与绑定者关联</li>
+<li>调用onBind，返回IBinder</li>
+<li>unbindService解绑</li>
+<li>所有绑定者解绑后服务销毁</li>
+<li>可与服务交互（调用服务方法）</li>
+</ul>
+</li>
+<li>可同时使用两种方式</li>
+</ul>
+<h3 id="Service分类"><a href="#Service分类" class="headerlink" title="Service分类"></a>Service分类</h3><ul>
+<li><strong>前台服务（Foreground Service）</strong>：<ul>
+<li>显示通知，优先级高</li>
+<li>不易被系统杀死</li>
+<li>startForeground启动</li>
+<li>适用：音乐播放、下载、导航</li>
+</ul>
+</li>
+<li><strong>后台服务（Background Service）</strong>：<ul>
+<li>无通知，优先级低</li>
+<li>系统内存不足时可能被杀死</li>
+<li>Android 8.0+后台服务限制</li>
+</ul>
+</li>
+<li><strong>绑定服务（Bound Service）</strong>：<ul>
+<li>通过bindService绑定</li>
+<li>客户端-服务端模式</li>
+<li>可调用服务方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h3><ul>
+<li>Service的子类，处理异步请求</li>
+<li>内部有工作线程，串行处理请求</li>
+<li>处理完所有请求后自动停止</li>
+<li>onHandleIntent处理具体任务</li>
+<li>适用：串行异步任务，处理完自动停止</li>
+</ul>
+<h3 id="服务通信"><a href="#服务通信" class="headerlink" title="服务通信"></a>服务通信</h3><ul>
+<li><strong>Binder</strong>：<ul>
+<li>绑定服务时返回IBinder</li>
+<li>客户端通过Binder调用服务方法</li>
+<li>适用：应用内服务通信</li>
+</ul>
+</li>
+<li><strong>Messenger</strong>：<ul>
+<li>基于Handler的消息通信</li>
+<li>支持跨进程</li>
+<li>串行处理消息</li>
+</ul>
+</li>
+<li><strong>AIDL</strong>：<ul>
+<li>Android接口定义语言</li>
+<li>跨进程通信</li>
+<li>支持并发</li>
+<li>适用：复杂跨进程服务</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第7章-内容提供者"><a href="#第7章-内容提供者" class="headerlink" title="第7章 内容提供者"></a>第7章 内容提供者</h2><h3 id="ContentProvider概述"><a href="#ContentProvider概述" class="headerlink" title="ContentProvider概述"></a>ContentProvider概述</h3><p>ContentProvider是Android的数据共享组件，用于跨应用共享数据。</p>
+<ul>
+<li>统一数据访问接口</li>
+<li>底层数据可由SQLite、文件、网络等实现</li>
+<li>通过URI标识数据</li>
+</ul>
+<h3 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h3><ul>
+<li>格式：<code>content://&lt;authority&gt;/&lt;path&gt;/&lt;id&gt;</code><ul>
+<li>scheme：content:&#x2F;&#x2F;</li>
+<li>authority：授权者，标识ContentProvider</li>
+<li>path：路径，标识数据类型</li>
+<li>id：可选，标识具体记录</li>
+</ul>
+</li>
+<li>示例：<code>content://com.example.provider/books/1</code></li>
+<li>ContentUris工具类：withAppendedId、parseId</li>
+</ul>
+<h3 id="ContentResolver"><a href="#ContentResolver" class="headerlink" title="ContentResolver"></a>ContentResolver</h3><ul>
+<li>通过ContentResolver操作ContentProvider</li>
+<li>getContentResolver()获取实例</li>
+<li>方法：<ul>
+<li>query：查询</li>
+<li>insert：插入</li>
+<li>update：更新</li>
+<li>delete：删除</li>
+<li>getType：获取MIME类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义ContentProvider"><a href="#自定义ContentProvider" class="headerlink" title="自定义ContentProvider"></a>自定义ContentProvider</h3><ol>
+<li>继承ContentProvider</li>
+<li>实现6个方法：<ul>
+<li>onCreate：初始化</li>
+<li>query：查询</li>
+<li>insert：插入</li>
+<li>update：更新</li>
+<li>delete：删除</li>
+<li>getType：返回MIME类型</li>
+</ul>
+</li>
+<li>AndroidManifest.xml中声明：<ul>
+<li>android:authorities</li>
+<li>android:exported</li>
+<li>android:permission（可选）</li>
+</ul>
+</li>
+<li>UriMatcher：匹配URI，返回自定义代码</li>
+<li>ContentUris：解析ID、追加ID</li>
+</ol>
+<h3 id="系统ContentProvider"><a href="#系统ContentProvider" class="headerlink" title="系统ContentProvider"></a>系统ContentProvider</h3><ul>
+<li><strong>联系人</strong>：ContactsContract</li>
+<li><strong>短信</strong>：Telephony.Sms</li>
+<li><strong>通话记录</strong>：CallLog</li>
+<li><strong>媒体库</strong>：MediaStore（图片、视频、音频）</li>
+<li><strong>日历</strong>：CalendarContract</li>
+<li><strong>书签</strong>：Browser</li>
+<li>访问需相应权限</li>
+</ul>
+<h3 id="ContentObserver"><a href="#ContentObserver" class="headerlink" title="ContentObserver"></a>ContentObserver</h3><ul>
+<li>监听ContentProvider数据变化</li>
+<li>注册：getContentResolver().registerContentObserver(uri, notifyForDescendents, observer)</li>
+<li>onChange回调</li>
+<li>适用：监听数据变化，自动更新UI</li>
+</ul>
+<hr>
+<h2 id="第8章-资源与国际化"><a href="#第8章-资源与国际化" class="headerlink" title="第8章 资源与国际化"></a>第8章 资源与国际化</h2><h3 id="Android资源"><a href="#Android资源" class="headerlink" title="Android资源"></a>Android资源</h3><p>资源是应用中不包含在代码中的外部文件，如布局、图片、字符串等。</p>
+<ul>
+<li>存储在<code>res/</code>目录下</li>
+<li>通过R类引用</li>
+<li>编译时处理</li>
+</ul>
+<h3 id="资源类型"><a href="#资源类型" class="headerlink" title="资源类型"></a>资源类型</h3><ul>
+<li><strong>layout</strong>：布局XML</li>
+<li><strong>drawable</strong>：图片、形状、选择器</li>
+<li><strong>mipmap</strong>：应用图标（不同密度）</li>
+<li><strong>values</strong>：字符串、颜色、尺寸、样式、主题</li>
+<li><strong>raw</strong>：原始资源文件</li>
+<li><strong>xml</strong>：XML配置文件</li>
+<li><strong>anim</strong>：补间动画</li>
+<li><strong>animator</strong>：属性动画</li>
+<li><strong>menu</strong>：菜单</li>
+<li><strong>font</strong>：字体</li>
+</ul>
+<h3 id="资源引用"><a href="#资源引用" class="headerlink" title="资源引用"></a>资源引用</h3><ul>
+<li>Java代码：<code>R.string.app_name</code>、<code>R.layout.activity_main</code>、<code>R.drawable.icon</code></li>
+<li>XML：<code>@string/app_name</code>、<code>@layout/activity_main</code>、<code>@drawable/icon</code></li>
+<li>系统资源：<code>@android:string/ok</code>、<code>android.R.string.ok</code></li>
+</ul>
+<h3 id="资源适配"><a href="#资源适配" class="headerlink" title="资源适配"></a>资源适配</h3><ul>
+<li>资源目录可加限定符，系统根据设备配置选择</li>
+<li>限定符：<ul>
+<li>语言区域：values-zh、values-zh-rCN</li>
+<li>屏幕密度：drawable-mdpi、drawable-hdpi、drawable-xhdpi、drawable-xxhdpi</li>
+<li>屏幕方向：layout-land、layout-port</li>
+<li>屏幕尺寸：layout-large、layout-xlarge</li>
+<li>最小宽度：values-sw600dp</li>
+<li>夜间模式：values-night</li>
+<li>平台版本：values-v21</li>
+</ul>
+</li>
+</ul>
+<h3 id="国际化（i18n）"><a href="#国际化（i18n）" class="headerlink" title="国际化（i18n）"></a>国际化（i18n）</h3><ul>
+<li>多语言支持：<ul>
+<li>values&#x2F;strings.xml（默认）</li>
+<li>values-zh&#x2F;strings.xml（中文）</li>
+<li>values-en&#x2F;strings.xml（英文）</li>
+<li>values-ja&#x2F;strings.xml（日文）</li>
+</ul>
+</li>
+<li>字符串资源引用，不硬编码</li>
+<li>系统根据设备语言自动选择</li>
+<li>格式化字符串：<code>%1$s</code>、<code>%2$d</code>，String.format</li>
+<li>复数资源：plurals（one&#x2F;other等）</li>
+</ul>
+<h3 id="尺寸与单位"><a href="#尺寸与单位" class="headerlink" title="尺寸与单位"></a>尺寸与单位</h3><ul>
+<li><strong>dp&#x2F;dip</strong>：设备无关像素，推荐用于布局尺寸</li>
+<li><strong>sp</strong>：缩放无关像素，推荐用于字体大小</li>
+<li><strong>px</strong>：像素，不推荐（不同密度显示不同）</li>
+<li><strong>pt</strong>：磅，1&#x2F;72英寸</li>
+<li><strong>in</strong>：英寸</li>
+<li><strong>mm</strong>：毫米</li>
+<li>dp与px转换：<code>px = dp * (dpi / 160)</code></li>
+<li>不同密度：mdpi(160)、hdpi(240)、xhdpi(320)、xxhdpi(480)、xxxhdpi(640)</li>
+</ul>
+<h3 id="主题与样式"><a href="#主题与样式" class="headerlink" title="主题与样式"></a>主题与样式</h3><ul>
+<li><strong>样式（Style）</strong>：一组属性集合，可应用于控件<ul>
+<li>定义在res&#x2F;values&#x2F;styles.xml</li>
+<li>parent继承样式</li>
+<li>通过style属性应用</li>
+</ul>
+</li>
+<li><strong>主题（Theme）</strong>：应用于Activity&#x2F;Application的样式<ul>
+<li>通过android:theme属性</li>
+<li>影响整个界面外观</li>
+<li>Material Design主题：Theme.Material.Light、Theme.AppCompat.Light等</li>
+</ul>
+</li>
+<li>自定义主题颜色：colorPrimary、colorPrimaryDark、colorAccent</li>
+</ul>
+<hr>
+<h2 id="第9章-图形与动画"><a href="#第9章-图形与动画" class="headerlink" title="第9章 图形与动画"></a>第9章 图形与动画</h2><h3 id="2D图形"><a href="#2D图形" class="headerlink" title="2D图形"></a>2D图形</h3><ul>
+<li><strong>Drawable</strong>：可绘制对象的抽象<ul>
+<li>BitmapDrawable：位图</li>
+<li>ShapeDrawable：形状（矩形、椭圆、线、环）</li>
+<li>StateListDrawable：状态选择器</li>
+<li>LayerDrawable：图层叠加</li>
+<li>TransitionDrawable：过渡</li>
+</ul>
+</li>
+<li><strong>Canvas绘图</strong>：<ul>
+<li>自定义View重写onDraw</li>
+<li>Canvas：画布，drawLine&#x2F;drawRect&#x2F;drawCircle&#x2F;drawText&#x2F;drawBitmap</li>
+<li>Paint：画笔，颜色、粗细、样式、抗锯齿</li>
+<li>Path：路径</li>
+<li>坐标系：左上角为原点，x向右，y向下</li>
+</ul>
+</li>
+<li><strong>Bitmap</strong>：<ul>
+<li>BitmapFactory解码图片</li>
+<li>Bitmap.createBitmap创建</li>
+<li>图片压缩：inSampleSize采样</li>
+<li>内存管理：recycle回收</li>
+<li>三级缓存：内存缓存、磁盘缓存、网络</li>
+</ul>
+</li>
+</ul>
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p><strong>补间动画（Tween Animation）</strong>：</p>
+<ul>
+<li>对View进行变换</li>
+<li>类型：<ul>
+<li>AlphaAnimation：透明度</li>
+<li>ScaleAnimation：缩放</li>
+<li>TranslateAnimation：位移</li>
+<li>RotateAnimation：旋转</li>
+<li>AnimationSet：动画集合</li>
+</ul>
+</li>
+<li>XML定义（res&#x2F;anim&#x2F;）或代码创建</li>
+<li>插值器（Interpolator）：控制动画变化速率<ul>
+<li>AccelerateInterpolator、DecelerateInterpolator、AccelerateDecelerateInterpolator、BounceInterpolator、OvershootInterpolator</li>
+</ul>
+</li>
+<li>缺点：只改变显示，不改变实际位置（点击区域不变）</li>
+</ul>
+<p><strong>帧动画（Frame Animation）</strong>：</p>
+<ul>
+<li>一系列图片依次播放</li>
+<li>AnimationDrawable</li>
+<li>XML定义（res&#x2F;drawable&#x2F;）：animation-list</li>
+<li>适用：简单动画、加载动画</li>
+</ul>
+<p><strong>属性动画（Property Animation）</strong>：</p>
+<ul>
+<li>Android 3.0+引入</li>
+<li>可对任意对象的属性进行动画</li>
+<li>真正改变属性值</li>
+<li>核心类：<ul>
+<li>ValueAnimator：值动画，监听值变化手动更新</li>
+<li>ObjectAnimator：对象动画，直接更新对象属性</li>
+<li>AnimatorSet：动画集合</li>
+</ul>
+</li>
+<li>XML定义（res&#x2F;animator&#x2F;）</li>
+<li>常用属性：alpha、translationX&#x2F;Y、scaleX&#x2F;Y、rotation、x&#x2F;y</li>
+<li>估值器（TypeEvaluator）：计算属性值（IntEvaluator、FloatEvaluator、ArgbEvaluator）</li>
+<li>关键帧（Keyframe）：多段动画</li>
+</ul>
+<h3 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h3><ul>
+<li>继承View或ViewGroup</li>
+<li>重写onMeasure：测量尺寸</li>
+<li>重写onLayout：布局子元素（ViewGroup）</li>
+<li>重写onDraw：绘制</li>
+<li>自定义属性：<ul>
+<li>res&#x2F;values&#x2F;attrs.xml定义declare-styleable</li>
+<li>构造函数中TypedArray获取属性值</li>
+<li>XML中使用app:属性名</li>
+</ul>
+</li>
+<li>事件处理：onTouchEvent、onInterceptTouchEvent</li>
+<li>性能优化：<ul>
+<li>避免在onDraw中创建对象</li>
+<li>使用clipRect减少绘制区域</li>
+<li>硬件加速</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第10章-多媒体"><a href="#第10章-多媒体" class="headerlink" title="第10章 多媒体"></a>第10章 多媒体</h2><h3 id="音频播放"><a href="#音频播放" class="headerlink" title="音频播放"></a>音频播放</h3><ul>
+<li><strong>MediaPlayer</strong>：<ul>
+<li>播放音频&#x2F;视频</li>
+<li>状态机：Idle → Initialized → Prepared → Started → Paused → Stopped → PlaybackCompleted → End</li>
+<li>方法：setDataSource、prepare&#x2F;prepareAsync、start、pause、stop、release</li>
+<li>监听：OnPreparedListener、OnCompletionListener、OnErrorListener</li>
+<li>播放来源：本地文件、资源(res&#x2F;raw)、网络URL</li>
+</ul>
+</li>
+<li><strong>SoundPool</strong>：<ul>
+<li>播放短音效，支持同时播放多个</li>
+<li>适用：游戏音效、提示音</li>
+<li>load加载、play播放、release释放</li>
+</ul>
+</li>
+<li><strong>AudioManager</strong>：<ul>
+<li>音频管理：音量、铃声模式、音频焦点</li>
+<li>音频焦点：requestAudioFocus、abandonAudioFocus</li>
+</ul>
+</li>
+<li><strong>AudioTrack</strong>：<ul>
+<li>底层音频播放，播放PCM数据</li>
+<li>适用：音频处理、流式播放</li>
+</ul>
+</li>
+</ul>
+<h3 id="视频播放"><a href="#视频播放" class="headerlink" title="视频播放"></a>视频播放</h3><ul>
+<li><strong>VideoView</strong>：<ul>
+<li>简单视频播放控件</li>
+<li>继承SurfaceView</li>
+<li>setVideoPath&#x2F;setVideoURI、start、pause、seekTo</li>
+<li>MediaController：播放控制条</li>
+</ul>
+</li>
+<li><strong>MediaPlayer + SurfaceView</strong>：<ul>
+<li>更灵活的视频播放</li>
+<li>MediaPlayer.setDisplay(surfaceHolder)</li>
+</ul>
+</li>
+<li><strong>ExoPlayer</strong>：<ul>
+<li>Google开源播放器</li>
+<li>支持更多格式、自适应码率、DRM</li>
+<li>推荐使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="音频录制"><a href="#音频录制" class="headerlink" title="音频录制"></a>音频录制</h3><ul>
+<li><strong>MediaRecorder</strong>：<ul>
+<li>录制音频&#x2F;视频</li>
+<li>状态机</li>
+<li>方法：setAudioSource、setOutputFormat、setAudioEncoder、setOutputFile、prepare、start、stop、release</li>
+<li>权限：RECORD_AUDIO</li>
+</ul>
+</li>
+<li><strong>AudioRecord</strong>：<ul>
+<li>底层音频录制，获取PCM数据</li>
+<li>适用：音频处理、实时处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h3><ul>
+<li><strong>Camera API（已废弃）</strong>：<ul>
+<li>Camera类</li>
+<li>open、setPreviewDisplay、startPreview、takePicture、stopPreview、release</li>
+<li>权限：CAMERA</li>
+</ul>
+</li>
+<li><strong>Camera2 API</strong>：<ul>
+<li>Android 5.0+新相机API</li>
+<li>CameraManager、CameraDevice、CameraCaptureSession、CaptureRequest</li>
+<li>更强大灵活</li>
+</ul>
+</li>
+<li><strong>相机意图</strong>：<ul>
+<li>MediaStore.ACTION_IMAGE_CAPTURE</li>
+<li>调用系统相机，无需相机权限</li>
+<li>onActivityResult获取照片</li>
+</ul>
+</li>
+</ul>
+<h3 id="相册与图片"><a href="#相册与图片" class="headerlink" title="相册与图片"></a>相册与图片</h3><ul>
+<li><strong>选择图片</strong>：<ul>
+<li>Intent.ACTION_PICK &#x2F; ACTION_GET_CONTENT</li>
+<li>调用系统相册</li>
+</ul>
+</li>
+<li><strong>拍照</strong>：<ul>
+<li>相机意图</li>
+<li>FileProvider共享文件</li>
+</ul>
+</li>
+<li><strong>图片处理</strong>：<ul>
+<li>BitmapFactory解码</li>
+<li>Matrix变换（缩放、旋转、平移）</li>
+<li>图片压缩</li>
+<li>圆角、裁剪</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第11章-网络编程"><a href="#第11章-网络编程" class="headerlink" title="第11章 网络编程"></a>第11章 网络编程</h2><h3 id="HTTP网络请求"><a href="#HTTP网络请求" class="headerlink" title="HTTP网络请求"></a>HTTP网络请求</h3><ul>
+<li><strong>HttpURLConnection</strong>：<ul>
+<li>Java标准HTTP客户端</li>
+<li>URL.openConnection获取</li>
+<li>setRequestMethod、setDoOutput、getInputStream</li>
+<li>简单轻量</li>
+</ul>
+</li>
+<li><strong>OkHttp</strong>：<ul>
+<li>Square开源HTTP客户端</li>
+<li>高效、支持连接池、GZIP、缓存、SPDY&#x2F;HTTP2</li>
+<li>同步&#x2F;异步请求</li>
+<li>Request、Response、Call、OkHttpClient</li>
+</ul>
+</li>
+<li><strong>Retrofit</strong>：<ul>
+<li>Square开源REST客户端</li>
+<li>基于OkHttp</li>
+<li>注解定义API接口</li>
+<li>自动解析JSON（Gson&#x2F;Jackson）</li>
+<li>支持RxJava</li>
+</ul>
+</li>
+<li><strong>Volley</strong>：<ul>
+<li>Google开源网络库</li>
+<li>适合小数据高频请求</li>
+<li>RequestQueue、StringRequest、JsonObjectRequest、ImageRequest</li>
+<li>不适合大文件下载&#x2F;上传</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSON解析"><a href="#JSON解析" class="headerlink" title="JSON解析"></a>JSON解析</h3><ul>
+<li><strong>org.json</strong>：<ul>
+<li>Android内置JSON解析</li>
+<li>JSONObject、JSONArray</li>
+<li>简单但手动解析繁琐</li>
+</ul>
+</li>
+<li><strong>Gson</strong>：<ul>
+<li>Google开源JSON库</li>
+<li>对象↔JSON自动转换</li>
+<li>fromJson、toJson</li>
+<li>注解：@SerializedName、@Expose</li>
+</ul>
+</li>
+<li><strong>Jackson</strong>：<ul>
+<li>高性能JSON库</li>
+<li>ObjectMapper</li>
+<li>注解：@JsonProperty、@JsonIgnore</li>
+</ul>
+</li>
+<li><strong>Fastjson</strong>：<ul>
+<li>阿里巴巴开源JSON库</li>
+<li>高性能</li>
+<li>JSON.parseObject、JSON.toJSONString</li>
+</ul>
+</li>
+</ul>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><ul>
+<li>全双工通信，长连接</li>
+<li>适用：即时通信、实时数据推送</li>
+<li>库：OkHttp WebSocket、Java-WebSocket、Scarlet</li>
+<li>生命周期：connect、onOpen、onMessage、onClose、onError</li>
+</ul>
+<h3 id="下载与上传"><a href="#下载与上传" class="headerlink" title="下载与上传"></a>下载与上传</h3><ul>
+<li><strong>下载</strong>：<ul>
+<li>HttpURLConnection&#x2F;OkHttp获取InputStream</li>
+<li>写入文件</li>
+<li>进度监听</li>
+<li>断点续传：Range请求头</li>
+</ul>
+</li>
+<li><strong>上传</strong>：<ul>
+<li>multipart&#x2F;form-data</li>
+<li>OkHttp MultipartBody</li>
+<li>进度监听</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h3><ul>
+<li><strong>HTTPS</strong>：<ul>
+<li>加密传输</li>
+<li>证书验证</li>
+<li>自定义TrustManager</li>
+<li>证书锁定（Certificate Pinning）</li>
+</ul>
+</li>
+<li><strong>网络安全配置</strong>：<ul>
+<li>res&#x2F;xml&#x2F;network_security_config.xml</li>
+<li>允许&#x2F;禁止明文流量</li>
+<li>信任的CA</li>
+<li>Android 9.0+默认禁止明文HTTP</li>
+</ul>
+</li>
+<li><strong>数据加密</strong>：<ul>
+<li>AES加密敏感数据</li>
+<li>RSA加密密钥</li>
+<li>AndroidKeyStore安全存储密钥</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="第12章-传感器"><a href="#第12章-传感器" class="headerlink" title="第12章 传感器"></a>第12章 传感器</h2><h3 id="传感器概述"><a href="#传感器概述" class="headerlink" title="传感器概述"></a>传感器概述</h3><p>Android支持多种传感器，用于感知设备环境和运动。</p>
+<ul>
+<li>硬件传感器：加速度、陀螺仪、磁力计、光线、距离、气压、温度、湿度、心率</li>
+<li>软件传感器：方向、重力、线性加速度、旋转矢量（由硬件传感器融合计算）</li>
+</ul>
+<h3 id="SensorManager"><a href="#SensorManager" class="headerlink" title="SensorManager"></a>SensorManager</h3><ul>
+<li>获取传感器服务：getSystemService(SENSOR_SERVICE)</li>
+<li>getDefaultSensor(type)获取默认传感器</li>
+<li>getSensorList(type)获取所有传感器</li>
+<li>registerListener注册监听</li>
+<li>unregisterListener注销监听</li>
+<li>传感器类型常量：<ul>
+<li>TYPE_ACCELEROMETER：加速度</li>
+<li>TYPE_GYROSCOPE：陀螺仪</li>
+<li>TYPE_MAGNETIC_FIELD：磁力计</li>
+<li>TYPE_LIGHT：光线</li>
+<li>TYPE_PROXIMITY：距离</li>
+<li>TYPE_PRESSURE：气压</li>
+<li>TYPE_ORIENTATION：方向（已废弃）</li>
+<li>TYPE_GRAVITY：重力</li>
+<li>TYPE_LINEAR_ACCELERATION：线性加速度</li>
+<li>TYPE_ROTATION_VECTOR：旋转矢量</li>
+<li>TYPE_STEP_COUNTER&#x2F;STEP_DETECTOR：计步</li>
+</ul>
+</li>
+</ul>
+<h3 id="SensorEventListener"><a href="#SensorEventListener" class="headerlink" title="SensorEventListener"></a>SensorEventListener</h3><ul>
+<li>onSensorChanged(SensorEvent event)：传感器数据变化<ul>
+<li>event.values：传感器数据数组（不同传感器含义不同）</li>
+<li>event.accuracy：精度</li>
+<li>event.timestamp：时间戳</li>
+</ul>
+</li>
+<li>onAccuracyChanged(Sensor sensor, int accuracy)：精度变化</li>
+</ul>
+<h3 id="采样频率"><a href="#采样频率" class="headerlink" title="采样频率"></a>采样频率</h3><ul>
+<li>SENSOR_DELAY_FASTEST：最快（约0ms）</li>
+<li>SENSOR_DELAY_GAME：游戏（约20ms）</li>
+<li>SENSOR_DELAY_UI：UI（约60ms）</li>
+<li>SENSOR_DELAY_NORMAL：正常（约200ms）</li>
+<li>或指定延迟微秒数</li>
+</ul>
+<h3 id="常用传感器"><a href="#常用传感器" class="headerlink" title="常用传感器"></a>常用传感器</h3><p><strong>加速度传感器</strong>：</p>
+<ul>
+<li>values[0]：x轴加速度</li>
+<li>values[1]：y轴加速度</li>
+<li>values[2]：z轴加速度</li>
+<li>单位：m&#x2F;s²</li>
+<li>包含重力加速度</li>
+<li>应用：摇一摇、运动检测、屏幕旋转</li>
+</ul>
+<p><strong>陀螺仪</strong>：</p>
+<ul>
+<li>values[0]：x轴角速度</li>
+<li>values[1]：y轴角速度</li>
+<li>values[2]：z轴角速度</li>
+<li>单位：rad&#x2F;s</li>
+<li>应用：游戏视角、姿态跟踪、VR</li>
+</ul>
+<p><strong>磁力计</strong>：</p>
+<ul>
+<li>values[0]：x轴磁场</li>
+<li>values[1]：y轴磁场</li>
+<li>values[2]：z轴磁场</li>
+<li>单位：μT</li>
+<li>应用：指南针、方向检测</li>
+</ul>
+<p><strong>光线传感器</strong>：</p>
+<ul>
+<li>values[0]：光照强度</li>
+<li>单位：lux</li>
+<li>应用：自动亮度调节</li>
+</ul>
+<p><strong>距离传感器</strong>：</p>
+<ul>
+<li>values[0]：距离</li>
+<li>单位：cm</li>
+<li>应用：通话时灭屏</li>
+</ul>
+<p><strong>方向传感器（软件）</strong>：</p>
+<ul>
+<li>values[0]：方位角（0&#x3D;北，90&#x3D;东，180&#x3D;南，270&#x3D;西）</li>
+<li>values[1]：俯仰角</li>
+<li>values[2]：翻滚角</li>
+<li>由加速度+磁力计计算</li>
+<li>推荐用旋转矢量传感器替代</li>
+</ul>
+<h3 id="传感器融合"><a href="#传感器融合" class="headerlink" title="传感器融合"></a>传感器融合</h3><ul>
+<li>单一传感器有局限（加速度有重力、陀螺仪漂移、磁力计受干扰）</li>
+<li>传感器融合结合多个传感器数据，获得更准确稳定的结果</li>
+<li>旋转矢量传感器（TYPE_ROTATION_VECTOR）是传感器融合的结果</li>
+<li>应用：AR、VR、姿态跟踪、导航</li>
+</ul>
+<hr>
+<h2 id="第13章-定位与地图"><a href="#第13章-定位与地图" class="headerlink" title="第13章 定位与地图"></a>第13章 定位与地图</h2><h3 id="定位服务"><a href="#定位服务" class="headerlink" title="定位服务"></a>定位服务</h3><p>Android提供多种定位方式：</p>
+<ul>
+<li><strong>GPS定位</strong>：<ul>
+<li>精度高（10-100米）</li>
+<li>耗电多</li>
+<li>室内不可用</li>
+<li>需权限：ACCESS_FINE_LOCATION</li>
+</ul>
+</li>
+<li><strong>网络定位</strong>：<ul>
+<li>基于WiFi&#x2F;基站</li>
+<li>精度低（100-1000米）</li>
+<li>耗电少</li>
+<li>室内可用</li>
+<li>需权限：ACCESS_COARSE_LOCATION</li>
+</ul>
+</li>
+<li><strong>被动定位</strong>：<ul>
+<li>接收其他应用的定位更新</li>
+<li>省电</li>
+<li>需权限：ACCESS_FINE_LOCATION</li>
+</ul>
+</li>
+</ul>
+<h3 id="LocationManager"><a href="#LocationManager" class="headerlink" title="LocationManager"></a>LocationManager</h3><ul>
+<li>获取定位服务：getSystemService(LOCATION_SERVICE)</li>
+<li>定位提供者：<ul>
+<li>GPS_PROVIDER：GPS</li>
+<li>NETWORK_PROVIDER：网络</li>
+<li>PASSIVE_PROVIDER：被动</li>
+</ul>
+</li>
+<li>requestLocationUpdates请求定位更新</li>
+<li>getLastKnownLocation获取最后已知位置</li>
+<li>LocationListener监听：<ul>
+<li>onLocationChanged：位置变化</li>
+<li>onStatusChanged：状态变化</li>
+<li>onProviderEnabled&#x2F;Disabled：提供者启用&#x2F;禁用</li>
+</ul>
+</li>
+<li>Criteria：选择最佳提供者（精度、功耗、海拔、速度、方向）</li>
+</ul>
+<h3 id="权限处理"><a href="#权限处理" class="headerlink" title="权限处理"></a>权限处理</h3><ul>
+<li>Android 6.0+运行时权限</li>
+<li>定位权限：<ul>
+<li>ACCESS_FINE_LOCATION：精确定位</li>
+<li>ACCESS_COARSE_LOCATION：粗略定位</li>
+<li>ACCESS_BACKGROUND_LOCATION：后台定位（Android 10+）</li>
+</ul>
+</li>
+<li>检查权限、请求权限、处理结果</li>
+</ul>
+<h3 id="高德-百度地图SDK"><a href="#高德-百度地图SDK" class="headerlink" title="高德&#x2F;百度地图SDK"></a>高德&#x2F;百度地图SDK</h3><ul>
+<li>国内地图服务常用高德或百度地图SDK</li>
+<li>功能：<ul>
+<li>地图显示</li>
+<li>定位</li>
+<li>标记（Marker）</li>
+<li>信息窗口（InfoWindow）</li>
+<li>路径规划（驾车、步行、公交、骑行）</li>
+<li>地理编码&#x2F;逆地理编码</li>
+<li>POI搜索</li>
+<li>导航</li>
+</ul>
+</li>
+<li>使用步骤：<ol>
+<li>申请API Key</li>
+<li>导入SDK</li>
+<li>配置权限和Key</li>
+<li>MapView显示地图</li>
+<li>AMap操作地图</li>
+</ol>
+</li>
+</ul>
+<h3 id="地理编码"><a href="#地理编码" class="headerlink" title="地理编码"></a>地理编码</h3><ul>
+<li>地理编码：地址 → 经纬度</li>
+<li>逆地理编码：经纬度 → 地址</li>
+<li>Geocoder类（Android内置，国内可能不可用）</li>
+<li>高德&#x2F;百度地图SDK提供地理编码服务</li>
+</ul>
+<hr>
+<h2 id="第14章-蓝牙与WiFi"><a href="#第14章-蓝牙与WiFi" class="headerlink" title="第14章 蓝牙与WiFi"></a>第14章 蓝牙与WiFi</h2><h3 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h3><p><strong>蓝牙概述</strong>：</p>
+<ul>
+<li>短距离无线通信技术</li>
+<li>经典蓝牙（BT）：音频、文件传输</li>
+<li>低功耗蓝牙（BLE）：物联网、可穿戴设备，低功耗</li>
+</ul>
+<p><strong>经典蓝牙</strong>：</p>
+<ul>
+<li>BluetoothAdapter：蓝牙适配器<ul>
+<li>getDefaultAdapter获取</li>
+<li>isEnabled检查是否启用</li>
+<li>enable&#x2F;disable启用&#x2F;禁用</li>
+<li>startDiscovery开始搜索</li>
+<li>getBondedDevices获取已配对设备</li>
+</ul>
+</li>
+<li>BluetoothDevice：蓝牙设备<ul>
+<li>getName、getAddress</li>
+<li>createBond配对</li>
+<li>createRfcommSocketToServiceRecord创建连接</li>
+</ul>
+</li>
+<li>BluetoothSocket：蓝牙套接字<ul>
+<li>connect连接</li>
+<li>getInputStream&#x2F;getOutputStream</li>
+</ul>
+</li>
+<li>BluetoothServerSocket：服务端套接字<ul>
+<li>listenUsingRfcommWithServiceRecord</li>
+<li>accept接受连接</li>
+</ul>
+</li>
+<li>权限：BLUETOOTH、BLUETOOTH_ADMIN、ACCESS_FINE_LOCATION（Android 6.0+搜索需位置权限）</li>
+</ul>
+<p><strong>低功耗蓝牙（BLE）</strong>：</p>
+<ul>
+<li>BluetoothLeScanner：扫描BLE设备</li>
+<li>BluetoothGatt：GATT客户端</li>
+<li>BluetoothGattService：GATT服务</li>
+<li>BluetoothGattCharacteristic：特征值</li>
+<li>BluetoothGattDescriptor：描述符</li>
+<li>流程：扫描 → 连接 → 发现服务 → 读写特征值 → 通知</li>
+<li>适用：心率带、血压计、智能手环、智能家居</li>
+</ul>
+<h3 id="WiFi"><a href="#WiFi" class="headerlink" title="WiFi"></a>WiFi</h3><p><strong>WiFi概述</strong>：</p>
+<ul>
+<li>无线局域网技术</li>
+<li>WiFi管理：扫描、连接、配置</li>
+</ul>
+<p><strong>WifiManager</strong>：</p>
+<ul>
+<li>获取WiFi服务：getSystemService(WIFI_SERVICE)</li>
+<li>isWifiEnabled检查是否启用</li>
+<li>setWifiEnabled启用&#x2F;禁用</li>
+<li>startScan开始扫描</li>
+<li>getScanResults获取扫描结果（ScanResult：SSID、BSSID、信号强度、加密方式）</li>
+<li>getConnectionInfo获取当前连接信息（WifiInfo：SSID、BSSID、IP地址、信号强度）</li>
+<li>getConfiguredNetworks获取已配置网络</li>
+<li>addNetwork&#x2F;removeNetwork添加&#x2F;删除网络配置</li>
+<li>enableNetwork连接网络</li>
+<li>权限：ACCESS_WIFI_STATE、CHANGE_WIFI_STATE、ACCESS_FINE_LOCATION（Android 6.0+扫描需位置权限）</li>
+</ul>
+<p><strong>WiFi直连（Wi-Fi Direct）</strong>：</p>
+<ul>
+<li>设备间直接WiFi连接，无需热点</li>
+<li>WifiP2pManager管理</li>
+<li>适用：文件传输、屏幕共享</li>
+</ul>
+<p><strong>热点（Tethering）</strong>：</p>
+<ul>
+<li>手机作为WiFi热点</li>
+<li>ConnectivityManager管理</li>
+<li>需权限：CHANGE_NETWORK_STATE</li>
+</ul>
+<hr>
+<h2 id="第15章-NDK开发"><a href="#第15章-NDK开发" class="headerlink" title="第15章 NDK开发"></a>第15章 NDK开发</h2><h3 id="NDK概述"><a href="#NDK概述" class="headerlink" title="NDK概述"></a>NDK概述</h3><p>NDK（Native Development Kit）允许在Android应用中使用C&#x2F;C++代码。</p>
+<ul>
+<li>适用场景：<ul>
+<li>性能关键代码（游戏引擎、音视频编解码、图像处理）</li>
+<li>复用C&#x2F;C++库</li>
+<li>安全敏感代码（加密算法，增加逆向难度）</li>
+</ul>
+</li>
+<li>不推荐：普通业务逻辑（Java&#x2F;Kotlin更简单高效）</li>
+</ul>
+<h3 id="NDK开发环境"><a href="#NDK开发环境" class="headerlink" title="NDK开发环境"></a>NDK开发环境</h3><ul>
+<li>Android Studio安装NDK、CMake、LLDB</li>
+<li>CMake构建工具（推荐）</li>
+<li>ndk-build（旧方式）</li>
+</ul>
+<h3 id="JNI"><a href="#JNI" class="headerlink" title="JNI"></a>JNI</h3><p>JNI（Java Native Interface）是Java与C&#x2F;C++交互的桥梁。</p>
+<ul>
+<li>Java声明native方法</li>
+<li>C&#x2F;C++实现native方法</li>
+<li>方法命名规则：<code>Java_包名_类名_方法名</code></li>
+<li>数据类型映射：<ul>
+<li>Java基本类型 ↔ C基本类型（jint、jlong、jfloat等）</li>
+<li>Java对象 ↔ jobject、jstring、jarray等</li>
+</ul>
+</li>
+<li>JNIEnv：JNI环境指针，提供大量函数<ul>
+<li>字符串操作：GetStringUTFChars、ReleaseStringUTFChars、NewStringUTF</li>
+<li>数组操作：GetIntArrayElements、ReleaseIntArrayElements、NewIntArray</li>
+<li>对象操作：GetFieldID、GetObjectField、CallObjectMethod</li>
+<li>异常处理：ThrowNew、ExceptionCheck、ExceptionClear</li>
+</ul>
+</li>
+</ul>
+<h3 id="CMake配置"><a href="#CMake配置" class="headerlink" title="CMake配置"></a>CMake配置</h3><ul>
+<li>CMakeLists.txt：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</span><br><span class="line"><span class="keyword">add_library</span>(native-lib SHARED src/main/cpp/native-lib.cpp)</span><br><span class="line"><span class="keyword">find_library</span>(log-lib log)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(native-lib <span class="variable">$&#123;log-lib&#125;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>build.gradle配置externalNativeBuild</li>
+<li>生成.so库（不同ABI：armeabi-v7a、arm64-v8a、x86、x86_64）</li>
+</ul>
+<h3 id="NDK调试"><a href="#NDK调试" class="headerlink" title="NDK调试"></a>NDK调试</h3><ul>
+<li>LLDB调试C&#x2F;C++代码</li>
+<li>断点、单步、变量查看</li>
+<li>log输出：__android_log_print</li>
+</ul>
+<h3 id="常见NDK库"><a href="#常见NDK库" class="headerlink" title="常见NDK库"></a>常见NDK库</h3><ul>
+<li>OpenSL ES：底层音频</li>
+<li>OpenGL ES：图形渲染</li>
+<li>OpenCV：计算机视觉</li>
+<li>FFmpeg：音视频处理</li>
+<li>libpng、libjpeg：图片处理</li>
+</ul>
+<hr>
+<h2 id="第16章-性能优化"><a href="#第16章-性能优化" class="headerlink" title="第16章 性能优化"></a>第16章 性能优化</h2><h3 id="性能优化概述"><a href="#性能优化概述" class="headerlink" title="性能优化概述"></a>性能优化概述</h3><p>Android性能优化目标：</p>
+<ul>
+<li>流畅：界面不卡顿，60fps</li>
+<li>稳定：无崩溃、无ANR</li>
+<li>省电：减少电量消耗</li>
+<li>省流量：减少网络流量</li>
+<li>省内存：减少内存占用</li>
+</ul>
+<h3 id="UI性能优化"><a href="#UI性能优化" class="headerlink" title="UI性能优化"></a>UI性能优化</h3><ul>
+<li><strong>布局优化</strong>：<ul>
+<li>减少布局层级（ConstraintLayout替代嵌套）</li>
+<li><include>复用布局</li>
+<li><merge>减少层级</li>
+<li><ViewStub>延迟加载</li>
+<li>避免过度绘制</li>
+</ul>
+</li>
+<li><strong>绘制优化</strong>：<ul>
+<li>onDraw中不创建对象</li>
+<li>减少invalidate调用</li>
+<li>使用clipRect减少绘制区域</li>
+<li>硬件加速</li>
+</ul>
+</li>
+<li><strong>ListView&#x2F;RecyclerView优化</strong>：<ul>
+<li>ViewHolder复用</li>
+<li>分页加载</li>
+<li>图片异步加载</li>
+<li>滑动时暂停加载</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h3><ul>
+<li><strong>内存泄漏</strong>：<ul>
+<li>静态变量持有Activity&#x2F;Context</li>
+<li>非静态内部类&#x2F;匿名类持有外部类引用</li>
+<li>未取消注册（广播、监听器）</li>
+<li>资源未关闭（Cursor、InputStream、Socket）</li>
+<li>单例持有Context</li>
+</ul>
+</li>
+<li><strong>检测工具</strong>：<ul>
+<li>LeakCanary：自动检测内存泄漏</li>
+<li>Android Profiler：内存分析</li>
+<li>MAT：堆转储分析</li>
+</ul>
+</li>
+<li><strong>优化方法</strong>：<ul>
+<li>使用Application Context替代Activity Context</li>
+<li>静态内部类+弱引用</li>
+<li>及时取消注册、关闭资源</li>
+<li>图片压缩、缓存</li>
+<li>避免在循环中创建对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="启动优化"><a href="#启动优化" class="headerlink" title="启动优化"></a>启动优化</h3><ul>
+<li><strong>冷启动</strong>：应用进程不存在，从头启动<ul>
+<li>Application.onCreate</li>
+<li>首Activity创建</li>
+</ul>
+</li>
+<li><strong>热启动</strong>：应用进程存在，从后台恢复</li>
+<li><strong>优化方法</strong>：<ul>
+<li>减少Application.onCreate耗时（延迟初始化、异步初始化）</li>
+<li>首屏布局简化</li>
+<li>避免在主线程做耗时操作</li>
+<li>启动页（Splash）预加载</li>
+<li>懒加载</li>
+</ul>
+</li>
+<li><strong>启动时间测量</strong>：<ul>
+<li>Logcat：Displayed时间</li>
+<li>adb shell am start -W</li>
+<li>方法打点</li>
+</ul>
+</li>
+</ul>
+<h3 id="卡顿优化"><a href="#卡顿优化" class="headerlink" title="卡顿优化"></a>卡顿优化</h3><ul>
+<li><strong>主线程阻塞</strong>：<ul>
+<li>耗时操作在主线程</li>
+<li>复杂布局</li>
+<li>频繁GC</li>
+</ul>
+</li>
+<li><strong>检测工具</strong>：<ul>
+<li>Android Profiler：CPU分析</li>
+<li>Systrace：系统跟踪</li>
+<li>严格模式（StrictMode）：检测主线程违规</li>
+</ul>
+</li>
+<li><strong>优化方法</strong>：<ul>
+<li>耗时操作放子线程</li>
+<li>异步任务：AsyncTask、HandlerThread、IntentService、RxJava、协程</li>
+<li>避免主线程IO操作</li>
+<li>减少对象创建，降低GC频率</li>
+</ul>
+</li>
+</ul>
+<h3 id="包体积优化"><a href="#包体积优化" class="headerlink" title="包体积优化"></a>包体积优化</h3><ul>
+<li><strong>代码瘦身</strong>：<ul>
+<li>ProGuard&#x2F;R8混淆、压缩、优化</li>
+<li>移除未使用代码</li>
+<li>减少库依赖</li>
+</ul>
+</li>
+<li><strong>资源优化</strong>：<ul>
+<li>图片压缩（WebP格式）</li>
+<li>移除未使用资源（shrinkResources）</li>
+<li>资源混淆（AndResGuard）</li>
+<li>只保留需要的ABI</li>
+<li>只保留需要的语言资源</li>
+</ul>
+</li>
+<li><strong>动态加载</strong>：<ul>
+<li>插件化</li>
+<li>动态功能模块（Dynamic Feature）</li>
+</ul>
+</li>
+<li><strong>APK分析</strong>：<ul>
+<li>Android Studio APK Analyzer</li>
+<li>分析各部分大小</li>
+</ul>
+</li>
+</ul>
+<h3 id="电量优化"><a href="#电量优化" class="headerlink" title="电量优化"></a>电量优化</h3><ul>
+<li><strong>定位优化</strong>：<ul>
+<li>降低定位频率</li>
+<li>使用被动定位</li>
+<li>不需要时停止定位</li>
+</ul>
+</li>
+<li><strong>网络优化</strong>：<ul>
+<li>批量请求</li>
+<li>缓存数据</li>
+<li>使用高效数据格式（Protocol Buffers）</li>
+<li>按需连接</li>
+</ul>
+</li>
+<li><strong>唤醒锁（WakeLock）</strong>：<ul>
+<li>及时释放</li>
+<li>使用合理的锁级别</li>
+</ul>
+</li>
+<li><strong>闹钟（AlarmManager）</strong>：<ul>
+<li>减少唤醒频率</li>
+<li>使用setInexactRepeating允许系统合并</li>
+</ul>
+</li>
+<li><strong>JobScheduler&#x2F;WorkManager</strong>：<ul>
+<li>延迟任务到合适时机（充电、WiFi、空闲）</li>
+</ul>
+</li>
+</ul>
+<h3 id="ANR处理"><a href="#ANR处理" class="headerlink" title="ANR处理"></a>ANR处理</h3><ul>
+<li>ANR（Application Not Responding）：应用无响应</li>
+<li>触发条件：<ul>
+<li>输入事件5秒无响应</li>
+<li>BroadcastReceiver 10秒未完成</li>
+<li>Service 20秒未完成</li>
+</ul>
+</li>
+<li>原因：<ul>
+<li>主线程耗时操作</li>
+<li>死锁</li>
+<li>Binder调用耗时</li>
+</ul>
+</li>
+<li>分析：<ul>
+<li>&#x2F;data&#x2F;anr&#x2F;traces.txt</li>
+<li>主线程堆栈</li>
+</ul>
+</li>
+<li>避免：<ul>
+<li>主线程不做耗时操作</li>
+<li>BroadcastReceiver&#x2F;Service中开子线程</li>
+<li>避免死锁</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《疯狂Android讲义》是李刚撰写的Android开发经典教材，第四版内容全面，从基础到进阶，配有大量实战案例，适合Android初学者系统学习。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1章</td>
+<td>开发基础</td>
+<td>Android简介、环境搭建、第一个应用、项目结构</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>界面编程</td>
+<td>View&#x2F;ViewGroup、布局、常用控件、事件处理、对话框、菜单</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>Activity与Intent</td>
+<td>生命周期、启动模式、Intent、数据传递</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>数据存储</td>
+<td>SharedPreferences、文件、SQLite、ContentProvider</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>广播接收者</td>
+<td>广播类型、注册方式、发送广播、系统广播</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>服务</td>
+<td>生命周期、启动方式、前台服务、IntentService、服务通信</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>内容提供者</td>
+<td>URI、ContentResolver、自定义ContentProvider、系统Provider</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>资源与国际化</td>
+<td>资源类型、资源适配、多语言、尺寸单位、主题样式</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>图形与动画</td>
+<td>2D图形、Canvas、补间&#x2F;帧&#x2F;属性动画、自定义View</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>多媒体</td>
+<td>音频播放&#x2F;录制、视频播放、相机、图片处理</td>
+</tr>
+<tr>
+<td>第11章</td>
+<td>网络编程</td>
+<td>HTTP请求、JSON解析、WebSocket、下载上传、网络安全</td>
+</tr>
+<tr>
+<td>第12章</td>
+<td>传感器</td>
+<td>SensorManager、加速度&#x2F;陀螺仪&#x2F;磁力计&#x2F;光线&#x2F;距离、传感器融合</td>
+</tr>
+<tr>
+<td>第13章</td>
+<td>定位与地图</td>
+<td>LocationManager、GPS&#x2F;网络定位、高德&#x2F;百度地图SDK、地理编码</td>
+</tr>
+<tr>
+<td>第14章</td>
+<td>蓝牙与WiFi</td>
+<td>经典蓝牙、BLE、WifiManager、WiFi直连、热点</td>
+</tr>
+<tr>
+<td>第15章</td>
+<td>NDK开发</td>
+<td>JNI、CMake配置、C&#x2F;C++调用、NDK调试、常用库</td>
+</tr>
+<tr>
+<td>第16章</td>
+<td>性能优化</td>
+<td>UI&#x2F;内存&#x2F;启动&#x2F;卡顿&#x2F;包体积&#x2F;电量优化、ANR处理</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>本书内容全面，适合系统学习Android开发</li>
+<li>第1-3章是基础，必须掌握</li>
+<li>第4-7章（四大组件）是Android核心</li>
+<li>第8-9章（资源、图形动画）是UI开发必备</li>
+<li>第10-14章（多媒体、网络、传感器、定位、蓝牙WiFi）是进阶功能开发</li>
+<li>第15章（NDK）适合需要C&#x2F;C++开发的场景</li>
+<li>第16章（性能优化）是高级开发必备</li>
+<li>学习时一定要动手实践，本书配有大量案例</li>
+<li>配合官方文档和Android Studio学习效果更好</li>
+<li>注意：本书部分内容可能基于较旧API版本，学习时需结合最新Android版本</li>
+</ul>
+<p>这本书适合Android初学者和希望系统巩固Android知识的开发者阅读，是国内Android开发领域最全面的教材之一。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android Studio开发实战</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/">高性能MySQL</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89%EF%BC%88%E7%AC%AC%E5%9B%9B%E7%89%88%EF%BC%89"><span class="toc-text">疯狂Android讲义（第四版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80"><span class="toc-text">第1章 Android应用开发基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-Android%E5%BA%94%E7%94%A8%E7%95%8C%E9%9D%A2%E7%BC%96%E7%A8%8B"><span class="toc-text">第2章 Android应用界面编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-Activity%E4%B8%8EIntent"><span class="toc-text">第3章 Activity与Intent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-text">第4章 数据存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E5%B9%BF%E6%92%AD%E6%8E%A5%E6%94%B6%E8%80%85"><span class="toc-text">第5章 广播接收者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E6%9C%8D%E5%8A%A1"><span class="toc-text">第6章 服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E8%80%85"><span class="toc-text">第7章 内容提供者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E8%B5%84%E6%BA%90%E4%B8%8E%E5%9B%BD%E9%99%85%E5%8C%96"><span class="toc-text">第8章 资源与国际化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E5%9B%BE%E5%BD%A2%E4%B8%8E%E5%8A%A8%E7%94%BB"><span class="toc-text">第9章 图形与动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="toc-text">第10章 多媒体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-text">第11章 网络编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="toc-text">第12章 传感器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%9C%B0%E5%9B%BE"><span class="toc-text">第13章 定位与地图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-%E8%93%9D%E7%89%99%E4%B8%8EWiFi"><span class="toc-text">第14章 蓝牙与WiFi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC15%E7%AB%A0-NDK%E5%BC%80%E5%8F%91"><span class="toc-text">第15章 NDK开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC16%E7%AB%A0-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">第16章 性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

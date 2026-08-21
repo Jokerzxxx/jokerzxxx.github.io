@@ -1,0 +1,1548 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Android音视频开发 - 码上弦音</title>
+
+  
+    <meta name="description" content="Android音视频开发 作者：何俊林全书共11章，606页，系统讲解Android音视频系统架构，从MediaPlayer到StageFright&#x2F;NuPlayer，从OMX框架到FFmpeg，从直播技术到H.264&#x2F;H.265编码和视频格式分析。   第1章 音视频基础知识1.1 视频编码视频编码的核心目标是压缩数据量。原始视频数据量巨大（如1080P@30fps，每帧约6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android音视频开发">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Android音视频开发 作者：何俊林全书共11章，606页，系统讲解Android音视频系统架构，从MediaPlayer到StageFright&#x2F;NuPlayer，从OMX框架到FFmpeg，从直播技术到H.264&#x2F;H.265编码和视频格式分析。   第1章 音视频基础知识1.1 视频编码视频编码的核心目标是压缩数据量。原始视频数据量巨大（如1080P@30fps，每帧约6">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T03:40:01.325Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="音视频">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,阅读,音视频">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T02:30:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T03:40:01.325Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Android音视频开发</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Android音视频开发"><a href="#Android音视频开发" class="headerlink" title="Android音视频开发"></a>Android音视频开发</h1><blockquote>
+<p>作者：何俊林<br>全书共11章，606页，系统讲解Android音视频系统架构，从MediaPlayer到StageFright&#x2F;NuPlayer，从OMX框架到FFmpeg，从直播技术到H.264&#x2F;H.265编码和视频格式分析。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-音视频基础知识"><a href="#第1章-音视频基础知识" class="headerlink" title="第1章 音视频基础知识"></a>第1章 音视频基础知识</h2><h3 id="1-1-视频编码"><a href="#1-1-视频编码" class="headerlink" title="1.1 视频编码"></a>1.1 视频编码</h3><p>视频编码的核心目标是<strong>压缩数据量</strong>。原始视频数据量巨大（如1080P@30fps，每帧约6MB，每秒约180MB），必须通过编码压缩才能存储和传输。</p>
+<p><strong>常见视频编码标准：</strong></p>
+<ul>
+<li><strong>H.264&#x2F;AVC</strong>：目前应用最广泛的编码标准，压缩效率高，兼容性好</li>
+<li><strong>H.265&#x2F;HEVC</strong>：H.264的继任者，同等画质下码率降低约50%，但编码复杂度高</li>
+<li><strong>VP8&#x2F;VP9</strong>：Google推出的开源编码标准</li>
+<li><strong>AV1</strong>：AOMedia推出的新一代开源编码，压缩效率优于H.265</li>
+</ul>
+<p><strong>视频编码的核心技术：</strong></p>
+<ul>
+<li><strong>帧内预测</strong>：利用空间相关性，用相邻像素预测当前块</li>
+<li><strong>帧间预测</strong>：利用时间相关性，通过运动估计和运动补偿消除时间冗余</li>
+<li><strong>变换编码</strong>：将空间域信号变换到频率域（如DCT），便于量化压缩</li>
+<li><strong>量化</strong>：降低变换系数的精度，是有损压缩的主要来源</li>
+<li><strong>熵编码</strong>：对量化后的系数进行无损压缩（如CAVLC、CABAC）</li>
+</ul>
+<h3 id="1-2-音频编码"><a href="#1-2-音频编码" class="headerlink" title="1.2 音频编码"></a>1.2 音频编码</h3><p><strong>常见音频编码标准：</strong></p>
+<ul>
+<li><strong>AAC</strong>：Advanced Audio Coding，MP3的继任者，同等码率下音质更好</li>
+<li><strong>MP3</strong>：MPEG-1 Audio Layer 3，最经典的音频编码格式</li>
+<li><strong>Opus</strong>：开源、低延迟、高音质，适合实时通信</li>
+<li><strong>PCM</strong>：未压缩的原始音频数据，WAV文件的核心</li>
+</ul>
+<p><strong>音频编码的核心参数：</strong></p>
+<ul>
+<li><strong>采样率</strong>：每秒采样次数，常见44100Hz、48000Hz</li>
+<li><strong>采样位深</strong>：每个采样点的位数，常见16bit、24bit</li>
+<li><strong>声道数</strong>：单声道、立体声、5.1声道等</li>
+<li><strong>码率</strong>：每秒数据量，决定音质和文件大小</li>
+</ul>
+<h3 id="1-3-多媒体播放组件"><a href="#1-3-多媒体播放组件" class="headerlink" title="1.3 多媒体播放组件"></a>1.3 多媒体播放组件</h3><p><strong>Android平台：</strong></p>
+<ul>
+<li><strong>MediaPlayer</strong>：Android原生播放器，支持本地和网络音视频播放</li>
+<li><strong>AudioTrack</strong>：底层音频播放接口，直接播放PCM数据</li>
+<li><strong>MediaCodec</strong>：Android 4.1+引入的硬编解码接口</li>
+<li><strong>SurfaceView&#x2F;TextureView</strong>：视频渲染视图</li>
+</ul>
+<p><strong>iOS平台：</strong></p>
+<ul>
+<li><strong>AVPlayer</strong>：iOS原生播放器</li>
+<li><strong>AVAudioPlayer</strong>：音频播放</li>
+<li><strong>VideoToolbox&#x2F;AudioToolbox</strong>：底层编解码框架</li>
+</ul>
+<h3 id="1-4-常见的多媒体框架及解决方案"><a href="#1-4-常见的多媒体框架及解决方案" class="headerlink" title="1.4 常见的多媒体框架及解决方案"></a>1.4 常见的多媒体框架及解决方案</h3><table>
+<thead>
+<tr>
+<th>框架</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>StageFright</td>
+<td>Android原生多媒体框架</td>
+<td>Android系统级播放</td>
+</tr>
+<tr>
+<td>NuPlayer</td>
+<td>Android 5.0+默认播放器架构</td>
+<td>流媒体播放</td>
+</tr>
+<tr>
+<td>FFmpeg</td>
+<td>开源跨平台多媒体处理库</td>
+<td>通用音视频处理</td>
+</tr>
+<tr>
+<td>GStreamer</td>
+<td>开源管道式多媒体框架</td>
+<td>复杂多媒体流水线</td>
+</tr>
+<tr>
+<td>VLC</td>
+<td>开源跨平台播放器</td>
+<td>全格式播放</td>
+</tr>
+<tr>
+<td>ExoPlayer</td>
+<td>Google开源Android播放器</td>
+<td>自定义播放场景</td>
+</tr>
+<tr>
+<td>ijkPlayer</td>
+<td>B站开源，基于FFmpeg</td>
+<td>移动端直播&#x2F;点播</td>
+</tr>
+</tbody></table>
+<h3 id="1-5-相关知识点"><a href="#1-5-相关知识点" class="headerlink" title="1.5 相关知识点"></a>1.5 相关知识点</h3><p><strong>码率（比特率）</strong>：单位时间播放连续媒体的比特数量。比特率越高，带宽消耗越多，音质&#x2F;画质越好。</p>
+<p><strong>帧率（FPS）</strong>：每秒显示的帧数，常见24fps（电影）、30fps（视频）、60fps（高帧率）。</p>
+<p><strong>分辨率</strong>：视频画面的像素尺寸，如1920×1080（1080P）、3840×2160（4K）。</p>
+<p><strong>封装格式</strong>：将音视频编码数据打包成文件的格式，如MP4、FLV、TS、AVI、MKV等。封装格式不等于编码格式。</p>
+<hr>
+<h2 id="第2章-常用的系统播放器MediaPlayer"><a href="#第2章-常用的系统播放器MediaPlayer" class="headerlink" title="第2章 常用的系统播放器MediaPlayer"></a>第2章 常用的系统播放器MediaPlayer</h2><h3 id="2-1-状态图及生命周期"><a href="#2-1-状态图及生命周期" class="headerlink" title="2.1 状态图及生命周期"></a>2.1 状态图及生命周期</h3><p>MediaPlayer有严格的状态机，不同状态下可调用的方法不同：</p>
+<p><strong>状态流转：</strong></p>
+<ol>
+<li><strong>Idle</strong>：new MediaPlayer()或reset()后的状态</li>
+<li><strong>Initialized</strong>：setDataSource()后</li>
+<li><strong>Prepared</strong>：prepare()同步完成后</li>
+<li><strong>Preparing</strong>：prepareAsync()调用后，异步准备中</li>
+<li><strong>Started</strong>：start()后，播放中</li>
+<li><strong>Paused</strong>：pause()后，暂停</li>
+<li><strong>Stopped</strong>：stop()后，停止</li>
+<li><strong>PlaybackCompleted</strong>：播放完成</li>
+<li><strong>Error</strong>：发生错误</li>
+<li><strong>End</strong>：release()后，资源释放</li>
+</ol>
+<blockquote>
+<p>关键注意：在Idle状态下调用getCurrentPosition等方法会触发OnErrorListener；在Prepared之前调用start()会抛出IllegalStateException。</p>
+</blockquote>
+<h3 id="2-2-从创建到setDataSource过程"><a href="#2-2-从创建到setDataSource过程" class="headerlink" title="2.2 从创建到setDataSource过程"></a>2.2 从创建到setDataSource过程</h3><ol>
+<li><strong>创建MediaPlayer</strong>：<code>new MediaPlayer()</code>，进入Idle状态</li>
+<li><strong>设置数据源</strong>：<code>setDataSource(path)</code>，支持本地文件路径、FileDescriptor、Uri</li>
+<li><strong>setDataSource的底层实现</strong>：<ul>
+<li>Java层调用native方法</li>
+<li>JNI层调用C++层MediaPlayer的setDataSource</li>
+<li>通过Binder IPC调用MediaPlayerService的setDataSource</li>
+<li>根据数据源类型创建对应的播放器（StageFrightPlayer&#x2F;NuPlayer）</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-3-开始prepare后的流程"><a href="#2-3-开始prepare后的流程" class="headerlink" title="2.3 开始prepare后的流程"></a>2.3 开始prepare后的流程</h3><p><strong>同步prepare：</strong></p>
+<ol>
+<li>Java层prepare() → native_prepare</li>
+<li>C++层MediaPlayer.prepare() → Binder调用MediaPlayerService</li>
+<li>实际播放器（AwesomePlayer&#x2F;NuPlayer）执行prepare</li>
+<li>完成后返回，进入Prepared状态</li>
+</ol>
+<p><strong>异步prepareAsync：</strong></p>
+<ol>
+<li>Java层prepareAsync()立即返回</li>
+<li>底层异步执行准备工作</li>
+<li>准备完成后通过回调notify → JNI → Java层onPrepared</li>
+<li>进入Prepared状态，此时可调用start()</li>
+</ol>
+<h3 id="2-4-C-中MediaPlayer的C-S架构"><a href="#2-4-C-中MediaPlayer的C-S架构" class="headerlink" title="2.4 C++中MediaPlayer的C&#x2F;S架构"></a>2.4 C++中MediaPlayer的C&#x2F;S架构</h3><p>MediaPlayer采用<strong>客户端-服务端架构</strong>：</p>
+<ul>
+<li><strong>客户端（Client）</strong>：应用进程中的MediaPlayer对象，通过Binder与服务端通信</li>
+<li><strong>服务端（Server）</strong>：MediaPlayerService，运行在mediaserver进程中</li>
+<li><strong>通信方式</strong>：Binder IPC，通过IMediaPlayer接口</li>
+</ul>
+<p><strong>关键类：</strong></p>
+<ul>
+<li><code>MediaPlayer</code>：Java层接口</li>
+<li><code>android::MediaPlayer</code>：C++层客户端</li>
+<li><code>IMediaPlayerService</code>：服务端Binder接口</li>
+<li><code>IMediaPlayer</code>：播放器实例Binder接口</li>
+<li><code>MediaPlayerService::Client</code>：服务端客户端代理</li>
+</ul>
+<hr>
+<h2 id="第3章-管理调度的服务者MediaPlayerService"><a href="#第3章-管理调度的服务者MediaPlayerService" class="headerlink" title="第3章 管理调度的服务者MediaPlayerService"></a>第3章 管理调度的服务者MediaPlayerService</h2><h3 id="3-1-Client-Server通过IPC的通信流程图"><a href="#3-1-Client-Server通过IPC的通信流程图" class="headerlink" title="3.1 Client&#x2F;Server通过IPC的通信流程图"></a>3.1 Client&#x2F;Server通过IPC的通信流程图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">应用进程(Java)</span><br><span class="line">    ↓ JNI</span><br><span class="line">应用进程(C++ MediaPlayer)</span><br><span class="line">    ↓ Binder IPC</span><br><span class="line">mediaserver进程(MediaPlayerService)</span><br><span class="line">    ↓ 调用</span><br><span class="line">实际播放器(AwesomePlayer/NuPlayer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-相关联的类图"><a href="#3-2-相关联的类图" class="headerlink" title="3.2 相关联的类图"></a>3.2 相关联的类图</h3><p><strong>核心类关系：</strong></p>
+<ul>
+<li><code>MediaPlayerService</code>继承自<code>BnMediaPlayerService</code>，实现<code>IMediaPlayerService</code>接口</li>
+<li><code>MediaPlayerService::Client</code>继承自<code>BnMediaPlayer</code>，实现<code>IMediaPlayer</code>接口</li>
+<li>每个Client对应一个实际播放器实例（<code>MediaPlayerBase</code>的子类）</li>
+</ul>
+<h3 id="3-3-产生过程"><a href="#3-3-产生过程" class="headerlink" title="3.3 产生过程"></a>3.3 产生过程</h3><p>MediaPlayerService在系统启动时由<code>mediaserver</code>进程创建：</p>
+<ol>
+<li>mediaserver进程启动</li>
+<li>调用<code>MediaPlayerService::instantiate()</code></li>
+<li>将服务注册到ServiceManager，名称为”media.player”</li>
+<li>进入消息循环等待客户端请求</li>
+</ol>
+<h3 id="3-4-添加服务的过程"><a href="#3-4-添加服务的过程" class="headerlink" title="3.4 添加服务的过程"></a>3.4 添加服务的过程</h3><ol>
+<li>客户端通过<code>ServiceManager.getService(&quot;media.player&quot;)</code>获取服务Binder代理</li>
+<li>调用<code>IMediaPlayerService::create()</code>创建播放器实例</li>
+<li>服务端创建<code>MediaPlayerService::Client</code>对象</li>
+<li>将Client的Binder代理返回给客户端</li>
+<li>后续通过Client代理控制播放器</li>
+</ol>
+<h3 id="3-5-通过BinderDriver和MediaPlayer通信的过程"><a href="#3-5-通过BinderDriver和MediaPlayer通信的过程" class="headerlink" title="3.5 通过BinderDriver和MediaPlayer通信的过程"></a>3.5 通过BinderDriver和MediaPlayer通信的过程</h3><ol>
+<li>客户端调用<code>IMediaPlayer</code>接口方法（如start、pause、stop）</li>
+<li>Binder驱动将调用数据传递到mediaserver进程</li>
+<li><code>MediaPlayerService::Client</code>的对应方法被调用</li>
+<li>Client转发给实际播放器（AwesomePlayer&#x2F;NuPlayer）</li>
+<li>播放器执行操作，状态变化通过回调通知客户端</li>
+</ol>
+<h3 id="3-6-创建播放器"><a href="#3-6-创建播放器" class="headerlink" title="3.6 创建播放器"></a>3.6 创建播放器</h3><p>MediaPlayerService根据数据源类型选择播放器：</p>
+<ul>
+<li><strong>StageFrightPlayer</strong>：基于AwesomePlayer，Android 4.x默认</li>
+<li><strong>NuPlayer</strong>：Android 5.0+默认，专为流媒体优化</li>
+<li><strong>TestPlayerStub</strong>：测试用</li>
+</ul>
+<p>创建过程在<code>MediaPlayerService::Client::setDataSource</code>中，根据URL的scheme或文件类型决定使用哪个播放器。</p>
+<h3 id="3-7-建立StageFright层交互"><a href="#3-7-建立StageFright层交互" class="headerlink" title="3.7 建立StageFright层交互"></a>3.7 建立StageFright层交互</h3><p>创建AwesomePlayer后：</p>
+<ol>
+<li>初始化AwesomePlayer</li>
+<li>设置DataSource（从URI或文件描述符创建）</li>
+<li>准备阶段：解析媒体格式、创建解码器、初始化渲染器</li>
+<li>播放阶段：解码→渲染→音视频同步</li>
+</ol>
+<hr>
+<h2 id="第4章-StagefrightPlayer（AwesomePlayer）"><a href="#第4章-StagefrightPlayer（AwesomePlayer）" class="headerlink" title="第4章 StagefrightPlayer（AwesomePlayer）"></a>第4章 StagefrightPlayer（AwesomePlayer）</h2><h3 id="4-1-AwesomePlayer构造过程"><a href="#4-1-AwesomePlayer构造过程" class="headerlink" title="4.1 AwesomePlayer构造过程"></a>4.1 AwesomePlayer构造过程</h3><p>AwesomePlayer是StageFright框架的核心播放器类，构造过程：</p>
+<ol>
+<li>创建AwesomePlayer实例</li>
+<li>初始化成员变量（mQueue、mExtractor、mVideoSource、mAudioSource等）</li>
+<li>创建AwesomeRenderer（视频渲染器）</li>
+<li>创建AudioPlayer（音频播放器，负责音频解码和同步）</li>
+</ol>
+<h3 id="4-2-AwesomePlayer使用MediaExtractor进行数据解析的过程"><a href="#4-2-AwesomePlayer使用MediaExtractor进行数据解析的过程" class="headerlink" title="4.2 AwesomePlayer使用MediaExtractor进行数据解析的过程"></a>4.2 AwesomePlayer使用MediaExtractor进行数据解析的过程</h3><p><strong>数据解析流程：</strong></p>
+<ol>
+<li>根据DataSource创建MediaExtractor</li>
+<li>MediaExtractor解析封装格式（MP4&#x2F;FLV&#x2F;TS等）</li>
+<li>获取轨道数量和各轨道的编码格式</li>
+<li>对MP4文件：分离音视频轨道，返回MPEG4Source类型的视频轨道</li>
+<li>根据编码类型选择解码器（如AVC类型选择AVCDecoder）</li>
+<li>设置解码器的source为对应轨道</li>
+</ol>
+<h3 id="4-3-AwesomePlayer解码过程"><a href="#4-3-AwesomePlayer解码过程" class="headerlink" title="4.3 AwesomePlayer解码过程"></a>4.3 AwesomePlayer解码过程</h3><p><strong>视频解码：</strong></p>
+<ol>
+<li>AwesomePlayer::onVideoEvent被触发</li>
+<li>从mVideoSource读取一帧编码数据</li>
+<li>调用OMXCodec解码</li>
+<li>解码后的YUV数据交给AwesomeRenderer渲染</li>
+<li>渲染完成后，post下一个onVideoEvent到队列</li>
+</ol>
+<p><strong>音频解码：</strong></p>
+<ol>
+<li>AudioPlayer在独立线程中运行</li>
+<li>从mAudioSource读取编码数据</li>
+<li>调用OMXCodec解码为PCM</li>
+<li>PCM数据写入AudioTrack播放</li>
+<li>AudioPlayer维护时间戳，作为音视频同步的主时钟</li>
+</ol>
+<h3 id="4-4-AwesomePlayer的渲染输出过程"><a href="#4-4-AwesomePlayer的渲染输出过程" class="headerlink" title="4.4 AwesomePlayer的渲染输出过程"></a>4.4 AwesomePlayer的渲染输出过程</h3><p><strong>视频渲染：</strong></p>
+<ul>
+<li>AwesomeRenderer通过SoftwareRenderer或OMX渲染</li>
+<li>SoftwareRenderer：将YUV转换为RGB，通过软件渲染到Surface</li>
+<li>OMX渲染：通过硬件解码器直接渲染到Surface（零拷贝）</li>
+</ul>
+<p><strong>音频渲染：</strong></p>
+<ul>
+<li>AudioTrack将PCM数据写入音频设备</li>
+<li>通过setVolume控制音量</li>
+<li>支持立体声和多声道</li>
+</ul>
+<h3 id="4-5-概要总结"><a href="#4-5-概要总结" class="headerlink" title="4.5 概要总结"></a>4.5 概要总结</h3><p>AwesomePlayer的核心组件：</p>
+<ul>
+<li><strong>MediaExtractor</strong>：数据解析，分离音视频轨道</li>
+<li><strong>OMXCodec</strong>：音视频解码，基于OpenMAX接口</li>
+<li><strong>AudioPlayer</strong>：音频解码和播放，作为同步主时钟</li>
+<li><strong>AwesomeRenderer</strong>：视频渲染</li>
+<li><strong>TimedEventQueue</strong>：事件队列，驱动视频播放循环</li>
+</ul>
+<hr>
+<h2 id="第5章-流媒体播放的新生力量NuPlayer"><a href="#第5章-流媒体播放的新生力量NuPlayer" class="headerlink" title="第5章 流媒体播放的新生力量NuPlayer"></a>第5章 流媒体播放的新生力量NuPlayer</h2><h3 id="5-1-NuPlayer整体结构"><a href="#5-1-NuPlayer整体结构" class="headerlink" title="5.1 NuPlayer整体结构"></a>5.1 NuPlayer整体结构</h3><p>NuPlayer是Android 5.0（Lollipop）引入的新一代播放器架构，专为<strong>流媒体播放</strong>优化，逐渐取代AwesomePlayer成为默认播放器。</p>
+<p><strong>NuPlayer的核心优势：</strong></p>
+<ul>
+<li>更好的流媒体支持（HLS、DASH等自适应码率）</li>
+<li>更清晰的模块化架构</li>
+<li>更好的音视频同步</li>
+<li>支持更多的DRM方案</li>
+</ul>
+<p><strong>NuPlayer的核心组件：</strong></p>
+<ul>
+<li><strong>NuPlayer::Source</strong>：数据源，负责数据读取和解析</li>
+<li><strong>NuPlayer::Decoder</strong>：解码器，基于MediaCodec</li>
+<li><strong>NuPlayer::Renderer</strong>：渲染器，负责音视频同步和输出</li>
+<li><strong>ALooper&#x2F;AMessage</strong>：异步消息机制，驱动播放器状态机</li>
+</ul>
+<h3 id="5-2-NuPlayer的构建过程"><a href="#5-2-NuPlayer的构建过程" class="headerlink" title="5.2 NuPlayer的构建过程"></a>5.2 NuPlayer的构建过程</h3><ol>
+<li>MediaPlayerService创建NuPlayerDriver（NuPlayer的包装类）</li>
+<li>NuPlayerDriver创建NuPlayer实例</li>
+<li>NuPlayer创建ALooper（消息循环）</li>
+<li>注册NuPlayer到ALooper，处理AMessage</li>
+<li>播放器通过AMessage异步驱动状态转换</li>
+</ol>
+<h3 id="5-3-NuPlayer的数据解析模块"><a href="#5-3-NuPlayer的数据解析模块" class="headerlink" title="5.3 NuPlayer的数据解析模块"></a>5.3 NuPlayer的数据解析模块</h3><p><strong>Source模块负责：</strong></p>
+<ul>
+<li>从URI或文件描述符创建DataSource</li>
+<li>解析媒体封装格式</li>
+<li>分离音视频轨道</li>
+<li>提供编码数据给Decoder</li>
+</ul>
+<p><strong>支持的数据源类型：</strong></p>
+<ul>
+<li><strong>GenericSource</strong>：通用数据源，处理本地文件和普通HTTP流</li>
+<li><strong>HTTPLiveSource</strong>：HLS流媒体数据源</li>
+<li><strong>RTSPSource</strong>：RTSP流媒体数据源</li>
+</ul>
+<h3 id="5-4-NuPlayer的解码模块"><a href="#5-4-NuPlayer的解码模块" class="headerlink" title="5.4 NuPlayer的解码模块"></a>5.4 NuPlayer的解码模块</h3><p><strong>Decoder模块：</strong></p>
+<ul>
+<li>基于MediaCodec API实现硬解码</li>
+<li>支持视频和音频解码</li>
+<li>通过AMessage与Source和Renderer通信</li>
+<li>支持异步解码，提高效率</li>
+</ul>
+<p><strong>解码流程：</strong></p>
+<ol>
+<li>Decoder向Source请求编码数据</li>
+<li>Source返回一帧编码数据（AccessUnit）</li>
+<li>Decoder将数据送入MediaCodec</li>
+<li>MediaCodec异步解码，通过回调返回解码后的数据</li>
+<li>Decoder将解码后的数据发送给Renderer</li>
+</ol>
+<h3 id="5-5-NuPlayer的渲染模块"><a href="#5-5-NuPlayer的渲染模块" class="headerlink" title="5.5 NuPlayer的渲染模块"></a>5.5 NuPlayer的渲染模块</h3><p><strong>Renderer模块负责：</strong></p>
+<ul>
+<li>音视频同步（以音频时钟为主）</li>
+<li>视频帧渲染到Surface</li>
+<li>音频PCM数据写入AudioTrack</li>
+<li>管理播放速率（支持变速播放）</li>
+</ul>
+<p><strong>音视频同步策略：</strong></p>
+<ul>
+<li>音频作为主时钟（master clock）</li>
+<li>视频根据音频时间戳调整播放速度</li>
+<li>视频帧延迟则丢帧，提前则等待</li>
+<li>保证音频连续不卡顿</li>
+</ul>
+<hr>
+<h2 id="第6章-OpenMAX（OMX）框架"><a href="#第6章-OpenMAX（OMX）框架" class="headerlink" title="第6章 OpenMAX（OMX）框架"></a>第6章 OpenMAX（OMX）框架</h2><h3 id="6-1-Codec部分中的AwesomePlayer到OMX服务"><a href="#6-1-Codec部分中的AwesomePlayer到OMX服务" class="headerlink" title="6.1 Codec部分中的AwesomePlayer到OMX服务"></a>6.1 Codec部分中的AwesomePlayer到OMX服务</h3><p><strong>调用链：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AwesomePlayer</span><br><span class="line">  → OMXCodec（创建和管理OMX组件）</span><br><span class="line">    → OMXMaster（管理所有OMX插件）</span><br><span class="line">      → OMXNodeInstance（OMX组件实例）</span><br><span class="line">        → Binder IPC</span><br><span class="line">          → OMXService（mediaserver中的OMX服务）</span><br><span class="line">            → 硬件厂商的OMX插件（软解/硬解）</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-Codec部分中的OMXCodec与OMX事件回调流程"><a href="#6-2-Codec部分中的OMXCodec与OMX事件回调流程" class="headerlink" title="6.2 Codec部分中的OMXCodec与OMX事件回调流程"></a>6.2 Codec部分中的OMXCodec与OMX事件回调流程</h3><p><strong>OMXCodec的工作模式：</strong></p>
+<ul>
+<li><strong>输入端口</strong>：接收编码数据</li>
+<li><strong>输出端口</strong>：输出解码数据</li>
+<li><strong>事件回调</strong>：OMX组件通过回调通知状态变化</li>
+</ul>
+<p><strong>回调流程：</strong></p>
+<ol>
+<li>OMX组件完成一帧解码</li>
+<li>通过<code>OnEvent</code>回调通知OMXCodec</li>
+<li>OMXCodec处理事件，读取输出缓冲区</li>
+<li>将解码后的数据返回给调用者（AwesomePlayer）</li>
+<li>释放输出缓冲区，供OMX组件继续使用</li>
+</ol>
+<h3 id="6-3-MediaCodec相关知识"><a href="#6-3-MediaCodec相关知识" class="headerlink" title="6.3 MediaCodec相关知识"></a>6.3 MediaCodec相关知识</h3><p>MediaCodec是Android 4.1（API 16）引入的<strong>硬编解码API</strong>，是应用层访问硬件解码器的标准接口。</p>
+<p><strong>MediaCodec的工作流程：</strong></p>
+<ol>
+<li><strong>创建</strong>：<code>MediaCodec.createDecoderByType(mime)</code>或<code>createByCodecName(name)</code></li>
+<li><strong>配置</strong>：<code>configure(format, surface, crypto, flags)</code></li>
+<li><strong>启动</strong>：<code>start()</code>，进入Running状态</li>
+<li><strong>循环处理</strong>：<ul>
+<li><code>dequeueInputBuffer()</code>获取输入缓冲区索引</li>
+<li>填充编码数据到输入缓冲区</li>
+<li><code>queueInputBuffer()</code>提交输入缓冲区</li>
+<li><code>dequeueOutputBuffer()</code>获取输出缓冲区索引</li>
+<li>处理输出数据（渲染或读取）</li>
+<li><code>releaseOutputBuffer()</code>释放输出缓冲区</li>
+</ul>
+</li>
+<li><strong>结束</strong>：<code>stop()</code> → <code>release()</code></li>
+</ol>
+<p><strong>MediaCodec的两种模式：</strong></p>
+<ul>
+<li><strong>同步模式</strong>：在循环中调用dequeueInputBuffer&#x2F;dequeueOutputBuffer</li>
+<li><strong>异步模式</strong>（API 21+）：设置Callback，通过回调处理输入输出</li>
+</ul>
+<blockquote>
+<p>关键注意：MediaCodec的输入输出缓冲区管理非常重要，必须正确释放缓冲区，否则会导致死锁或内存泄漏。</p>
+</blockquote>
+<hr>
+<h2 id="第7章-FFmpeg项目"><a href="#第7章-FFmpeg项目" class="headerlink" title="第7章 FFmpeg项目"></a>第7章 FFmpeg项目</h2><h3 id="7-1-FFmpeg简介"><a href="#7-1-FFmpeg简介" class="headerlink" title="7.1 FFmpeg简介"></a>7.1 FFmpeg简介</h3><p>FFmpeg是一套开源的跨平台音视频处理工具库，名称中的FF代表Fast Forward（快进）。</p>
+<p><strong>FFmpeg的核心库：</strong></p>
+<ul>
+<li><strong>libavcodec</strong>：编解码库，包含几乎所有音视频编解码器</li>
+<li><strong>libavformat</strong>：封装格式库，支持读写各种音视频封装格式</li>
+<li><strong>libavutil</strong>：工具库，包含通用工具函数</li>
+<li><strong>libswscale</strong>：图像缩放和颜色空间转换库</li>
+<li><strong>libswresample</strong>：音频重采样库</li>
+<li><strong>libavfilter</strong>：滤镜库，支持音视频滤镜处理</li>
+<li><strong>libavdevice</strong>：设备库，支持输入输出设备</li>
+</ul>
+<p><strong>FFmpeg的命令行工具：</strong></p>
+<ul>
+<li><strong>ffmpeg</strong>：音视频转码工具</li>
+<li><strong>ffplay</strong>：简单的播放器</li>
+<li><strong>ffprobe</strong>：音视频信息分析工具</li>
+</ul>
+<h3 id="7-2-在Windows下编译FFmpeg"><a href="#7-2-在Windows下编译FFmpeg" class="headerlink" title="7.2 在Windows下编译FFmpeg"></a>7.2 在Windows下编译FFmpeg</h3><p>Windows下编译FFmpeg需要MSYS2环境：</p>
+<ol>
+<li>安装MSYS2</li>
+<li>安装编译工具链（gcc、make、yasm&#x2F;nasm）</li>
+<li>安装依赖库（x264、x265、fdk-aac等）</li>
+<li>配置：<code>./configure --enable-gpl --enable-libx264 --enable-shared</code></li>
+<li>编译：<code>make -j4</code></li>
+<li>安装：<code>make install</code></li>
+</ol>
+<h3 id="7-3-在Linux下编译FFmpeg"><a href="#7-3-在Linux下编译FFmpeg" class="headerlink" title="7.3 在Linux下编译FFmpeg"></a>7.3 在Linux下编译FFmpeg</h3><p>Linux下编译相对简单：</p>
+<ol>
+<li>安装依赖：<code>sudo apt-get install build-essential yasm nasm</code></li>
+<li>安装可选编解码库</li>
+<li>配置、编译、安装（同Windows步骤）</li>
+</ol>
+<h3 id="7-4-在Mac-OS下编译FFmpeg"><a href="#7-4-在Mac-OS下编译FFmpeg" class="headerlink" title="7.4 在Mac OS下编译FFmpeg"></a>7.4 在Mac OS下编译FFmpeg</h3><p>Mac OS下使用Homebrew安装依赖，编译步骤与Linux类似。也可直接<code>brew install ffmpeg</code>安装预编译版本。</p>
+<h3 id="7-5-FFmpeg常用命令"><a href="#7-5-FFmpeg常用命令" class="headerlink" title="7.5 FFmpeg常用命令"></a>7.5 FFmpeg常用命令</h3><p><strong>基本转码：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 格式转换</span></span><br><span class="line">ffmpeg -i input.mp4 output.avi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取音频</span></span><br><span class="line">ffmpeg -i input.mp4 -vn -acodec copy output.aac</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取视频</span></span><br><span class="line">ffmpeg -i input.mp4 -an -vcodec copy output.h264</span><br><span class="line"></span><br><span class="line"><span class="comment"># 视频压缩</span></span><br><span class="line">ffmpeg -i input.mp4 -b:v 1M -b:a 128k output.mp4</span><br></pre></td></tr></table></figure>
+
+<p><strong>视频处理：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 裁剪视频</span></span><br><span class="line">ffmpeg -i input.mp4 -ss 00:01:00 -t 00:00:30 -c copy output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 缩放视频</span></span><br><span class="line">ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加水印</span></span><br><span class="line">ffmpeg -i input.mp4 -i logo.png -filter_complex overlay=10:10 output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截图</span></span><br><span class="line">ffmpeg -i input.mp4 -ss 00:00:10 -vframes 1 screenshot.jpg</span><br></pre></td></tr></table></figure>
+
+<p><strong>音频处理：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 音频格式转换</span></span><br><span class="line">ffmpeg -i input.mp3 -c:a aac -b:a 256k output.m4a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 音频截取</span></span><br><span class="line">ffmpeg -i input.mp3 -ss 00:00:30 -t 00:01:00 -c copy output.mp3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 音量调整</span></span><br><span class="line">ffmpeg -i input.mp3 -af volume=2.0 output.mp3</span><br></pre></td></tr></table></figure>
+
+<p><strong>直播推流：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推流到RTMP服务器</span></span><br><span class="line">ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream</span><br><span class="line"></span><br><span class="line"><span class="comment"># 桌面直播</span></span><br><span class="line">ffmpeg -f gdigrab -i desktop -f dshow -i audio=<span class="string">&quot;麦克风&quot;</span> -vcodec libx264 -acodec aac -f flv rtmp://server/live/stream</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="第8章-FFmpeg源码分析及实战"><a href="#第8章-FFmpeg源码分析及实战" class="headerlink" title="第8章 FFmpeg源码分析及实战"></a>第8章 FFmpeg源码分析及实战</h2><h3 id="8-1-FFmpeg常用结构体分析"><a href="#8-1-FFmpeg常用结构体分析" class="headerlink" title="8.1 FFmpeg常用结构体分析"></a>8.1 FFmpeg常用结构体分析</h3><p><strong>核心结构体：</strong></p>
+<table>
+<thead>
+<tr>
+<th>结构体</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>AVFormatContext</code></td>
+<td>格式上下文，代表一个媒体文件或流，包含所有轨道信息</td>
+</tr>
+<tr>
+<td><code>AVCodecContext</code></td>
+<td>编解码器上下文，包含编解码参数和状态</td>
+</tr>
+<tr>
+<td><code>AVStream</code></td>
+<td>媒体轨道（视频流&#x2F;音频流）</td>
+</tr>
+<tr>
+<td><code>AVPacket</code></td>
+<td>编码后的数据包（一帧视频或一段音频）</td>
+</tr>
+<tr>
+<td><code>AVFrame</code></td>
+<td>解码后的原始数据帧（YUV视频或PCM音频）</td>
+</tr>
+<tr>
+<td><code>AVCodec</code></td>
+<td>编解码器信息（名称、类型、支持的格式等）</td>
+</tr>
+<tr>
+<td><code>AVIOContext</code></td>
+<td>I&#x2F;O上下文，管理输入输出</td>
+</tr>
+<tr>
+<td><code>AVDictionary</code></td>
+<td>键值对字典，用于配置参数</td>
+</tr>
+</tbody></table>
+<p><strong>关键关系：</strong></p>
+<ul>
+<li><code>AVFormatContext</code>包含多个<code>AVStream</code></li>
+<li>每个<code>AVStream</code>关联一个<code>AVCodecContext</code></li>
+<li><code>AVCodecContext</code>关联一个<code>AVCodec</code></li>
+<li>解码过程：<code>AVPacket</code> → 解码器 → <code>AVFrame</code></li>
+</ul>
+<h3 id="8-2-FFmpeg关键函数介绍"><a href="#8-2-FFmpeg关键函数介绍" class="headerlink" title="8.2 FFmpeg关键函数介绍"></a>8.2 FFmpeg关键函数介绍</h3><p><strong>初始化和打开：</strong></p>
+<ul>
+<li><code>av_register_all()</code>：注册所有编解码器和格式（FFmpeg 4.0+已废弃，自动注册）</li>
+<li><code>avformat_network_init()</code>：初始化网络模块</li>
+<li><code>avformat_open_input()</code>：打开媒体文件，创建AVFormatContext</li>
+<li><code>avformat_find_stream_info()</code>：读取媒体信息，获取轨道详情</li>
+</ul>
+<p><strong>解码相关：</strong></p>
+<ul>
+<li><code>avcodec_find_decoder()</code>：根据ID或名称查找解码器</li>
+<li><code>avcodec_alloc_context3()</code>：分配解码器上下文</li>
+<li><code>avcodec_parameters_to_context()</code>：将轨道参数复制到解码器上下文</li>
+<li><code>avcodec_open2()</code>：打开解码器</li>
+<li><code>av_read_frame()</code>：读取一帧数据包（AVPacket）</li>
+<li><code>avcodec_send_packet()</code>：发送编码数据到解码器</li>
+<li><code>avcodec_receive_frame()</code>：从解码器获取解码后的帧</li>
+</ul>
+<p><strong>资源释放：</strong></p>
+<ul>
+<li><code>av_packet_unref()</code>：释放Packet引用</li>
+<li><code>av_frame_free()</code>：释放Frame</li>
+<li><code>avcodec_free_context()</code>：释放解码器上下文</li>
+<li><code>avformat_close_input()</code>：关闭媒体文件</li>
+</ul>
+<h3 id="8-3-FFmpeg案例（代码实现）"><a href="#8-3-FFmpeg案例（代码实现）" class="headerlink" title="8.3 FFmpeg案例（代码实现）"></a>8.3 FFmpeg案例（代码实现）</h3><p><strong>典型的解码流程：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 打开输入文件</span></span><br><span class="line">avformat_open_input(&amp;fmtCtx, filename, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">avformat_find_stream_info(fmtCtx, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 查找视频流</span></span><br><span class="line">videoIdx = av_find_best_stream(fmtCtx, AVMEDIA_TYPE_VIDEO, <span class="number">-1</span>, <span class="number">-1</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 打开解码器</span></span><br><span class="line">codec = avcodec_find_decoder(fmtCtx-&gt;streams[videoIdx]-&gt;codecpar-&gt;codec_id);</span><br><span class="line">codecCtx = avcodec_alloc_context3(codec);</span><br><span class="line">avcodec_parameters_to_context(codecCtx, fmtCtx-&gt;streams[videoIdx]-&gt;codecpar);</span><br><span class="line">avcodec_open2(codecCtx, codec, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 解码循环</span></span><br><span class="line">packet = av_packet_alloc();</span><br><span class="line">frame = av_frame_alloc();</span><br><span class="line"><span class="keyword">while</span> (av_read_frame(fmtCtx, packet) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (packet-&gt;stream_index == videoIdx) &#123;</span><br><span class="line">        avcodec_send_packet(codecCtx, packet);</span><br><span class="line">        <span class="keyword">while</span> (avcodec_receive_frame(codecCtx, frame) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 处理解码后的YUV帧</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    av_packet_unref(packet);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-4-FFPlay原理"><a href="#8-4-FFPlay原理" class="headerlink" title="8.4 FFPlay原理"></a>8.4 FFPlay原理</h3><p>FFPlay是FFmpeg自带的简单播放器，其架构体现了音视频播放器的经典设计：</p>
+<p><strong>核心模块：</strong></p>
+<ul>
+<li><strong>读线程（read_thread）</strong>：读取数据包，放入视频&#x2F;音频Packet队列</li>
+<li><strong>视频解码线程（video_thread）</strong>：从视频Packet队列取数据解码，放入Frame队列</li>
+<li><strong>音频解码线程（audio_thread）</strong>：从音频Packet队列取数据解码，播放音频</li>
+<li><strong>视频渲染线程（video_refresh_thread）</strong>：从Frame队列取帧，根据音视频同步策略渲染</li>
+</ul>
+<p><strong>音视频同步策略：</strong></p>
+<ul>
+<li>以音频时钟为主时钟</li>
+<li>视频帧根据音频时钟调整显示时间</li>
+<li>延迟则丢帧，提前则等待</li>
+</ul>
+<p><strong>队列机制：</strong></p>
+<ul>
+<li>Packet队列：存储解码前的数据包</li>
+<li>Frame队列：存储解码后的帧</li>
+<li>队列有最大长度限制，防止内存溢出</li>
+<li>通过条件变量实现生产者-消费者模式</li>
+</ul>
+<hr>
+<h2 id="第9章-直播技术"><a href="#第9章-直播技术" class="headerlink" title="第9章 直播技术"></a>第9章 直播技术</h2><h3 id="9-1-直播原理"><a href="#9-1-直播原理" class="headerlink" title="9.1 直播原理"></a>9.1 直播原理</h3><p><strong>直播的完整流程：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">采集 → 预处理 → 编码 → 封装 → 推流 → 服务器分发 → 拉流 → 解封装 → 解码 → 渲染</span><br></pre></td></tr></table></figure>
+
+<p><strong>各环节说明：</strong></p>
+<ol>
+<li><strong>采集</strong>：摄像头采集视频，麦克风采集音频</li>
+<li><strong>预处理</strong>：美颜、滤镜、水印、混音等</li>
+<li><strong>编码</strong>：H.264&#x2F;H.265视频编码，AAC&#x2F;Opus音频编码</li>
+<li><strong>封装</strong>：封装为FLV或TS格式（适合流式传输）</li>
+<li><strong>推流</strong>：通过RTMP协议推送到流媒体服务器</li>
+<li><strong>服务器分发</strong>：流媒体服务器接收并分发给观众</li>
+<li><strong>拉流</strong>：观众端通过RTMP&#x2F;HTTP-FLV&#x2F;HLS拉取流</li>
+<li><strong>解封装&#x2F;解码&#x2F;渲染</strong>：播放器处理并显示</li>
+</ol>
+<h3 id="9-2-直播架构"><a href="#9-2-直播架构" class="headerlink" title="9.2 直播架构"></a>9.2 直播架构</h3><p><strong>常见直播架构：</strong></p>
+<ol>
+<li><p><strong>CDN直播架构</strong>：</p>
+<ul>
+<li>推流端 → 接入层 → 源站 → CDN边缘节点 → 播放端</li>
+<li>适合大规模观众，延迟较高（3-10秒）</li>
+</ul>
+</li>
+<li><p><strong>低延迟直播架构</strong>：</p>
+<ul>
+<li>使用WebRTC技术，端到端延迟可低于1秒</li>
+<li>适合互动直播、在线教育</li>
+</ul>
+</li>
+<li><p><strong>P2P直播架构</strong>：</p>
+<ul>
+<li>观众之间共享数据，减轻服务器压力</li>
+<li>适合超大规模直播</li>
+</ul>
+</li>
+</ol>
+<h3 id="9-3-直播过程"><a href="#9-3-直播过程" class="headerlink" title="9.3 直播过程"></a>9.3 直播过程</h3><p><strong>推流端核心流程：</strong></p>
+<ol>
+<li>初始化采集设备（Camera、AudioRecord）</li>
+<li>设置编码参数（分辨率、码率、帧率）</li>
+<li>创建MediaCodec编码器</li>
+<li>采集数据 → 预处理 → 送入编码器</li>
+<li>编码数据封装为FLV Tag</li>
+<li>通过RTMP协议发送到服务器</li>
+</ol>
+<p><strong>播放端核心流程：</strong></p>
+<ol>
+<li>连接流媒体服务器</li>
+<li>接收FLV&#x2F;TS数据流</li>
+<li>解封装，分离音视频</li>
+<li>送入MediaCodec解码器</li>
+<li>解码后渲染视频、播放音频</li>
+<li>音视频同步</li>
+</ol>
+<h3 id="9-4-流媒体服务器搭建"><a href="#9-4-流媒体服务器搭建" class="headerlink" title="9.4 流媒体服务器搭建"></a>9.4 流媒体服务器搭建</h3><p><strong>常见流媒体服务器：</strong></p>
+<ul>
+<li><strong>Nginx-RTMP</strong>：Nginx的RTMP模块，轻量易用</li>
+<li><strong>SRS</strong>：Simple Realtime Server，国产高性能流媒体服务器</li>
+<li><strong>Wowza</strong>：商业流媒体服务器，功能强大</li>
+<li><strong>Red5</strong>：Java开源流媒体服务器</li>
+</ul>
+<p><strong>Nginx-RTMP搭建：</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">rtmp</span> &#123;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">1935</span>;</span><br><span class="line">        <span class="attribute">application</span> live &#123;</span><br><span class="line">            <span class="attribute">live</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">record</span> <span class="literal">off</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">application</span> hls &#123;</span><br><span class="line">            <span class="attribute">live</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">hls</span> <span class="literal">on</span>;</span><br><span class="line">            <span class="attribute">hls_path</span> /tmp/hls;</span><br><span class="line">            <span class="attribute">hls_fragment</span> <span class="number">3s</span>;</span><br><span class="line">            <span class="attribute">hls_playlist_length</span> <span class="number">10s</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-5-FFmpeg推流到流媒体服务器的过程"><a href="#9-5-FFmpeg推流到流媒体服务器的过程" class="headerlink" title="9.5 FFmpeg推流到流媒体服务器的过程"></a>9.5 FFmpeg推流到流媒体服务器的过程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本推流</span></span><br><span class="line">ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时采集推流</span></span><br><span class="line">ffmpeg -f dshow -i video=<span class="string">&quot;摄像头&quot;</span>:audio=<span class="string">&quot;麦克风&quot;</span> \</span><br><span class="line">    -vcodec libx264 -preset ultrafast -tune zerolatency \</span><br><span class="line">    -acodec aac -b:a 128k \</span><br><span class="line">    -f flv rtmp://server/live/stream</span><br></pre></td></tr></table></figure>
+
+<p><strong>推流参数说明：</strong></p>
+<ul>
+<li><code>-re</code>：按文件原始帧率读取（模拟实时流）</li>
+<li><code>-c copy</code>：直接复制编码数据，不重新编码</li>
+<li><code>-f flv</code>：输出格式为FLV</li>
+<li><code>-preset ultrafast</code>：编码速度最快（适合实时推流）</li>
+<li><code>-tune zerolatency</code>：零延迟优化</li>
+</ul>
+<h3 id="9-6-直播优化那些事"><a href="#9-6-直播优化那些事" class="headerlink" title="9.6 直播优化那些事"></a>9.6 直播优化那些事</h3><p><strong>延迟优化：</strong></p>
+<ul>
+<li>编码器设置低延迟模式（zerolatency）</li>
+<li>减少GOP长度（关键帧间隔）</li>
+<li>使用HTTP-FLV替代HLS</li>
+<li>CDN边缘节点优化</li>
+<li>播放器缓冲区调小</li>
+</ul>
+<p><strong>卡顿优化：</strong></p>
+<ul>
+<li>自适应码率（ABR）：根据网络状况切换码率</li>
+<li>前向纠错（FEC）：发送冗余数据修复丢包</li>
+<li>丢包重传（ARQ）：请求重传丢失的数据包</li>
+<li>网络抖动缓冲（Jitter Buffer）：平滑网络波动</li>
+</ul>
+<p><strong>画质优化：</strong></p>
+<ul>
+<li>合理设置码率（1080P建议4-6Mbps）</li>
+<li>使用H.265替代H.264（同等画质码率减半）</li>
+<li>动态关键帧（场景切换时插入关键帧）</li>
+<li>码率控制模式选择（CBR&#x2F;VBR&#x2F;CRF）</li>
+</ul>
+<hr>
+<h2 id="第10章-H-264编码及H-265编码"><a href="#第10章-H-264编码及H-265编码" class="headerlink" title="第10章 H.264编码及H.265编码"></a>第10章 H.264编码及H.265编码</h2><h3 id="10-1-H-264编码框架"><a href="#10-1-H-264编码框架" class="headerlink" title="10.1 H.264编码框架"></a>10.1 H.264编码框架</h3><p>H.264&#x2F;AVC是目前应用最广泛的视频编码标准，由ITU-T和ISO&#x2F;IEC联合制定。</p>
+<p><strong>H.264的编码层次：</strong></p>
+<ul>
+<li><strong>序列（Sequence）</strong>：一组连续的编码帧</li>
+<li><strong>图像（Picture）</strong>：一帧视频</li>
+<li><strong>片（Slice）</strong>：一帧可分为多个片，每个片独立编码</li>
+<li><strong>宏块（Macroblock）</strong>：16×16像素块，H.264的基本编码单元</li>
+<li><strong>子块（Sub-block）</strong>：4×4、8×8等更小的块</li>
+</ul>
+<p><strong>H.264的帧类型：</strong></p>
+<ul>
+<li><strong>I帧（Intra-coded）</strong>：帧内编码，不依赖其他帧，可独立解码，作为随机访问点</li>
+<li><strong>P帧（Predictive-coded）</strong>：前向预测编码，参考前面的I&#x2F;P帧</li>
+<li><strong>B帧（Bi-predictive-coded）</strong>：双向预测编码，参考前后的帧，压缩率最高</li>
+</ul>
+<h3 id="10-2-H-264编码原理"><a href="#10-2-H-264编码原理" class="headerlink" title="10.2 H.264编码原理"></a>10.2 H.264编码原理</h3><p><strong>H.264编码的核心步骤：</strong></p>
+<ol>
+<li><p><strong>帧内预测（Intra Prediction）</strong>：</p>
+<ul>
+<li>利用当前帧已编码的相邻像素预测当前块</li>
+<li>支持多种预测模式（4×4有9种，16×16有4种）</li>
+<li>消除空间冗余</li>
+</ul>
+</li>
+<li><p><strong>帧间预测（Inter Prediction）</strong>：</p>
+<ul>
+<li>运动估计（Motion Estimation）：在参考帧中寻找最佳匹配块</li>
+<li>运动补偿（Motion Compensation）：根据运动向量生成预测块</li>
+<li>消除时间冗余</li>
+</ul>
+</li>
+<li><p><strong>变换（Transform）</strong>：</p>
+<ul>
+<li>对预测残差进行4×4整数DCT变换</li>
+<li>将空间域信号变换到频率域</li>
+<li>直流系数（DC）单独进行Hadamard变换</li>
+</ul>
+</li>
+<li><p><strong>量化（Quantization）</strong>：</p>
+<ul>
+<li>对变换系数进行量化，降低精度</li>
+<li>量化参数（QP）范围0-51，QP越大压缩率越高、画质越差</li>
+<li>是有损压缩的主要来源</li>
+</ul>
+</li>
+<li><p><strong>熵编码（Entropy Coding）</strong>：</p>
+<ul>
+<li>CAVLC（基于上下文的自适应变长编码）：Baseline Profile使用</li>
+<li>CABAC（基于上下文的自适应二进制算术编码）：Main&#x2F;High Profile使用，压缩率更高</li>
+<li>无损压缩</li>
+</ul>
+</li>
+<li><p><strong>去块效应滤波（Deblocking Filter）</strong>：</p>
+<ul>
+<li>对重建图像进行滤波，消除块效应</li>
+<li>提高主观画质和后续帧的预测效率</li>
+</ul>
+</li>
+</ol>
+<h3 id="10-3-H-264码流分析"><a href="#10-3-H-264码流分析" class="headerlink" title="10.3 H.264码流分析"></a>10.3 H.264码流分析</h3><p><strong>H.264的码流结构：</strong></p>
+<p><strong>网络抽象层（NAL）：</strong></p>
+<ul>
+<li>H.264码流由一系列NAL单元组成</li>
+<li>每个NAL单元以起始码<code>0x000001</code>或<code>0x00000001</code>开头</li>
+<li>NAL单元类型由第一个字节的低5位决定</li>
+</ul>
+<p><strong>常见NAL单元类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>非IDR图像的Slice</td>
+<td>P&#x2F;B帧数据</td>
+</tr>
+<tr>
+<td>5</td>
+<td>IDR图像的Slice</td>
+<td>I帧数据（关键帧）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SEI</td>
+<td>补充增强信息</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SPS</td>
+<td>序列参数集</td>
+</tr>
+<tr>
+<td>8</td>
+<td>PPS</td>
+<td>图像参数集</td>
+</tr>
+<tr>
+<td>9</td>
+<td>AUD</td>
+<td>访问单元分隔符</td>
+</tr>
+</tbody></table>
+<p><strong>关键参数集：</strong></p>
+<ul>
+<li><strong>SPS（Sequence Parameter Set）</strong>：包含序列级参数（Profile、Level、图像尺寸、参考帧数量等），解码整个序列都需要</li>
+<li><strong>PPS（Picture Parameter Set）</strong>：包含图像级参数（量化参数、片组等），解码一帧需要</li>
+<li>SPS和PPS通常在I帧之前发送，播放器必须先解析SPS&#x2F;PPS才能解码</li>
+</ul>
+<h3 id="10-4-H-265编码框架"><a href="#10-4-H-265编码框架" class="headerlink" title="10.4 H.265编码框架"></a>10.4 H.265编码框架</h3><p>H.265&#x2F;HEVC是H.264的继任者，2013年正式发布，目标是在同等画质下将码率降低约50%。</p>
+<p><strong>H.265相比H.264的主要改进：</strong></p>
+<ol>
+<li><p><strong>编码单元（CU）更大</strong>：</p>
+<ul>
+<li>H.264最大宏块16×16</li>
+<li>H.265最大编码单元（LCU）64×64</li>
+<li>支持四叉树递归划分，更灵活</li>
+</ul>
+</li>
+<li><p><strong>更多的预测模式</strong>：</p>
+<ul>
+<li>帧内预测模式从9种增加到35种</li>
+<li>帧间预测支持更精确的运动向量（1&#x2F;4像素精度）</li>
+<li>支持运动向量合并（Merge）和高级运动向量预测（AMVP）</li>
+</ul>
+</li>
+<li><p><strong>更高效的变换</strong>：</p>
+<ul>
+<li>支持4×4到32×32的可变大小DCT变换</li>
+<li>大尺寸变换更适合平坦区域</li>
+</ul>
+</li>
+<li><p><strong>并行处理能力</strong>：</p>
+<ul>
+<li>Tile（瓦片）：将图像分为多个独立编码的区域</li>
+<li>Wavefront（波前）：行级并行编码</li>
+<li>适合多核CPU和GPU硬件加速</li>
+</ul>
+</li>
+<li><p><strong>更高效的熵编码</strong>：</p>
+<ul>
+<li>全部使用CABAC（H.264的Baseline不支持CABAC）</li>
+<li>更高的压缩效率</li>
+</ul>
+</li>
+</ol>
+<p><strong>H.265的NAL单元类型扩展：</strong></p>
+<ul>
+<li>VPS（Video Parameter Set）：视频参数集，H.265新增，管理多个子层的参数</li>
+<li>SPS、PPS继续保留，结构有所扩展</li>
+</ul>
+<blockquote>
+<p>H.265的编码复杂度约为H.264的2-3倍，但解码复杂度增加不多。随着硬件支持的普及，H.265正在逐步取代H.264成为主流。</p>
+</blockquote>
+<hr>
+<h2 id="第11章-视频格式分析"><a href="#第11章-视频格式分析" class="headerlink" title="第11章 视频格式分析"></a>第11章 视频格式分析</h2><h3 id="11-1-MP4格式分析"><a href="#11-1-MP4格式分析" class="headerlink" title="11.1 MP4格式分析"></a>11.1 MP4格式分析</h3><p>MP4（MPEG-4 Part 14）是目前最主流的视频封装格式，基于QuickTime的MOV格式发展而来。</p>
+<p><strong>MP4的核心特点：</strong></p>
+<ul>
+<li>基于<strong>Box（原子）</strong>结构，每个Box有类型和大小</li>
+<li>支持流式播放（需要moov atom在文件头部）</li>
+<li>支持多种编码格式（H.264&#x2F;H.265视频，AAC&#x2F;MP3音频）</li>
+<li>支持字幕、章节、元数据</li>
+</ul>
+<p><strong>MP4的关键Box：</strong></p>
+<table>
+<thead>
+<tr>
+<th>Box</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ftyp</code></td>
+<td>文件类型，标识MP4版本和兼容性</td>
+</tr>
+<tr>
+<td><code>moov</code></td>
+<td>Movie Box，包含所有媒体元数据（索引信息）</td>
+</tr>
+<tr>
+<td><code>mvhd</code></td>
+<td>Movie Header，媒体整体信息（时长、时间戳等）</td>
+</tr>
+<tr>
+<td><code>trak</code></td>
+<td>Track Box，一个轨道（视频&#x2F;音频&#x2F;字幕）</td>
+</tr>
+<tr>
+<td><code>tkhd</code></td>
+<td>Track Header，轨道信息（ID、尺寸、音量等）</td>
+</tr>
+<tr>
+<td><code>mdia</code></td>
+<td>Media Box，轨道媒体信息</td>
+</tr>
+<tr>
+<td><code>mdhd</code></td>
+<td>Media Header，媒体时间信息</td>
+</tr>
+<tr>
+<td><code>hdlr</code></td>
+<td>Handler Reference，轨道类型（vide&#x2F;soun）</td>
+</tr>
+<tr>
+<td><code>stbl</code></td>
+<td>Sample Table Box，采样表（索引数据）</td>
+</tr>
+<tr>
+<td><code>stsd</code></td>
+<td>Sample Description，编码格式详情</td>
+</tr>
+<tr>
+<td><code>stts</code></td>
+<td>Time-to-Sample，时间戳到采样的映射</td>
+</tr>
+<tr>
+<td><code>stss</code></td>
+<td>Sync Sample，关键帧索引（随机访问点）</td>
+</tr>
+<tr>
+<td><code>stsc</code></td>
+<td>Sample-to-Chunk，采样到块的映射</td>
+</tr>
+<tr>
+<td><code>stsz</code></td>
+<td>Sample Size，每个采样的大小</td>
+</tr>
+<tr>
+<td><code>stco</code></td>
+<td>Chunk Offset，每个块在文件中的偏移</td>
+</tr>
+<tr>
+<td><code>mdat</code></td>
+<td>Media Data Box，实际的音视频数据</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>MP4播放需要先解析moov box获取索引信息，再根据索引从mdat中读取数据。因此moov在文件头部时支持流式播放，在尾部时需要下载完整个文件才能播放。</p>
+</blockquote>
+<h3 id="11-2-FLV格式分析"><a href="#11-2-FLV格式分析" class="headerlink" title="11.2 FLV格式分析"></a>11.2 FLV格式分析</h3><p>FLV（Flash Video）是Adobe推出的流媒体格式，曾是网页直播的主流格式。</p>
+<p><strong>FLV的核心特点：</strong></p>
+<ul>
+<li>结构简单，适合流式传输</li>
+<li>支持H.264视频和AAC音频</li>
+<li>文件头 + 一系列Tag</li>
+<li>是RTMP协议传输的封装格式</li>
+</ul>
+<p><strong>FLV文件结构：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FLV Header (9字节)</span><br><span class="line">  - Signature: &quot;FLV&quot; (3字节)</span><br><span class="line">  - Version: 1 (1字节)</span><br><span class="line">  - Flags: 音视频标志 (1字节)</span><br><span class="line">  - Header Size: 9 (4字节)</span><br><span class="line">Previous Tag Size 0 (4字节)</span><br><span class="line">Tag 1</span><br><span class="line">Previous Tag Size 1 (4字节)</span><br><span class="line">Tag 2</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>FLV Tag结构：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Tag Header (11字节)</span><br><span class="line">  - Tag Type: 8=音频, 9=视频, 18=脚本 (1字节)</span><br><span class="line">  - Data Size: 数据区大小 (3字节)</span><br><span class="line">  - Timestamp: 时间戳(毫秒) (3字节)</span><br><span class="line">  - Timestamp Extended: 时间戳扩展 (1字节)</span><br><span class="line">  - Stream ID: 流ID (3字节)</span><br><span class="line">Tag Data (可变长度)</span><br></pre></td></tr></table></figure>
+
+<p><strong>视频Tag数据：</strong></p>
+<ul>
+<li>第1字节高4位：编码类型（7&#x3D;H.264）</li>
+<li>第1字节低4位：帧类型（1&#x3D;关键帧，2&#x3D;非关键帧）</li>
+<li>第2字节：AVC包类型（0&#x3D;序列头，1&#x3D;NALU，2&#x3D;序列结束）</li>
+<li>第3-5字节：合成时间（CTS）</li>
+<li>后续：H.264数据</li>
+</ul>
+<p><strong>音频Tag数据：</strong></p>
+<ul>
+<li>第1字节高4位：编码格式（10&#x3D;AAC）</li>
+<li>第1字节第2-3位：采样率（3&#x3D;44kHz）</li>
+<li>第1字节第1位：采样精度（1&#x3D;16bit）</li>
+<li>第1字节第0位：声道类型（1&#x3D;立体声）</li>
+<li>第2字节：AAC包类型（0&#x3D;序列头，1&#x3D;原始数据）</li>
+<li>后续：AAC数据</li>
+</ul>
+<h3 id="11-3-F4V格式分析"><a href="#11-3-F4V格式分析" class="headerlink" title="11.3 F4V格式分析"></a>11.3 F4V格式分析</h3><p>F4V是Adobe基于MP4推出的Flash视频格式，本质上是MP4的子集，支持H.264和AAC。相比FLV，F4V支持更高效的编码和更好的 seeking 能力。</p>
+<h3 id="11-4-TS格式分析"><a href="#11-4-TS格式分析" class="headerlink" title="11.4 TS格式分析"></a>11.4 TS格式分析</h3><p>TS（MPEG-2 Transport Stream）是为广播和流媒体设计的封装格式，是HLS（HTTP Live Streaming）的标准封装格式。</p>
+<p><strong>TS的核心特点：</strong></p>
+<ul>
+<li>固定长度包（188字节），适合流式传输和纠错</li>
+<li>支持多路节目复用</li>
+<li>容错能力强，丢失部分包不影响整体播放</li>
+<li>是数字电视（DVB）和HLS的标准格式</li>
+</ul>
+<p><strong>TS包结构：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Sync Byte (1字节): 0x47</span><br><span class="line">Transport Error Indicator (1位)</span><br><span class="line">Payload Unit Start Indicator (1位): 1表示新的PES包开始</span><br><span class="line">Transport Priority (1位)</span><br><span class="line">PID (13位): 包标识符，标识所属的流</span><br><span class="line">Transport Scrambling Control (2位)</span><br><span class="line">Adaptation Field Control (2位): 01=仅有效载荷, 10=仅适配域, 11=两者都有</span><br><span class="line">Continuity Counter (4位): 连续计数器，检测丢包</span><br><span class="line">Adaptation Field (可变长度, 可选)</span><br><span class="line">Payload (可变长度, 可选)</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键PID：</strong></p>
+<ul>
+<li><strong>0x0000</strong>：PAT（Program Association Table，节目关联表）</li>
+<li><strong>0x0001</strong>：CAT（Conditional Access Table，条件访问表）</li>
+<li><strong>0x1000-0x1FFE</strong>：PMT（Program Map Table，节目映射表）</li>
+<li>其他PID：音视频数据流</li>
+</ul>
+<p><strong>TS的关键表：</strong></p>
+<ul>
+<li><strong>PAT</strong>：列出所有节目及其PMT的PID</li>
+<li><strong>PMT</strong>：列出一个节目包含的所有音视频流及其PID</li>
+<li>通过PAT→PMT→音视频PID的层级关系找到需要的流</li>
+</ul>
+<p><strong>PES（Packetized Elementary Stream）：</strong></p>
+<ul>
+<li>原始音视频数据（ES）被打包成PES包</li>
+<li>PES包再被切分成TS包的有效载荷</li>
+<li>PES包头包含时间戳（PTS&#x2F;DTS）</li>
+</ul>
+<h3 id="11-5-AVI格式分析"><a href="#11-5-AVI格式分析" class="headerlink" title="11.5 AVI格式分析"></a>11.5 AVI格式分析</h3><p>AVI（Audio Video Interleave）是微软1992年推出的封装格式，是Windows平台的经典视频格式。</p>
+<p><strong>AVI的特点：</strong></p>
+<ul>
+<li>基于RIFF（Resource Interchange File Format）结构</li>
+<li>结构简单，但功能有限</li>
+<li>不支持流式播放</li>
+<li>不支持B帧（早期版本）</li>
+<li>文件大小限制（旧版2GB，新版支持更大）</li>
+<li>逐渐被MP4取代</li>
+</ul>
+<p><strong>AVI的结构：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RIFF &#x27;AVI &#x27;</span><br><span class="line">  LIST &#x27;hdrl&#x27;  (头部信息)</span><br><span class="line">    avih       (AVI主头部，包含流数量、分辨率等)</span><br><span class="line">    LIST &#x27;strl&#x27; (流1信息)</span><br><span class="line">      strh     (流头部，类型vids/auds)</span><br><span class="line">      strf     (流格式，BITMAPINFOHEADER/WAVEFORMATEX)</span><br><span class="line">    LIST &#x27;strl&#x27; (流2信息)</span><br><span class="line">      ...</span><br><span class="line">  LIST &#x27;movi&#x27;  (媒体数据)</span><br><span class="line">    00dc / 01wb (视频/音频数据块)</span><br><span class="line">  idx1        (索引块，用于seek)</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-6-ASF格式分析"><a href="#11-6-ASF格式分析" class="headerlink" title="11.6 ASF格式分析"></a>11.6 ASF格式分析</h3><p>ASF（Advanced Systems Format）是微软推出的流媒体格式，是WMA（音频）和WMV（视频）的封装格式。</p>
+<p><strong>ASF的特点：</strong></p>
+<ul>
+<li>基于对象结构，每个对象有GUID标识</li>
+<li>支持数字版权管理（DRM）</li>
+<li>支持流式播放</li>
+<li>支持脚本命令和元数据</li>
+<li>文件扩展名通常为.asf、.wma、.wmv</li>
+</ul>
+<p><strong>ASF的核心对象：</strong></p>
+<ul>
+<li><strong>Header Object</strong>：文件头，包含所有元数据<ul>
+<li>File Properties Object：文件属性（文件大小、创建时间、数据包数量）</li>
+<li>Stream Properties Object：流属性（流类型、编码信息）</li>
+<li>Header Extension Object：头扩展（内容描述、脚本命令）</li>
+</ul>
+</li>
+<li><strong>Data Object</strong>：数据区，包含所有媒体数据包</li>
+<li><strong>Index Object</strong>：索引区，用于快速定位</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Android音视频开发》是一本系统讲解Android音视频系统架构的技术书籍，从应用层MediaPlayer到底层StageFright&#x2F;NuPlayer播放器框架，从OMX硬解码到FFmpeg开源库，从直播技术到H.264&#x2F;H.265编码原理和视频封装格式，形成了完整的知识体系。</p>
+<p><strong>全书知识脉络：</strong></p>
+<ol>
+<li><strong>系统播放架构</strong>（第2-5章）：MediaPlayer → MediaPlayerService → AwesomePlayer&#x2F;NuPlayer，理解Android系统播放器的C&#x2F;S架构和状态机</li>
+<li><strong>编解码框架</strong>（第6章）：OpenMAX&#x2F;OMX框架和MediaCodec API，掌握硬件编解码的使用</li>
+<li><strong>FFmpeg实战</strong>（第7-8章）：FFmpeg编译、命令行使用、源码结构和播放器原理</li>
+<li><strong>直播技术</strong>（第9章）：直播全流程、流媒体服务器搭建、推流和优化</li>
+<li><strong>编码原理</strong>（第10章）：H.264&#x2F;H.265编码框架、原理和码流结构</li>
+<li><strong>封装格式</strong>（第11章）：MP4、FLV、TS、AVI等常见视频格式的底层结构</li>
+</ol>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>系统播放架构部分需要结合Android源码理解，建议下载AOSP源码对照阅读</li>
+<li>FFmpeg部分建议动手编译和实践，通过命令行和代码加深理解</li>
+<li>编码原理部分较抽象，建议结合H.264&#x2F;H.265标准文档和码流分析工具学习</li>
+<li>封装格式部分建议使用十六进制编辑器（如010 Editor）打开实际文件对照分析</li>
+</ul>
+<p>这本书适合有一定Android开发基础、希望深入音视频领域的开发者阅读，是Android音视频方向的系统入门读物。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89/">Android进阶之光</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/%E7%BA%B3%E7%93%A6%E5%B0%94%E5%AE%9D%E5%85%B8/">纳瓦尔宝典</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91"><span class="toc-text">Android音视频开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">第1章 音视频基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%92%AD%E6%94%BE%E5%99%A8MediaPlayer"><span class="toc-text">第2章 常用的系统播放器MediaPlayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E7%AE%A1%E7%90%86%E8%B0%83%E5%BA%A6%E7%9A%84%E6%9C%8D%E5%8A%A1%E8%80%85MediaPlayerService"><span class="toc-text">第3章 管理调度的服务者MediaPlayerService</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-StagefrightPlayer%EF%BC%88AwesomePlayer%EF%BC%89"><span class="toc-text">第4章 StagefrightPlayer（AwesomePlayer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E6%B5%81%E5%AA%92%E4%BD%93%E6%92%AD%E6%94%BE%E7%9A%84%E6%96%B0%E7%94%9F%E5%8A%9B%E9%87%8FNuPlayer"><span class="toc-text">第5章 流媒体播放的新生力量NuPlayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-OpenMAX%EF%BC%88OMX%EF%BC%89%E6%A1%86%E6%9E%B6"><span class="toc-text">第6章 OpenMAX（OMX）框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-FFmpeg%E9%A1%B9%E7%9B%AE"><span class="toc-text">第7章 FFmpeg项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-FFmpeg%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8F%8A%E5%AE%9E%E6%88%98"><span class="toc-text">第8章 FFmpeg源码分析及实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E7%9B%B4%E6%92%AD%E6%8A%80%E6%9C%AF"><span class="toc-text">第9章 直播技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-H-264%E7%BC%96%E7%A0%81%E5%8F%8AH-265%E7%BC%96%E7%A0%81"><span class="toc-text">第10章 H.264编码及H.265编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90"><span class="toc-text">第11章 视频格式分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

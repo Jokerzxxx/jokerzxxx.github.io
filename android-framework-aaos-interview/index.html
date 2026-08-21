@@ -1,0 +1,975 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Android Framework+车载AAOS面试题库（含标准答案） - 码上弦音</title>
+
+  
+    <meta name="description" content="题库分类：系统架构、Binder核心、AMS&#x2F;WMS&#x2F;PMS、Native&#x2F;HAL、Treble&#x2F;SELinux、车载AAOS专项、高阶综合题 适用场景：安卓系统工程师、Framework工程师、车载Android工程师面试 一、系统架构基础题（必背）1. 简述Android系统四层架构及每层作用标准答案：  应用层（App）：基于系统SDK开发的各类APK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Framework+车载AAOS面试题库（含标准答案）">
+<meta property="og:url" content="https://jokerzxxx.github.io/android-framework-aaos-interview/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="题库分类：系统架构、Binder核心、AMS&#x2F;WMS&#x2F;PMS、Native&#x2F;HAL、Treble&#x2F;SELinux、车载AAOS专项、高阶综合题 适用场景：安卓系统工程师、Framework工程师、车载Android工程师面试 一、系统架构基础题（必背）1. 简述Android系统四层架构及每层作用标准答案：  应用层（App）：基于系统SDK开发的各类APK">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-19T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T12:00:00.000Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Framework">
+<meta property="article:tag" content="车载">
+<meta property="article:tag" content="AAOS">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,Framework,车载,AAOS,面试">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/%E9%9D%A2%E8%AF%95%E9%A2%98%E5%BA%93/">面试题库</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E8%BD%A6%E8%BD%BD%E5%BC%80%E5%8F%91/">车载开发</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E8%BD%A6%E8%BD%BD%E5%BC%80%E5%8F%91/%E9%9D%A2%E8%AF%95%E9%A2%98%E5%BA%93/">面试题库</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-19T12:00:00.000Z">2026-08-19</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-19T12:00:00.000Z">2026-08-19</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Android Framework+车载AAOS面试题库（含标准答案）</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p><strong>题库分类</strong>：系统架构、Binder核心、AMS&#x2F;WMS&#x2F;PMS、Native&#x2F;HAL、Treble&#x2F;SELinux、车载AAOS专项、高阶综合题</p>
+<p><strong>适用场景</strong>：安卓系统工程师、Framework工程师、车载Android工程师面试</p>
+<h2 id="一、系统架构基础题（必背）"><a href="#一、系统架构基础题（必背）" class="headerlink" title="一、系统架构基础题（必背）"></a>一、系统架构基础题（必背）</h2><h3 id="1-简述Android系统四层架构及每层作用"><a href="#1-简述Android系统四层架构及每层作用" class="headerlink" title="1. 简述Android系统四层架构及每层作用"></a>1. 简述Android系统四层架构及每层作用</h3><p><strong>标准答案</strong>：</p>
+<ol>
+<li><strong>应用层（App）</strong>：基于系统SDK开发的各类APK应用，仅调用开放系统接口，不触碰底层源码</li>
+<li><strong>框架层（Framework）</strong>：Java层核心系统服务（AMS&#x2F;WMS&#x2F;PMS等），承接APP业务请求，管控系统资源、应用生命周期、窗口、权限等</li>
+<li><strong>本地层（Native&#x2F;HAL）</strong>：C++编写的系统核心库与硬件抽象层，实现跨进程通信、图形音频渲染、硬件接口适配，隔离内核与上层框架</li>
+<li><strong>内核层（Linux Kernel）</strong>：提供底层驱动、进程调度、内存管理、电源管理、硬件设备驱动支撑</li>
+</ol>
+<h3 id="2-详细说明Android完整开机启动流程"><a href="#2-详细说明Android完整开机启动流程" class="headerlink" title="2. 详细说明Android完整开机启动流程"></a>2. 详细说明Android完整开机启动流程</h3><p><strong>标准答案</strong>：</p>
+<p>上电启动 → Bootloader初始化硬件 → 加载Linux内核 → 内核启动用户空间第一个进程init → init解析init.rc脚本、挂载分区、启动基础服务 → 启动zygote进程、初始化ART虚拟机 → zygote孵化system_server进程 → system_server启动所有核心系统服务 → 启动SystemUI、Launcher桌面 → 系统开机完成，可操作APP</p>
+<h3 id="3-什么是Watchdog看门狗？触发系统重启的条件是什么？"><a href="#3-什么是Watchdog看门狗？触发系统重启的条件是什么？" class="headerlink" title="3. 什么是Watchdog看门狗？触发系统重启的条件是什么？"></a>3. 什么是Watchdog看门狗？触发系统重启的条件是什么？</h3><p><strong>标准答案</strong>：</p>
+<p>Watchdog是Android系统的核心监控机制，运行在SystemServer进程中，专门监控AMS、WMS等核心系统服务。</p>
+<p>触发重启条件：核心服务锁死、主线程长期卡死、Binder调用超时、系统关键服务无响应，无法自行恢复时，触发系统重启，保障系统稳定性。</p>
+<h2 id="二、Binder核心高频题（面试重中之重）"><a href="#二、Binder核心高频题（面试重中之重）" class="headerlink" title="二、Binder核心高频题（面试重中之重）"></a>二、Binder核心高频题（面试重中之重）</h2><h3 id="4-简述Binder原理，为何Android选用Binder而非Socket-管道？几次内存拷贝？"><a href="#4-简述Binder原理，为何Android选用Binder而非Socket-管道？几次内存拷贝？" class="headerlink" title="4. 简述Binder原理，为何Android选用Binder而非Socket&#x2F;管道？几次内存拷贝？"></a>4. 简述Binder原理，为何Android选用Binder而非Socket&#x2F;管道？几次内存拷贝？</h3><p><strong>标准答案</strong>：</p>
+<p>Binder是Android专属的跨进程通信机制，基于MMAP内存映射实现，<strong>仅一次内存拷贝</strong>，传输效率极高。</p>
+<p>优势：</p>
+<ol>
+<li>效率高：相比Socket、管道的两次拷贝，Binder开销更低，适配移动端高频IPC场景</li>
+<li>安全性高：自带进程身份校验、权限管控，可精准限制跨进程调用</li>
+<li>支持双向通信、同步&#x2F;异步调用，适配系统服务交互场景</li>
+</ol>
+<h3 id="5-AIDL文件核心组成？oneway关键字作用？in-out-inout参数区别？"><a href="#5-AIDL文件核心组成？oneway关键字作用？in-out-inout参数区别？" class="headerlink" title="5. AIDL文件核心组成？oneway关键字作用？in&#x2F;out&#x2F;inout参数区别？"></a>5. AIDL文件核心组成？oneway关键字作用？in&#x2F;out&#x2F;inout参数区别？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>文件组成</strong>：编译后生成Stub服务端、Proxy客户端、接口描述文件，实现跨进程方法调用</li>
+<li><strong>oneway</strong>：异步单向调用，客户端发起调用后立即返回，不会阻塞等待服务端返回结果</li>
+<li><strong>in</strong>：数据单向传输，客户端传递给服务端</li>
+<li><strong>out</strong>：数据反向传输，服务端修改数据后回传给客户端</li>
+<li><strong>inout</strong>：双向传输，客户端传参、服务端修改后回写</li>
+</ul>
+<h3 id="6-Intent为什么不能传递大数据？会出现什么异常？"><a href="#6-Intent为什么不能传递大数据？会出现什么异常？" class="headerlink" title="6. Intent为什么不能传递大数据？会出现什么异常？"></a>6. Intent为什么不能传递大数据？会出现什么异常？</h3><p><strong>标准答案</strong>：</p>
+<p>Intent底层基于Binder实现数据传输，Binder内核缓冲区大小有限（默认限制1M左右）。传输大数据会超出缓冲区上限，触发<strong>TransactionTooLargeException</strong>事务过大异常。</p>
+<h2 id="三、AMS-WMS-PMS核心考题"><a href="#三、AMS-WMS-PMS核心考题" class="headerlink" title="三、AMS&#x2F;WMS&#x2F;PMS核心考题"></a>三、AMS&#x2F;WMS&#x2F;PMS核心考题</h2><h3 id="7-AMS和WMS的关系？二者如何通信？"><a href="#7-AMS和WMS的关系？二者如何通信？" class="headerlink" title="7. AMS和WMS的关系？二者如何通信？"></a>7. AMS和WMS的关系？二者如何通信？</h3><p><strong>标准答案</strong>：</p>
+<p>AMS是业务管控核心，负责四大组件、应用生命周期、任务栈管理；WMS是窗口管控核心，负责所有窗口的显示、层级、焦点、大小管理。</p>
+<p>二者运行在同一个SystemServer进程，通过Binder互相调用：AMS控制窗口业务逻辑，WMS反馈窗口状态变化并回调AMS，协同完成页面显示与交互。</p>
+<h3 id="8-ANR触发场景及完整排查思路"><a href="#8-ANR触发场景及完整排查思路" class="headerlink" title="8. ANR触发场景及完整排查思路"></a>8. ANR触发场景及完整排查思路</h3><p><strong>标准答案</strong>：</p>
+<p><strong>四大触发场景</strong>：</p>
+<ol>
+<li>Activity前台超时：主线程阻塞5s</li>
+<li>广播超时：前台广播10s、后台广播60s</li>
+<li>Service前台超时：20s</li>
+<li>ContentProvider超时</li>
+</ol>
+<p><strong>排查思路</strong>：</p>
+<ol>
+<li>查看traces.txt日志，定位卡死线程与代码位置</li>
+<li>通过systrace&#x2F;perfetto分析主线程耗时、锁等待、Binder阻塞、IO耗时</li>
+<li>排查ANR根源：主线程耗时操作、死锁、Binder调用阻塞、磁盘IO卡顿、内存抖动</li>
+</ol>
+<h3 id="9-什么是Priv-app权限？如何配置添加？"><a href="#9-什么是Priv-app权限？如何配置添加？" class="headerlink" title="9. 什么是Priv-app权限？如何配置添加？"></a>9. 什么是Priv-app权限？如何配置添加？</h3><p><strong>标准答案</strong>：</p>
+<p>Priv-app是系统特权应用权限，介于普通应用和系统核心应用之间，可调用部分隐藏API和高权限接口。</p>
+<p>配置方式：将应用放入priv-app目录，同时在系统权限白名单xml中配置对应权限，赋予特权应用权限。</p>
+<h2 id="四、Native-HAL-Treble-SELinux-专项题"><a href="#四、Native-HAL-Treble-SELinux-专项题" class="headerlink" title="四、Native &#x2F; HAL &#x2F; Treble &#x2F; SELinux 专项题"></a>四、Native &#x2F; HAL &#x2F; Treble &#x2F; SELinux 专项题</h2><h3 id="10-Treble架构解决什么问题？Vendor分区作用？"><a href="#10-Treble架构解决什么问题？Vendor分区作用？" class="headerlink" title="10. Treble架构解决什么问题？Vendor分区作用？"></a>10. Treble架构解决什么问题？Vendor分区作用？</h3><p><strong>标准答案</strong>：</p>
+<p>Treble是Android 8.0推出的解耦架构，核心解决<strong>系统版本升级适配成本高</strong>的问题。</p>
+<p>通过Vendor分区将Framework系统框架与厂商硬件驱动&#x2F;HAL隔离，实现”系统大版本升级，无需重新适配硬件驱动”，大幅降低ROM迭代适配成本。Vendor分区专门存放厂商硬件适配文件、HAL库、驱动二进制文件。</p>
+<h3 id="11-HIDL与AIDL-RPC的区别？"><a href="#11-HIDL与AIDL-RPC的区别？" class="headerlink" title="11. HIDL与AIDL-RPC的区别？"></a>11. HIDL与AIDL-RPC的区别？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>HIDL</strong>：Treble初期专属硬件通信接口，用于Framework与Vendor层通信，仅适配硬件场景</li>
+<li><strong>AIDL-RPC</strong>：Android 12+全新统一接口，替代HIDL，统一应用层、系统层、硬件层IPC通信，兼容性更强、使用更简洁</li>
+</ul>
+<h3 id="12-SELinux是什么？avc-denied报错如何排查解决？"><a href="#12-SELinux是什么？avc-denied报错如何排查解决？" class="headerlink" title="12. SELinux是什么？avc:denied报错如何排查解决？"></a>12. SELinux是什么？avc:denied报错如何排查解决？</h3><p><strong>标准答案</strong>：</p>
+<p>SELinux是Android强制访问安全机制，默认开启，用于管控进程、文件、权限访问，防止系统权限滥用，提升系统安全性。</p>
+<p><strong>排查解决流程</strong>：</p>
+<ol>
+<li>解析logcat中avc:denied日志，明确缺失的权限、进程、操作对象</li>
+<li>编写对应sepolicy权限规则，添加允许访问权限</li>
+<li>编译验证，规避neverallow禁止放开的权限场景</li>
+</ol>
+<h2 id="五、车载AAOS专项高频题（核心必考）"><a href="#五、车载AAOS专项高频题（核心必考）" class="headerlink" title="五、车载AAOS专项高频题（核心必考）"></a>五、车载AAOS专项高频题（核心必考）</h2><h3 id="13-AAOS车载Android和手机Android的核心区别？"><a href="#13-AAOS车载Android和手机Android的核心区别？" class="headerlink" title="13. AAOS车载Android和手机Android的核心区别？"></a>13. AAOS车载Android和手机Android的核心区别？</h3><p><strong>标准答案</strong>：</p>
+<ol>
+<li>专属框架：新增CarService、Vehicle-HAL车载专属服务体系</li>
+<li>安全限制：内置UX限制引擎，行驶中禁止视频、键盘输入等危险操作</li>
+<li>多设备适配：支持多乘员分区、多屏幕（中控&#x2F;副驾&#x2F;仪表&#x2F;HUD）管理</li>
+<li>电源管控：适配车载IGN点火、ACC启停、高低压电源管理</li>
+<li>硬件对接：原生支持CAN总线车辆信号交互，适配车身硬件</li>
+</ol>
+<h3 id="14-简述车载方向盘按键信号的完整数据流"><a href="#14-简述车载方向盘按键信号的完整数据流" class="headerlink" title="14. 简述车载方向盘按键信号的完整数据流"></a>14. 简述车载方向盘按键信号的完整数据流</h3><p><strong>标准答案</strong>：</p>
+<p>CAN总线采集方向盘按键信号 → 底层硬件驱动解析报文 → Vehicle-HAL层封装标准化信号 → CarPropertyService系统服务接收处理 → 上层车载APP通过CarPropertyManager监听并响应按键事件</p>
+<h3 id="15-车载UX-RE限制引擎工作原理？如何实现驾驶禁视频？"><a href="#15-车载UX-RE限制引擎工作原理？如何实现驾驶禁视频？" class="headerlink" title="15. 车载UX-RE限制引擎工作原理？如何实现驾驶禁视频？"></a>15. 车载UX-RE限制引擎工作原理？如何实现驾驶禁视频？</h3><p><strong>标准答案</strong>：</p>
+<p>UX-RE（用户体验限制引擎）是AAOS专属安全机制，核心基于车辆行驶状态管控APP行为。</p>
+<p>实现逻辑：CarUXRestrictionService实时监听车速、点火状态，车辆行驶时下发NO_VIDEO、NO_KEYBOARD等限制指令；上层APP监听系统限制状态，主动禁用视频播放、虚拟键盘，同时系统可拦截违规弹窗与操作。</p>
+<h3 id="16-车载系统开机速度优化方案"><a href="#16-车载系统开机速度优化方案" class="headerlink" title="16. 车载系统开机速度优化方案"></a>16. 车载系统开机速度优化方案</h3><p><strong>标准答案</strong>：</p>
+<ol>
+<li>工具定位：通过systrace、dmesg日志精准定位开机卡顿瓶颈</li>
+<li>服务优化：延迟初始化非核心系统服务、异步初始化Vendor硬件模块</li>
+<li>预加载优化：Zygote预加载常用资源与类库</li>
+<li>进程优化：关闭开机阶段无用守护进程、冗余服务</li>
+<li>硬件适配：优化硬件初始化时序，并行初始化外设</li>
+</ol>
+<h3 id="17-车载多屏显示（中控-副驾）实现原理"><a href="#17-车载多屏显示（中控-副驾）实现原理" class="headerlink" title="17. 车载多屏显示（中控+副驾）实现原理"></a>17. 车载多屏显示（中控+副驾）实现原理</h3><p><strong>标准答案</strong>：</p>
+<p>基于系统DisplayManagerService管理多屏幕设备，通过OccupantZone乘员分区机制，将不同屏幕绑定对应用户与区域；CarService统一管控多屏幕的应用启动、窗口显示、权限隔离，实现中控、副驾屏独立运行、互不干扰。</p>
+<h3 id="18-车载CAN报文解析方案？无DBC文件如何解析？"><a href="#18-车载CAN报文解析方案？无DBC文件如何解析？" class="headerlink" title="18. 车载CAN报文解析方案？无DBC文件如何解析？"></a>18. 车载CAN报文解析方案？无DBC文件如何解析？</h3><p><strong>标准答案</strong>：</p>
+<p>常规方案：通过ZCAN、Socket-CAN工具采集CAN报文，依托DBC协议文件解析信号。</p>
+<p>无DBC文件时：根据原厂通信协议文档，通过手动计算报文字节序、位偏移、精度系数，解析出车速、油门、灯光等车辆信号。</p>
+<h2 id="六、高阶综合面试题（高级工程师）"><a href="#六、高阶综合面试题（高级工程师）" class="headerlink" title="六、高阶综合面试题（高级工程师）"></a>六、高阶综合面试题（高级工程师）</h2><h3 id="19-简述新增一个自定义系统服务的完整流程"><a href="#19-简述新增一个自定义系统服务的完整流程" class="headerlink" title="19. 简述新增一个自定义系统服务的完整流程"></a>19. 简述新增一个自定义系统服务的完整流程</h3><p><strong>标准答案</strong>：</p>
+<ol>
+<li>编写AIDL接口文件，定义跨进程调用方法</li>
+<li>实现AIDL Stub服务端核心逻辑</li>
+<li>在SystemServer中添加服务初始化、注册、启动逻辑</li>
+<li>配置系统权限、添加SELinux权限规则，解决权限拦截</li>
+<li>暴露系统API，上层APP可通过SDK调用自定义服务</li>
+</ol>
+<h3 id="20-车载OTA升级完整流程及核心注意事项"><a href="#20-车载OTA升级完整流程及核心注意事项" class="headerlink" title="20. 车载OTA升级完整流程及核心注意事项"></a>20. 车载OTA升级完整流程及核心注意事项</h3><p><strong>标准答案</strong>：</p>
+<p><strong>升级流程</strong>：差分包制作 → 设备下载校验 → 版本比对 → 进入Recovery模式 → 分区升级 → 重启校验、完成升级</p>
+<p><strong>车载核心注意事项</strong>：</p>
+<ol>
+<li>安全管控：仅停车、点火稳定状态下允许升级，避免断电导致砖机</li>
+<li>容错机制：支持升级失败回滚，保障系统可用</li>
+<li>车辆保护：升级过程禁用核心车身功能操作，避免安全隐患</li>
+<li>版本兼容：适配车载硬件分区、Vendor版本一致性</li>
+</ol>
+<h2 id="七、Framework高阶面试题（中高级必考）"><a href="#七、Framework高阶面试题（中高级必考）" class="headerlink" title="七、Framework高阶面试题（中高级必考）"></a>七、Framework高阶面试题（中高级必考）</h2><h3 id="21-SystemServer启动流程、核心服务启动顺序是什么？"><a href="#21-SystemServer启动流程、核心服务启动顺序是什么？" class="headerlink" title="21. SystemServer启动流程、核心服务启动顺序是什么？"></a>21. SystemServer启动流程、核心服务启动顺序是什么？</h3><p><strong>标准答案</strong>：</p>
+<p>Zygote进程fork出SystemServer后，执行核心启动三步：</p>
+<ol>
+<li>初始化系统上下文、加载系统配置、开启Looper消息循环</li>
+<li>按优先级启动核心服务，分为三个阶段：<strong>引导服务 → 核心服务 → 其他服务</strong></li>
+<li>启动完成后，发送系统就绪广播，拉起SystemUI、Launcher</li>
+</ol>
+<p><strong>关键启动顺序</strong>：</p>
+<p>InstallerService → AMS → PMS → WMS → PowerManagerService → CarService（车载）→ 其他应用服务</p>
+<p>核心逻辑：先启动进程、权限、窗口、电源基础服务，再启动业务服务，保障系统基础环境就绪后执行业务逻辑。</p>
+<h3 id="22-Android-后台保活、省电策略如何定制？如何规避系统杀进程？"><a href="#22-Android-后台保活、省电策略如何定制？如何规避系统杀进程？" class="headerlink" title="22. Android 后台保活、省电策略如何定制？如何规避系统杀进程？"></a>22. Android 后台保活、省电策略如何定制？如何规避系统杀进程？</h3><p><strong>标准答案</strong>：</p>
+<p>系统杀进程核心依据：<strong>进程优先级、oom_adj 值、后台活跃状态、电量策略</strong>。</p>
+<p>定制保活方案（系统层定制，非APP保活）：</p>
+<ol>
+<li>修改AMS进程管控逻辑，将指定APP加入系统白名单，降低oom_adj权重</li>
+<li>屏蔽系统后台冻结、应用休眠策略，豁免省电管控</li>
+<li>配置Priv-app特权，允许后台持续运行、接收广播</li>
+<li>车载场景：结合IGN状态，停车后台常驻、行车优先保活核心应用</li>
+</ol>
+<p>适配场景：车载导航、车载蓝牙、后台服务类系统应用常驻需求。</p>
+<h3 id="23-四大组件的底层启动依赖关系？"><a href="#23-四大组件的底层启动依赖关系？" class="headerlink" title="23. 四大组件的底层启动依赖关系？"></a>23. 四大组件的底层启动依赖关系？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>Activity</strong>：完全依赖AMS调度、WMS窗口渲染，由Zygote孵化进程后初始化</li>
+<li><strong>Service</strong>：AMS统一管控，运行于当前应用进程，无窗口、纯后台逻辑</li>
+<li><strong>BroadcastReceiver</strong>：AMS&#x2F;PMS分发广播，支持静态&#x2F;动态注册，跨进程消息投递</li>
+<li><strong>ContentProvider</strong>：PMS扫描安装时初始化，进程启动优先加载，实现跨APP数据共享</li>
+</ul>
+<h3 id="24-系统隐藏API如何调用？有几种适配方案？"><a href="#24-系统隐藏API如何调用？有几种适配方案？" class="headerlink" title="24. 系统隐藏API如何调用？有几种适配方案？"></a>24. 系统隐藏API如何调用？有几种适配方案？</h3><p><strong>标准答案</strong>：</p>
+<p>系统隐藏API为@hide注解接口，普通APP无法直接调用，系统层适配方案：</p>
+<ol>
+<li><strong>源码编译适配</strong>：将APP纳入系统源码编译，可直接调用隐藏接口</li>
+<li><strong>Priv-app权限适配</strong>：配置特权应用白名单，放开隐藏API调用权限</li>
+<li><strong>反射调用</strong>：上层APP通过反射绕过API限制（适配低版本、临时方案）</li>
+<li><strong>自定义系统API暴露</strong>：新增公开接口，封装底层隐藏逻辑，供上层调用</li>
+</ol>
+<h2 id="八、Native层崩溃与性能调试实战题（面试重点-工作常用）"><a href="#八、Native层崩溃与性能调试实战题（面试重点-工作常用）" class="headerlink" title="八、Native层崩溃与性能调试实战题（面试重点+工作常用）"></a>八、Native层崩溃与性能调试实战题（面试重点+工作常用）</h2><h3 id="25-Native崩溃常见场景与排查完整流程？"><a href="#25-Native崩溃常见场景与排查完整流程？" class="headerlink" title="25. Native崩溃常见场景与排查完整流程？"></a>25. Native崩溃常见场景与排查完整流程？</h3><p><strong>标准答案</strong>：</p>
+<p><strong>常见崩溃场景</strong>：</p>
+<ul>
+<li>内存问题：空指针、内存越界、重复释放、内存泄漏</li>
+<li>线程问题：多线程竞争、死锁、线程野指针</li>
+<li>JNI问题：Java与C++类型不匹配、局部引用溢出、引用未释放</li>
+<li>硬件适配：HAL接口参数异常、驱动数据上报异常</li>
+</ul>
+<p><strong>排查流程</strong>：</p>
+<ol>
+<li>抓取 tombstone 崩溃日志，获取崩溃线程、内存地址、调用栈</li>
+<li>使用 addr2line 工具解析虚拟地址，定位具体代码行</li>
+<li>结合logcat日志，排查崩溃前参数传递、线程调用链路</li>
+<li>GDB&#x2F;LLDB动态调试，复现问题并定位根因</li>
+</ol>
+<h3 id="26-Binder-Transaction-Failed-事务失败常见原因？"><a href="#26-Binder-Transaction-Failed-事务失败常见原因？" class="headerlink" title="26. Binder Transaction Failed 事务失败常见原因？"></a>26. Binder Transaction Failed 事务失败常见原因？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li>传输数据过大，超过Binder缓冲区限制（TransactionTooLarge）</li>
+<li>服务端进程卡死、ANR、崩溃，无法响应Binder请求</li>
+<li>客户端Binder句柄失效、进程死亡</li>
+<li>Binder线程池耗尽，请求阻塞超时</li>
+<li>SELinux权限拦截，跨进程调用被禁止</li>
+</ul>
+<h3 id="27-JNI局部引用、全局引用区别？内存泄漏场景？"><a href="#27-JNI局部引用、全局引用区别？内存泄漏场景？" class="headerlink" title="27. JNI局部引用、全局引用区别？内存泄漏场景？"></a>27. JNI局部引用、全局引用区别？内存泄漏场景？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>局部引用</strong>：默认自动释放，仅当前函数生效，函数结束回收</li>
+<li><strong>全局引用</strong>：手动创建、手动释放，全局常驻内存，生命周期贯穿进程</li>
+</ul>
+<p><strong>泄漏场景</strong>：全局引用未手动DeleteLocalRef&#x2F;DeleteGlobalRef、循环创建引用不释放、线程常驻持有引用，导致GC无法回收内存。</p>
+<h2 id="九、车载AAOS高阶疑难面试题（高薪岗位核心）"><a href="#九、车载AAOS高阶疑难面试题（高薪岗位核心）" class="headerlink" title="九、车载AAOS高阶疑难面试题（高薪岗位核心）"></a>九、车载AAOS高阶疑难面试题（高薪岗位核心）</h2><h3 id="28-Vehicle-HAL-架构详解，CarService与VHAL层级关系？"><a href="#28-Vehicle-HAL-架构详解，CarService与VHAL层级关系？" class="headerlink" title="28. Vehicle-HAL 架构详解，CarService与VHAL层级关系？"></a>28. Vehicle-HAL 架构详解，CarService与VHAL层级关系？</h3><p><strong>标准答案</strong>：</p>
+<p>AAOS车载车辆通信分为三层，自上而下：</p>
+<ol>
+<li><strong>上层CarService</strong>：Java层车载业务服务（CarPropertyService、CarUxService等），面向APP提供标准化API</li>
+<li><strong>VHAL层（Vehicle HAL）</strong>：Native&#x2F;HAL层标准化车辆接口，屏蔽不同车企硬件差异，统一车辆信号格式</li>
+<li><strong>底层驱动&#x2F;CAN层</strong>：解析CAN报文、采集车辆硬件信号，上报VHAL</li>
+</ol>
+<p>核心作用：VHAL解耦上层业务与底层硬件，实现一套上层代码适配多车型硬件。</p>
+<h3 id="29-车载IGN点火状态流转？ACC-ON-START-OFF区别？"><a href="#29-车载IGN点火状态流转？ACC-ON-START-OFF区别？" class="headerlink" title="29. 车载IGN点火状态流转？ACC&#x2F;ON&#x2F;START&#x2F;OFF区别？"></a>29. 车载IGN点火状态流转？ACC&#x2F;ON&#x2F;START&#x2F;OFF区别？</h3><p><strong>标准答案</strong>：</p>
+<p>车载四大电源状态，贯穿系统启停、后台管控、升级逻辑：</p>
+<ul>
+<li><strong>IGN_OFF</strong>：熄火断电，系统待机&#x2F;休眠</li>
+<li><strong>IGN_ACC</strong>：附件通电，仅中控、音响等外设工作，禁止升级、禁止高频硬件调用</li>
+<li><strong>IGN_ON</strong>：整车通电，系统正常运行，所有服务正常工作</li>
+<li><strong>IGN_START</strong>：打火启动，瞬时高压，系统屏蔽异常报错、暂停非核心任务</li>
+</ul>
+<p>系统根据IGN状态动态调整：后台策略、OTA升级、UX限制、硬件启停逻辑。</p>
+<h3 id="30-车载多屏冲突、焦点抢占问题如何解决？"><a href="#30-车载多屏冲突、焦点抢占问题如何解决？" class="headerlink" title="30. 车载多屏冲突、焦点抢占问题如何解决？"></a>30. 车载多屏冲突、焦点抢占问题如何解决？</h3><p><strong>标准答案</strong>：</p>
+<p>多屏焦点冲突根源：多Display共用焦点机制、APP跨屏抢占、弹窗全局置顶。</p>
+<p>解决方案：</p>
+<ol>
+<li>基于OccupantZone分区隔离各屏幕焦点权限</li>
+<li>修改WMS焦点分发逻辑，分屏独立焦点管控</li>
+<li>配置系统弹窗白名单，限制跨屏幕全局弹窗</li>
+<li>车载场景优先级定制：仪表屏优先级 &gt; 中控 &gt; 副驾屏</li>
+</ol>
+<h3 id="31-车载系统休眠-唤醒机制？如何解决休眠死机、唤醒卡顿？"><a href="#31-车载系统休眠-唤醒机制？如何解决休眠死机、唤醒卡顿？" class="headerlink" title="31. 车载系统休眠&#x2F;唤醒机制？如何解决休眠死机、唤醒卡顿？"></a>31. 车载系统休眠&#x2F;唤醒机制？如何解决休眠死机、唤醒卡顿？</h3><p><strong>标准答案</strong>：</p>
+<p>系统休眠由PowerManagerService管控，车载结合IGN状态触发休眠&#x2F;唤醒。</p>
+<p><strong>常见问题解决</strong>：</p>
+<ul>
+<li>休眠死机：排查未释放的Wakelock唤醒锁、Native线程死锁、硬件未断电</li>
+<li>唤醒卡顿：异步初始化硬件、预加载核心服务、屏蔽唤醒阶段冗余日志</li>
+<li>定制车载休眠策略：停车延时休眠、保留蓝牙&#x2F;导航后台服务</li>
+</ul>
+<h2 id="十、项目实战-面试自我介绍高频问答"><a href="#十、项目实战-面试自我介绍高频问答" class="headerlink" title="十、项目实战 &amp; 面试自我介绍高频问答"></a>十、项目实战 &amp; 面试自我介绍高频问答</h2><h3 id="32-说说你做过的车载Framework项目，难点与优化点？"><a href="#32-说说你做过的车载Framework项目，难点与优化点？" class="headerlink" title="32. 说说你做过的车载Framework项目，难点与优化点？"></a>32. 说说你做过的车载Framework项目，难点与优化点？</h3><p><strong>标准答题模板</strong>：</p>
+<p>我主要负责智能座舱Android系统Framework定制与系统稳定性优化，核心项目包括：</p>
+<ol>
+<li><p><strong>车载系统UI定制</strong>：改造SystemUI状态栏、导航栏、开机动画，适配多车型屏幕分辨率，解决状态栏遮挡、焦点适配问题；</p>
+</li>
+<li><p><strong>车辆信号适配</strong>：对接Vehicle-HAL层，完成车速、方向盘按键、IGN电源状态上报，定制UX驾驶限制策略，实现行车禁视频、禁输入；</p>
+</li>
+<li><p><strong>系统稳定性优化</strong>：排查修复ANR、Native崩溃、休眠死机问题，优化开机启动流程，将开机速度提升20%；</p>
+</li>
+<li><p><strong>权限与系统策略定制</strong>：配置Priv-app白名单、SELinux权限规则，定制车载后台保活、省电策略，保障核心应用常驻运行。</p>
+</li>
+</ol>
+<p><strong>项目难点</strong>：多屏适配焦点冲突、车载高低压电源波动导致的系统异常、CAN信号抖动适配。</p>
+<h3 id="33-线上系统Crash-ANR紧急问题如何闭环处理？"><a href="#33-线上系统Crash-ANR紧急问题如何闭环处理？" class="headerlink" title="33. 线上系统Crash&#x2F;ANR紧急问题如何闭环处理？"></a>33. 线上系统Crash&#x2F;ANR紧急问题如何闭环处理？</h3><p><strong>标准答案</strong>：</p>
+<ol>
+<li>紧急止损：临时规避代码、权限豁免、服务降级，快速恢复系统可用</li>
+<li>问题定位：抓取traces、tombstone、systrace日志，定位线程&#x2F;代码&#x2F;硬件问题</li>
+<li>根因分析：区分业务逻辑、系统框架、硬件适配、权限问题</li>
+<li>修复验证：源码修复、单模块编译、整机验证、回归测试</li>
+<li>长期优化：添加监控、规避同类问题、纳入版本迭代优化</li>
+</ol>
+<h2 id="十一、手撕简答-概念区分题（面试随机提问）"><a href="#十一、手撕简答-概念区分题（面试随机提问）" class="headerlink" title="十一、手撕简答&#x2F;概念区分题（面试随机提问）"></a>十一、手撕简答&#x2F;概念区分题（面试随机提问）</h2><h3 id="34-zygote和system-server的区别？"><a href="#34-zygote和system-server的区别？" class="headerlink" title="34. zygote和system_server的区别？"></a>34. zygote和system_server的区别？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>Zygote</strong>：虚拟机孵化器进程，负责预加载资源、fork所有APP进程、孵化SystemServer，是所有进程的父进程</li>
+<li><strong>SystemServer</strong>：由Zygote孵化，系统核心进程，运行所有AMS&#x2F;WMS&#x2F;PMS等系统服务，管控整机系统逻辑</li>
+</ul>
+<h3 id="35-前台进程、后台进程、空进程优先级区别？"><a href="#35-前台进程、后台进程、空进程优先级区别？" class="headerlink" title="35. 前台进程、后台进程、空进程优先级区别？"></a>35. 前台进程、后台进程、空进程优先级区别？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>前台进程</strong>：用户正在交互的APP，优先级最高，系统最后查杀</li>
+<li><strong>后台进程</strong>：后台驻留应用，内存不足时优先查杀</li>
+<li><strong>空进程</strong>：仅保留进程载体、无运行任务，用于加速启动，内存紧张优先回收</li>
+</ul>
+<h3 id="36-什么是Wakelock唤醒锁？车载场景使用场景？"><a href="#36-什么是Wakelock唤醒锁？车载场景使用场景？" class="headerlink" title="36. 什么是Wakelock唤醒锁？车载场景使用场景？"></a>36. 什么是Wakelock唤醒锁？车载场景使用场景？</h3><p><strong>标准答案</strong>：</p>
+<p>Wakelock是系统电源锁，持有锁可阻止系统休眠、灭屏。</p>
+<p><strong>车载场景</strong>：导航后台播报、蓝牙通话、停车录像、升级过程持有唤醒锁，防止系统休眠中断业务。</p>
+<h3 id="37-AOSP单模块编译命令、整机编译命令区别？"><a href="#37-AOSP单模块编译命令、整机编译命令区别？" class="headerlink" title="37. AOSP单模块编译命令、整机编译命令区别？"></a>37. AOSP单模块编译命令、整机编译命令区别？</h3><p><strong>标准答案</strong>：</p>
+<ul>
+<li><strong>整机编译 m</strong>：编译整套系统源码，生成完整img镜像，耗时久</li>
+<li><strong>单模块编译 mm&#x2F;mma</strong>：仅编译当前目录模块，快速迭代调试，系统开发高频使用</li>
+<li><strong>mmm</strong>：指定路径编译模块，跨目录调试使用</li>
+</ul>
+<hr>
+<h2 id="附录：6个月学习路线"><a href="#附录：6个月学习路线" class="headerlink" title="附录：6个月学习路线"></a>附录：6个月学习路线</h2><p><strong>适配方向</strong>：Android Framework &#x2F; 智能座舱车载Android(AAOS)</p>
+<p><strong>适用人群</strong>：零基础入门系统开发、车载系统开发从业者</p>
+<p><strong>学习目标</strong>：从零掌握AOSP源码编译、Framework核心原理、Native&#x2F;HAL开发、车载专项技术，可独立负责车载ROM定制与系统问题排查</p>
+<h3 id="一、前置基础（0-5个月）"><a href="#一、前置基础（0-5个月）" class="headerlink" title="一、前置基础（0.5个月）"></a>一、前置基础（0.5个月）</h3><h4 id="1-必备语言基础"><a href="#1-必备语言基础" class="headerlink" title="1. 必备语言基础"></a>1. 必备语言基础</h4><ul>
+<li>**C&#x2F;C++**：指针、内存管理、多线程、锁机制、引用计数、内存泄漏基础</li>
+<li><strong>Java</strong>：集合原理、多线程、线程锁、Framework Java层核心源码思想</li>
+<li><strong>脚本语言</strong>：Shell常用命令、Makefile、Soong编译脚本基础</li>
+<li><strong>Linux基础</strong>：进程&#x2F;线程、进程通信、文件权限、系统信号、常用运维命令</li>
+</ul>
+<h4 id="2-工具与环境基础"><a href="#2-工具与环境基础" class="headerlink" title="2. 工具与环境基础"></a>2. 工具与环境基础</h4><ul>
+<li>代码管理：Git、Repo多仓库管理</li>
+<li>编译环境：Ubuntu系统（推荐16G内存+300G以上硬盘）</li>
+<li>调试工具：ADB、logcat、dumpsys、systrace、perfetto性能分析工具</li>
+</ul>
+<h3 id="二、分阶段系统学习计划（6个月-精细化落地版）"><a href="#二、分阶段系统学习计划（6个月-精细化落地版）" class="headerlink" title="二、分阶段系统学习计划（6个月 精细化落地版）"></a>二、分阶段系统学习计划（6个月 精细化落地版）</h3><p><strong>整体学习准则</strong>：系统开发<strong>重实操、轻背诵</strong>，所有理论必须配套源码阅读+真机&#x2F;模拟器实操，每阶段产出可展示的修改成果，完全贴合车载Android系统工程师日常工作、项目迭代、问题排查场景。</p>
+<h4 id="第1个月：AOSP入门-系统整体架构（基础落地-·-从零上手源码编译与简单定制）"><a href="#第1个月：AOSP入门-系统整体架构（基础落地-·-从零上手源码编译与简单定制）" class="headerlink" title="第1个月：AOSP入门 + 系统整体架构（基础落地 · 从零上手源码编译与简单定制）"></a>第1个月：AOSP入门 + 系统整体架构（基础落地 · 从零上手源码编译与简单定制）</h4><p><strong>阶段核心目标</strong>：彻底摆脱APP开发思维，建立AOSP源码整体认知；熟练搭建编译环境、掌握全套编译刷机命令；独立完成系统UI、开机动画等基础定制，能看懂简单系统模块源码结构。</p>
+<p><strong>前置准备（3天）</strong></p>
+<ol>
+<li>搭建Ubuntu20.04编译环境，解决依赖报错（python版本、openjdk、libssl、编译依赖库）</li>
+<li>配置Git&#x2F;Repo全局账号、SSH密钥，熟悉Repo多仓库拉取、同步、分支切换、代码回退</li>
+<li>准备设备：Android12&#x2F;13模拟器 或 车载开发板（推荐车载设备，贴合岗位场景）</li>
+</ol>
+<p><strong>精细化学习内容</strong></p>
+<ol>
+<li><p><strong>Android四层架构深度拆解</strong><br>不再局限概念背诵，重点理解层级调用关系：APP Kotlin&#x2F;Java API → Framework Java服务 → JNI调用Native C++库 → HAL硬件接口 → Linux驱动；明确每层职责、隔离意义、跨层调用规则，理解为什么系统问题需要分层定位（UI问题看Framework、卡顿看Native、硬件异常看HAL&#x2F;驱动）。</p>
+</li>
+<li><p><strong>AOSP源码实操全流程</strong><br>掌握源码版本选型：车载主流Android11&#x2F;12&#x2F;13；熟练执行repo init、repo sync、repo sync -c、repo forall等核心命令；理解lunch选型原理（产品名-用户类型-版本）；区分全编m、单编mm&#x2F;mma、模块清理mclean用法；掌握编译报错高频解决方案：内存不足、依赖缺失、源码冲突、文件权限错误。</p>
+</li>
+<li><p><strong>开机启动流程逐阶段精读</strong><br>逐行梳理启动链路：Bootloader硬件初始化→内核挂载分区→init进程解析rc脚本→启动核心守护进程→zygote预加载类库与资源→fork system_server→启动系统服务→拉起SystemUI&#x2F;Launcher；重点记忆<strong>关键节点作用</strong>：init进程是用户空间第一个进程、zygote是所有APP父进程、system_server是系统核心载体。</p>
+</li>
+<li><p><strong>三大核心模块源码结构精读</strong><br>SystemUI：梳理状态栏、快捷开关、通知栏、锁屏代码分包结构，看懂页面加载、事件监听、UI刷新逻辑；<br>Launcher：理解桌面图标加载、页面滑动、应用常驻机制；<br>Settings：看懂系统设置项与Framework服务的绑定关系、权限设置、设备参数配置逻辑。</p>
+</li>
+</ol>
+<p><strong>必做实战任务（全部落地，产出成果）</strong></p>
+<ol>
+<li>完整编译原生AOSP镜像，成功烧录模拟器&#x2F;车载开发板，全程记录编译报错及解决方案</li>
+<li>SystemUI定制：修改状态栏电池显示样式、居中时间、隐藏状态栏图标、新增车载专属状态栏标识</li>
+<li>替换系统开机动画为自定义车载动画，适配车载屏幕分辨率，解决动画闪烁、黑屏问题</li>
+<li>自定义SystemUI车载快捷开关：新增”行车模式””屏幕亮度极速调节”开关，点击可修改系统配置</li>
+</ol>
+<p><strong>阶段避坑&amp;工作重点</strong></p>
+<ul>
+<li>禁止直接全编调试，优先使用mm单模块编译，提升调试效率（工作高频操作）</li>
+<li>熟悉系统日志抓取：logcat、dmesg、cat &#x2F;proc&#x2F;kmsg，区分应用日志、系统日志、内核日志</li>
+<li>理解system分区、vendor分区、product分区区别，知晓定制修改对应的分区目录</li>
+</ul>
+<p><strong>第1阶段 结业考核题（理论+实操）</strong></p>
+<p><strong>一、理论考核（必答）</strong></p>
+<ol>
+<li>完整口述Android四层架构层级关系，说明每层对应的核心源码目录与职责？</li>
+<li>简述Android从上电到桌面显示的完整开机流程，重点说明init、zygote、system_server三大核心进程的作用？</li>
+<li>对比m全编、mm&#x2F;mma单编、mmm编译命令的区别，分别适配什么调试场景？</li>
+<li>说明system、vendor、product三大系统分区的隔离意义，哪些定制修改对应哪个分区？</li>
+</ol>
+<p><strong>二、实操考核（必做）</strong></p>
+<ol>
+<li>独立完成AOSP完整编译+单模块编译，全程无参考文档，记录1次编译报错并解决。</li>
+<li>定制SystemUI，实现状态栏时间居中、隐藏蓝牙图标、新增车载模式标识。</li>
+<li>自定义开机动画，适配车载横屏分辨率，解决动画闪烁、黑屏衔接问题。</li>
+</ol>
+<p><strong>考核标准</strong>：理论答题完整无知识点偏差，实操功能正常生效、无编译报错、系统运行无闪退。</p>
+<h4 id="第2个月：Framework核心三大服务（AMS-WMS-PMS-·-系统核心内功）"><a href="#第2个月：Framework核心三大服务（AMS-WMS-PMS-·-系统核心内功）" class="headerlink" title="第2个月：Framework核心三大服务（AMS&#x2F;WMS&#x2F;PMS · 系统核心内功）"></a>第2个月：Framework核心三大服务（AMS&#x2F;WMS&#x2F;PMS · 系统核心内功）</h4><p><strong>阶段核心目标</strong>：吃透Android系统运行核心逻辑，理解APP启动、窗口显示、权限管控底层原理；能独立修改系统应用管控策略、权限规则，解决基础应用兼容、后台管控问题。</p>
+<p><strong>精细化学习内容</strong></p>
+<ol>
+<li><p><strong>AMS ActivityManagerService 深度精读</strong><br>核心知识点：Activity启动完整链路、任务栈（Task&#x2F;Stack）管理机制、前台&#x2F;后台进程判定规则、APP生命周期底层调度；ANR触发底层原理、Watchdog监控机制、系统杀进程时机；后台冻结、应用休眠、省电策略管控逻辑；车载场景拓展：后台保活优先级、行车&#x2F;停车进程管控差异。</p>
+</li>
+<li><p><strong>WMS WindowManagerService 深度精读</strong><br>核心知识点：窗口层级（Z轴）优先级、Token令牌机制、窗口焦点分发、分屏&#x2F;小窗实现原理；Surface画布渲染流程、窗口大小适配、屏幕旋转逻辑；弹窗权限、悬浮窗管控、系统置顶窗口规则；车载场景拓展：多屏窗口隔离、仪表屏置顶优先级、副驾屏窗口独立管控。</p>
+</li>
+<li><p><strong>PMS PackageManagerService 深度精读</strong><br>核心知识点：系统开机扫描APK流程、应用安装&#x2F;卸载底层逻辑、权限分类（普通权限&#x2F;特权权限&#x2F;系统权限）；Priv-app白名单生效原理、隐藏API权限管控、应用版本校验、包名管理；车载场景拓展：车载系统预装应用管控、第三方应用权限默认授予策略。</p>
+</li>
+<li><p><strong>四大组件底层依赖</strong><br>梳理Activity&#x2F;Service&#x2F;BroadcastReceiver&#x2F;ContentProvider的启动依赖、调度主体、运行进程、权限要求，理解为什么Service无窗口、静态广播优先级更低、ContentProvider开机优先加载。</p>
+</li>
+</ol>
+<p><strong>必做实战任务（贴合车载工作场景）</strong></p>
+<ol>
+<li>AMS定制：拦截第三方短视频、游戏类APP的前台跳转，适配车载行车安全策略</li>
+<li>进程策略定制：新增车载核心APP（导航&#x2F;蓝牙&#x2F;音乐）后台保活白名单，规避系统查杀</li>
+<li>PMS权限定制：实现第三方APP安装后<strong>静默授予常用权限</strong>，无需手动弹窗确认</li>
+<li>WMS定制：限制第三方APP弹窗置顶，仅允许系统车载应用全局弹窗</li>
+</ol>
+<p><strong>阶段避坑&amp;工作重点</strong></p>
+<ul>
+<li>三大服务均运行在system_server进程，修改源码后需单独编译framework.jar、重启系统服务验证</li>
+<li>学会使用dumpsys activity、dumpsys window、dumpsys package命令排查问题</li>
+<li>理解oom_adj、oom_score权重数值，明白进程查杀优先级的底层判定依据</li>
+</ul>
+<p><strong>第2阶段 结业考核题（理论+实操）</strong></p>
+<p><strong>一、理论考核（必答）</strong></p>
+<ol>
+<li>详细说明AMS与WMS的协同工作流程，二者如何配合完成Activity启动和窗口显示？</li>
+<li>阐述Android进程优先级体系，oom_adj数值高低对进程查杀的影响，车载保活原理是什么？</li>
+<li>Priv-app特权权限的生效条件，和普通APP、系统核心APP的权限区别？</li>
+<li>简述ANR四大触发场景与Watchdog监控机制的底层原理？</li>
+</ol>
+<p><strong>二、实操考核（必做）</strong></p>
+<ol>
+<li>修改AMS源码，实现车载导航、音乐APP后台永久保活，规避系统查杀。</li>
+<li>改造PMS权限逻辑，实现第三方APP安装后静默授予存储、定位、麦克风权限，无需弹窗。</li>
+<li>定制WMS窗口规则，禁止第三方APP全局弹窗置顶，仅放行系统车载应用弹窗。</li>
+</ol>
+<p><strong>考核标准</strong>：熟练使用dumpsys命令排查进程、窗口、权限问题，定制功能符合车载安全策略，无兼容性问题。</p>
+<h4 id="第3个月：Binder-IPC通信-自定义系统服务-·-面试核心-核心开发能力"><a href="#第3个月：Binder-IPC通信-自定义系统服务-·-面试核心-核心开发能力" class="headerlink" title="第3个月：Binder IPC通信 + 自定义系统服务 · 面试核心+核心开发能力"></a>第3个月：Binder IPC通信 + 自定义系统服务 · 面试核心+核心开发能力</h4><p><strong>阶段核心目标</strong>：彻底吃透Android跨进程通信核心Binder原理，掌握AIDL开发；具备<strong>从零新增自定义系统服务</strong>的完整能力，对标中高级系统工程师核心技能。</p>
+<p><strong>精细化学习内容</strong></p>
+<ol>
+<li><p><strong>Binder原理全链路拆解</strong><br>对比Socket、管道、共享内存的优劣，熟记Binder一次内存拷贝、MMAP内存映射核心原理；解析Binder架构四大组件：Client&#x2F;Server&#x2F;ServiceManager&#x2F;Binder驱动；理解线程池机制、同步&#x2F;异步调用、死亡代理、权限校验机制；掌握Binder事务失败、线程池耗尽、传输过大等异常底层原因。</p>
+</li>
+<li><p><strong>AIDL全场景开发</strong><br>精通in&#x2F;out&#x2F;inout参数、oneway异步调用、复杂数据类型传递；理解AIDL编译后Stub&#x2F;Proxy核心代码逻辑、跨进程方法调用流程；区分Java AIDL与Native AIDL的适配场景。</p>
+</li>
+<li><p><strong>系统服务启动与注册全流程</strong><br>精读SystemServer源码，掌握引导服务、核心服务、其他服务三阶段启动顺序；理解服务注册到ServiceManager的完整链路；掌握系统服务的Binder死亡监听、权限校验机制。</p>
+</li>
+</ol>
+<p><strong>必做实战任务</strong></p>
+<ol>
+<li>从零编写AIDL接口，实现跨进程方法调用，包含in&#x2F;out&#x2F;inout参数和oneway异步调用</li>
+<li>新增自定义系统服务：在SystemServer中注册，实现跨进程调用，并配置SELinux权限</li>
+<li>实现一个车载专属系统服务：暴露车辆信号查询API，供上层APP调用</li>
+</ol>
+<p><strong>阶段避坑&amp;工作重点</strong></p>
+<ul>
+<li>自定义系统服务必须配置SELinux权限，否则会被avc:denied拦截</li>
+<li>注意Binder线程池大小配置，避免高并发场景下线程池耗尽</li>
+<li>系统服务修改后需编译framework.jar并重启system_server验证</li>
+</ul>
+<hr>
+<blockquote>
+<p>本文档持续更新中，后续将补充第4-6个月学习路线（Native&#x2F;HAL开发、车载AAOS专项、项目实战与面试冲刺）。</p>
+</blockquote>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/android-framework-aaos-interview/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/android-framework-aaos-interview/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/android-cockpit-app-interview/">汽车智能座舱Android应用开发面试知识点全面梳理</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/">👍 2026工作日报</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80%E9%A2%98%EF%BC%88%E5%BF%85%E8%83%8C%EF%BC%89"><span class="toc-text">一、系统架构基础题（必背）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E8%BF%B0Android%E7%B3%BB%E7%BB%9F%E5%9B%9B%E5%B1%82%E6%9E%B6%E6%9E%84%E5%8F%8A%E6%AF%8F%E5%B1%82%E4%BD%9C%E7%94%A8"><span class="toc-text">1. 简述Android系统四层架构及每层作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8EAndroid%E5%AE%8C%E6%95%B4%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">2. 详细说明Android完整开机启动流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AFWatchdog%E7%9C%8B%E9%97%A8%E7%8B%97%EF%BC%9F%E8%A7%A6%E5%8F%91%E7%B3%BB%E7%BB%9F%E9%87%8D%E5%90%AF%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3. 什么是Watchdog看门狗？触发系统重启的条件是什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Binder%E6%A0%B8%E5%BF%83%E9%AB%98%E9%A2%91%E9%A2%98%EF%BC%88%E9%9D%A2%E8%AF%95%E9%87%8D%E4%B8%AD%E4%B9%8B%E9%87%8D%EF%BC%89"><span class="toc-text">二、Binder核心高频题（面试重中之重）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%AE%80%E8%BF%B0Binder%E5%8E%9F%E7%90%86%EF%BC%8C%E4%B8%BA%E4%BD%95Android%E9%80%89%E7%94%A8Binder%E8%80%8C%E9%9D%9ESocket-%E7%AE%A1%E9%81%93%EF%BC%9F%E5%87%A0%E6%AC%A1%E5%86%85%E5%AD%98%E6%8B%B7%E8%B4%9D%EF%BC%9F"><span class="toc-text">4. 简述Binder原理，为何Android选用Binder而非Socket&#x2F;管道？几次内存拷贝？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-AIDL%E6%96%87%E4%BB%B6%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90%EF%BC%9Foneway%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%9C%E7%94%A8%EF%BC%9Fin-out-inout%E5%8F%82%E6%95%B0%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">5. AIDL文件核心组成？oneway关键字作用？in&#x2F;out&#x2F;inout参数区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Intent%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E4%BC%A0%E9%80%92%E5%A4%A7%E6%95%B0%E6%8D%AE%EF%BC%9F%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="toc-text">6. Intent为什么不能传递大数据？会出现什么异常？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81AMS-WMS-PMS%E6%A0%B8%E5%BF%83%E8%80%83%E9%A2%98"><span class="toc-text">三、AMS&#x2F;WMS&#x2F;PMS核心考题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-AMS%E5%92%8CWMS%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F%E4%BA%8C%E8%80%85%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%A1%EF%BC%9F"><span class="toc-text">7. AMS和WMS的关系？二者如何通信？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-ANR%E8%A7%A6%E5%8F%91%E5%9C%BA%E6%99%AF%E5%8F%8A%E5%AE%8C%E6%95%B4%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-text">8. ANR触发场景及完整排查思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E4%BB%80%E4%B9%88%E6%98%AFPriv-app%E6%9D%83%E9%99%90%EF%BC%9F%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E6%B7%BB%E5%8A%A0%EF%BC%9F"><span class="toc-text">9. 什么是Priv-app权限？如何配置添加？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Native-HAL-Treble-SELinux-%E4%B8%93%E9%A1%B9%E9%A2%98"><span class="toc-text">四、Native &#x2F; HAL &#x2F; Treble &#x2F; SELinux 专项题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Treble%E6%9E%B6%E6%9E%84%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9FVendor%E5%88%86%E5%8C%BA%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">10. Treble架构解决什么问题？Vendor分区作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-HIDL%E4%B8%8EAIDL-RPC%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">11. HIDL与AIDL-RPC的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-SELinux%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Favc-denied%E6%8A%A5%E9%94%99%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-text">12. SELinux是什么？avc:denied报错如何排查解决？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BD%A6%E8%BD%BDAAOS%E4%B8%93%E9%A1%B9%E9%AB%98%E9%A2%91%E9%A2%98%EF%BC%88%E6%A0%B8%E5%BF%83%E5%BF%85%E8%80%83%EF%BC%89"><span class="toc-text">五、车载AAOS专项高频题（核心必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-AAOS%E8%BD%A6%E8%BD%BDAndroid%E5%92%8C%E6%89%8B%E6%9C%BAAndroid%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">13. AAOS车载Android和手机Android的核心区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E7%AE%80%E8%BF%B0%E8%BD%A6%E8%BD%BD%E6%96%B9%E5%90%91%E7%9B%98%E6%8C%89%E9%94%AE%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%AE%8C%E6%95%B4%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">14. 简述车载方向盘按键信号的完整数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E8%BD%A6%E8%BD%BDUX-RE%E9%99%90%E5%88%B6%E5%BC%95%E6%93%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%9F%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%A9%BE%E9%A9%B6%E7%A6%81%E8%A7%86%E9%A2%91%EF%BC%9F"><span class="toc-text">15. 车载UX-RE限制引擎工作原理？如何实现驾驶禁视频？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E8%BD%A6%E8%BD%BD%E7%B3%BB%E7%BB%9F%E5%BC%80%E6%9C%BA%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">16. 车载系统开机速度优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-%E8%BD%A6%E8%BD%BD%E5%A4%9A%E5%B1%8F%E6%98%BE%E7%A4%BA%EF%BC%88%E4%B8%AD%E6%8E%A7-%E5%89%AF%E9%A9%BE%EF%BC%89%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">17. 车载多屏显示（中控+副驾）实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E8%BD%A6%E8%BD%BDCAN%E6%8A%A5%E6%96%87%E8%A7%A3%E6%9E%90%E6%96%B9%E6%A1%88%EF%BC%9F%E6%97%A0DBC%E6%96%87%E4%BB%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">18. 车载CAN报文解析方案？无DBC文件如何解析？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%AB%98%E9%98%B6%E7%BB%BC%E5%90%88%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E9%AB%98%E7%BA%A7%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%89"><span class="toc-text">六、高阶综合面试题（高级工程师）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#19-%E7%AE%80%E8%BF%B0%E6%96%B0%E5%A2%9E%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B"><span class="toc-text">19. 简述新增一个自定义系统服务的完整流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-%E8%BD%A6%E8%BD%BDOTA%E5%8D%87%E7%BA%A7%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E5%8F%8A%E6%A0%B8%E5%BF%83%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">20. 车载OTA升级完整流程及核心注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81Framework%E9%AB%98%E9%98%B6%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%AD%E9%AB%98%E7%BA%A7%E5%BF%85%E8%80%83%EF%BC%89"><span class="toc-text">七、Framework高阶面试题（中高级必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-SystemServer%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E3%80%81%E6%A0%B8%E5%BF%83%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E9%A1%BA%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">21. SystemServer启动流程、核心服务启动顺序是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-Android-%E5%90%8E%E5%8F%B0%E4%BF%9D%E6%B4%BB%E3%80%81%E7%9C%81%E7%94%B5%E7%AD%96%E7%95%A5%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%84%E9%81%BF%E7%B3%BB%E7%BB%9F%E6%9D%80%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="toc-text">22. Android 后台保活、省电策略如何定制？如何规避系统杀进程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%90%AF%E5%8A%A8%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">23. 四大组件的底层启动依赖关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-%E7%B3%BB%E7%BB%9F%E9%9A%90%E8%97%8FAPI%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%EF%BC%9F%E6%9C%89%E5%87%A0%E7%A7%8D%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="toc-text">24. 系统隐藏API如何调用？有几种适配方案？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81Native%E5%B1%82%E5%B4%A9%E6%BA%83%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E8%AF%95%E5%AE%9E%E6%88%98%E9%A2%98%EF%BC%88%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9-%E5%B7%A5%E4%BD%9C%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-text">八、Native层崩溃与性能调试实战题（面试重点+工作常用）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#25-Native%E5%B4%A9%E6%BA%83%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%8E%92%E6%9F%A5%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="toc-text">25. Native崩溃常见场景与排查完整流程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-Binder-Transaction-Failed-%E4%BA%8B%E5%8A%A1%E5%A4%B1%E8%B4%A5%E5%B8%B8%E8%A7%81%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="toc-text">26. Binder Transaction Failed 事务失败常见原因？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27-JNI%E5%B1%80%E9%83%A8%E5%BC%95%E7%94%A8%E3%80%81%E5%85%A8%E5%B1%80%E5%BC%95%E7%94%A8%E5%8C%BA%E5%88%AB%EF%BC%9F%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-text">27. JNI局部引用、全局引用区别？内存泄漏场景？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E8%BD%A6%E8%BD%BDAAOS%E9%AB%98%E9%98%B6%E7%96%91%E9%9A%BE%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E9%AB%98%E8%96%AA%E5%B2%97%E4%BD%8D%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="toc-text">九、车载AAOS高阶疑难面试题（高薪岗位核心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#28-Vehicle-HAL-%E6%9E%B6%E6%9E%84%E8%AF%A6%E8%A7%A3%EF%BC%8CCarService%E4%B8%8EVHAL%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-text">28. Vehicle-HAL 架构详解，CarService与VHAL层级关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29-%E8%BD%A6%E8%BD%BDIGN%E7%82%B9%E7%81%AB%E7%8A%B6%E6%80%81%E6%B5%81%E8%BD%AC%EF%BC%9FACC-ON-START-OFF%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">29. 车载IGN点火状态流转？ACC&#x2F;ON&#x2F;START&#x2F;OFF区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30-%E8%BD%A6%E8%BD%BD%E5%A4%9A%E5%B1%8F%E5%86%B2%E7%AA%81%E3%80%81%E7%84%A6%E7%82%B9%E6%8A%A2%E5%8D%A0%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-text">30. 车载多屏冲突、焦点抢占问题如何解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E8%BD%A6%E8%BD%BD%E7%B3%BB%E7%BB%9F%E4%BC%91%E7%9C%A0-%E5%94%A4%E9%86%92%E6%9C%BA%E5%88%B6%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%BC%91%E7%9C%A0%E6%AD%BB%E6%9C%BA%E3%80%81%E5%94%A4%E9%86%92%E5%8D%A1%E9%A1%BF%EF%BC%9F"><span class="toc-text">31. 车载系统休眠&#x2F;唤醒机制？如何解决休眠死机、唤醒卡顿？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E9%9D%A2%E8%AF%95%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D%E9%AB%98%E9%A2%91%E9%97%AE%E7%AD%94"><span class="toc-text">十、项目实战 &amp; 面试自我介绍高频问答</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%81%9A%E8%BF%87%E7%9A%84%E8%BD%A6%E8%BD%BDFramework%E9%A1%B9%E7%9B%AE%EF%BC%8C%E9%9A%BE%E7%82%B9%E4%B8%8E%E4%BC%98%E5%8C%96%E7%82%B9%EF%BC%9F"><span class="toc-text">32. 说说你做过的车载Framework项目，难点与优化点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E7%BA%BF%E4%B8%8A%E7%B3%BB%E7%BB%9FCrash-ANR%E7%B4%A7%E6%80%A5%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E9%97%AD%E7%8E%AF%E5%A4%84%E7%90%86%EF%BC%9F"><span class="toc-text">33. 线上系统Crash&#x2F;ANR紧急问题如何闭环处理？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%89%8B%E6%92%95%E7%AE%80%E7%AD%94-%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%86%E9%A2%98%EF%BC%88%E9%9D%A2%E8%AF%95%E9%9A%8F%E6%9C%BA%E6%8F%90%E9%97%AE%EF%BC%89"><span class="toc-text">十一、手撕简答&#x2F;概念区分题（面试随机提问）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#34-zygote%E5%92%8Csystem-server%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">34. zygote和system_server的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E5%89%8D%E5%8F%B0%E8%BF%9B%E7%A8%8B%E3%80%81%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B%E3%80%81%E7%A9%BA%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">35. 前台进程、后台进程、空进程优先级区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-%E4%BB%80%E4%B9%88%E6%98%AFWakelock%E5%94%A4%E9%86%92%E9%94%81%EF%BC%9F%E8%BD%A6%E8%BD%BD%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-text">36. 什么是Wakelock唤醒锁？车载场景使用场景？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37-AOSP%E5%8D%95%E6%A8%A1%E5%9D%97%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4%E3%80%81%E6%95%B4%E6%9C%BA%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">37. AOSP单模块编译命令、整机编译命令区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A6%E4%B8%AA%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-text">附录：6个月学习路线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%EF%BC%880-5%E4%B8%AA%E6%9C%88%EF%BC%89"><span class="toc-text">一、前置基础（0.5个月）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%BF%85%E5%A4%87%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">1. 必备语言基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B7%A5%E5%85%B7%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%9F%BA%E7%A1%80"><span class="toc-text">2. 工具与环境基础</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%86%E9%98%B6%E6%AE%B5%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92%EF%BC%886%E4%B8%AA%E6%9C%88-%E7%B2%BE%E7%BB%86%E5%8C%96%E8%90%BD%E5%9C%B0%E7%89%88%EF%BC%89"><span class="toc-text">二、分阶段系统学习计划（6个月 精细化落地版）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC1%E4%B8%AA%E6%9C%88%EF%BC%9AAOSP%E5%85%A5%E9%97%A8-%E7%B3%BB%E7%BB%9F%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%EF%BC%88%E5%9F%BA%E7%A1%80%E8%90%BD%E5%9C%B0-%C2%B7-%E4%BB%8E%E9%9B%B6%E4%B8%8A%E6%89%8B%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E4%B8%8E%E7%AE%80%E5%8D%95%E5%AE%9A%E5%88%B6%EF%BC%89"><span class="toc-text">第1个月：AOSP入门 + 系统整体架构（基础落地 · 从零上手源码编译与简单定制）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC2%E4%B8%AA%E6%9C%88%EF%BC%9AFramework%E6%A0%B8%E5%BF%83%E4%B8%89%E5%A4%A7%E6%9C%8D%E5%8A%A1%EF%BC%88AMS-WMS-PMS-%C2%B7-%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E5%86%85%E5%8A%9F%EF%BC%89"><span class="toc-text">第2个月：Framework核心三大服务（AMS&#x2F;WMS&#x2F;PMS · 系统核心内功）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC3%E4%B8%AA%E6%9C%88%EF%BC%9ABinder-IPC%E9%80%9A%E4%BF%A1-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1-%C2%B7-%E9%9D%A2%E8%AF%95%E6%A0%B8%E5%BF%83-%E6%A0%B8%E5%BF%83%E5%BC%80%E5%8F%91%E8%83%BD%E5%8A%9B"><span class="toc-text">第3个月：Binder IPC通信 + 自定义系统服务 · 面试核心+核心开发能力</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

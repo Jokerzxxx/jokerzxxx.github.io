@@ -1,0 +1,1375 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Spring实战 - 码上弦音</title>
+
+  
+    <meta name="description" content="Spring实战（第6版） 作者：Craig Walls全书共约14章，574页，Spring框架的经典实战教材，以Spring Boot为基础，涵盖Spring核心、Web开发、数据访问、安全、REST、消息、响应式编程等全栈内容。   第1章 Spring入门什么是SpringSpring是一个开源的Java&#x2F;Java EE应用框架，由Rod Johnson于2003年创建。  核心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring实战">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/Spring%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Spring实战（第6版） 作者：Craig Walls全书共约14章，574页，Spring框架的经典实战教材，以Spring Boot为基础，涵盖Spring核心、Web开发、数据访问、安全、REST、消息、响应式编程等全栈内容。   第1章 Spring入门什么是SpringSpring是一个开源的Java&#x2F;Java EE应用框架，由Rod Johnson于2003年创建。  核心">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T09:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T08:33:43.550Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="阅读,Java,Spring,Spring Boot">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Java%E5%BC%80%E5%8F%91/">Java开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T09:30:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T08:33:43.550Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Spring实战</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Spring实战（第6版）"><a href="#Spring实战（第6版）" class="headerlink" title="Spring实战（第6版）"></a>Spring实战（第6版）</h1><blockquote>
+<p>作者：Craig Walls<br>全书共约14章，574页，Spring框架的经典实战教材，以Spring Boot为基础，涵盖Spring核心、Web开发、数据访问、安全、REST、消息、响应式编程等全栈内容。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-Spring入门"><a href="#第1章-Spring入门" class="headerlink" title="第1章 Spring入门"></a>第1章 Spring入门</h2><h3 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h3><p>Spring是一个开源的Java&#x2F;Java EE应用框架，由Rod Johnson于2003年创建。</p>
+<ul>
+<li>核心目标：简化Java企业级开发</li>
+<li>核心特性：<ul>
+<li>依赖注入（DI）&#x2F;控制反转（IoC）</li>
+<li>面向切面编程（AOP）</li>
+<li>声明式事务</li>
+<li>一站式框架（Web、数据、安全、消息等）</li>
+</ul>
+</li>
+</ul>
+<p><strong>Spring的演进</strong>：</p>
+<ul>
+<li>Spring 1.x：XML配置，核心IoC&#x2F;AOP</li>
+<li>Spring 2.x：注解支持（@Component、@Autowired）</li>
+<li>Spring 3.x：Java配置（@Configuration、@Bean），SpEL</li>
+<li>Spring 4.x：WebSocket、 messaging、条件注解</li>
+<li>Spring 5.x：响应式编程（WebFlux）、Java 8+支持、Kotlin支持</li>
+<li>Spring Boot：简化Spring应用创建和运行，自动配置、起步依赖、内嵌服务器</li>
+</ul>
+<h3 id="初始化Spring应用程序"><a href="#初始化Spring应用程序" class="headerlink" title="初始化Spring应用程序"></a>初始化Spring应用程序</h3><p><strong>Spring Boot</strong>：</p>
+<ul>
+<li>简化Spring应用开发</li>
+<li>自动配置（Auto-Configuration）</li>
+<li>起步依赖（Starter Dependencies）</li>
+<li>内嵌服务器（Tomcat&#x2F;Jetty&#x2F;Undertow）</li>
+<li>Actuator：生产级监控</li>
+<li>无需XML配置</li>
+</ul>
+<p><strong>创建Spring Boot项目</strong>：</p>
+<ul>
+<li>Spring Initializr（start.spring.io）</li>
+<li>Spring Tool Suite（STS）</li>
+<li>IntelliJ IDEA Ultimate</li>
+<li>命令行：Spring Boot CLI</li>
+</ul>
+<p><strong>项目结构</strong>：</p>
+<ul>
+<li><code>src/main/java/</code>：Java源码</li>
+<li><code>src/main/resources/</code>：资源文件<ul>
+<li><code>application.properties</code> &#x2F; <code>application.yml</code>：配置文件</li>
+<li><code>static/</code>：静态资源</li>
+<li><code>templates/</code>：模板文件</li>
+</ul>
+</li>
+<li><code>src/test/java/</code>：测试代码</li>
+<li><code>pom.xml</code> &#x2F; <code>build.gradle</code>：构建配置</li>
+</ul>
+<p><strong>主应用类</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(MyApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@SpringBootApplication</code> &#x3D; <code>@Configuration</code> + <code>@EnableAutoConfiguration</code> + <code>@ComponentScan</code></li>
+</ul>
+<h3 id="编写Spring应用程序"><a href="#编写Spring应用程序" class="headerlink" title="编写Spring应用程序"></a>编写Spring应用程序</h3><p><strong>处理Web请求</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeController</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">home</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;home&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Controller</code>：控制器</li>
+<li><code>@GetMapping</code>：处理GET请求</li>
+<li>返回视图名</li>
+</ul>
+<p><strong>定义视图</strong>：</p>
+<ul>
+<li>Thymeleaf模板引擎（Spring Boot默认）</li>
+<li><code>src/main/resources/templates/home.html</code></li>
+<li>自然模板，可直接在浏览器打开</li>
+</ul>
+<p><strong>测试控制器</strong>：</p>
+<ul>
+<li><code>@SpringBootTest</code>：Spring Boot测试</li>
+<li><code>MockMvc</code>：模拟HTTP请求</li>
+<li><code>@WebMvcTest</code>：仅测试Web层</li>
+</ul>
+<p><strong>构建并运行</strong>：</p>
+<ul>
+<li><code>mvn spring-boot:run</code> 或 <code>./gradlew bootRun</code></li>
+<li>打包：<code>mvn package</code> 生成可执行JAR</li>
+<li>运行：<code>java -jar target/myapp.jar</code></li>
+</ul>
+<p><strong>Spring Boot DevTools</strong>：</p>
+<ul>
+<li>开发工具</li>
+<li>自动重启（类变更时）</li>
+<li>LiveReload（资源变更时自动刷新浏览器）</li>
+<li>开发时使用，生产禁用</li>
+</ul>
+<h3 id="俯瞰Spring风景线"><a href="#俯瞰Spring风景线" class="headerlink" title="俯瞰Spring风景线"></a>俯瞰Spring风景线</h3><p><strong>Spring核心框架</strong>：</p>
+<ul>
+<li>Core：IoC容器、DI、AOP</li>
+<li>Context：应用上下文、事件</li>
+<li>SpEL：表达式语言</li>
+<li>Web：Spring MVC、WebSocket</li>
+<li>Data Access：JDBC、ORM、事务</li>
+</ul>
+<p><strong>Spring Boot</strong>：</p>
+<ul>
+<li>自动配置、起步依赖、内嵌服务器、Actuator</li>
+</ul>
+<p><strong>Spring Data</strong>：</p>
+<ul>
+<li>数据访问统一抽象</li>
+<li>Spring Data JPA、MongoDB、Redis、Cassandra等</li>
+<li>Repository抽象、自动生成实现</li>
+</ul>
+<p><strong>Spring Security</strong>：</p>
+<ul>
+<li>认证和授权</li>
+<li>保护Web应用、REST API</li>
+<li>OAuth2、JWT</li>
+</ul>
+<p><strong>Spring Integration和Spring Batch</strong>：</p>
+<ul>
+<li>Integration：企业集成模式、消息</li>
+<li>Batch：批处理</li>
+</ul>
+<p><strong>Spring Cloud</strong>：</p>
+<ul>
+<li>微服务架构</li>
+<li>服务发现、配置中心、断路器、网关、链路追踪</li>
+</ul>
+<p><strong>Spring Native</strong>：</p>
+<ul>
+<li>GraalVM原生镜像</li>
+<li>快速启动、低内存占用</li>
+</ul>
+<hr>
+<h2 id="第2章-开发Web应用程序"><a href="#第2章-开发Web应用程序" class="headerlink" title="第2章 开发Web应用程序"></a>第2章 开发Web应用程序</h2><h3 id="展示信息"><a href="#展示信息" class="headerlink" title="展示信息"></a>展示信息</h3><p><strong>建立领域实体</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Taco</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Ingredient&gt; ingredients;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Lombok <code>@Data</code>：自动生成getter&#x2F;setter&#x2F;toString&#x2F;equals&#x2F;hashCode</li>
+<li>领域模型：实体、值对象</li>
+</ul>
+<p><strong>创建控制器类</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/design&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DesignTacoController</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">showDesignForm</span><span class="params">(Model model)</span> &#123;</span><br><span class="line">        model.addAttribute(<span class="string">&quot;taco&quot;</span>, <span class="keyword">new</span> <span class="title class_">Taco</span>());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;design&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Controller</code>：控制器</li>
+<li><code>@RequestMapping</code>：类级请求映射</li>
+<li><code>@GetMapping</code>：方法级GET映射</li>
+<li><code>Model</code>：传递数据到视图</li>
+</ul>
+<p><strong>设计视图</strong>：</p>
+<ul>
+<li>Thymeleaf模板</li>
+<li>表达式：<code>$&#123;...&#125;</code>变量、<code>*&#123;...&#125;</code>对象属性、<code>#&#123;...&#125;</code>消息</li>
+<li>属性：<code>th:text</code>、<code>th:each</code>、<code>th:if</code>、<code>th:href</code>、<code>th:action</code></li>
+<li>表单：<code>th:object</code>、<code>th:field</code></li>
+</ul>
+<h3 id="处理表单提交"><a href="#处理表单提交" class="headerlink" title="处理表单提交"></a>处理表单提交</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">processDesign</span><span class="params">(<span class="meta">@Valid</span> Taco taco, Errors errors)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (errors.hasErrors()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;design&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 保存taco</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:/orders/current&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@PostMapping</code>：处理POST请求</li>
+<li><code>@Valid</code>：触发验证</li>
+<li><code>Errors</code> &#x2F; <code>BindingResult</code>：验证结果</li>
+<li><code>redirect:</code>：重定向</li>
+</ul>
+<h3 id="验证表单输入"><a href="#验证表单输入" class="headerlink" title="验证表单输入"></a>验证表单输入</h3><p><strong>声明验证规则</strong>：</p>
+<ul>
+<li>Bean Validation（JSR-380）</li>
+<li>注解：<ul>
+<li><code>@NotNull</code>：非空</li>
+<li><code>@NotEmpty</code>：非空且非空字符串&#x2F;集合</li>
+<li><code>@NotBlank</code>：非空白</li>
+<li><code>@Size</code>：大小范围</li>
+<li><code>@Min</code> &#x2F; <code>@Max</code>：数值范围</li>
+<li><code>@Pattern</code>：正则匹配</li>
+<li><code>@Email</code>：邮箱格式</li>
+<li><code>@Valid</code>：级联验证</li>
+</ul>
+</li>
+</ul>
+<p><strong>在表单绑定时执行验证</strong>：</p>
+<ul>
+<li><code>@Valid</code>注解触发</li>
+<li><code>Errors</code> &#x2F; <code>BindingResult</code>获取错误</li>
+<li>控制器方法参数顺序：@Valid对象后紧跟Errors</li>
+</ul>
+<p><strong>显示验证错误</strong>：</p>
+<ul>
+<li>Thymeleaf：<code>th:errors</code>、<code>th:errorclass</code></li>
+<li><code>#fields.hasErrors(&#39;field&#39;)</code>、<code>#fields.errors(&#39;field&#39;)</code></li>
+<li>全局错误：<code>#fields.hasErrors(&#39;*&#39;)</code></li>
+</ul>
+<h3 id="使用视图控制器"><a href="#使用视图控制器" class="headerlink" title="使用视图控制器"></a>使用视图控制器</h3><p><strong>ViewControllerRegistry</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> &#123;</span><br><span class="line">        registry.addViewController(<span class="string">&quot;/&quot;</span>).setViewName(<span class="string">&quot;home&quot;</span>);</span><br><span class="line">        registry.addViewController(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>简单页面无需控制器逻辑</li>
+<li>直接映射URL到视图</li>
+</ul>
+<h3 id="选择视图模板库"><a href="#选择视图模板库" class="headerlink" title="选择视图模板库"></a>选择视图模板库</h3><p>Spring Boot支持多种模板引擎：</p>
+<ul>
+<li><strong>Thymeleaf</strong>：默认推荐，自然模板，HTML可直接打开</li>
+<li><strong>FreeMarker</strong>：传统模板引擎</li>
+<li><strong>Mustache</strong>：逻辑无关模板</li>
+<li><strong>Groovy Templates</strong>：Groovy模板</li>
+<li><strong>JSP</strong>：不推荐（限制多，Spring Boot支持有限）</li>
+</ul>
+<p><strong>缓存模板</strong>：</p>
+<ul>
+<li>生产环境缓存模板（默认）</li>
+<li>开发环境禁用缓存：<code>spring.thymeleaf.cache=false</code></li>
+<li>DevTools自动禁用缓存</li>
+</ul>
+<hr>
+<h2 id="第3章-处理数据"><a href="#第3章-处理数据" class="headerlink" title="第3章 处理数据"></a>第3章 处理数据</h2><h3 id="使用JDBC读写数据"><a href="#使用JDBC读写数据" class="headerlink" title="使用JDBC读写数据"></a>使用JDBC读写数据</h3><p><strong>为持久化改造领域实体</strong>：</p>
+<ul>
+<li>实体类映射数据库表</li>
+<li>字段映射列</li>
+<li>ID字段</li>
+</ul>
+<p><strong>使用JdbcTemplate</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcIngredientRepository</span> <span class="keyword">implements</span> <span class="title class_">IngredientRepository</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> JdbcTemplate jdbc;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">JdbcIngredientRepository</span><span class="params">(JdbcTemplate jdbc)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.jdbc = jdbc;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterable&lt;Ingredient&gt; <span class="title function_">findAll</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> jdbc.query(<span class="string">&quot;select id, name, type from Ingredient&quot;</span>,</span><br><span class="line">            (rs, rowNum) -&gt; <span class="keyword">new</span> <span class="title class_">Ingredient</span>(</span><br><span class="line">                rs.getString(<span class="string">&quot;id&quot;</span>),</span><br><span class="line">                rs.getString(<span class="string">&quot;name&quot;</span>),</span><br><span class="line">                Ingredient.Type.valueOf(rs.getString(<span class="string">&quot;type&quot;</span>))));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Ingredient <span class="title function_">findById</span><span class="params">(String id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> jdbc.queryForObject(<span class="string">&quot;select id, name, type from Ingredient where id=?&quot;</span>,</span><br><span class="line">            (rs, rowNum) -&gt; <span class="keyword">new</span> <span class="title class_">Ingredient</span>(...), id);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Ingredient <span class="title function_">save</span><span class="params">(Ingredient ingredient)</span> &#123;</span><br><span class="line">        jdbc.update(<span class="string">&quot;insert into Ingredient (id, name, type) values (?, ?, ?)&quot;</span>,</span><br><span class="line">            ingredient.getId(), ingredient.getName(), ingredient.getType().toString());</span><br><span class="line">        <span class="keyword">return</span> ingredient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Repository</code>：仓储组件</li>
+<li><code>JdbcTemplate</code>：简化JDBC操作</li>
+<li><code>query</code>：查询，RowMapper映射结果</li>
+<li><code>queryForObject</code>：查询单个对象</li>
+<li><code>update</code>：插入&#x2F;更新&#x2F;删除</li>
+<li>自动处理资源（连接、语句、结果集）</li>
+</ul>
+<p><strong>定义schema并预加载数据</strong>：</p>
+<ul>
+<li><code>schema.sql</code>：建表脚本</li>
+<li><code>data.sql</code>：初始数据</li>
+<li>Spring Boot启动时自动执行</li>
+<li>配置：<code>spring.sql.init.mode=always</code></li>
+</ul>
+<p><strong>插入数据</strong>：</p>
+<ul>
+<li><code>jdbc.update</code>执行INSERT</li>
+<li>参数占位符<code>?</code></li>
+<li>返回影响行数</li>
+</ul>
+<h3 id="使用Spring-Data-JDBC"><a href="#使用Spring-Data-JDBC" class="headerlink" title="使用Spring Data JDBC"></a>使用Spring Data JDBC</h3><p><strong>添加Spring Data JDBC</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-data-jdbc</code></li>
+<li>简化JDBC数据访问</li>
+</ul>
+<p><strong>定义Repository接口</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IngredientRepository</span> <span class="keyword">extends</span> <span class="title class_">CrudRepository</span>&lt;Ingredient, String&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承<code>CrudRepository&lt;T, ID&gt;</code></li>
+<li>自动获得CRUD方法：save、findById、findAll、delete、count等</li>
+<li>无需实现类，Spring Data自动生成</li>
+</ul>
+<p><strong>为持久化注解领域实体</strong>：</p>
+<ul>
+<li><code>@Table</code>：映射表名</li>
+<li><code>@Id</code>：主键</li>
+<li><code>@Column</code>：列映射</li>
+<li>Spring Data JDBC比JPA简单，无复杂映射</li>
+</ul>
+<p><strong>使用CommandLineRunner预加载数据</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> CommandLineRunner <span class="title function_">dataLoader</span><span class="params">(IngredientRepository repo)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> args -&gt; &#123;</span><br><span class="line">        repo.save(<span class="keyword">new</span> <span class="title class_">Ingredient</span>(<span class="string">&quot;FLTO&quot;</span>, <span class="string">&quot;Flour Tortilla&quot;</span>, Type.WRAP));</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>应用启动后执行</li>
+<li>用于初始化数据</li>
+</ul>
+<h3 id="使用Spring-Data-JPA持久化数据"><a href="#使用Spring-Data-JPA持久化数据" class="headerlink" title="使用Spring Data JPA持久化数据"></a>使用Spring Data JPA持久化数据</h3><p><strong>添加Spring Data JPA</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-data-jpa</code></li>
+<li>Hibernate作为默认JPA实现</li>
+</ul>
+<p><strong>注解领域实体</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Ingredient</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Enumerated(EnumType.STRING)</span></span><br><span class="line">    <span class="keyword">private</span> Type type;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">        WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@Entity</code>：JPA实体</li>
+<li><code>@Id</code>：主键</li>
+<li><code>@GeneratedValue</code>：主键生成策略</li>
+<li><code>@Enumerated</code>：枚举映射</li>
+<li><code>@ManyToMany</code>、<code>@OneToMany</code>、<code>@ManyToOne</code>、<code>@OneToOne</code>：关联映射</li>
+<li><code>@Table</code>：表名</li>
+<li><code>@Column</code>：列映射</li>
+</ul>
+<p><strong>声明JPA Repository</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IngredientRepository</span> <span class="keyword">extends</span> <span class="title class_">CrudRepository</span>&lt;Ingredient, String&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同Spring Data JDBC</li>
+<li>继承<code>CrudRepository</code>或<code>JpaRepository</code></li>
+<li>自动生成实现</li>
+</ul>
+<p><strong>自定义Repository</strong>：</p>
+<ul>
+<li>方法名派生查询：<ul>
+<li><code>findBy...</code>：按条件查询</li>
+<li><code>readBy...</code>、<code>getBy...</code></li>
+<li><code>countBy...</code>：计数</li>
+<li><code>deleteBy...</code>：删除</li>
+<li>关键字：And、Or、Between、LessThan、GreaterThan、Like、IgnoreCase、OrderBy等</li>
+</ul>
+</li>
+<li><code>@Query</code>注解：自定义JPQL&#x2F;SQL查询</li>
+<li>分页排序：<code>Pageable</code>、<code>Sort</code>参数，返回<code>Page&lt;T&gt;</code></li>
+</ul>
+<hr>
+<h2 id="第4章-处理非关系型数据"><a href="#第4章-处理非关系型数据" class="headerlink" title="第4章 处理非关系型数据"></a>第4章 处理非关系型数据</h2><h3 id="使用Cassandra-Repository"><a href="#使用Cassandra-Repository" class="headerlink" title="使用Cassandra Repository"></a>使用Cassandra Repository</h3><p><strong>启用Spring Data Cassandra</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-data-cassandra</code></li>
+<li>配置：<code>spring.data.cassandra.keyspace-name</code>、<code>contact-points</code>、<code>port</code></li>
+</ul>
+<p><strong>理解Cassandra数据模型</strong>：</p>
+<ul>
+<li>列族（Column Family）&#x3D; 表</li>
+<li>分区键（Partition Key）：数据分布</li>
+<li>集群列（Clustering Column）：分区内排序</li>
+<li>宽行、高可用、最终一致性</li>
+<li>适合大规模写入、时间序列数据</li>
+</ul>
+<p><strong>Cassandra持久化实体映射</strong>：</p>
+<ul>
+<li><code>@Table</code>：表映射</li>
+<li><code>@PrimaryKey</code>：主键</li>
+<li><code>@PrimaryKeyColumn</code>：主键列（分区键&#x2F;集群列）</li>
+<li><code>@Column</code>：列映射</li>
+<li><code>@CassandraType</code>：类型映射</li>
+</ul>
+<p><strong>编写Cassandra Repository</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">IngredientRepository</span> <span class="keyword">extends</span> <span class="title class_">CassandraRepository</span>&lt;Ingredient, String&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承<code>CassandraRepository</code></li>
+<li>方法名派生查询（有限制，需考虑分区键）</li>
+<li><code>@Query</code>：CQL查询</li>
+</ul>
+<h3 id="编写MongoDB-Repository"><a href="#编写MongoDB-Repository" class="headerlink" title="编写MongoDB Repository"></a>编写MongoDB Repository</h3><p><strong>启用Spring Data MongoDB</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-data-mongodb</code></li>
+<li>配置：<code>spring.data.mongodb.uri</code>、<code>host</code>、<code>port</code>、<code>database</code></li>
+</ul>
+<p><strong>MongoDB持久化实体映射</strong>：</p>
+<ul>
+<li><code>@Document</code>：文档映射</li>
+<li><code>@Id</code>：主键（MongoDB的_id）</li>
+<li><code>@Field</code>：字段映射</li>
+<li><code>@Indexed</code>：索引</li>
+<li><code>@DBRef</code>：引用其他文档</li>
+<li>灵活Schema，嵌套文档</li>
+</ul>
+<p><strong>编写MongoDB Repository接口</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderRepository</span> <span class="keyword">extends</span> <span class="title class_">MongoRepository</span>&lt;Order, String&gt; &#123;</span><br><span class="line">    List&lt;Order&gt; <span class="title function_">findByDeliveryZip</span><span class="params">(String deliveryZip)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承<code>MongoRepository&lt;T, ID&gt;</code></li>
+<li>方法名派生查询</li>
+<li><code>@Query</code>：JSON查询</li>
+<li>聚合查询：<code>@Aggregation</code></li>
+</ul>
+<p><strong>MongoTemplate</strong>：</p>
+<ul>
+<li>更灵活的MongoDB操作</li>
+<li>Criteria查询、聚合管道</li>
+<li>适合复杂查询</li>
+</ul>
+<hr>
+<h2 id="第5章-Spring安全"><a href="#第5章-Spring安全" class="headerlink" title="第5章 Spring安全"></a>第5章 Spring安全</h2><h3 id="启用Spring-Security"><a href="#启用Spring-Security" class="headerlink" title="启用Spring Security"></a>启用Spring Security</h3><p><strong>添加依赖</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-security</code></li>
+<li>添加后自动启用安全保护</li>
+<li>默认用户：user，密码在启动日志中</li>
+</ul>
+<p><strong>Spring Security核心</strong>：</p>
+<ul>
+<li>认证（Authentication）：验证用户身份</li>
+<li>授权（Authorization）：控制用户访问权限</li>
+<li>过滤器链（Filter Chain）：一系列Servlet过滤器</li>
+<li>安全上下文（SecurityContext）：存储认证信息</li>
+</ul>
+<h3 id="配置身份验证"><a href="#配置身份验证" class="headerlink" title="配置身份验证"></a>配置身份验证</h3><p><strong>内存用户详情服务</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserDetailsService <span class="title function_">userDetailsService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UserDetails</span> <span class="variable">user</span> <span class="operator">=</span> User.withUsername(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">            .password(<span class="string">&quot;&#123;noop&#125;password&quot;</span>)</span><br><span class="line">            .roles(<span class="string">&quot;USER&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">        <span class="type">UserDetails</span> <span class="variable">admin</span> <span class="operator">=</span> User.withUsername(<span class="string">&quot;admin&quot;</span>)</span><br><span class="line">            .password(<span class="string">&quot;&#123;noop&#125;admin&quot;</span>)</span><br><span class="line">            .roles(<span class="string">&quot;ADMIN&quot;</span>, <span class="string">&quot;USER&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">InMemoryUserDetailsManager</span>(user, admin);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>&#123;noop&#125;</code>：密码前缀，表示无编码（仅测试用）</li>
+<li><code>&#123;bcrypt&#125;</code>：BCrypt编码</li>
+<li>角色&#x2F;权限</li>
+</ul>
+<p><strong>自定义用户身份验证</strong>：</p>
+<ul>
+<li>实现<code>UserDetailsService</code>接口</li>
+<li>从数据库加载用户</li>
+<li><code>UserDetails</code>接口：用户名、密码、权限、是否启用等</li>
+<li><code>User</code>类：默认实现</li>
+</ul>
+<p><strong>密码编码器</strong>：</p>
+<ul>
+<li><code>PasswordEncoder</code>接口</li>
+<li><code>BCryptPasswordEncoder</code>：推荐，BCrypt算法</li>
+<li><code>NoOpPasswordEncoder</code>：不编码（仅测试）</li>
+<li><code>Pbkdf2PasswordEncoder</code>、<code>SCryptPasswordEncoder</code></li>
+<li>密码前缀：<code>&#123;bcrypt&#125;</code>、<code>&#123;noop&#125;</code>等</li>
+</ul>
+<h3 id="保护Web请求"><a href="#保护Web请求" class="headerlink" title="保护Web请求"></a>保护Web请求</h3><p><strong>保护请求</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    http</span><br><span class="line">        .authorizeRequests()</span><br><span class="line">            .antMatchers(<span class="string">&quot;/design&quot;</span>, <span class="string">&quot;/orders&quot;</span>).hasRole(<span class="string">&quot;USER&quot;</span>)</span><br><span class="line">            .antMatchers(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;/**&quot;</span>).permitAll()</span><br><span class="line">        .and()</span><br><span class="line">        .formLogin()</span><br><span class="line">            .loginPage(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line">        .and()</span><br><span class="line">        .logout()</span><br><span class="line">            .logoutSuccessUrl(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>authorizeRequests</code>：授权配置</li>
+<li><code>antMatchers</code>：路径匹配</li>
+<li><code>hasRole</code> &#x2F; <code>hasAnyRole</code>：角色要求</li>
+<li><code>hasAuthority</code> &#x2F; <code>hasAnyAuthority</code>：权限要求</li>
+<li><code>permitAll</code>：允许所有</li>
+<li><code>authenticated</code>：需认证</li>
+<li><code>denyAll</code>：拒绝所有</li>
+</ul>
+<p><strong>创建自定义登录页面</strong>：</p>
+<ul>
+<li><code>formLogin().loginPage(&quot;/login&quot;)</code></li>
+<li>登录表单：用户名、密码</li>
+<li>POST到<code>/login</code></li>
+<li>登录失败参数：<code>?error</code></li>
+<li>登出：POST到<code>/logout</code></li>
+</ul>
+<p><strong>登出</strong>：</p>
+<ul>
+<li><code>logout().logoutSuccessUrl(&quot;/&quot;)</code></li>
+<li>清除SecurityContext</li>
+<li>使Session失效</li>
+</ul>
+<p><strong>启用第三方验证</strong>：</p>
+<ul>
+<li>OAuth2登录：<code>oauth2Login()</code></li>
+<li>配置客户端：<code>spring.security.oauth2.client.registration</code></li>
+<li>支持Google、GitHub、Facebook等</li>
+<li>OpenID Connect</li>
+</ul>
+<p><strong>阻止跨站请求伪造攻击</strong>：</p>
+<ul>
+<li>CSRF保护默认启用</li>
+<li>表单需包含CSRF token（Thymeleaf自动添加）</li>
+<li>REST API可禁用：<code>csrf().disable()</code>（但需其他保护）</li>
+</ul>
+<h3 id="启用方法级别保护"><a href="#启用方法级别保护" class="headerlink" title="启用方法级别保护"></a>启用方法级别保护</h3><p><strong>@PreAuthorize &#x2F; @PostAuthorize</strong>：</p>
+<ul>
+<li>方法级安全</li>
+<li><code>@EnableGlobalMethodSecurity(prePostEnabled=true)</code>启用</li>
+<li><code>@PreAuthorize(&quot;hasRole(&#39;ADMIN&#39;)&quot;)</code>：调用前检查</li>
+<li><code>@PostAuthorize</code>：调用后检查返回值</li>
+<li>SpEL表达式</li>
+</ul>
+<h3 id="了解您的用户"><a href="#了解您的用户" class="headerlink" title="了解您的用户"></a>了解您的用户</h3><p><strong>获取认证用户</strong>：</p>
+<ul>
+<li><code>SecurityContextHolder.getContext().getAuthentication()</code></li>
+<li><code>Principal</code>参数注入</li>
+<li><code>@AuthenticationPrincipal</code>注解</li>
+<li><code>Authentication</code>对象：用户名、权限、详情</li>
+</ul>
+<hr>
+<h2 id="第6章-使用配置属性"><a href="#第6章-使用配置属性" class="headerlink" title="第6章 使用配置属性"></a>第6章 使用配置属性</h2><h3 id="微调自动配置"><a href="#微调自动配置" class="headerlink" title="微调自动配置"></a>微调自动配置</h3><p><strong>覆盖自动配置的Bean</strong>：</p>
+<ul>
+<li>自定义Bean覆盖自动配置的Bean</li>
+<li><code>@ConditionalOnMissingBean</code>：仅在不存在时创建</li>
+<li>自定义数据源、视图解析器等</li>
+</ul>
+<p><strong>使用属性文件配置</strong>：</p>
+<ul>
+<li><code>application.properties</code> &#x2F; <code>application.yml</code></li>
+<li>通用属性：<ul>
+<li><code>server.port</code>：端口</li>
+<li><code>spring.datasource.url</code>：数据库URL</li>
+<li><code>spring.datasource.username/password</code></li>
+<li><code>spring.jpa.hibernate.ddl-auto</code>：DDL策略</li>
+<li><code>spring.thymeleaf.cache</code>：模板缓存</li>
+<li><code>logging.level.*</code>：日志级别</li>
+</ul>
+</li>
+</ul>
+<p><strong>Profile特定配置</strong>：</p>
+<ul>
+<li><code>application-&#123;profile&#125;.properties</code></li>
+<li>激活Profile：<code>spring.profiles.active=dev</code></li>
+<li><code>@Profile</code>注解：特定Profile才创建Bean</li>
+<li>多环境配置：dev、test、prod</li>
+</ul>
+<h3 id="创建自定义配置属性"><a href="#创建自定义配置属性" class="headerlink" title="创建自定义配置属性"></a>创建自定义配置属性</h3><p><strong>@ConfigurationProperties</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix=&quot;taco.orders&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderProps</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">pageSize</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@ConfigurationProperties(prefix=&quot;xxx&quot;)</code>：绑定属性前缀</li>
+<li>属性名对应字段名</li>
+<li>类型安全</li>
+<li><code>@Component</code>注册为Bean，或<code>@EnableConfigurationProperties</code>启用</li>
+</ul>
+<p><strong>使用配置属性</strong>：</p>
+<ul>
+<li>注入Bean使用</li>
+<li><code>application.yml</code>中配置：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">taco:</span></span><br><span class="line">  <span class="attr">orders:</span></span><br><span class="line">    <span class="attr">page-size:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure></li>
+<li>宽松绑定：pageSize、page-size、PAGE_SIZE都可</li>
+</ul>
+<p><strong>属性元数据</strong>：</p>
+<ul>
+<li><code>META-INF/spring-configuration-metadata.json</code></li>
+<li>IDE自动补全、提示</li>
+<li><code>spring-boot-configuration-processor</code>自动生成</li>
+</ul>
+<h3 id="配置属性的高级用法"><a href="#配置属性的高级用法" class="headerlink" title="配置属性的高级用法"></a>配置属性的高级用法</h3><p><strong>占位符</strong>：</p>
+<ul>
+<li><code>$&#123;...&#125;</code>引用其他属性</li>
+<li><code>$&#123;app.name:default&#125;</code>：带默认值</li>
+<li>环境变量、系统属性</li>
+</ul>
+<p><strong>随机值</strong>：</p>
+<ul>
+<li><code>$&#123;random.value&#125;</code>、<code>$&#123;random.int&#125;</code>、<code>$&#123;random.long&#125;</code></li>
+<li><code>$&#123;random.int(100)&#125;</code>、<code>$&#123;random.int[10,20]&#125;</code></li>
+</ul>
+<p><strong>命令行参数</strong>：</p>
+<ul>
+<li><code>--server.port=8080</code></li>
+<li>优先级高于配置文件</li>
+</ul>
+<p><strong>环境变量</strong>：</p>
+<ul>
+<li><code>SERVER_PORT=8080</code></li>
+<li>大写、下划线替换点和短横线</li>
+</ul>
+<p><strong>配置优先级</strong>（从高到低）：</p>
+<ol>
+<li>命令行参数</li>
+<li>SPRING_APPLICATION_JSON</li>
+<li>ServletConfig&#x2F;ServletContext</li>
+<li>JNDI</li>
+<li>Java系统属性</li>
+<li>操作系统环境变量</li>
+<li>application-{profile}.properties</li>
+<li>application.properties</li>
+<li>@PropertySource</li>
+<li>默认值</li>
+</ol>
+<hr>
+<h2 id="第7章-创建REST服务"><a href="#第7章-创建REST服务" class="headerlink" title="第7章 创建REST服务"></a>第7章 创建REST服务</h2><h3 id="RESTful-API设计"><a href="#RESTful-API设计" class="headerlink" title="RESTful API设计"></a>RESTful API设计</h3><p><strong>REST原则</strong>：</p>
+<ul>
+<li>资源为中心</li>
+<li>HTTP方法表示操作：GET（查询）、POST（创建）、PUT（更新）、PATCH（部分更新）、DELETE（删除）</li>
+<li>状态码表示结果：200、201、204、400、401、403、404、500</li>
+<li>无状态</li>
+<li>HATEOAS（超媒体驱动）</li>
+</ul>
+<h3 id="Spring-MVC创建REST"><a href="#Spring-MVC创建REST" class="headerlink" title="Spring MVC创建REST"></a>Spring MVC创建REST</h3><p><strong>@RestController</strong>：</p>
+<ul>
+<li>控制器+响应体</li>
+<li>&#x3D; <code>@Controller</code> + <code>@ResponseBody</code></li>
+<li>返回对象自动序列化为JSON</li>
+</ul>
+<p><strong>HTTP方法映射</strong>：</p>
+<ul>
+<li><code>@GetMapping</code>、<code>@PostMapping</code>、<code>@PutMapping</code>、<code>@PatchMapping</code>、<code>@DeleteMapping</code></li>
+<li><code>@RequestMapping</code></li>
+</ul>
+<p><strong>路径变量</strong>：</p>
+<ul>
+<li><code>@PathVariable</code></li>
+<li><code>/api/orders/&#123;id&#125;</code></li>
+</ul>
+<p><strong>请求体</strong>：</p>
+<ul>
+<li><code>@RequestBody</code></li>
+<li>JSON反序列化为对象</li>
+</ul>
+<p><strong>响应状态</strong>：</p>
+<ul>
+<li><code>@ResponseStatus</code></li>
+<li><code>ResponseEntity</code>：自定义状态码、头、体</li>
+</ul>
+<h3 id="超媒体与HATEOAS"><a href="#超媒体与HATEOAS" class="headerlink" title="超媒体与HATEOAS"></a>超媒体与HATEOAS</h3><p><strong>Spring HATEOAS</strong>：</p>
+<ul>
+<li>资源表示包含链接</li>
+<li><code>EntityModel&lt;T&gt;</code>、<code>CollectionModel&lt;T&gt;</code></li>
+<li><code>WebMvcLinkBuilder</code>构建链接</li>
+<li><code>linkTo()</code>、<code>methodOn()</code>、<code>withRel()</code>、<code>withSelfRel()</code></li>
+</ul>
+<h3 id="数据REST"><a href="#数据REST" class="headerlink" title="数据REST"></a>数据REST</h3><p><strong>Spring Data REST</strong>：</p>
+<ul>
+<li>自动将Spring Data Repository暴露为REST API</li>
+<li>起步依赖：<code>spring-boot-starter-data-rest</code></li>
+<li>自动生成CRUD端点</li>
+<li>支持分页、排序、搜索、关联</li>
+<li>自定义：<code>@RepositoryRestResource</code>、<code>@RestResource</code></li>
+</ul>
+<h3 id="REST-API安全"><a href="#REST-API安全" class="headerlink" title="REST API安全"></a>REST API安全</h3><ul>
+<li>无状态认证：JWT、OAuth2</li>
+<li><code>HttpBasic</code>：HTTP Basic认证</li>
+<li><code>SessionCreationPolicy.STATELESS</code>：无状态</li>
+<li>CSRF禁用（REST API）</li>
+</ul>
+<hr>
+<h2 id="第8章-异步消息"><a href="#第8章-异步消息" class="headerlink" title="第8章 异步消息"></a>第8章 异步消息</h2><h3 id="异步消息概述"><a href="#异步消息概述" class="headerlink" title="异步消息概述"></a>异步消息概述</h3><p><strong>消息模式</strong>：</p>
+<ul>
+<li>点对点（P2P）：队列，一个消息一个消费者</li>
+<li>发布&#x2F;订阅（Pub&#x2F;Sub）：主题，一个消息多个订阅者</li>
+</ul>
+<p><strong>消息优势</strong>：</p>
+<ul>
+<li>解耦（生产者消费者不直接通信）</li>
+<li>异步（非阻塞）</li>
+<li>削峰（缓冲高峰流量）</li>
+<li>可靠（消息持久化、确认机制）</li>
+</ul>
+<h3 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h3><p><strong>Java消息服务</strong>：</p>
+<ul>
+<li>Java EE消息标准</li>
+<li>起步依赖：<code>spring-boot-starter-activemq</code>（ActiveMQ）</li>
+<li><code>JmsTemplate</code>：发送&#x2F;接收消息</li>
+<li><code>@JmsListener</code>：监听消息</li>
+<li>消息转换器：<code>MappingJackson2MessageConverter</code>（JSON）</li>
+</ul>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><strong>AMQP实现</strong>：</p>
+<ul>
+<li>高级消息队列协议</li>
+<li>起步依赖：<code>spring-boot-starter-amqp</code></li>
+<li>核心概念：<ul>
+<li>Exchange：交换机，接收消息，路由到队列</li>
+<li>Queue：队列，存储消息</li>
+<li>Binding：绑定，交换机到队列的路由规则</li>
+<li>Routing Key：路由键</li>
+</ul>
+</li>
+<li>Exchange类型：Direct、Fanout、Topic、Headers</li>
+<li><code>RabbitTemplate</code>：发送&#x2F;接收</li>
+<li><code>@RabbitListener</code>：监听</li>
+<li>消息确认、重试、死信队列</li>
+</ul>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><p><strong>分布式流平台</strong>：</p>
+<ul>
+<li>高吞吐、可扩展、持久化</li>
+<li>起步依赖：<code>spring-kafka</code></li>
+<li>核心概念：<ul>
+<li>Topic：主题</li>
+<li>Partition：分区（并行、有序）</li>
+<li>Offset：偏移量</li>
+<li>Producer&#x2F;Consumer</li>
+<li>Consumer Group：消费者组</li>
+</ul>
+</li>
+<li><code>KafkaTemplate</code>：发送</li>
+<li><code>@KafkaListener</code>：监听</li>
+<li>批量消费、事务、 exactly-once</li>
+</ul>
+<hr>
+<h2 id="第9章-集成Spring"><a href="#第9章-集成Spring" class="headerlink" title="第9章 集成Spring"></a>第9章 集成Spring</h2><h3 id="Spring-Integration"><a href="#Spring-Integration" class="headerlink" title="Spring Integration"></a>Spring Integration</h3><p><strong>企业集成模式（EIP）</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-integration</code></li>
+<li>核心组件：<ul>
+<li>Message：消息（头+体）</li>
+<li>Channel：消息通道</li>
+<li>Endpoint：端点（转换器、路由器、过滤器、分离器、聚合器等）</li>
+<li>Gateway：网关</li>
+</ul>
+</li>
+<li>配置：Java DSL、XML、注解</li>
+<li>适配器：文件、HTTP、JMS、Mail、TCP&#x2F;UDP等</li>
+</ul>
+<h3 id="Spring-Batch"><a href="#Spring-Batch" class="headerlink" title="Spring Batch"></a>Spring Batch</h3><p><strong>批处理框架</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-batch</code></li>
+<li>核心概念：<ul>
+<li>Job：作业</li>
+<li>Step：步骤</li>
+<li>ItemReader：读</li>
+<li>ItemProcessor：处理</li>
+<li>ItemWriter：写</li>
+<li>JobRepository：作业仓库</li>
+<li>JobLauncher：作业启动器</li>
+</ul>
+</li>
+<li>chunk-oriented处理</li>
+<li>跳过、重试、重启</li>
+<li>作业监控</li>
+</ul>
+<hr>
+<h2 id="第10章-响应式Spring"><a href="#第10章-响应式Spring" class="headerlink" title="第10章 响应式Spring"></a>第10章 响应式Spring</h2><h3 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h3><p><strong>Reactive Streams</strong>：</p>
+<ul>
+<li>异步非阻塞、背压</li>
+<li>核心接口：Publisher、Subscriber、Subscription、Processor</li>
+<li>Project Reactor：Spring默认响应式库<ul>
+<li><code>Mono&lt;T&gt;</code>：0或1个元素</li>
+<li><code>Flux&lt;T&gt;</code>：0到N个元素</li>
+<li>操作符：map、flatMap、filter、zip、merge等</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring-WebFlux"><a href="#Spring-WebFlux" class="headerlink" title="Spring WebFlux"></a>Spring WebFlux</h3><p><strong>响应式Web框架</strong>：</p>
+<ul>
+<li>起步依赖：<code>spring-boot-starter-webflux</code></li>
+<li>两种编程模型：<ul>
+<li>注解式：<code>@RestController</code>、<code>@RequestMapping</code>（同Spring MVC，但返回Mono&#x2F;Flux）</li>
+<li>函数式：RouterFunction、HandlerFunction</li>
+</ul>
+</li>
+<li>非阻塞、事件驱动</li>
+<li>Netty服务器（默认）</li>
+<li>响应式客户端：<code>WebClient</code>（替代RestTemplate）</li>
+</ul>
+<h3 id="响应式数据访问"><a href="#响应式数据访问" class="headerlink" title="响应式数据访问"></a>响应式数据访问</h3><ul>
+<li>Spring Data Reactive：<ul>
+<li>R2DBC：响应式关系数据库</li>
+<li>Spring Data MongoDB Reactive</li>
+<li>Spring Data Cassandra Reactive</li>
+<li>Redis Reactive</li>
+</ul>
+</li>
+<li>Repository返回Mono&#x2F;Flux</li>
+</ul>
+<h3 id="响应式安全"><a href="#响应式安全" class="headerlink" title="响应式安全"></a>响应式安全</h3><ul>
+<li>Spring Security响应式支持</li>
+<li><code>@EnableWebFluxSecurity</code></li>
+<li><code>SecurityWebFilterChain</code></li>
+<li>响应式认证授权</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Spring实战》是Spring框架领域的经典实战教材，第6版由Craig Walls撰写，以Spring Boot为基础，全面覆盖Spring生态的核心技术。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1章</td>
+<td>Spring入门</td>
+<td>Spring简介、Spring Boot、自动配置、起步依赖、项目结构、Spring生态</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>Web开发</td>
+<td>Spring MVC、控制器、Thymeleaf、表单处理、验证、视图控制器</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>关系型数据</td>
+<td>JdbcTemplate、Spring Data JDBC、Spring Data JPA、Repository、实体映射</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>非关系型数据</td>
+<td>Cassandra、MongoDB、Spring Data Repository、文档存储</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>Spring安全</td>
+<td>认证授权、用户详情服务、密码编码器、请求保护、登录登出、CSRF、OAuth2</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>配置属性</td>
+<td>自动配置微调、application.yml、Profile、@ConfigurationProperties、配置优先级</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>REST服务</td>
+<td>@RestController、HTTP方法、ResponseEntity、HATEOAS、Spring Data REST</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>异步消息</td>
+<td>JMS、RabbitMQ&#x2F;AMQP、Kafka、消息模板、监听器</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>集成</td>
+<td>Spring Integration企业集成模式、Spring Batch批处理</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>响应式编程</td>
+<td>Reactor、Mono&#x2F;Flux、Spring WebFlux、WebClient、响应式数据访问</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>第1-2章是基础，必须掌握Spring Boot和Spring MVC</li>
+<li>第3-4章是数据访问，JPA是重点</li>
+<li>第5章安全是Web应用必备</li>
+<li>第6章配置属性是Spring Boot核心特性</li>
+<li>第7章REST服务是后端开发重点</li>
+<li>第8章消息是微服务架构常用</li>
+<li>第9章集成是企业应用场景</li>
+<li>第10章响应式是Spring 5新特性，适合高并发场景</li>
+<li>学习时一定要动手实践，Spring Boot快速启动方便实验</li>
+<li>配合官方文档和Spring Guides学习</li>
+<li>注意：本书基于Spring Boot 2.x，Spring Boot 3.x有变化（Jakarta EE、Java 17+）</li>
+</ul>
+<p>这本书适合Java后端开发者、Spring初学者和希望系统学习Spring生态的开发者阅读，是Spring领域最经典的实战教材之一。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/Spring%E5%AE%9E%E6%88%98/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/Spring%E5%AE%9E%E6%88%98/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/">Android Studio开发实战</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring%E5%AE%9E%E6%88%98%EF%BC%88%E7%AC%AC6%E7%89%88%EF%BC%89"><span class="toc-text">Spring实战（第6版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Spring%E5%85%A5%E9%97%A8"><span class="toc-text">第1章 Spring入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E5%BC%80%E5%8F%91Web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">第2章 开发Web应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="toc-text">第3章 处理数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%A4%84%E7%90%86%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="toc-text">第4章 处理非关系型数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-Spring%E5%AE%89%E5%85%A8"><span class="toc-text">第5章 Spring安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7"><span class="toc-text">第6章 使用配置属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E5%88%9B%E5%BB%BAREST%E6%9C%8D%E5%8A%A1"><span class="toc-text">第7章 创建REST服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF"><span class="toc-text">第8章 异步消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E9%9B%86%E6%88%90Spring"><span class="toc-text">第9章 集成Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%93%8D%E5%BA%94%E5%BC%8FSpring"><span class="toc-text">第10章 响应式Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

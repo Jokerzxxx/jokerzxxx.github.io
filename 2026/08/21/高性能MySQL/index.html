@@ -1,0 +1,1667 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>高性能MySQL - 码上弦音</title>
+
+  
+    <meta name="description" content="高性能MySQL（第4版） 作者：Jeremy Tinley, Silvia Botros全书共约14章，281页，MySQL性能优化的经典著作，涵盖MySQL架构、监控、Performance Schema、硬件优化、服务器配置、Schema设计、查询优化、索引优化、复制、高可用等核心主题。   第1章 MySQL架构MySQL的逻辑架构MySQL采用分层架构：  连接管理与安全性：  每个客户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能MySQL">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="高性能MySQL（第4版） 作者：Jeremy Tinley, Silvia Botros全书共约14章，281页，MySQL性能优化的经典著作，涵盖MySQL架构、监控、Performance Schema、硬件优化、服务器配置、Schema设计、查询优化、索引优化、复制、高可用等核心主题。   第1章 MySQL架构MySQL的逻辑架构MySQL采用分层架构：  连接管理与安全性：  每个客户">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T08:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T08:21:48.738Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="阅读,MySQL,数据库,性能优化">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T08:00:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T08:21:48.738Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>高性能MySQL</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="高性能MySQL（第4版）"><a href="#高性能MySQL（第4版）" class="headerlink" title="高性能MySQL（第4版）"></a>高性能MySQL（第4版）</h1><blockquote>
+<p>作者：Jeremy Tinley, Silvia Botros<br>全书共约14章，281页，MySQL性能优化的经典著作，涵盖MySQL架构、监控、Performance Schema、硬件优化、服务器配置、Schema设计、查询优化、索引优化、复制、高可用等核心主题。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-MySQL架构"><a href="#第1章-MySQL架构" class="headerlink" title="第1章 MySQL架构"></a>第1章 MySQL架构</h2><h3 id="MySQL的逻辑架构"><a href="#MySQL的逻辑架构" class="headerlink" title="MySQL的逻辑架构"></a>MySQL的逻辑架构</h3><p>MySQL采用分层架构：</p>
+<ol>
+<li><p><strong>连接管理与安全性</strong>：</p>
+<ul>
+<li>每个客户端连接在服务器进程中拥有一个线程</li>
+<li>连接的查询只在一个线程中运行</li>
+<li>线程由线程池缓存，无需为每个连接创建销毁线程</li>
+<li>连接时进行身份认证（用户名、密码、主机IP）</li>
+<li>认证成功后，服务器验证该客户端是否有执行特定查询的权限</li>
+</ul>
+</li>
+<li><p><strong>优化与执行</strong>：</p>
+<ul>
+<li>解析器：解析SQL，生成解析树</li>
+<li>预处理器：检查解析树合法性（表、列是否存在，名称解析）</li>
+<li>查询优化器：将解析树转化为执行计划</li>
+<li>查询执行引擎：根据执行计划执行查询</li>
+<li>存储引擎接口：执行引擎通过存储引擎API与存储引擎交互</li>
+</ul>
+</li>
+</ol>
+<h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><p><strong>读写锁</strong>：</p>
+<ul>
+<li>读锁（共享锁）：多个读操作可同时持有，不阻塞其他读</li>
+<li>写锁（排他锁）：写锁排他，阻塞其他读和写</li>
+<li>锁粒度：表锁、页锁、行锁</li>
+</ul>
+<p><strong>锁的粒度</strong>：</p>
+<ul>
+<li><strong>表锁</strong>：锁定整个表，开销小，并发度低</li>
+<li><strong>行锁</strong>：锁定单行，开销大，并发度高</li>
+<li>MySQL服务器层实现表锁，存储引擎实现行锁（如InnoDB）</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><strong>ACID特性</strong>：</p>
+<ul>
+<li>原子性（Atomicity）：事务中操作要么全部成功，要么全部回滚</li>
+<li>一致性（Consistency）：数据库从一个一致性状态转换到另一个一致性状态</li>
+<li>隔离性（Isolation）：一个事务的修改在提交前对其他事务不可见</li>
+<li>持久性（Durability）：事务提交后修改永久保存</li>
+</ul>
+<p><strong>隔离级别</strong>：</p>
+<ol>
+<li><strong>READ UNCOMMITTED（读未提交）</strong>：可读取未提交数据，脏读</li>
+<li><strong>READ COMMITTED（读已提交）</strong>：只能读取已提交数据，不可重复读</li>
+<li><strong>REPEATABLE READ（可重复读）</strong>：同一事务内多次读取结果一致，MySQL默认级别，InnoDB通过MVCC解决幻读</li>
+<li><strong>SERIALIZABLE（串行化）</strong>：最高隔离级别，强制事务串行执行</li>
+</ol>
+<p><strong>死锁</strong>：</p>
+<ul>
+<li>两个或多个事务互相等待对方释放锁</li>
+<li>InnoDB自动检测死锁，回滚代价最小的事务</li>
+<li>死锁原因：事务以不同顺序访问资源</li>
+<li>避免：以固定顺序访问资源、缩短事务、使用更低隔离级别</li>
+</ul>
+<p><strong>事务日志</strong>：</p>
+<ul>
+<li>预写式日志（WAL）：修改先写日志，再写数据页</li>
+<li>redo log：记录数据页修改，崩溃恢复</li>
+<li>undo log：记录修改前版本，用于回滚和MVCC</li>
+<li>事务日志顺序写，比随机写数据页快</li>
+</ul>
+<p><strong>MySQL中的事务</strong>：</p>
+<ul>
+<li>InnoDB支持事务，MyISAM不支持</li>
+<li>自动提交（AUTOCOMMIT）：默认开启，每条SQL自动提交</li>
+<li>隐式锁：InnoDB在事务执行时自动加锁</li>
+<li>显式锁：SELECT … FOR UPDATE &#x2F; LOCK IN SHARE MODE</li>
+</ul>
+<h3 id="多版本并发控制（MVCC）"><a href="#多版本并发控制（MVCC）" class="headerlink" title="多版本并发控制（MVCC）"></a>多版本并发控制（MVCC）</h3><ul>
+<li>InnoDB通过MVCC实现非锁定一致性读</li>
+<li>每行数据有两个隐藏列：创建版本号、删除版本号</li>
+<li>事务开始时获取系统版本号</li>
+<li>SELECT：只查找创建版本号≤当前事务版本号，且删除版本号&gt;当前事务版本号（或未删除）的行</li>
+<li>INSERT：创建版本号设为当前事务版本号</li>
+<li>UPDATE：标记旧行删除（删除版本号&#x3D;当前版本号），插入新行（创建版本号&#x3D;当前版本号）</li>
+<li>DELETE：删除版本号设为当前事务版本号</li>
+<li>MVCC只在REPEATABLE READ和READ COMMITTED级别工作</li>
+</ul>
+<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><ul>
+<li>MySQL复制基于binlog（二进制日志）</li>
+<li>主库将修改写入binlog，从库读取并重放</li>
+<li>复制模式：<ul>
+<li>语句级复制（SBR）：复制SQL语句</li>
+<li>行级复制（RBR）：复制行变更</li>
+<li>混合模式（MBR）：自动选择</li>
+</ul>
+</li>
+<li>复制用途：备份、读扩展、高可用、数据分析</li>
+</ul>
+<h3 id="数据文件结构"><a href="#数据文件结构" class="headerlink" title="数据文件结构"></a>数据文件结构</h3><ul>
+<li>InnoDB使用表空间（tablespace）管理数据</li>
+<li>系统表空间（ibdata1）：数据字典、undo log、insert buffer等</li>
+<li>独立表空间（file-per-table）：每个表一个.ibd文件</li>
+<li>redo log：ib_logfile0、ib_logfile1，循环写</li>
+<li>binlog：二进制日志文件，记录修改</li>
+</ul>
+<h3 id="InnoDB引擎"><a href="#InnoDB引擎" class="headerlink" title="InnoDB引擎"></a>InnoDB引擎</h3><p>InnoDB是MySQL默认存储引擎，特点：</p>
+<ul>
+<li>支持事务、行锁、MVCC</li>
+<li>聚簇索引（主键索引即数据）</li>
+<li>自适应哈希索引</li>
+<li>插入缓冲（Insert Buffer）</li>
+<li>两次写（Double Write）</li>
+<li>崩溃恢复</li>
+</ul>
+<p><strong>JSON文档支持</strong>：</p>
+<ul>
+<li>MySQL 5.7+支持JSON类型</li>
+<li>原生JSON存储，支持索引和函数操作</li>
+<li>JSON_EXTRACT、JSON_SET、JSON_ARRAY等函数</li>
+</ul>
+<p><strong>数据字典的变化</strong>：</p>
+<ul>
+<li>MySQL 8.0引入全局数据字典（Data Dictionary）</li>
+<li>取代之前的.frm文件</li>
+<li>数据字典存储在InnoDB表中，支持事务</li>
+<li>原子DDL：DDL操作要么全部成功要么全部回滚</li>
+</ul>
+<p><strong>原子DDL</strong>：</p>
+<ul>
+<li>MySQL 8.0支持原子DDL</li>
+<li>DDL操作（CREATE、ALTER、DROP）具有原子性</li>
+<li>数据字典更新、存储引擎操作、binlog写入在一个事务中</li>
+<li>崩溃后不会出现部分完成的DDL</li>
+</ul>
+<hr>
+<h2 id="第2章-可靠性工程世界中的监控"><a href="#第2章-可靠性工程世界中的监控" class="headerlink" title="第2章 可靠性工程世界中的监控"></a>第2章 可靠性工程世界中的监控</h2><h3 id="可靠性工程对DBA团队的影响"><a href="#可靠性工程对DBA团队的影响" class="headerlink" title="可靠性工程对DBA团队的影响"></a>可靠性工程对DBA团队的影响</h3><ul>
+<li>SRE（站点可靠性工程）理念影响数据库运维</li>
+<li>关注服务水平目标（SLO）而非单纯性能指标</li>
+<li>监控从”收集指标”转向”度量用户体验”</li>
+<li>自动化运维减少人工干预</li>
+</ul>
+<h3 id="定义服务水平目标"><a href="#定义服务水平目标" class="headerlink" title="定义服务水平目标"></a>定义服务水平目标</h3><p><strong>怎样才能让客户满意</strong>：</p>
+<ul>
+<li>从用户视角定义可靠性</li>
+<li>可用性：服务可正常访问的时间比例</li>
+<li>延迟：请求响应时间</li>
+<li>错误率：请求失败比例</li>
+</ul>
+<h3 id="用什么来度量"><a href="#用什么来度量" class="headerlink" title="用什么来度量"></a>用什么来度量</h3><p><strong>定义SLI和SLO</strong>：</p>
+<ul>
+<li>SLI（服务水平指标）：可量化的服务质量度量（如请求延迟、错误率）</li>
+<li>SLO（服务水平目标）：SLI的目标值（如99.9%请求延迟&lt;200ms）</li>
+<li>SLA（服务水平协议）：与客户的合同约定，违反有惩罚</li>
+</ul>
+<p><strong>监控解决方案</strong>：</p>
+<ul>
+<li>Prometheus + Grafana：主流监控栈</li>
+<li>采集指标、存储、可视化、告警</li>
+<li>MySQL Exporter采集MySQL指标</li>
+</ul>
+<p><strong>监控可用性</strong>：</p>
+<ul>
+<li>服务是否可访问</li>
+<li>连接数、线程数</li>
+<li>主从复制状态</li>
+</ul>
+<p><strong>监控查询延迟</strong>：</p>
+<ul>
+<li>查询响应时间分布（P50&#x2F;P95&#x2F;P99）</li>
+<li>慢查询日志</li>
+<li>Performance Schema的语句统计</li>
+</ul>
+<p><strong>监控报错</strong>：</p>
+<ul>
+<li>错误率、错误类型</li>
+<li>连接错误、查询错误</li>
+<li>死锁、锁等待</li>
+</ul>
+<p><strong>主动监控</strong>：</p>
+<ul>
+<li>定期执行探测查询</li>
+<li>模拟用户请求</li>
+<li>提前发现问题</li>
+</ul>
+<h3 id="度量长期性能"><a href="#度量长期性能" class="headerlink" title="度量长期性能"></a>度量长期性能</h3><p><strong>了解业务节奏</strong>：</p>
+<ul>
+<li>业务有周期性（日&#x2F;周&#x2F;月）</li>
+<li>基线对比：与同时期历史数据对比</li>
+<li>容量规划：基于增长趋势预测</li>
+</ul>
+<p><strong>有效地跟踪指标</strong>：</p>
+<ul>
+<li>指标降采样：长期存储用降采样数据</li>
+<li>异常检测：自动识别异常指标</li>
+<li>关联分析：多指标关联定位问题</li>
+</ul>
+<p><strong>使用监控工具检查性能</strong>：</p>
+<ul>
+<li>仪表盘：关键指标可视化</li>
+<li>告警：阈值告警、异常告警</li>
+<li>根因分析：从告警到根因</li>
+</ul>
+<p><strong>使用SLO来指导整体架构</strong>：</p>
+<ul>
+<li>SLO驱动架构决策</li>
+<li>错误预算：SLO未用完时可发布&#x2F;变更，用完时冻结变更</li>
+<li>容量规划基于SLO需求</li>
+</ul>
+<hr>
+<h2 id="第3章-Performance-Schema"><a href="#第3章-Performance-Schema" class="headerlink" title="第3章 Performance Schema"></a>第3章 Performance Schema</h2><h3 id="Performance-Schema介绍"><a href="#Performance-Schema介绍" class="headerlink" title="Performance Schema介绍"></a>Performance Schema介绍</h3><p>Performance Schema是MySQL内置的性能监控工具，用于监控MySQL服务器执行时的资源消耗和等待事件。</p>
+<p><strong>插桩元件</strong>：</p>
+<ul>
+<li>等待事件（wait）：互斥锁、读写锁、条件变量、文件I&#x2F;O、表I&#x2F;O、socket I&#x2F;O</li>
+<li>阶段事件（stage）：SQL执行阶段（如排序、发送数据）</li>
+<li>语句事件（statement）：SQL语句执行统计</li>
+<li>事务事件（transaction）：事务统计</li>
+<li>内存事件（memory）：内存分配统计</li>
+</ul>
+<p><strong>消费者表的组织</strong>：</p>
+<ul>
+<li>current表：当前事件</li>
+<li>history表：最近事件（每个线程10条）</li>
+<li>history_long表：更多历史事件（每个线程10000条）</li>
+<li>汇总表：按维度汇总（按线程、按用户、按主机、按账号、按语句等）</li>
+</ul>
+<p><strong>资源消耗</strong>：</p>
+<ul>
+<li>Performance Schema有性能开销</li>
+<li>可通过配置启用&#x2F;禁用特定插桩和消费者</li>
+<li>按需启用，减少开销</li>
+</ul>
+<p><strong>局限性</strong>：</p>
+<ul>
+<li>不监控所有MySQL操作</li>
+<li>部分事件粒度有限</li>
+<li>历史表数据可能丢失（环形缓冲区）</li>
+</ul>
+<p><strong>sys Schema</strong>：</p>
+<ul>
+<li>基于Performance Schema的视图和存储过程集合</li>
+<li>提供更友好的查询接口</li>
+<li>常用视图：<ul>
+<li><code>sys.session</code>：当前会话</li>
+<li><code>sys.statement_analysis</code>：语句分析</li>
+<li><code>sys.innodb_buffer_stats_by_table</code>：InnoDB缓冲池统计</li>
+<li><code>sys.schema_unused_indexes</code>：未使用索引</li>
+<li><code>sys.schema_redundant_indexes</code>：冗余索引</li>
+</ul>
+</li>
+</ul>
+<p><strong>理解线程</strong>：</p>
+<ul>
+<li>MySQL内部线程类型：连接线程、后台线程</li>
+<li>Performance Schema按线程统计事件</li>
+<li><code>threads</code>表：所有线程信息</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><strong>启用或禁用Performance Schema</strong>：</p>
+<ul>
+<li><code>performance_schema=ON/OFF</code>（启动参数）</li>
+<li>运行时不可更改</li>
+</ul>
+<p><strong>启用或禁用插桩</strong>：</p>
+<ul>
+<li><code>setup_instruments</code>表：配置插桩启用状态</li>
+<li><code>UPDATE setup_instruments SET ENABLED=&#39;YES&#39;, TIMED=&#39;YES&#39; WHERE NAME LIKE &#39;%&#39;;</code></li>
+<li>可按名称模式启用（如<code>wait/io/file/%</code>）</li>
+</ul>
+<p><strong>启用或禁用消费者表</strong>：</p>
+<ul>
+<li><code>setup_consumers</code>表：配置消费者启用状态</li>
+<li>消费者层次：global_instrumentation → thread_instrumentation → events_waits_current → events_waits_history → events_waits_history_long</li>
+<li>上层禁用则下层不工作</li>
+</ul>
+<p><strong>优化特定对象的监控</strong>：</p>
+<ul>
+<li><code>setup_objects</code>表：配置监控哪些对象（表、存储过程等）</li>
+<li>可排除系统表或不关心的表</li>
+</ul>
+<p><strong>优化线程的监控</strong>：</p>
+<ul>
+<li><code>setup_threads</code>表：配置监控哪些线程</li>
+<li>可只监控前台线程（连接线程），忽略后台线程</li>
+</ul>
+<p><strong>调整Performance Schema的内存大小</strong>：</p>
+<ul>
+<li>各种缓冲区大小可配置</li>
+<li><code>performance_schema_events_waits_history_size</code></li>
+<li><code>performance_schema_events_waits_history_long_size</code></li>
+<li>内存预分配，运行时不可更改</li>
+</ul>
+<p><strong>默认值</strong>：</p>
+<ul>
+<li>MySQL 8.0默认启用大部分插桩和消费者</li>
+<li>开销可控，生产环境可使用</li>
+</ul>
+<h3 id="使用Performance-Schema"><a href="#使用Performance-Schema" class="headerlink" title="使用Performance Schema"></a>使用Performance Schema</h3><p><strong>检查SQL语句</strong>：</p>
+<ul>
+<li><code>events_statements_summary_by_digest</code>：按语句摘要统计</li>
+<li>字段：SCHEMA_NAME、DIGEST、DIGEST_TEXT、COUNT_STAR、SUM_TIMER_WAIT、SUM_ROWS_EXAMINED等</li>
+<li>找出执行次数多、耗时长、扫描行多的语句</li>
+</ul>
+<p><strong>检查读写性能</strong>：</p>
+<ul>
+<li><code>table_io_waits_summary_by_table</code>：表I&#x2F;O统计</li>
+<li><code>file_summary_by_instance</code>：文件I&#x2F;O统计</li>
+<li>找出I&#x2F;O热点表和文件</li>
+</ul>
+<p><strong>检查元数据锁</strong>：</p>
+<ul>
+<li><code>metadata_locks</code>表：当前元数据锁</li>
+<li>找出DDL阻塞、锁等待</li>
+</ul>
+<p><strong>检查内存使用情况</strong>：</p>
+<ul>
+<li><code>memory_summary_global_by_event_name</code>：按事件统计内存</li>
+<li><code>memory_summary_by_thread_by_event_name</code>：按线程统计</li>
+<li>找出内存泄漏或大内存消耗</li>
+</ul>
+<p><strong>检查变量</strong>：</p>
+<ul>
+<li><code>global_variables</code>、<code>session_variables</code>：系统变量</li>
+<li><code>user_variables_by_thread</code>：用户变量</li>
+<li><code>status_by_thread</code>：状态变量</li>
+</ul>
+<p><strong>检查最常见的错误</strong>：</p>
+<ul>
+<li><code>events_errors_summary_global_by_error</code>：按错误统计</li>
+<li>找出高频错误</li>
+</ul>
+<p><strong>检查Performance Schema自身</strong>：</p>
+<ul>
+<li><code>performance_timers</code>：可用计时器</li>
+<li><code>setup_timers</code>：当前计时器配置</li>
+<li><code>host_cache</code>：主机缓存</li>
+</ul>
+<hr>
+<h2 id="第4章-操作系统和硬件优化"><a href="#第4章-操作系统和硬件优化" class="headerlink" title="第4章 操作系统和硬件优化"></a>第4章 操作系统和硬件优化</h2><h3 id="什么限制了MySQL的性能"><a href="#什么限制了MySQL的性能" class="headerlink" title="什么限制了MySQL的性能"></a>什么限制了MySQL的性能</h3><ul>
+<li>CPU：计算密集型查询、排序、聚合</li>
+<li>内存：缓冲池大小、缓存命中率</li>
+<li>磁盘I&#x2F;O：随机读写、吞吐量、延迟</li>
+<li>网络：带宽、延迟、连接数</li>
+<li>找出瓶颈：CPU高？I&#x2F;O等待高？内存不足？</li>
+</ul>
+<h3 id="如何为MySQL选择CPU"><a href="#如何为MySQL选择CPU" class="headerlink" title="如何为MySQL选择CPU"></a>如何为MySQL选择CPU</h3><ul>
+<li>CPU主频影响单查询性能（MySQL单查询单线程）</li>
+<li>CPU核心数影响并发能力</li>
+<li>选择高主频+多核平衡</li>
+<li>CPU缓存大小影响性能</li>
+<li>避免过度超线程（MySQL对超线程利用有限）</li>
+</ul>
+<h3 id="平衡内存和磁盘资源"><a href="#平衡内存和磁盘资源" class="headerlink" title="平衡内存和磁盘资源"></a>平衡内存和磁盘资源</h3><p><strong>缓存、读取和写入</strong>：</p>
+<ul>
+<li>内存越大，缓冲池越大，缓存命中率越高，磁盘I&#x2F;O越少</li>
+<li>InnoDB缓冲池应占可用内存的50%-70%</li>
+<li>读多写少场景：大内存减少读I&#x2F;O</li>
+<li>写密集场景：内存缓存写，合并写减少I&#x2F;O</li>
+</ul>
+<p><strong>你的工作集是什么</strong>：</p>
+<ul>
+<li>工作集：频繁访问的数据量</li>
+<li>若工作集可放入内存，性能最佳</li>
+<li>若工作集远大于内存，需依赖磁盘，性能受限</li>
+<li>估算工作集：热点数据量、访问频率</li>
+</ul>
+<h3 id="固态存储"><a href="#固态存储" class="headerlink" title="固态存储"></a>固态存储</h3><p><strong>闪存概述</strong>：</p>
+<ul>
+<li>SSD（固态硬盘）：基于NAND闪存</li>
+<li>相比机械硬盘：随机读写快、延迟低、抗震、功耗低</li>
+<li>类型：SLC（单层，寿命长成本高）、MLC（多层）、TLC（三层，成本低寿命短）、QLC（四层）</li>
+<li>NVMe：PCIe接口SSD，比SATA SSD更快</li>
+</ul>
+<p><strong>垃圾收集</strong>：</p>
+<ul>
+<li>SSD写入前需擦除块（block），擦除粒度大</li>
+<li>垃圾收集（GC）：整理有效页，擦除空闲块</li>
+<li>GC在后台运行，可能影响性能（写放大）</li>
+<li>预留空间（OP）：SSD保留部分空间用于GC，提高性能和寿命</li>
+<li>TRIM：操作系统通知SSD哪些页可擦除，提高GC效率</li>
+</ul>
+<h3 id="RAID性能优化"><a href="#RAID性能优化" class="headerlink" title="RAID性能优化"></a>RAID性能优化</h3><p><strong>RAID故障、恢复和监控</strong>：</p>
+<ul>
+<li>RAID提供冗余和性能</li>
+<li>RAID级别选择：<ul>
+<li>RAID 0：条带化，性能高，无冗余</li>
+<li>RAID 1：镜像，冗余好，写性能一般</li>
+<li>RAID 5：分布式奇偶校验，读好，写有奇偶计算开销</li>
+<li>RAID 6：双奇偶，可容忍两块故障</li>
+<li>RAID 10：镜像+条带，性能好，冗余好，成本高</li>
+</ul>
+</li>
+<li>MySQL推荐RAID 10（性能和冗余平衡）</li>
+<li>监控RAID状态、磁盘健康、重建进度</li>
+</ul>
+<p><strong>RAID配置和缓存</strong>：</p>
+<ul>
+<li>RAID控制器缓存：读缓存、写缓存</li>
+<li>写回缓存（Write-back）：先写缓存再写磁盘，性能好，但断电可能丢数据（需电池保护BBU&#x2F;闪存）</li>
+<li>写透缓存（Write-through）：直接写磁盘，安全但慢</li>
+<li>启用电池保护的写回缓存可显著提升写性能</li>
+</ul>
+<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><ul>
+<li>网络带宽：大结果集、复制、备份需要高带宽</li>
+<li>网络延迟：分布式查询、远程连接受延迟影响</li>
+<li>TCP参数调整：缓冲区大小、连接队列</li>
+<li>网络中断聚合：减少中断开销</li>
+<li>绑定（Bonding）：多网卡聚合，提高带宽和冗余</li>
+</ul>
+<h3 id="选择文件系统"><a href="#选择文件系统" class="headerlink" title="选择文件系统"></a>选择文件系统</h3><ul>
+<li>Linux推荐XFS或ext4</li>
+<li>XFS：高性能，支持大文件，适合MySQL</li>
+<li>ext4：成熟稳定，日志文件系统</li>
+<li>避免使用Btrfs（稳定性和性能问题）</li>
+<li>文件系统挂载选项：<ul>
+<li><code>noatime</code>：不更新访问时间，减少写</li>
+<li><code>nodiratime</code>：不更新目录访问时间</li>
+<li><code>data=writeback</code>（ext4）：元数据日志，数据不日志，性能好但崩溃可能数据不一致</li>
+<li>XFS默认日志模式适合MySQL</li>
+</ul>
+</li>
+</ul>
+<p><strong>选择磁盘队列调度器</strong>：</p>
+<ul>
+<li>I&#x2F;O调度器：Noop、Deadline、CFQ、Kyber</li>
+<li>SSD推荐Noop或Deadline（SSD无寻道，不需要复杂调度）</li>
+<li>机械硬盘推荐Deadline（兼顾延迟和吞吐量）</li>
+<li>MySQL数据库推荐Deadline</li>
+</ul>
+<p><strong>内存和交换</strong>：</p>
+<ul>
+<li>尽量避免使用swap（swap会严重降低MySQL性能）</li>
+<li>配置<code>vm.swappiness=1</code>（尽量不使用swap）</li>
+<li>确保内存足够，MySQL缓冲池不超过物理内存</li>
+<li>禁用swap或限制swap使用</li>
+</ul>
+<p><strong>操作系统状态</strong>：</p>
+<ul>
+<li>监控CPU使用率、I&#x2F;O等待、内存使用、网络</li>
+<li><code>vmstat</code>、<code>iostat</code>、<code>mpstat</code>、<code>sar</code>、<code>top</code></li>
+<li>找出系统瓶颈</li>
+</ul>
+<p><strong>其他有用的工具</strong>：</p>
+<ul>
+<li><code>perf</code>：Linux性能分析工具</li>
+<li><code>bcc/BPF</code>：动态跟踪工具</li>
+<li><code>pt-stalk</code>：Percona Toolkit，问题发生时收集诊断信息</li>
+<li><code>pt-diskstats</code>：磁盘I&#x2F;O统计</li>
+</ul>
+<hr>
+<h2 id="第5章-优化服务器设置"><a href="#第5章-优化服务器设置" class="headerlink" title="第5章 优化服务器设置"></a>第5章 优化服务器设置</h2><h3 id="MySQL配置原则"><a href="#MySQL配置原则" class="headerlink" title="MySQL配置原则"></a>MySQL配置原则</h3><ul>
+<li>不要盲目调优，先找出瓶颈</li>
+<li>大部分默认配置已合理，只需调整少数关键参数</li>
+<li>配置变更后测量效果</li>
+<li>配置文件：my.cnf &#x2F; my.ini</li>
+<li>动态变量可运行时修改（SET GLOBAL），静态变量需重启</li>
+</ul>
+<h3 id="重要配置变量"><a href="#重要配置变量" class="headerlink" title="重要配置变量"></a>重要配置变量</h3><p><strong>InnoDB缓冲池</strong>：</p>
+<ul>
+<li><code>innodb_buffer_pool_size</code>：缓冲池大小，最重要的参数<ul>
+<li>专用数据库服务器：物理内存的50%-70%</li>
+<li>需为操作系统、其他进程、连接内存留空间</li>
+</ul>
+</li>
+<li><code>innodb_buffer_pool_instances</code>：缓冲池实例数，减少锁竞争（大缓冲池时设为多个）</li>
+<li><code>innodb_buffer_pool_dump_at_shutdown</code> &#x2F; <code>innodb_buffer_pool_load_at_startup</code>：缓冲池预热</li>
+</ul>
+<p><strong>InnoDB日志</strong>：</p>
+<ul>
+<li><code>innodb_log_file_size</code>：redo log文件大小<ul>
+<li>影响写性能和崩溃恢复时间</li>
+<li>越大写性能越好，但崩溃恢复越慢</li>
+<li>推荐512MB-2GB（写密集场景）</li>
+</ul>
+</li>
+<li><code>innodb_log_files_in_group</code>：日志文件数，默认2</li>
+<li><code>innodb_flush_log_at_trx_commit</code>：日志刷盘策略<ul>
+<li>0：每秒刷盘，事务提交不刷盘（性能最好，崩溃丢1秒数据）</li>
+<li>1：每次提交刷盘（最安全，默认，性能差）</li>
+<li>2：每次提交写操作系统缓存，每秒刷盘（折中）</li>
+</ul>
+</li>
+</ul>
+<p><strong>InnoDB I&#x2F;O</strong>：</p>
+<ul>
+<li><code>innodb_flush_method</code>：刷盘方法<ul>
+<li>O_DIRECT：绕过操作系统缓存，直接写磁盘（推荐，避免双缓冲）</li>
+<li>fsync：默认，使用操作系统缓存</li>
+</ul>
+</li>
+<li><code>innodb_io_capacity</code>：InnoDB后台I&#x2F;O能力（每秒IOPS）<ul>
+<li>根据磁盘性能设置：SAS 200-400，SSD 2000+，NVMe 10000+</li>
+</ul>
+</li>
+<li><code>innodb_io_capacity_max</code>：最大I&#x2F;O能力</li>
+<li><code>innodb_read_io_threads</code> &#x2F; <code>innodb_write_io_threads</code>：I&#x2F;O线程数</li>
+</ul>
+<p><strong>InnoDB其他</strong>：</p>
+<ul>
+<li><code>innodb_file_per_table=ON</code>：独立表空间（推荐）</li>
+<li><code>innodb_open_files</code>：可打开文件数</li>
+<li><code>table_open_cache</code>：表缓存</li>
+<li><code>innodb_lock_wait_timeout</code>：锁等待超时（默认50秒）</li>
+<li><code>innodb_print_all_deadlocks</code>：记录所有死锁到错误日志</li>
+</ul>
+<p><strong>连接和线程</strong>：</p>
+<ul>
+<li><code>max_connections</code>：最大连接数<ul>
+<li>不要设置过大（每个连接消耗内存）</li>
+<li>根据实际需求设置，配合连接池</li>
+</ul>
+</li>
+<li><code>thread_cache_size</code>：线程缓存大小</li>
+<li><code>wait_timeout</code> &#x2F; <code>interactive_timeout</code>：连接超时</li>
+<li><code>max_allowed_packet</code>：最大包大小（大查询&#x2F;大插入需调大）</li>
+</ul>
+<p><strong>查询缓存</strong>：</p>
+<ul>
+<li>MySQL 8.0已移除查询缓存</li>
+<li>之前版本：<code>query_cache_type</code>、<code>query_cache_size</code></li>
+<li>查询缓存有锁竞争，高并发下性能差，不推荐使用</li>
+</ul>
+<p><strong>排序和临时表</strong>：</p>
+<ul>
+<li><code>sort_buffer_size</code>：排序缓冲区（每个会话）</li>
+<li><code>join_buffer_size</code>：连接缓冲区（每个会话）</li>
+<li><code>tmp_table_size</code> &#x2F; <code>max_heap_table_size</code>：内存临时表大小<ul>
+<li>超过大小则转为磁盘临时表（性能差）</li>
+<li>两个变量需同时设置</li>
+</ul>
+</li>
+</ul>
+<p><strong>安全和二进制日志</strong>：</p>
+<ul>
+<li><code>server_id</code>：服务器ID（复制必需）</li>
+<li><code>log_bin</code>：启用binlog</li>
+<li><code>binlog_format=ROW</code>：行级复制（推荐）</li>
+<li><code>expire_logs_days</code> &#x2F; <code>binlog_expire_logs_seconds</code>：binlog过期时间</li>
+<li><code>sync_binlog</code>：binlog刷盘频率（1&#x3D;每次提交刷盘，最安全）</li>
+<li><code>gtid_mode=ON</code> &#x2F; <code>enforce_gtid_consistency=ON</code>：GTID复制</li>
+</ul>
+<h3 id="配置检查清单"><a href="#配置检查清单" class="headerlink" title="配置检查清单"></a>配置检查清单</h3><ul>
+<li>缓冲池大小是否合理</li>
+<li>redo log大小是否合理</li>
+<li>刷盘策略是否符合数据安全要求</li>
+<li>字符集是否统一（utf8mb4）</li>
+<li>时区设置</li>
+<li>复制配置</li>
+<li>连接数限制</li>
+<li>慢查询日志是否开启</li>
+</ul>
+<hr>
+<h2 id="第6章-Schema与数据类型优化"><a href="#第6章-Schema与数据类型优化" class="headerlink" title="第6章 Schema与数据类型优化"></a>第6章 Schema与数据类型优化</h2><h3 id="选择优化的数据类型"><a href="#选择优化的数据类型" class="headerlink" title="选择优化的数据类型"></a>选择优化的数据类型</h3><p><strong>更小的通常更好</strong>：</p>
+<ul>
+<li>尽量使用最小的数据类型（能存下数据即可）</li>
+<li>小数据类型占用更少磁盘、内存、CPU缓存</li>
+<li>如：年龄用TINYINT而非INT</li>
+</ul>
+<p><strong>简单就好</strong>：</p>
+<ul>
+<li>简单数据类型操作开销小</li>
+<li>整数比字符串比较快</li>
+<li>用日期时间类型而非字符串存储日期</li>
+<li>用IP地址的整数表示（INET_ATON）而非字符串</li>
+</ul>
+<p><strong>尽量避免NULL</strong>：</p>
+<ul>
+<li>NULL列使索引、索引统计、值比较更复杂</li>
+<li>NULL列需额外存储空间（1位&#x2F;列）</li>
+<li>可使用0、空字符串、特殊值替代NULL</li>
+<li>但InnoDB中NULL列的性能影响已减小，不必过度优化</li>
+</ul>
+<h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><ul>
+<li>TINYINT：8位，-128<del>127（或0</del>255无符号）</li>
+<li>SMALLINT：16位</li>
+<li>MEDIUMINT：24位</li>
+<li>INT：32位</li>
+<li>BIGINT：64位</li>
+<li>UNSIGNED：无符号，最大值翻倍（如INT UNSIGNED 0~4294967295）</li>
+<li>选择能存下数据的最小类型</li>
+<li>整数类型指定宽度（如INT(11)）不限制存储，只影响显示宽度</li>
+</ul>
+<h3 id="实数类型"><a href="#实数类型" class="headerlink" title="实数类型"></a>实数类型</h3><ul>
+<li>FLOAT：4字节，近似值</li>
+<li>DOUBLE：8字节，近似值</li>
+<li>DECIMAL：精确存储，用于货币等需精确计算的场景<ul>
+<li>DECIMAL(M,D)：M总位数，D小数位数</li>
+<li>每9位数字占4字节</li>
+<li>计算开销比FLOAT&#x2F;DOUBLE大</li>
+</ul>
+</li>
+<li>金额计算用DECIMAL或整数（分为单位）</li>
+</ul>
+<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><p><strong>VARCHAR</strong>：</p>
+<ul>
+<li>可变长度字符串，比定长节省空间</li>
+<li>需1-2字节存储长度</li>
+<li>适合长度变化大的字符串</li>
+<li>更新时可能导致行移动（长度增加）</li>
+</ul>
+<p><strong>CHAR</strong>：</p>
+<ul>
+<li>定长字符串，不足补空格</li>
+<li>适合长度固定或很短的字符串</li>
+<li>如：MD5值CHAR(32)、性别CHAR(1)、状态码</li>
+</ul>
+<p><strong>TEXT&#x2F;BLOB</strong>：</p>
+<ul>
+<li>大对象类型，存储大量数据</li>
+<li>TEXT：文本（TINYTEXT、TEXT、MEDIUMTEXT、LONGTEXT）</li>
+<li>BLOB：二进制（TINYBLOB、BLOB、MEDIUMBLOB、LONGBLOB）</li>
+<li>不能有默认值</li>
+<li>排序只取前max_sort_length字节</li>
+<li>可能导致磁盘临时表</li>
+<li>大字段建议单独存储或使用外部存储</li>
+</ul>
+<p><strong>枚举（ENUM）</strong>：</p>
+<ul>
+<li>字符串对象，值从允许列表中选择</li>
+<li>内部用整数存储，紧凑</li>
+<li>列表修改需ALTER TABLE（昂贵）</li>
+<li>适合固定的状态值、类型值</li>
+<li>排序按内部整数而非字符串</li>
+</ul>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><ul>
+<li>DATETIME：8字节，范围1000-9999年，与时区无关</li>
+<li>TIMESTAMP：4字节，范围1970-2038年，与时区相关，自动更新</li>
+<li>DATE：3字节，仅日期</li>
+<li>TIME：3字节，仅时间</li>
+<li>YEAR：1字节，年份</li>
+<li>选择：需大范围用DATETIME，需时区自动转换用TIMESTAMP</li>
+<li>避免用字符串存储日期</li>
+</ul>
+<h3 id="位数据类型"><a href="#位数据类型" class="headerlink" title="位数据类型"></a>位数据类型</h3><ul>
+<li>BIT：位字段，可存储多个布尔值（BIT(8)存8个布尔）</li>
+<li>节省空间，但操作不便</li>
+<li>整数的位运算也可实现类似效果</li>
+</ul>
+<h3 id="选择标识符（主键）"><a href="#选择标识符（主键）" class="headerlink" title="选择标识符（主键）"></a>选择标识符（主键）</h3><ul>
+<li>主键应尽可能小（整数最佳）</li>
+<li>自增整数（AUTO_INCREMENT）是常用主键</li>
+<li>UUID不适合作为InnoDB主键（随机插入导致页分裂、聚簇索引性能差）</li>
+<li>若需全局唯一ID，考虑雪花算法（Snowflake）等有序ID</li>
+<li>避免使用过长字符串作为主键</li>
+</ul>
+<h3 id="索引和外键"><a href="#索引和外键" class="headerlink" title="索引和外键"></a>索引和外键</h3><ul>
+<li>索引加速查询，但增加写开销和存储空间</li>
+<li>外键保证引用完整性，但有性能开销</li>
+<li>InnoDB外键自动创建索引</li>
+<li>高并发写场景可考虑应用层维护引用完整性，不用外键</li>
+</ul>
+<h3 id="Schema设计中的陷阱"><a href="#Schema设计中的陷阱" class="headerlink" title="Schema设计中的陷阱"></a>Schema设计中的陷阱</h3><ul>
+<li>太多列（宽表）</li>
+<li>太多联合查询</li>
+<li>过度使用ENUM</li>
+<li>过度使用NULL</li>
+<li>用不同数据类型存储相同值（关联列类型不一致导致索引失效）</li>
+</ul>
+<hr>
+<h2 id="第7章-索引优化"><a href="#第7章-索引优化" class="headerlink" title="第7章 索引优化"></a>第7章 索引优化</h2><h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><p><strong>B-Tree索引</strong>：</p>
+<ul>
+<li>InnoDB默认索引类型，B+树实现</li>
+<li>适合全值匹配、最左前缀匹配、范围查询、排序</li>
+<li>聚簇索引：主键索引，叶子节点存储数据行</li>
+<li>二级索引：非主键索引，叶子节点存储主键值</li>
+</ul>
+<p><strong>哈希索引</strong>：</p>
+<ul>
+<li>哈希表实现，O(1)查找</li>
+<li>只支持等值查询，不支持范围、排序</li>
+<li>InnoDB自适应哈希索引（自动创建）</li>
+<li>Memory引擎支持哈希索引</li>
+</ul>
+<p><strong>全文索引</strong>：</p>
+<ul>
+<li>全文搜索，MATCH AGAINST</li>
+<li>适合文本搜索</li>
+<li>InnoDB支持全文索引（5.6+）</li>
+</ul>
+<p><strong>空间索引</strong>：</p>
+<ul>
+<li>GIS数据，R-Tree</li>
+<li>MySQL支持空间索引</li>
+</ul>
+<h3 id="B-Tree索引工作原理"><a href="#B-Tree索引工作原理" class="headerlink" title="B-Tree索引工作原理"></a>B-Tree索引工作原理</h3><ul>
+<li>B+树：非叶子节点存储键值和指针，叶子节点存储数据（或主键），叶子节点链表连接</li>
+<li>聚簇索引：数据按主键顺序存储，主键查询快，范围查询快</li>
+<li>二级索引：叶子节点存储主键值，查询需回表（再查聚簇索引）</li>
+<li>覆盖索引：索引包含查询所需所有列，无需回表</li>
+</ul>
+<h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><ul>
+<li>减少服务器扫描的数据量</li>
+<li>避免排序和临时表</li>
+<li>将随机I&#x2F;O变为顺序I&#x2F;O</li>
+<li>加速查询</li>
+</ul>
+<h3 id="高性能索引策略"><a href="#高性能索引策略" class="headerlink" title="高性能索引策略"></a>高性能索引策略</h3><p><strong>最左前缀原则</strong>：</p>
+<ul>
+<li>联合索引按列顺序匹配</li>
+<li>查询必须从索引最左列开始</li>
+<li>不能跳过中间列</li>
+<li>范围查询后的列不能使用索引</li>
+</ul>
+<p><strong>索引列不能是表达式的一部分</strong>：</p>
+<ul>
+<li><code>WHERE TO_DAYS(CURDATE()) - TO_DAYS(date_col) &lt;= 10</code> 不能用索引</li>
+<li>改写为 <code>WHERE date_col &gt;= DATE_SUB(CURDATE(), INTERVAL 10 DAY)</code></li>
+</ul>
+<p><strong>前缀索引</strong>：</p>
+<ul>
+<li>对长字符串列索引前N个字符</li>
+<li>节省空间，但不能用于ORDER BY和GROUP BY</li>
+<li>选择合适前缀长度（区分度高）</li>
+</ul>
+<p><strong>选择合适的索引列顺序</strong>：</p>
+<ul>
+<li>等值查询列在前，范围查询列在后</li>
+<li>区分度高的列在前</li>
+<li>考虑排序和分组需求</li>
+</ul>
+<p><strong>聚簇索引最佳实践</strong>：</p>
+<ul>
+<li>主键用自增整数（顺序插入，减少页分裂）</li>
+<li>避免随机主键（UUID）</li>
+<li>主键尽量小（二级索引存储主键值）</li>
+</ul>
+<p><strong>覆盖索引</strong>：</p>
+<ul>
+<li>索引包含查询所有列</li>
+<li>避免回表，性能提升</li>
+<li>EXPLAIN中Extra显示”Using index”</li>
+</ul>
+<p><strong>使用索引扫描排序</strong>：</p>
+<ul>
+<li>索引顺序与ORDER BY一致时，可用索引排序</li>
+<li>避免filesort</li>
+<li>条件：最左前缀匹配、所有列升序或降序一致</li>
+</ul>
+<h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><ul>
+<li>索引碎片化：删除&#x2F;更新导致页分裂和碎片</li>
+<li>分析索引：<code>ANALYZE TABLE</code>更新统计信息</li>
+<li>优化表：<code>OPTIMIZE TABLE</code>重建表和索引</li>
+<li>监控索引使用：<code>sys.schema_unused_indexes</code>、<code>sys.schema_redundant_indexes</code></li>
+<li>删除未使用和冗余索引</li>
+</ul>
+<h3 id="索引设计误区"><a href="#索引设计误区" class="headerlink" title="索引设计误区"></a>索引设计误区</h3><ul>
+<li>索引越多越好（索引增加写开销）</li>
+<li>为每个列创建索引（联合索引更高效）</li>
+<li>忽略查询模式设计索引</li>
+<li>不考虑索引维护成本</li>
+</ul>
+<hr>
+<h2 id="第8章-查询性能优化"><a href="#第8章-查询性能优化" class="headerlink" title="第8章 查询性能优化"></a>第8章 查询性能优化</h2><h3 id="慢查询基础：优化数据访问"><a href="#慢查询基础：优化数据访问" class="headerlink" title="慢查询基础：优化数据访问"></a>慢查询基础：优化数据访问</h3><ul>
+<li>查询性能差的根本原因：访问数据太多</li>
+<li>分析步骤：<ol>
+<li>应用是否请求了太多数据（不需要的行&#x2F;列）</li>
+<li>MySQL是否扫描了太多额外行</li>
+</ol>
+</li>
+</ul>
+<p><strong>是否请求了不需要的数据</strong>：</p>
+<ul>
+<li>SELECT * 获取不需要的列</li>
+<li>查询过多行（LIMIT限制）</li>
+<li>多表关联获取重复数据</li>
+</ul>
+<p><strong>MySQL是否扫描额外的行</strong>：</p>
+<ul>
+<li>衡量指标：响应时间、扫描行数、返回行数</li>
+<li>扫描行数远大于返回行数 → 需要优化索引</li>
+<li>EXPLAIN分析执行计划</li>
+</ul>
+<h3 id="重构查询方式"><a href="#重构查询方式" class="headerlink" title="重构查询方式"></a>重构查询方式</h3><p><strong>一个复杂查询还是多个简单查询</strong>：</p>
+<ul>
+<li>MySQL内部连接&#x2F;排序开销大</li>
+<li>拆分为多个简单查询，应用层合并可能更快</li>
+<li>减少锁持有时间</li>
+</ul>
+<p><strong>切分查询</strong>：</p>
+<ul>
+<li>大查询（如DELETE大量行）分批执行</li>
+<li>避免长时间锁表、大量undo log、主从延迟</li>
+<li>如：每次删除1000行，循环执行</li>
+</ul>
+<p><strong>分解关联查询</strong>：</p>
+<ul>
+<li>将多表JOIN拆为单表查询，应用层关联</li>
+<li>优点：缓存效率高、减少锁竞争、易于分布式扩展</li>
+<li>缺点：多次查询、应用层逻辑复杂</li>
+</ul>
+<h3 id="查询执行基础"><a href="#查询执行基础" class="headerlink" title="查询执行基础"></a>查询执行基础</h3><p>MySQL查询执行流程：</p>
+<ol>
+<li>客户端发送SQL</li>
+<li>服务器解析、预处理、优化</li>
+<li>生成执行计划</li>
+<li>存储引擎执行</li>
+<li>返回结果</li>
+</ol>
+<p><strong>MySQL客户端&#x2F;服务器协议</strong>：</p>
+<ul>
+<li>半双工，查询结果流式返回</li>
+<li>客户端不能中途停止接收（必须接收完或断开）</li>
+<li>大结果集消耗客户端内存</li>
+</ul>
+<p><strong>查询状态</strong>：</p>
+<ul>
+<li>Sleep：等待客户端发送请求</li>
+<li>Query：执行查询</li>
+<li>Locked：等待表锁</li>
+<li>Analyzing statistics &#x2F; Optimizing：优化</li>
+<li>Preparing：预处理</li>
+<li>Sorting result：排序</li>
+<li>Sending data：发送数据</li>
+<li><code>SHOW FULL PROCESSLIST</code>查看</li>
+</ul>
+<h3 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h3><ul>
+<li>基于成本的优化器（CBO）</li>
+<li>估算各种执行计划成本，选择最低成本</li>
+<li>成本基于统计信息（索引基数、表行数等）</li>
+<li>统计信息可能不准确，导致优化器选错</li>
+<li><code>ANALYZE TABLE</code>更新统计信息</li>
+<li><code>EXPLAIN</code>查看执行计划</li>
+<li>优化器提示（Optimizer Hints）可干预优化器选择</li>
+</ul>
+<h3 id="特定类型查询优化"><a href="#特定类型查询优化" class="headerlink" title="特定类型查询优化"></a>特定类型查询优化</h3><p><strong>优化COUNT()查询</strong>：</p>
+<ul>
+<li>COUNT(*)：统计行数，InnoDB需扫描</li>
+<li>COUNT(column)：统计非NULL行数</li>
+<li>近似值：<code>SHOW TABLE STATUS</code>的Rows列（估算，不精确）</li>
+<li>大表精确COUNT慢，可考虑缓存、汇总表、近似值</li>
+</ul>
+<p><strong>优化关联查询</strong>：</p>
+<ul>
+<li>确保ON或USING列有索引</li>
+<li>小表驱动大表</li>
+<li>避免不必要的排序（ORDER BY可利用索引）</li>
+<li>限制关联表数量（MySQL最多61张表，建议不超过5-7张）</li>
+</ul>
+<p><strong>优化LIMIT分页</strong>：</p>
+<ul>
+<li>深分页（LIMIT 1000000, 10）扫描大量行</li>
+<li>优化：<ul>
+<li>延迟关联：先查主键，再回表查数据</li>
+<li>书签分页：记录上一页最后ID，WHERE id &gt; last_id LIMIT 10</li>
+<li>避免深分页，限制最大页数</li>
+</ul>
+</li>
+</ul>
+<p><strong>优化UNION查询</strong>：</p>
+<ul>
+<li>UNION ALL不去重，比UNION快</li>
+<li>除非需要去重，否则用UNION ALL</li>
+<li>每个子查询可独立优化</li>
+</ul>
+<p><strong>优化GROUP BY和DISTINCT</strong>：</p>
+<ul>
+<li>利用索引分组&#x2F;去重</li>
+<li>无法用索引时，MySQL用临时表或filesort</li>
+<li>大结果集分组性能差</li>
+<li>可考虑汇总表预计算</li>
+</ul>
+<h3 id="EXPLAIN解读"><a href="#EXPLAIN解读" class="headerlink" title="EXPLAIN解读"></a>EXPLAIN解读</h3><ul>
+<li>id：查询序号</li>
+<li>select_type：查询类型（SIMPLE、PRIMARY、SUBQUERY、DERIVED、UNION等）</li>
+<li>table：表名</li>
+<li>type：访问类型（system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL，越左越好）</li>
+<li>possible_keys：可能使用的索引</li>
+<li>key：实际使用的索引</li>
+<li>key_len：索引使用长度</li>
+<li>ref：索引比较的列</li>
+<li>rows：预估扫描行数</li>
+<li>Extra：额外信息（Using index、Using where、Using filesort、Using temporary等）</li>
+</ul>
+<hr>
+<h2 id="第9章-复制"><a href="#第9章-复制" class="headerlink" title="第9章 复制"></a>第9章 复制</h2><h3 id="复制概述"><a href="#复制概述" class="headerlink" title="复制概述"></a>复制概述</h3><p>MySQL复制是将数据从一个服务器（主库）复制到另一个服务器（从库）的过程。</p>
+<p><strong>复制用途</strong>：</p>
+<ul>
+<li>数据备份</li>
+<li>读扩展（读写分离）</li>
+<li>高可用（主从切换）</li>
+<li>数据分析（从库跑报表）</li>
+<li>地理分布</li>
+</ul>
+<p><strong>复制原理</strong>：</p>
+<ol>
+<li>主库将修改写入binlog</li>
+<li>从库IO线程读取主库binlog，写入relay log</li>
+<li>从库SQL线程读取relay log并重放</li>
+<li>异步复制，从库可能延迟</li>
+</ol>
+<h3 id="复制模式"><a href="#复制模式" class="headerlink" title="复制模式"></a>复制模式</h3><p><strong>基于语句的复制（SBR）</strong>：</p>
+<ul>
+<li>复制SQL语句</li>
+<li>优点：binlog小、易审计</li>
+<li>缺点：非确定性函数（NOW()、UUID()）、触发器、存储过程可能导致主从不一致</li>
+</ul>
+<p><strong>基于行的复制（RBR）</strong>：</p>
+<ul>
+<li>复制行变更（before image + after image）</li>
+<li>优点：精确、安全、无确定性问题</li>
+<li>缺点：binlog大（大表UPDATE&#x2F;DELETE）、无法直接看到SQL</li>
+</ul>
+<p><strong>混合模式（MBR）</strong>：</p>
+<ul>
+<li>自动选择SBR或RBR</li>
+<li>安全语句用SBR，非确定性语句用RBR</li>
+<li>MySQL默认推荐ROW模式</li>
+</ul>
+<h3 id="GTID复制"><a href="#GTID复制" class="headerlink" title="GTID复制"></a>GTID复制</h3><ul>
+<li>GTID（全局事务ID）：每个事务唯一标识</li>
+<li>格式：source_id:transaction_id</li>
+<li>从库记录已执行的GTID集合</li>
+<li>自动定位复制位置，无需手动指定binlog文件名和位置</li>
+<li>故障切换更简单</li>
+<li>配置：<code>gtid_mode=ON</code>、<code>enforce_gtid_consistency=ON</code></li>
+</ul>
+<h3 id="复制拓扑"><a href="#复制拓扑" class="headerlink" title="复制拓扑"></a>复制拓扑</h3><ul>
+<li>主从（一主一从）</li>
+<li>一主多从</li>
+<li>主主（双主，需注意冲突）</li>
+<li>级联复制（主→从→从，减少主库压力）</li>
+<li>环形复制（多主，复杂，不推荐）</li>
+</ul>
+<h3 id="复制监控和排错"><a href="#复制监控和排错" class="headerlink" title="复制监控和排错"></a>复制监控和排错</h3><ul>
+<li><code>SHOW SLAVE STATUS\G</code>查看从库状态</li>
+<li>关键指标：<ul>
+<li>Slave_IO_Running：IO线程状态</li>
+<li>Slave_SQL_Running：SQL线程状态</li>
+<li>Seconds_Behind_Master：延迟秒数（估算，不精确）</li>
+<li>Last_IO_Error &#x2F; Last_SQL_Error：错误信息</li>
+</ul>
+</li>
+<li>常见问题：<ul>
+<li>连接错误：网络、权限、防火墙</li>
+<li>主键冲突：数据不一致</li>
+<li>表不存在：结构不一致</li>
+<li>延迟大：大事务、慢查询、网络、从库性能差</li>
+</ul>
+</li>
+</ul>
+<h3 id="复制性能优化"><a href="#复制性能优化" class="headerlink" title="复制性能优化"></a>复制性能优化</h3><ul>
+<li>从库并行复制（MySQL 5.7+基于组提交，8.0+基于WRITESET）</li>
+<li><code>slave_parallel_workers</code>：并行复制线程数</li>
+<li><code>slave_parallel_type=LOGICAL_CLOCK</code>：基于组提交的并行</li>
+<li>大事务拆分为小事务</li>
+<li>从库使用更好的硬件</li>
+<li>网络优化</li>
+</ul>
+<hr>
+<h2 id="第10章-高可用与可扩展性"><a href="#第10章-高可用与可扩展性" class="headerlink" title="第10章 高可用与可扩展性"></a>第10章 高可用与可扩展性</h2><h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p><strong>高可用目标</strong>：</p>
+<ul>
+<li>减少停机时间，提高服务可用性</li>
+<li>可用性 &#x3D; 正常运行时间 &#x2F; 总时间</li>
+<li>99.9% &#x3D; 年停机8.76小时</li>
+<li>99.99% &#x3D; 年停机52.6分钟</li>
+<li>99.999% &#x3D; 年停机5.26分钟</li>
+</ul>
+<p><strong>高可用方案</strong>：</p>
+<ul>
+<li>主从复制 + 手动&#x2F;自动切换</li>
+<li>MHA（Master High Availability）：自动故障切换</li>
+<li>Orchestrator：MySQL复制拓扑管理和故障切换</li>
+<li>ProxySQL &#x2F; HAProxy：读写分离和故障转移</li>
+<li>组复制（Group Replication）：MySQL原生多主高可用</li>
+<li>InnoDB Cluster：组复制 + MySQL Router + MySQL Shell</li>
+</ul>
+<p><strong>故障切换</strong>：</p>
+<ul>
+<li>检测主库故障</li>
+<li>提升从库为主库</li>
+<li>切换应用连接</li>
+<li>恢复原主库为从库</li>
+<li>注意：数据一致性、切换时间、脑裂</li>
+</ul>
+<h3 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h3><p><strong>扩展方式</strong>：</p>
+<ul>
+<li>垂直扩展（Scale Up）：升级硬件（更快CPU、更大内存、更快磁盘）</li>
+<li>水平扩展（Scale Out）：增加服务器数量</li>
+</ul>
+<p><strong>读扩展</strong>：</p>
+<ul>
+<li>读写分离：写主库，读从库</li>
+<li>多个从库分担读压力</li>
+<li>中间件（ProxySQL、MaxScale）路由</li>
+<li>注意：复制延迟导致读不一致</li>
+</ul>
+<p><strong>写扩展</strong>：</p>
+<ul>
+<li>写扩展比读扩展困难</li>
+<li>分库分表（Sharding）：<ul>
+<li>垂直分库：按业务模块拆分</li>
+<li>水平分表：按规则（哈希、范围）将数据分散到多表&#x2F;多库</li>
+</ul>
+</li>
+<li>分库分表中间件：ShardingSphere、MyCAT、Vitess</li>
+<li>注意：跨库JOIN、分布式事务、全局ID、扩容迁移</li>
+</ul>
+<p><strong>缓存</strong>：</p>
+<ul>
+<li>减少数据库访问</li>
+<li>Redis、Memcached</li>
+<li>缓存策略：Cache-Aside、Write-Through、Write-Behind</li>
+<li>缓存穿透、击穿、雪崩问题</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《高性能MySQL》是MySQL性能优化领域的经典著作，第4版由Jeremy Tinley和Silvia Botros撰写，更新了云时代、可靠性工程、Performance Schema等新内容。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1章</td>
+<td>MySQL架构</td>
+<td>逻辑架构、并发控制、事务、MVCC、复制、InnoDB</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>监控</td>
+<td>SLI&#x2F;SLO、可用性&#x2F;延迟&#x2F;错误监控、Prometheus&#x2F;Grafana</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>Performance Schema</td>
+<td>插桩、消费者表、sys Schema、语句&#x2F;锁&#x2F;内存&#x2F;错误分析</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>硬件优化</td>
+<td>CPU&#x2F;内存&#x2F;磁盘选择、SSD、RAID、文件系统、I&#x2F;O调度</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>服务器配置</td>
+<td>缓冲池、redo log、刷盘策略、I&#x2F;O、连接、复制配置</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>Schema设计</td>
+<td>数据类型选择、整数&#x2F;实数&#x2F;字符串&#x2F;日期、主键、陷阱</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>索引优化</td>
+<td>B-Tree、聚簇&#x2F;二级索引、最左前缀、覆盖索引、索引维护</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>查询优化</td>
+<td>慢查询分析、重构查询、执行计划、COUNT&#x2F;JOIN&#x2F;LIMIT优化、EXPLAIN</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>复制</td>
+<td>复制原理、SBR&#x2F;RBR、GTID、复制拓扑、监控排错、并行复制</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>高可用与扩展</td>
+<td>高可用方案、故障切换、读写分离、分库分表、缓存</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>第1章是基础，理解MySQL架构是优化的前提</li>
+<li>第3章Performance Schema是第4版重点，现代MySQL性能诊断必备</li>
+<li>第6-8章（Schema、索引、查询）是日常优化最常用的内容</li>
+<li>第4-5章（硬件、配置）在部署和调优时参考</li>
+<li>第9-10章（复制、高可用）在生产环境架构设计时参考</li>
+<li>优化原则：先测量再优化，不要盲目调参</li>
+<li>配合工具：EXPLAIN、Performance Schema、慢查询日志、pt-query-digest</li>
+<li>推荐配合《MySQL技术内幕：InnoDB存储引擎》深入理解InnoDB</li>
+</ul>
+<p>这本书适合DBA、后端开发工程师、架构师阅读，是MySQL性能优化领域的权威参考。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/">疯狂Android讲义</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式：可复用面向对象软件的基础</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E6%80%A7%E8%83%BDMySQL%EF%BC%88%E7%AC%AC4%E7%89%88%EF%BC%89"><span class="toc-text">高性能MySQL（第4版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-MySQL%E6%9E%B6%E6%9E%84"><span class="toc-text">第1章 MySQL架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%B7%A5%E7%A8%8B%E4%B8%96%E7%95%8C%E4%B8%AD%E7%9A%84%E7%9B%91%E6%8E%A7"><span class="toc-text">第2章 可靠性工程世界中的监控</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-Performance-Schema"><span class="toc-text">第3章 Performance Schema</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%92%8C%E7%A1%AC%E4%BB%B6%E4%BC%98%E5%8C%96"><span class="toc-text">第4章 操作系统和硬件优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E4%BC%98%E5%8C%96%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">第5章 优化服务器设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-Schema%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-text">第6章 Schema与数据类型优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-text">第7章 索引优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E6%9F%A5%E8%AF%A2%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-text">第8章 查询性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E5%A4%8D%E5%88%B6"><span class="toc-text">第9章 复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E9%AB%98%E5%8F%AF%E7%94%A8%E4%B8%8E%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">第10章 高可用与可扩展性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

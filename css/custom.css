@@ -1,0 +1,214 @@
+#data-toc[collapse='true'] .toc-item.toc-manual-collapsed > .toc-link + .toc-child {
+  display: none !important;
+}
+
+/* 有子级的目录项显示展开/收起箭头 */
+#data-toc[collapse='true'] .toc-has-child > .toc-link {
+  position: relative;
+  padding-left: 1.1rem;
+  cursor: pointer;
+}
+
+#data-toc[collapse='true'] .toc-has-child > .toc-link::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--text-p3);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+/* 展开状态箭头朝下 */
+#data-toc[collapse='true'] .toc-has-child:not(.toc-manual-collapsed) > .toc-link::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.documents-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  color: var(--text-p2);
+  background: linear-gradient(135deg, var(--theme-link-opa), var(--block));
+  border: 1px solid var(--block-border);
+  border-radius: 14px;
+}
+
+.documents-count {
+  color: var(--theme-link);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.documents-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.documents-year {
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--block-border);
+  border-radius: 14px;
+}
+
+.documents-year-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  color: var(--text-p1);
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: var(--block);
+}
+
+.documents-year-title small {
+  color: var(--text-p3);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.documents-year-list {
+  display: grid;
+}
+
+.md-text .document-item {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.85rem 1rem;
+  color: var(--text-p1);
+  text-decoration: none;
+  background: none;
+  border-bottom: 1px solid var(--block-border);
+}
+
+.md-text .document-item:last-child {
+  border-bottom: 0;
+}
+
+.md-text .document-item:hover {
+  color: var(--theme-link);
+  background: var(--block-hover);
+}
+
+.document-item time {
+  color: var(--text-p3);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.document-title {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-category {
+  padding: 0.2rem 0.55rem;
+  color: var(--text-p2);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  background: var(--block);
+  border-radius: 999px;
+}
+
+.work-log-table-wrap {
+  margin: 1.5rem 0 2rem;
+  overflow-x: auto;
+}
+
+.md-text .work-log-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  color: var(--text-p1);
+  font-size: 0.92rem;
+}
+
+.work-log-table th,
+.work-log-table td {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--block-border);
+  vertical-align: middle;
+}
+
+.work-log-table th {
+  color: var(--text-p1);
+  font-weight: 700;
+  text-align: center;
+  background: #dff3dc;
+}
+
+.work-log-table th:first-child,
+.work-log-table td:first-child {
+  width: 62%;
+}
+
+.work-log-table th:nth-child(2),
+.work-log-table td:nth-child(2) {
+  width: 23%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.work-log-table th:last-child,
+.work-log-table td:last-child {
+  width: 15%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.work-progress,
+.work-check {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.work-progress {
+  padding: 0.18rem 0.55rem;
+  border-radius: 0.5rem;
+}
+
+.work-progress.done {
+  color: #176b2c;
+  background: #d9f3df;
+}
+
+.work-progress.ongoing {
+  color: #805b13;
+  background: #ffebc7;
+}
+
+.work-check.done {
+  color: #fff;
+  background: #39b938;
+}
+
+.work-check {
+  min-width: 1.1rem;
+  min-height: 1.1rem;
+  line-height: 1.1rem;
+  color: #39b938;
+  border: 1px solid #39b938;
+}
+
+@media (max-width: 640px) {
+  .md-text .document-item {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+  }
+
+  .document-category {
+    display: none;
+  }
+}

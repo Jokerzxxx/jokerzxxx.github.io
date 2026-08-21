@@ -1,0 +1,978 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Android进阶之光 - 码上弦音</title>
+
+  
+    <meta name="description" content="Android进阶之光 作者：刘望舒全书共11章，493页，涵盖Android新特性、Material Design、View体系、多线程、网络框架、设计模式、事件总线、RxJava、依赖注入、应用架构和系统架构。   第1章 Android新特性1.1 Android 5.0新特性Android 5.0（Lollipop）是Android历史上的重大版本更新，引入了Material Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android进阶之光">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="Android进阶之光 作者：刘望舒全书共11章，493页，涵盖Android新特性、Material Design、View体系、多线程、网络框架、设计模式、事件总线、RxJava、依赖注入、应用架构和系统架构。   第1章 Android新特性1.1 Android 5.0新特性Android 5.0（Lollipop）是Android历史上的重大版本更新，引入了Material Design">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-21T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-21T06:08:40.460Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="进阶">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="Android,阅读,进阶">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-21T03:00:00.000Z">2026-08-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-21T06:08:40.460Z">2026-08-21</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Android进阶之光</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="Android进阶之光"><a href="#Android进阶之光" class="headerlink" title="Android进阶之光"></a>Android进阶之光</h1><blockquote>
+<p>作者：刘望舒<br>全书共11章，493页，涵盖Android新特性、Material Design、View体系、多线程、网络框架、设计模式、事件总线、RxJava、依赖注入、应用架构和系统架构。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-Android新特性"><a href="#第1章-Android新特性" class="headerlink" title="第1章 Android新特性"></a>第1章 Android新特性</h2><h3 id="1-1-Android-5-0新特性"><a href="#1-1-Android-5-0新特性" class="headerlink" title="1.1 Android 5.0新特性"></a>1.1 Android 5.0新特性</h3><p>Android 5.0（Lollipop）是Android历史上的重大版本更新，引入了Material Design设计语言。</p>
+<p><strong>主要新特性：</strong></p>
+<ul>
+<li><strong>Material Design</strong>：全新的设计语言，强调质感、阴影、动画和过渡效果</li>
+<li><strong>RecyclerView</strong>：取代ListView和GridView，更灵活、更高效的列表控件，强制使用ViewHolder模式</li>
+<li><strong>CardView</strong>：卡片式布局容器，自带圆角和阴影效果</li>
+<li><strong>Notification升级</strong>：支持三种通知样式（普通、大文本、大图片），锁屏显示通知，优先级设置</li>
+<li><strong>Toolbar</strong>：取代ActionBar，更灵活的导航栏控件</li>
+<li><strong>Palette</strong>：从图片中提取颜色，实现界面色调与图片协调</li>
+<li><strong>JobScheduler</strong>：统一的任务调度API，优化电池寿命</li>
+<li><strong>ART运行时</strong>：取代Dalvik，采用AOT（Ahead-Of-Time）编译，提升应用性能</li>
+</ul>
+<h3 id="1-2-Android-6-0新特性"><a href="#1-2-Android-6-0新特性" class="headerlink" title="1.2 Android 6.0新特性"></a>1.2 Android 6.0新特性</h3><p>Android 6.0（Marshmallow）的核心变化是运行时权限机制。</p>
+<p><strong>主要新特性：</strong></p>
+<ul>
+<li><strong>运行时权限</strong>：危险权限不再在安装时授予，而是在运行时动态申请。用户可以随时在设置中撤销权限。危险权限分为9组：日历、相机、通讯录、位置、麦克风、电话、传感器、短信、存储。</li>
+<li><strong>Doze模式</strong>：设备未充电、屏幕关闭一段时间后进入低功耗模式，限制网络访问和后台任务</li>
+<li><strong>App Standby</strong>：长期未使用的应用进入待机状态，限制网络访问</li>
+<li><strong>文本选择</strong>：应用内文本选择时显示相关操作（如翻译、搜索）</li>
+<li><strong>指纹认证</strong>：原生指纹识别API</li>
+<li><strong>低功耗蓝牙</strong>：增强BLE支持</li>
+</ul>
+<h3 id="1-3-Android-7-0新特性"><a href="#1-3-Android-7-0新特性" class="headerlink" title="1.3 Android 7.0新特性"></a>1.3 Android 7.0新特性</h3><p>Android 7.0（Nougat）引入了多窗口模式。</p>
+<p><strong>主要新特性：</strong></p>
+<ul>
+<li><strong>多窗口模式</strong>：支持分屏、画中画（Android TV）、自由形状模式。Activity可配置<code>resizeableActivity</code>属性</li>
+<li><strong>通知增强</strong>：直接回复（Inline Reply）、捆绑通知（Notification Groups）、自定义通知视图</li>
+<li><strong>Data Saver</strong>：数据节省模式，限制后台数据使用</li>
+<li><strong>Quick Settings</strong>：快速设置面板可自定义</li>
+<li><strong>多语言支持</strong>：应用可设置不同语言，系统按优先级匹配</li>
+<li><strong>Vulkan API</strong>：新一代3D图形API，更低的CPU开销</li>
+<li><strong>Project Svelte</strong>：优化后台进程，减少内存占用</li>
+</ul>
+<hr>
+<h2 id="第2章-Material-Design"><a href="#第2章-Material-Design" class="headerlink" title="第2章 Material Design"></a>第2章 Material Design</h2><h3 id="2-1-Material-Design概述"><a href="#2-1-Material-Design概述" class="headerlink" title="2.1 Material Design概述"></a>2.1 Material Design概述</h3><p>Material Design是Google推出的设计语言，核心思想是将物理世界的材质质感引入数字界面。</p>
+<p><strong>核心原则：</strong></p>
+<ul>
+<li><strong>材质与空间</strong>：界面元素是具有厚度的”纸片”，通过z轴高度产生阴影</li>
+<li><strong>动画</strong>：动效是有意义的，引导用户注意力，提供反馈</li>
+<li><strong>样式</strong>：大胆的色彩、排版和图标</li>
+<li><strong>组件</strong>：统一的设计组件库</li>
+</ul>
+<h3 id="2-2-Design-Support-Library常用控件"><a href="#2-2-Design-Support-Library常用控件" class="headerlink" title="2.2 Design Support Library常用控件"></a>2.2 Design Support Library常用控件</h3><p><strong>Snackbar</strong>：轻量级提示，显示在屏幕底部，可包含一个操作按钮，自动消失。与Toast的区别：Snackbar可滑动消失，可包含操作。</p>
+<p><strong>TextInputLayout</strong>：包裹EditText，实现浮动标签效果（输入时hint上浮为标签），支持错误提示。</p>
+<p><strong>FloatingActionButton</strong>：浮动操作按钮，圆形按钮，带阴影，通常用于页面主要操作。</p>
+<p><strong>TabLayout</strong>：选项卡布局，配合ViewPager实现页面切换，支持可滚动标签和固定标签。</p>
+<p><strong>NavigationView</strong>：抽屉菜单，包含头部布局和菜单列表，配合DrawerLayout使用。</p>
+<p><strong>CoordinatorLayout</strong>：超级FrameLayout，协调子View之间的交互。通过Behavior机制实现：</p>
+<ul>
+<li>AppBarLayout折叠效果（Toolbar随滚动隐藏&#x2F;显示）</li>
+<li>CollapsingToolbarLayout折叠工具栏（视差效果、标题缩放）</li>
+<li>Snackbar与FAB的协调（Snackbar出现时FAB上移）</li>
+</ul>
+<hr>
+<h2 id="第3章-View体系与自定义View"><a href="#第3章-View体系与自定义View" class="headerlink" title="第3章 View体系与自定义View"></a>第3章 View体系与自定义View</h2><h3 id="3-1-View与ViewGroup"><a href="#3-1-View与ViewGroup" class="headerlink" title="3.1 View与ViewGroup"></a>3.1 View与ViewGroup</h3><p>View是所有控件的基类，ViewGroup继承自View，是控件的容器。View树的根是DecorView。</p>
+<h3 id="3-2-坐标系"><a href="#3-2-坐标系" class="headerlink" title="3.2 坐标系"></a>3.2 坐标系</h3><ul>
+<li><strong>Android坐标系</strong>：以屏幕左上角为原点，向右为x轴正方向，向下为y轴正方向</li>
+<li><strong>View坐标系</strong>：以父容器左上角为原点，View的位置由left、top、right、bottom确定</li>
+<li><strong>x&#x2F;y</strong>：View左上角的当前坐标 &#x3D; left + translationX</li>
+<li><strong>getRawX&#x2F;getRawY</strong>：触摸点相对于屏幕的坐标</li>
+<li><strong>getX&#x2F;getY</strong>：触摸点相对于View左上角的坐标</li>
+</ul>
+<h3 id="3-3-View的滑动"><a href="#3-3-View的滑动" class="headerlink" title="3.3 View的滑动"></a>3.3 View的滑动</h3><p>六种实现View滑动的方式：</p>
+<ol>
+<li><strong>layout()方法</strong>：在onTouchEvent中调用layout(l, t, r, b)重新设置位置</li>
+<li><strong>offsetLeftAndRight&#x2F;offsetTopAndBottom</strong>：系统提供的便捷方法，同时更新left&#x2F;right或top&#x2F;bottom</li>
+<li><strong>LayoutParams</strong>：修改布局参数（如margin），需调用requestLayout</li>
+<li><strong>动画</strong>：View动画（影像移动）或属性动画（真正改变位置）</li>
+<li><strong>scrollTo&#x2F;scrollBy</strong>：滑动View内容，scrollTo绝对滑动，scrollBy相对滑动</li>
+<li><strong>Scroller</strong>：弹性滑动，配合computeScroll实现平滑滚动</li>
+</ol>
+<h3 id="3-4-属性动画"><a href="#3-4-属性动画" class="headerlink" title="3.4 属性动画"></a>3.4 属性动画</h3><p>属性动画（Android 3.0+）可对任意对象的任意属性做动画。核心类：ValueAnimator、ObjectAnimator、AnimatorSet。插值器（Interpolator）控制动画速率，估值器（TypeEvaluator）计算属性值。</p>
+<h3 id="3-5-解析Scroller"><a href="#3-5-解析Scroller" class="headerlink" title="3.5 解析Scroller"></a>3.5 解析Scroller</h3><p>Scroller本身不产生滑动，需配合View的computeScroll方法：</p>
+<ol>
+<li>startScroll(startX, startY, dx, dy, duration)开始滑动</li>
+<li>invalidate触发重绘 → draw → computeScroll</li>
+<li>computeScroll中调用scroller.computeScrollOffset()获取当前位置</li>
+<li>scrollTo移动到当前位置，postInvalidate继续重绘</li>
+<li>直到computeScrollOffset返回false，滑动结束</li>
+</ol>
+<h3 id="3-6-View的事件分发机制"><a href="#3-6-View的事件分发机制" class="headerlink" title="3.6 View的事件分发机制"></a>3.6 View的事件分发机制</h3><p>事件分发的三个核心方法：</p>
+<ul>
+<li><strong>dispatchTouchEvent</strong>：分发事件</li>
+<li><strong>onInterceptTouchEvent</strong>：判断是否拦截（仅ViewGroup有）</li>
+<li><strong>onTouchEvent</strong>：处理事件</li>
+</ul>
+<p>传递顺序：Activity → Window → DecorView → ViewGroup → View。如果所有View都不消费，最终回到Activity的onTouchEvent。</p>
+<p>关键结论：</p>
+<ul>
+<li>同一事件序列一旦被某个View拦截消费，后续事件直接交给它</li>
+<li>View的onTouchEvent默认返回true（可点击时），不可点击时返回false</li>
+<li>onTouchListener优先级高于onTouchEvent，onClickListener最低</li>
+<li>DOWN事件不消费，则后续事件不再交给该View</li>
+</ul>
+<h3 id="3-7-View的工作流程"><a href="#3-7-View的工作流程" class="headerlink" title="3.7 View的工作流程"></a>3.7 View的工作流程</h3><p><strong>measure过程</strong>：测量View大小。View通过onMeasure完成，ViewGroup需遍历测量子元素。getDefaultSize中AT_MOST和EXACTLY都返回specSize，因此自定义View需重写onMeasure处理wrap_content。</p>
+<p><strong>layout过程</strong>：确定View位置。setFrame设置四个顶点，onLayout确定子元素位置。</p>
+<p><strong>draw过程</strong>：绘制View。顺序：背景 → onDraw → dispatchDraw（子元素）→ 装饰（滚动条）。</p>
+<p><strong>MeasureSpec</strong>：32位int，高2位SpecMode（UNSPECIFIED&#x2F;EXACTLY&#x2F;AT_MOST），低30位SpecSize。</p>
+<h3 id="3-8-自定义View"><a href="#3-8-自定义View" class="headerlink" title="3.8 自定义View"></a>3.8 自定义View</h3><p>四种类型：</p>
+<ol>
+<li>继承View重写onDraw：不规则效果</li>
+<li>继承特定ViewGroup：组合布局</li>
+<li>继承特定View：扩展已有控件</li>
+<li>继承ViewGroup重写onMeasure&#x2F;onLayout：自定义布局</li>
+</ol>
+<p>注意事项：支持wrap_content、支持padding、线程&#x2F;动画在onDetachedFromWindow停止、处理滑动冲突。</p>
+<hr>
+<h2 id="第4章-多线程编程"><a href="#第4章-多线程编程" class="headerlink" title="第4章 多线程编程"></a>第4章 多线程编程</h2><h3 id="4-1-线程基础"><a href="#4-1-线程基础" class="headerlink" title="4.1 线程基础"></a>4.1 线程基础</h3><p><strong>进程与线程</strong>：进程是资源分配的最小单位，线程是CPU调度的最小单位。一个进程包含多个线程，共享进程资源。</p>
+<p><strong>线程状态</strong>：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、等待（Waiting）、超时等待（Timed Waiting）、终止（Terminated）。</p>
+<p><strong>创建线程</strong>：继承Thread、实现Runnable、实现Callable（有返回值）。</p>
+<p><strong>理解中断</strong>：interrupt()设置中断标志，isInterrupted()检查标志，interrupted()检查并清除标志。阻塞方法（sleep&#x2F;wait&#x2F;join）会抛出InterruptedException并清除标志。</p>
+<p><strong>安全终止线程</strong>：使用中断标志或volatile boolean标志，在循环中检查，优雅退出。</p>
+<h3 id="4-2-同步"><a href="#4-2-同步" class="headerlink" title="4.2 同步"></a>4.2 同步</h3><p><strong>重入锁（ReentrantLock）</strong>：可重入的互斥锁，支持公平锁和非公平锁，可绑定多个Condition。</p>
+<p><strong>同步方法&#x2F;同步代码块</strong>：synchronized关键字，基于对象监视器（Monitor）实现，可重入。</p>
+<p><strong>volatile</strong>：保证可见性（修改立即刷新到主存）和有序性（禁止指令重排），不保证原子性。适用于状态标志位、双重检查锁定。</p>
+<h3 id="4-3-阻塞队列"><a href="#4-3-阻塞队列" class="headerlink" title="4.3 阻塞队列"></a>4.3 阻塞队列</h3><p>阻塞队列在队列为空时获取操作阻塞，队列满时插入操作阻塞。</p>
+<p><strong>Java中的阻塞队列：</strong></p>
+<ul>
+<li><strong>ArrayBlockingQueue</strong>：数组实现的有界队列</li>
+<li><strong>LinkedBlockingQueue</strong>：链表实现的有界&#x2F;无界队列</li>
+<li><strong>PriorityBlockingQueue</strong>：支持优先级的无界队列</li>
+<li><strong>DelayQueue</strong>：延迟获取的无界队列</li>
+<li><strong>SynchronousQueue</strong>：不存储元素的队列，直接传递</li>
+<li><strong>LinkedTransferQueue</strong>：链表实现的无界TransferQueue</li>
+<li><strong>LinkedBlockingDeque</strong>：链表实现的双向阻塞队列</li>
+</ul>
+<h3 id="4-4-线程池"><a href="#4-4-线程池" class="headerlink" title="4.4 线程池"></a>4.4 线程池</h3><p><strong>ThreadPoolExecutor核心参数</strong>：corePoolSize（核心线程数）、maximumPoolSize（最大线程数）、keepAliveTime（非核心线程超时）、unit（时间单位）、workQueue（任务队列）、threadFactory（线程工厂）、handler（拒绝策略）。</p>
+<p><strong>处理流程</strong>：核心线程未满→创建核心线程；核心线程满且队列未满→入队；队列满且未达最大线程→创建非核心线程；都满→执行拒绝策略。</p>
+<p><strong>四种线程池</strong>：FixedThreadPool（固定线程数）、CachedThreadPool（按需创建）、ScheduledThreadPool（定时任务）、SingleThreadExecutor（单线程）。</p>
+<h3 id="4-5-AsyncTask的原理"><a href="#4-5-AsyncTask的原理" class="headerlink" title="4.5 AsyncTask的原理"></a>4.5 AsyncTask的原理</h3><p>AsyncTask封装了线程池和Handler。内部有SerialExecutor（串行执行器）和THREAD_POOL_EXECUTOR（实际执行线程池），以及InternalHandler（切换到主线程）。</p>
+<p>执行流程：execute → executeOnExecutor → SerialExecutor排队 → 取出任务交THREAD_POOL_EXECUTOR执行 → FutureTask.run → doInBackground → publishProgress → Handler发送消息 → onProgressUpdate&#x2F;onPostExecute。</p>
+<hr>
+<h2 id="第5章-网络编程与网络框架"><a href="#第5章-网络编程与网络框架" class="headerlink" title="第5章 网络编程与网络框架"></a>第5章 网络编程与网络框架</h2><h3 id="5-1-网络分层"><a href="#5-1-网络分层" class="headerlink" title="5.1 网络分层"></a>5.1 网络分层</h3><p>OSI七层模型：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。<br>TCP&#x2F;IP四层模型：网络接口层、网际层（IP）、传输层（TCP&#x2F;UDP）、应用层（HTTP&#x2F;FTP&#x2F;DNS等）。</p>
+<h3 id="5-2-TCP的三次握手与四次挥手"><a href="#5-2-TCP的三次握手与四次挥手" class="headerlink" title="5.2 TCP的三次握手与四次挥手"></a>5.2 TCP的三次握手与四次挥手</h3><p><strong>三次握手（建立连接）：</strong></p>
+<ol>
+<li>客户端发送SYN（seq&#x3D;x），进入SYN_SENT状态</li>
+<li>服务端回复SYN+ACK（seq&#x3D;y, ack&#x3D;x+1），进入SYN_RCVD状态</li>
+<li>客户端回复ACK（ack&#x3D;y+1），双方进入ESTABLISHED状态</li>
+</ol>
+<p><strong>四次挥手（断开连接）：</strong></p>
+<ol>
+<li>主动方发送FIN，进入FIN_WAIT_1</li>
+<li>被动方回复ACK，进入CLOSE_WAIT，主动方进入FIN_WAIT_2</li>
+<li>被动方发送FIN，进入LAST_ACK</li>
+<li>主动方回复ACK，进入TIME_WAIT（等待2MSL），被动方关闭</li>
+</ol>
+<h3 id="5-3-HTTP协议原理"><a href="#5-3-HTTP协议原理" class="headerlink" title="5.3 HTTP协议原理"></a>5.3 HTTP协议原理</h3><p><strong>HTTP请求报文</strong>：请求行（方法+URL+版本）、请求头、空行、请求体。<br><strong>HTTP响应报文</strong>：状态行（版本+状态码+原因短语）、响应头、空行、响应体。</p>
+<p><strong>常见状态码</strong>：200 OK、301永久重定向、302临时重定向、304未修改、400请求错误、401未授权、403禁止、404未找到、500服务器错误、502网关错误、503服务不可用。</p>
+<p><strong>HTTP消息报头</strong>：通用头（Cache-Control、Connection）、请求头（Host、User-Agent、Accept、Cookie、Authorization）、响应头（Server、Set-Cookie、Content-Type、Content-Length）、实体头（Content-Type、Content-Encoding、Content-Length、Last-Modified、ETag）。</p>
+<h3 id="5-4-HttpClient与HttpURLConnection"><a href="#5-4-HttpClient与HttpURLConnection" class="headerlink" title="5.4 HttpClient与HttpURLConnection"></a>5.4 HttpClient与HttpURLConnection</h3><p><strong>HttpClient</strong>：Apache提供，API丰富，但Android 6.0已移除。<br><strong>HttpURLConnection</strong>：Java原生，轻量，Android推荐使用。支持GZIP压缩、连接池、缓存。</p>
+<h3 id="5-5-解析Volley"><a href="#5-5-解析Volley" class="headerlink" title="5.5 解析Volley"></a>5.5 解析Volley</h3><p>Volley是Google推出的网络库，适合小数据量、高频率的网络请求。</p>
+<p><strong>核心组件</strong>：</p>
+<ul>
+<li>RequestQueue：请求队列，管理所有请求的调度</li>
+<li>Request：请求类（StringRequest、JsonObjectRequest、ImageRequest）</li>
+<li>CacheDispatcher：缓存调度线程</li>
+<li>NetworkDispatcher：网络调度线程（默认4个）</li>
+<li>Cache：缓存接口（DiskBasedCache实现）</li>
+<li>Network：网络接口（BasicNetwork实现，基于HttpURLConnection）</li>
+</ul>
+<p><strong>工作流程</strong>：请求加入队列 → 缓存线程检查缓存 → 命中则解析返回；未命中交网络线程 → 网络请求 → 解析响应 → 写入缓存 → 回调主线程。</p>
+<h3 id="5-6-解析OkHttp"><a href="#5-6-解析OkHttp" class="headerlink" title="5.6 解析OkHttp"></a>5.6 解析OkHttp</h3><p>OkHttp是Square出品的高效HTTP客户端，Android主流网络库。</p>
+<p><strong>核心特性</strong>：</p>
+<ul>
+<li>支持HTTP&#x2F;2和SPDY，多路复用</li>
+<li>连接池复用，减少延迟</li>
+<li>GZIP压缩，减少流量</li>
+<li>响应缓存，避免重复请求</li>
+<li>自动重连和重定向</li>
+<li>拦截器机制（Interceptor）</li>
+</ul>
+<p><strong>核心类</strong>：OkHttpClient（客户端）、Request（请求）、Response（响应）、Call（调用）、Interceptor（拦截器）、Dispatcher（调度器）。</p>
+<p><strong>工作流程</strong>：client.newCall(request) → RealCall → Dispatcher调度 → 拦截器链（应用拦截器→重试重定向→桥接→缓存→连接→网络）→ 服务器响应 → 反向返回。</p>
+<h3 id="5-7-解析Retrofit"><a href="#5-7-解析Retrofit" class="headerlink" title="5.7 解析Retrofit"></a>5.7 解析Retrofit</h3><p>Retrofit是Square出品的类型安全的HTTP客户端，基于OkHttp，通过注解定义API接口。</p>
+<p><strong>核心特性</strong>：</p>
+<ul>
+<li>注解定义请求（GET&#x2F;POST&#x2F;PUT&#x2F;DELETE等）</li>
+<li>支持多种转换器（Gson、Jackson、Moshi、Protobuf等）</li>
+<li>支持RxJava&#x2F;Call适配器</li>
+<li>支持同步和异步调用</li>
+</ul>
+<p><strong>核心原理</strong>：通过动态代理将接口注解解析为Request，交给OkHttp执行，通过Converter将响应转换为Java对象。</p>
+<hr>
+<h2 id="第6章-设计模式"><a href="#第6章-设计模式" class="headerlink" title="第6章 设计模式"></a>第6章 设计模式</h2><h3 id="6-1-设计模式六大原则"><a href="#6-1-设计模式六大原则" class="headerlink" title="6.1 设计模式六大原则"></a>6.1 设计模式六大原则</h3><ol>
+<li><strong>单一职责原则（SRP）</strong>：一个类只做一件事</li>
+<li><strong>开闭原则（OCP）</strong>：对扩展开放，对修改关闭</li>
+<li><strong>里氏替换原则（LSP）</strong>：子类可替换父类</li>
+<li><strong>依赖倒置原则（DIP）</strong>：依赖抽象，不依赖具体</li>
+<li><strong>接口隔离原则（ISP）</strong>：接口要小而专，不强迫依赖不需要的方法</li>
+<li><strong>迪米特法则（LoD）</strong>：最少知识，减少类间耦合</li>
+</ol>
+<h3 id="6-2-创建型设计模式"><a href="#6-2-创建型设计模式" class="headerlink" title="6.2 创建型设计模式"></a>6.2 创建型设计模式</h3><ul>
+<li><strong>单例模式</strong>：确保唯一实例。饿汉式、懒汉式（同步锁）、双重检查锁定（DCL）、静态内部类、枚举。</li>
+<li><strong>简单工厂模式</strong>：一个工厂类根据参数创建不同产品</li>
+<li><strong>工厂方法模式</strong>：每个产品对应一个工厂，抽象工厂接口</li>
+<li><strong>建造者模式</strong>：分步构建复杂对象，如AlertDialog.Builder</li>
+</ul>
+<h3 id="6-3-结构型设计模式"><a href="#6-3-结构型设计模式" class="headerlink" title="6.3 结构型设计模式"></a>6.3 结构型设计模式</h3><ul>
+<li><strong>代理模式</strong>：通过代理控制对真实对象的访问。静态代理、动态代理（JDK&#x2F;CGLIB）。</li>
+<li><strong>装饰模式</strong>：动态给对象添加职责，如Java IO流</li>
+<li><strong>外观模式</strong>：统一接口封装子系统，简化调用</li>
+<li><strong>享元模式</strong>：共享细粒度对象，减少内存，如String常量池、消息池</li>
+</ul>
+<h3 id="6-4-行为型设计模式"><a href="#6-4-行为型设计模式" class="headerlink" title="6.4 行为型设计模式"></a>6.4 行为型设计模式</h3><ul>
+<li><strong>策略模式</strong>：封装算法族，可互换使用，如动画插值器</li>
+<li><strong>模板方法模式</strong>：定义算法骨架，子类实现具体步骤</li>
+<li><strong>观察者模式</strong>：一对多依赖，状态变化自动通知，如EventBus、LiveData</li>
+</ul>
+<hr>
+<h2 id="第7章-事件总线"><a href="#第7章-事件总线" class="headerlink" title="第7章 事件总线"></a>第7章 事件总线</h2><h3 id="7-1-解析EventBus"><a href="#7-1-解析EventBus" class="headerlink" title="7.1 解析EventBus"></a>7.1 解析EventBus</h3><p>EventBus是GreenRobot出品的发布&#x2F;订阅事件总线，用于组件间解耦通信。</p>
+<p><strong>核心概念</strong>：</p>
+<ul>
+<li><strong>Event</strong>：事件对象，任意POJO</li>
+<li><strong>Publisher</strong>：发布者，调用post()发送事件</li>
+<li><strong>Subscriber</strong>：订阅者，通过@Subscribe注解标注方法</li>
+<li><strong>ThreadMode</strong>：线程模式（POSTING、MAIN、BACKGROUND、ASYNC）</li>
+</ul>
+<p><strong>使用步骤</strong>：</p>
+<ol>
+<li>定义事件类</li>
+<li>注册&#x2F;注销：onCreate中register，onDestroy中unregister</li>
+<li>订阅方法：@Subscribe(threadMode &#x3D; ThreadMode.MAIN)</li>
+<li>发布事件：EventBus.getDefault().post(event)</li>
+</ol>
+<p><strong>核心原理</strong>：</p>
+<ul>
+<li>注册时通过反射收集订阅方法（@Subscribe注解），存入SubscriptionsByEventType</li>
+<li>post时根据事件类型查找订阅者，通过线程模式决定在哪个线程执行</li>
+<li>粘性事件（Sticky Event）：先发布后订阅也能收到</li>
+</ul>
+<h3 id="7-2-解析otto"><a href="#7-2-解析otto" class="headerlink" title="7.2 解析otto"></a>7.2 解析otto</h3><p>otto是Square出品的事件总线，基于Guava的EventBus，已停止维护，被EventBus取代。核心思想与EventBus类似，使用@Produce和@Subscribe注解。</p>
+<hr>
+<h2 id="第8章-函数响应式编程"><a href="#第8章-函数响应式编程" class="headerlink" title="第8章 函数响应式编程"></a>第8章 函数响应式编程</h2><h3 id="8-1-RxJava基本用法"><a href="#8-1-RxJava基本用法" class="headerlink" title="8.1 RxJava基本用法"></a>8.1 RxJava基本用法</h3><p>RxJava是响应式编程库，基于观察者模式，实现异步操作的优雅处理。</p>
+<p><strong>核心角色</strong>：</p>
+<ul>
+<li><strong>Observable</strong>：被观察者，发射事件流</li>
+<li><strong>Observer&#x2F;Subscriber</strong>：观察者，接收事件</li>
+<li><strong>Operator</strong>：操作符，变换&#x2F;过滤&#x2F;组合事件流</li>
+<li><strong>Scheduler</strong>：调度器，控制线程</li>
+</ul>
+<p><strong>基本实现</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Observable.create(<span class="keyword">new</span> <span class="title class_">ObservableOnSubscribe</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> &#123;</span><br><span class="line">        e.onNext(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        e.onComplete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).subscribe(<span class="keyword">new</span> <span class="title class_">Observer</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSubscribe</span><span class="params">(Disposable d)</span> &#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onNext</span><span class="params">(String s)</span> &#123; Log.d(<span class="string">&quot;RxJava&quot;</span>, s); &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onError</span><span class="params">(Throwable e)</span> &#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onComplete</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-RxJava的Subject"><a href="#8-2-RxJava的Subject" class="headerlink" title="8.2 RxJava的Subject"></a>8.2 RxJava的Subject</h3><p>Subject既是Observable也是Observer，桥接非响应式世界和响应式世界。</p>
+<ul>
+<li><strong>PublishSubject</strong>：只接收订阅后发射的事件</li>
+<li><strong>BehaviorSubject</strong>：接收订阅前最近一个事件和后续事件</li>
+<li><strong>ReplaySubject</strong>：缓存所有事件，订阅时重放</li>
+<li><strong>AsyncSubject</strong>：只发射最后一个事件</li>
+</ul>
+<h3 id="8-3-RxJava操作符入门"><a href="#8-3-RxJava操作符入门" class="headerlink" title="8.3 RxJava操作符入门"></a>8.3 RxJava操作符入门</h3><p><strong>创建操作符</strong>：create、just、fromArray、fromIterable、range、interval、timer、defer、empty、never、error。</p>
+<p><strong>变换操作符</strong>：map（类型转换）、flatMap（一对多，不保证顺序）、concatMap（保证顺序）、buffer（打包成列表）、scan（累加）、window（打包成Observable）。</p>
+<p><strong>过滤操作符</strong>：filter、take、takeLast、skip、skipLast、elementAt、distinct、distinctUntilChanged、throttleFirst（防抖）、throttleLast、debounce、timeout。</p>
+<p><strong>组合操作符</strong>：merge（合并，可能交错）、concat（连接，按顺序）、zip（配对组合）、combineLatest（最新组合）、startWith、mergeDelayError。</p>
+<p><strong>辅助操作符</strong>：delay、doOnNext、doOnComplete、doOnError、subscribeOn、observeOn、timeout、retry、repeat。</p>
+<p><strong>错误处理操作符</strong>：onErrorReturn、onErrorResumeNext、retry、retryWhen。</p>
+<h3 id="8-4-RxJava的线程控制"><a href="#8-4-RxJava的线程控制" class="headerlink" title="8.4 RxJava的线程控制"></a>8.4 RxJava的线程控制</h3><ul>
+<li><strong>subscribeOn</strong>：指定Observable发射事件的线程（上游线程），多次调用只有第一次有效</li>
+<li><strong>observeOn</strong>：指定Observer接收事件的线程（下游线程），每次调用都切换下游线程</li>
+<li><strong>常用Scheduler</strong>：Schedulers.io()（IO线程，适合网络&#x2F;磁盘）、Schedulers.computation()（计算线程，适合CPU密集）、Schedulers.newThread()、AndroidSchedulers.mainThread()（主线程）</li>
+</ul>
+<h3 id="8-5-RxJava的使用场景"><a href="#8-5-RxJava的使用场景" class="headerlink" title="8.5 RxJava的使用场景"></a>8.5 RxJava的使用场景</h3><ul>
+<li>结合OkHttp&#x2F;Retrofit访问网络，链式处理请求和响应</li>
+<li>用RxBus替代EventBus（PublishSubject实现事件总线）</li>
+<li>防抖搜索（debounce）</li>
+<li>定时任务（interval&#x2F;timer）</li>
+<li>合并多个请求（zip&#x2F;merge）</li>
+</ul>
+<h3 id="8-6-RxJava源码解析"><a href="#8-6-RxJava源码解析" class="headerlink" title="8.6 RxJava源码解析"></a>8.6 RxJava源码解析</h3><p><strong>订阅过程</strong>：Observable.subscribe → ObservableSubscribeOn.subscribe（切换上游线程）→ 实际Observable.subscribe → 发射事件。</p>
+<p><strong>变换过程</strong>：map操作符创建ObservableMap，订阅时创建MapObserver，onNext中调用function.apply变换后传递给下游。</p>
+<p><strong>线程切换过程</strong>：subscribeOn通过SubscribeOnObserver在指定线程调用上游subscribe；observeOn通过ObserveOnObserver将事件投递到指定线程的Scheduler。</p>
+<hr>
+<h2 id="第9章-注解与依赖注入框架"><a href="#第9章-注解与依赖注入框架" class="headerlink" title="第9章 注解与依赖注入框架"></a>第9章 注解与依赖注入框架</h2><h3 id="9-1-注解"><a href="#9-1-注解" class="headerlink" title="9.1 注解"></a>9.1 注解</h3><p><strong>注解分类</strong>：</p>
+<ul>
+<li><strong>标准注解</strong>：@Override、@Deprecated、@SuppressWarnings</li>
+<li><strong>元注解</strong>：@Retention（保留策略：SOURCE&#x2F;CLASS&#x2F;RUNTIME）、@Target（作用目标）、@Inherited（可继承）、@Documented</li>
+<li><strong>自定义注解</strong>：通过@interface定义</li>
+</ul>
+<p><strong>定义注解</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ViewInject &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">value</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注解处理器</strong>：编译期处理注解，生成代码（如ButterKnife、Dagger2）。继承AbstractProcessor，process方法中处理注解元素，通过JavaPoet生成Java代码。</p>
+<h3 id="9-2-依赖注入的原理"><a href="#9-2-依赖注入的原理" class="headerlink" title="9.2 依赖注入的原理"></a>9.2 依赖注入的原理</h3><p><strong>控制反转（IoC）</strong>：对象的依赖由外部容器注入，而非自己创建。<br><strong>依赖注入（DI）</strong>：IoC的一种实现方式，通过构造器、setter、接口注入依赖。</p>
+<p><strong>实现方式</strong>：</p>
+<ul>
+<li>编译期注解处理生成代码（ButterKnife、Dagger2）</li>
+<li>运行期反射（早期RoboGuice）</li>
+<li>运行期字节码增强</li>
+</ul>
+<h3 id="9-3-依赖注入框架"><a href="#9-3-依赖注入框架" class="headerlink" title="9.3 依赖注入框架"></a>9.3 依赖注入框架</h3><p><strong>ButterKnife</strong>：View绑定框架，通过@BindView注解绑定View，编译期生成绑定代码，避免findViewById。支持@OnClick、@OnItemClick等事件绑定。</p>
+<p><strong>Dagger2</strong>：Google出品的依赖注入框架，编译期生成代码，无反射开销。</p>
+<ul>
+<li><strong>@Inject</strong>：标注需要注入的依赖或构造函数</li>
+<li><strong>@Module</strong>：提供依赖的模块</li>
+<li><strong>@Provides</strong>：Module中提供依赖的方法</li>
+<li><strong>@Component</strong>：注入器，连接Module和注入目标</li>
+<li><strong>@Singleton</strong>：单例作用域</li>
+<li><strong>@Subcomponent</strong>：子组件</li>
+</ul>
+<hr>
+<h2 id="第10章-应用架构设计"><a href="#第10章-应用架构设计" class="headerlink" title="第10章 应用架构设计"></a>第10章 应用架构设计</h2><h3 id="10-1-MVC模式"><a href="#10-1-MVC模式" class="headerlink" title="10.1 MVC模式"></a>10.1 MVC模式</h3><p>MVC（Model-View-Controller）：</p>
+<ul>
+<li><strong>Model</strong>：数据模型，处理业务逻辑</li>
+<li><strong>View</strong>：视图，界面展示</li>
+<li><strong>Controller</strong>：控制器，处理用户交互，更新Model和View</li>
+</ul>
+<p>Android中Activity常承担Controller和部分View职责，导致Activity臃肿。</p>
+<h3 id="10-2-MVP模式"><a href="#10-2-MVP模式" class="headerlink" title="10.2 MVP模式"></a>10.2 MVP模式</h3><p>MVP（Model-View-Presenter）：</p>
+<ul>
+<li><strong>Model</strong>：数据模型，业务逻辑</li>
+<li><strong>View</strong>：视图接口，Activity&#x2F;Fragment实现，只负责UI展示</li>
+<li><strong>Presenter</strong>：主持者，连接Model和View，处理业务逻辑</li>
+</ul>
+<p><strong>特点</strong>：View与Model完全解耦，通过Presenter通信。View通过接口暴露方法，Presenter调用View接口更新UI。便于单元测试。</p>
+<p><strong>MVP结合RxJava和Dagger2</strong>：RxJava处理异步数据流，Dagger2注入依赖，形成完整的架构体系。</p>
+<h3 id="10-3-MVVM模式"><a href="#10-3-MVVM模式" class="headerlink" title="10.3 MVVM模式"></a>10.3 MVVM模式</h3><p>MVVM（Model-View-ViewModel）：</p>
+<ul>
+<li><strong>Model</strong>：数据模型</li>
+<li><strong>View</strong>：视图，观察ViewModel的数据变化</li>
+<li><strong>ViewModel</strong>：视图模型，暴露可观察的数据，处理业务逻辑</li>
+</ul>
+<p><strong>Data Binding</strong>：Google推出的数据绑定库，实现View和数据的双向绑定。</p>
+<ul>
+<li>在布局中通过@{}绑定数据</li>
+<li>通过@&#x3D;{}实现双向绑定</li>
+<li>支持事件绑定、表达式、自定义属性</li>
+</ul>
+<p><strong>应用Data Binding</strong>：减少findViewById和样板代码，实现数据驱动UI。结合LiveData&#x2F;ViewModel形成Jetpack架构。</p>
+<hr>
+<h2 id="第11章-系统架构与MediaPlayer框架"><a href="#第11章-系统架构与MediaPlayer框架" class="headerlink" title="第11章 系统架构与MediaPlayer框架"></a>第11章 系统架构与MediaPlayer框架</h2><h3 id="11-1-Android系统架构"><a href="#11-1-Android系统架构" class="headerlink" title="11.1 Android系统架构"></a>11.1 Android系统架构</h3><p>Android系统分为四层：</p>
+<ol>
+<li><strong>应用层</strong>：应用程序（Java&#x2F;Kotlin）</li>
+<li><strong>应用框架层</strong>：Framework API（ActivityManager、WindowManager、ContentProvider等）</li>
+<li><strong>系统运行库层</strong>：C&#x2F;C++库（SurfaceFlinger、MediaPlayer、SQLite、OpenGL）+ Android运行时（ART&#x2F;Dalvik）</li>
+<li><strong>Linux内核层</strong>：驱动、进程管理、内存管理、网络协议栈</li>
+</ol>
+<h3 id="11-2-Android系统源码目录"><a href="#11-2-Android系统源码目录" class="headerlink" title="11.2 Android系统源码目录"></a>11.2 Android系统源码目录</h3><ul>
+<li>**app&#x2F;**：核心应用（Contacts、Phone等）</li>
+<li>**frameworks&#x2F;**：框架层（base&#x2F;core、base&#x2F;services、base&#x2F;media、native等）</li>
+<li>**system&#x2F;**：系统组件（core、media、netd等）</li>
+<li>**hardware&#x2F;**：硬件抽象层（HAL）</li>
+<li>**external&#x2F;**：第三方库</li>
+<li>**packages&#x2F;**：应用包</li>
+<li>**art&#x2F;**：ART虚拟机</li>
+<li>**dalvik&#x2F;**：Dalvik虚拟机</li>
+<li>**kernel&#x2F;**：Linux内核</li>
+<li>**build&#x2F;**：编译系统</li>
+<li>**development&#x2F;**：开发工具</li>
+<li>**prebuilts&#x2F;**：预编译工具链</li>
+</ul>
+<h3 id="11-3-SourceInsights使用"><a href="#11-3-SourceInsights使用" class="headerlink" title="11.3 SourceInsights使用"></a>11.3 SourceInsights使用</h3><p>SourceInsight是代码阅读和编辑工具，支持符号跳转、引用查找、调用关系图。适合阅读Android源码这种大型项目。</p>
+<h3 id="11-4-MediaPlayer框架"><a href="#11-4-MediaPlayer框架" class="headerlink" title="11.4 MediaPlayer框架"></a>11.4 MediaPlayer框架</h3><p><strong>Java Framework层</strong>：android.media.MediaPlayer，提供播放控制API。通过JNI调用Native层。</p>
+<p><strong>JNI层</strong>：android_media_MediaPlayer.cpp，桥接Java和Native层。</p>
+<p><strong>Native层</strong>：</p>
+<ul>
+<li><strong>MediaPlayer</strong>：C++客户端，通过Binder与服务端通信</li>
+<li><strong>IMediaPlayerService</strong>：服务端Binder接口</li>
+<li><strong>MediaPlayerService</strong>：运行在mediaserver进程，管理所有播放器实例</li>
+<li><strong>MediaPlayerService::Client</strong>：每个播放器的服务端代理</li>
+<li><strong>AwesomePlayer&#x2F;NuPlayer</strong>：实际播放器，处理解码和渲染</li>
+</ul>
+<p><strong>播放流程</strong>：Java MediaPlayer → JNI → Native MediaPlayer → Binder → MediaPlayerService → Client → AwesomePlayer&#x2F;NuPlayer → OMXCodec解码 → AudioTrack&#x2F;Surface渲染。</p>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《Android进阶之光》是一本面向中高级Android开发者的进阶书籍，涵盖了从UI新特性、Material Design、View体系、多线程、网络框架到设计模式、事件总线、RxJava、依赖注入和应用架构的全方位知识。</p>
+<p><strong>全书知识脉络：</strong></p>
+<ol>
+<li><strong>UI层</strong>（第1-3章）：Android新特性、Material Design控件、View体系与自定义View</li>
+<li><strong>并发与网络</strong>（第4-5章）：多线程编程、线程池、HTTP协议、Volley&#x2F;OkHttp&#x2F;Retrofit</li>
+<li><strong>设计与模式</strong>（第6-9章）：设计模式、事件总线、RxJava响应式编程、注解与依赖注入</li>
+<li><strong>架构与系统</strong>（第10-11章）：MVC&#x2F;MVP&#x2F;MVVM架构、Android系统架构与MediaPlayer框架</li>
+</ol>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>第3章（View体系）和第5章（网络框架）是面试高频考点，建议重点掌握</li>
+<li>第8章（RxJava）是理解响应式编程的关键，建议动手实践</li>
+<li>第10章（应用架构）是从开发者向架构师进阶的必经之路</li>
+<li>第11章（系统架构）为深入Framework源码打下基础</li>
+</ul>
+<p>这本书适合有一定Android开发基础、希望系统提升技术深度的开发者阅读。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/08/21/Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/08/21/Android%E8%BF%9B%E9%98%B6%E8%A7%A3%E5%AF%86/">Android进阶解密</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/Android%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91/">Android音视频开发</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Android%E8%BF%9B%E9%98%B6%E4%B9%8B%E5%85%89"><span class="toc-text">Android进阶之光</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-Android%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">第1章 Android新特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-Material-Design"><span class="toc-text">第2章 Material Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-View%E4%BD%93%E7%B3%BB%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89View"><span class="toc-text">第3章 View体系与自定义View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B"><span class="toc-text">第4章 多线程编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%8E%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6"><span class="toc-text">第5章 网络编程与网络框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">第6章 设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF"><span class="toc-text">第7章 事件总线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E5%87%BD%E6%95%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="toc-text">第8章 函数响应式编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E6%B3%A8%E8%A7%A3%E4%B8%8E%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A1%86%E6%9E%B6"><span class="toc-text">第9章 注解与依赖注入框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">第10章 应用架构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E4%B8%8EMediaPlayer%E6%A1%86%E6%9E%B6"><span class="toc-text">第11章 系统架构与MediaPlayer框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

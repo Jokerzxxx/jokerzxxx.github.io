@@ -1,5 +1,5 @@
 
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
@@ -17,28 +17,30 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>CAN协议 - 学习记录</title>
+  <title>CAN 协议阅读与信号解析笔记 - 码上弦音</title>
 
   
-    <meta name="description" content="Legend - CAN 参数说明 - CAN         Property 属性 Description 描述   Msg Name 报文名称 Message name 报文名称   Msg Type 报文类型 Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文   Msg ID 报文标识符 Message identifier 报文标">
+    <meta name="description" content="这篇笔记用于快速阅读 CAN 通信矩阵，并把一条信号从原始报文转换成业务可以使用的物理值。 阅读协议时可以沿着下面这条主线进行：  找到报文 → 确认发送方式 → 定位信号位 → 解析原始值 → 换算物理值 → 判断有效性 → 交给业务使用  实际项目中，不同主机厂对起始位、组合发送类型和特殊值的定义可能不同，最终应以当前项目的协议说明为准。 一、阅读协议总览CAN 通信矩阵通常包含两个层级：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CAN协议">
-<meta property="og:url" content="http://example.com/2024/12/05/can-protocol/index.html">
-<meta property="og:site_name" content="学习记录">
-<meta property="og:description" content="Legend - CAN 参数说明 - CAN         Property 属性 Description 描述   Msg Name 报文名称 Message name 报文名称   Msg Type 报文类型 Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文   Msg ID 报文标识符 Message identifier 报文标">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2024/12/05/can-protocol/image-20241206115643845.png">
-<meta property="og:image" content="http://example.com/2024/12/05/can-protocol/image-20241206115637844.png">
-<meta property="og:image" content="http://example.com/2024/12/05/can-protocol/image-20241206115533135.png">
+<meta property="og:title" content="CAN 协议阅读与信号解析笔记">
+<meta property="og:url" content="https://jokerzxxx.github.io/2024/12/05/can-protocol/index.html">
+<meta property="og:site_name" content="码上弦音">
+<meta property="og:description" content="这篇笔记用于快速阅读 CAN 通信矩阵，并把一条信号从原始报文转换成业务可以使用的物理值。 阅读协议时可以沿着下面这条主线进行：  找到报文 → 确认发送方式 → 定位信号位 → 解析原始值 → 换算物理值 → 判断有效性 → 交给业务使用  实际项目中，不同主机厂对起始位、组合发送类型和特殊值的定义可能不同，最终应以当前项目的协议说明为准。 一、阅读协议总览CAN 通信矩阵通常包含两个层级：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jokerzxxx.github.io/assets/intel-byte-order.svg">
+<meta property="og:image" content="https://jokerzxxx.github.io/assets/motorola-byte-order.svg">
 <meta property="article:published_time" content="2024-12-05T02:20:45.000Z">
-<meta property="article:modified_time" content="2025-08-01T01:55:57.338Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2024/12/05/can-protocol/image-20241206115643845.png">
+<meta property="article:modified_time" content="2026-08-20T06:49:18.754Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="CAN">
+<meta property="article:tag" content="汽车电子">
+<meta property="article:tag" content="协议">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jokerzxxx.github.io/assets/intel-byte-order.svg">
   
   
   
-  
+  <meta name="keywords" content="CAN,汽车电子,协议">
 
   <!-- feed -->
   
@@ -49,27 +51,27 @@
 
   
 
-  
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
 
 <div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">学习记录</div></a></div></header>
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
 
 <div class="nav-area">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
-<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
 </div>
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2025/03/12/%E5%90%89%E4%BB%96%E8%B0%B1/"><span class="title">吉他谱</span></a><a class="item title" href="/2025/04/07/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/"><span class="title">Java核心技术卷</span></a><a class="item title" href="/2024/12/28/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81/"><span class="title">第一行代码</span></a><a class="item title" href="/2024/12/05/Android-Studio/"><span class="title">Android Studio</span></a><a class="item title" href="/2025/08/21/%E6%98%93%E8%AF%AD%E8%A8%80/"><span class="title">易语言</span></a><a class="item title" href="/2024/12/05/can-protocol/"><span class="title">CAN协议</span></a><a class="item title" href="/2024/12/12/Kotlin%E7%BC%96%E7%A8%8B%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/"><span class="title">Kotlin编程权威指南</span></a><a class="item title" href="/2025/03/12/%E8%80%81%E5%A7%9A%E5%90%89%E4%BB%96%E4%BB%8E%E9%9B%B6%E8%B5%B7%E6%AD%A5%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/"><span class="title">老姚吉他从零起步基础教学</span></a><a class="item title" href="/2024/12/17/Android%E7%BC%96%E7%A8%8B%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/"><span class="title">Android编程权威指南</span></a><a class="item title" href="/2024/12/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/"><span class="title">Java并发编程的艺术</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
 </div>
-<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" href="https://www.nowcoder.com/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/nowcoder.svg"/></a><a class="social" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode.svg"/></a><a class="social" href="https://" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
 </div></aside><div class="l_main" id="main">
 
 
@@ -78,176 +80,678 @@
 
 <div class="article banner top">
   <div class="content">
-    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-12-05T02:20:45.000Z">2024-12-05</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-08-01T01:55:57.338Z">2025-08-01</time></span></div></div></div>
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E8%BD%A6%E8%BD%BD%E5%BC%80%E5%8F%91/">车载开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-12-05T02:20:45.000Z">2024-12-05</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-20T06:49:18.754Z">2026-08-20</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>CAN协议</span></h1>
+        <h1 class="text title"><span>CAN 协议阅读与信号解析笔记</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><table>
+  </div><article class="md-text content"><p>这篇笔记用于快速阅读 CAN 通信矩阵，并把一条信号从原始报文转换成业务可以使用的物理值。</p>
+<p>阅读协议时可以沿着下面这条主线进行：</p>
+<blockquote>
+<p>找到报文 → 确认发送方式 → 定位信号位 → 解析原始值 → 换算物理值 → 判断有效性 → 交给业务使用</p>
+</blockquote>
+<p>实际项目中，不同主机厂对起始位、组合发送类型和特殊值的定义可能不同，最终应以当前项目的协议说明为准。</p>
+<h2 id="一、阅读协议总览"><a href="#一、阅读协议总览" class="headerlink" title="一、阅读协议总览"></a>一、阅读协议总览</h2><p>CAN 通信矩阵通常包含两个层级：</p>
+<ul>
+<li><strong>报文（Message）</strong>：定义谁在什么时间发送一组数据。</li>
+<li><strong>信号（Signal）</strong>：定义这组数据中每一段二进制位的含义。</li>
+</ul>
+<p>一个报文可以包含多个信号。排查问题时，应先确认报文是否正确收发，再检查具体信号是否正确解析。</p>
+<h2 id="二、报文属性"><a href="#二、报文属性" class="headerlink" title="二、报文属性"></a>二、报文属性</h2><table>
 <thead>
 <tr>
-<th>Legend - CAN 参数说明 - CAN</th>
-<th></th>
+<th>协议字段</th>
+<th>中文含义</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2024/12/05/can-protocol/image-20241206115643845.png" class=""></td>
-<td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2024/12/05/can-protocol/image-20241206115637844.png" class=""></td>
+<td>Msg Name</td>
+<td>报文名称</td>
+<td>用于标识报文业务含义</td>
 </tr>
 <tr>
-<td>Property 属性</td>
-<td>Description 描述</td>
+<td>Msg Type</td>
+<td>报文类型</td>
+<td>常见类型有 Normal、NM、Diag</td>
 </tr>
 <tr>
-<td>Msg Name 报文名称</td>
-<td>Message name 报文名称</td>
+<td>Msg ID</td>
+<td>报文标识符</td>
+<td>CAN 总线上用于区分报文的 ID</td>
 </tr>
 <tr>
-<td>Msg Type 报文类型</td>
-<td>Msg Type: Normal, NM, Diag 报文类型：常规应用报文，网络管理报文，诊断报文</td>
+<td>Msg Send Type</td>
+<td>报文发送类型</td>
+<td>常见类型有 Cycle、Event、IfActive、CE、CA</td>
 </tr>
 <tr>
-<td>Msg ID 报文标识符</td>
-<td>Message identifier 报文标识符</td>
+<td>Msg Cycle Time (ms)</td>
+<td>报文周期</td>
+<td>周期报文的发送间隔</td>
 </tr>
 <tr>
-<td>Msg Send Type 报文发送类型</td>
-<td>Send type for the message. 报文的发送类型 Send type:”Cycle”, “Event”, “IfActive”, “CE” and “CA”  发送类型：”Cycle”, “Event”, “IfActive”, “CE” and “CA”</td>
+<td>Msg Length (Byte)</td>
+<td>报文长度</td>
+<td>报文数据区长度，经典 CAN 通常不超过 8 Byte</td>
 </tr>
 <tr>
-<td>Msg Cycle Time (ms) 报文周期时间</td>
-<td>Cycle time of the message if it should be sent cyclically 报文发送周期时间（仅对周期性发送报文）</td>
+<td>Msg Cycle Time Fast (ms)</td>
+<td>快速发送周期</td>
+<td>事件触发后进入快速发送阶段时使用</td>
 </tr>
 <tr>
-<td>Msg Length (Byte) 报文长度</td>
-<td>Byte length of the message 报文的字节长度</td>
+<td>Msg Nr. Of Repetition</td>
+<td>快速发送次数</td>
+<td>快速周期连续发送的次数</td>
 </tr>
 <tr>
-<td>Signal Name 信号名称</td>
-<td>Signal Name 信号名称</td>
-</tr>
-<tr>
-<td>Signal Description 信号描述</td>
-<td>Comment for the signal 信号描述</td>
-</tr>
-<tr>
-<td>Byte Order 排列格式</td>
-<td>Description the byte order, intel or mortoral 描述了字节排布顺序</td>
-</tr>
-<tr>
-<td>Start Byte 起始字节</td>
-<td></td>
-</tr>
-<tr>
-<td>Start Bit 起始位</td>
-<td></td>
-</tr>
-<tr>
-<td>Signal Send Type 信号发送类型</td>
-<td>Send type for the signal 信号的发送类型</td>
-</tr>
-<tr>
-<td>Bit Length (Bit) 信号长度</td>
-<td>Bit length of the signal 信号的位长度</td>
-</tr>
-<tr>
-<td>Date Type 数据类型</td>
-<td>Date type of the signal 信号的数据类型 Date type: Unsigned, Signed, IEEE float, IEEE Double 数据类型：Unsigned, Signed, IEEE float, IEEE Double</td>
-</tr>
-<tr>
-<td>Resolution 精度</td>
-<td>Resolution value is to calculate the physical value of the signal. 十六进制值的比例因子是为了计算信号的物理值。</td>
-</tr>
-<tr>
-<td>Offset 偏移量</td>
-<td>Offset value is to calculate the physical value of the signal. 偏移量用来计算信号的物理值。</td>
-</tr>
-<tr>
-<td>Signal Min. Value (phys) 物理最小值</td>
-<td>Physical minimum value of the signal in physical value 信号的物理最小值</td>
-</tr>
-<tr>
-<td>Signal Max. Value(phys) 物理最大值</td>
-<td>Physical maximum value of the signal in physical value 信号的物理最大值</td>
-</tr>
-<tr>
-<td>Signal Min. Value (Hex) 总线最小值</td>
-<td>minimum value of the signal in Hex value 信号的总线最小值</td>
-</tr>
-<tr>
-<td>Signal Max. Value(Hex) 总线值最大值</td>
-<td>maximum value of the signal in Hex value 信号的总线最大值</td>
-</tr>
-<tr>
-<td>Initial Value(Hex) 初始值</td>
-<td>If no valid signal is available after network startup, the predefined value (refer to the functional requirement) shall be sent. The valid value shall be available within this time from the startup. 如果在网络启动后没有可用的有效信号，预定义的值将被发送（取决于功能需求）。有效值必须在启动后此时间内可用。</td>
-</tr>
-<tr>
-<td>Invalid Value(Hex) 无效值</td>
-<td>Invalid value in hex value 十六进制表示的无效值</td>
-</tr>
-<tr>
-<td>Inactive Value(Hex) 非使能值</td>
-<td>Inactive value in hex value if the message sent type is ifActive and PA 十六进制表述的非使能值,仅用于使能型及周期使能型报文</td>
-</tr>
-<tr>
-<td>Unit 单位</td>
-<td>Unit of the signal physical value 信号物理值的单位</td>
-</tr>
-<tr>
-<td>Signal Value Description 信号值描述</td>
-<td>Hex-physics representation of the signal value 信号十六进制值所代表的物理值</td>
-</tr>
-<tr>
-<td>Msg Cycle Time Fast(ms) 报文发送的快速周期(ms)</td>
-<td>The fast cycle time of message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，报文发送的快速周期。</td>
-</tr>
-<tr>
-<td>Msg Nr. Of Reption 报文快速发送的次数</td>
-<td>The reption number of message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，报文快速发送的次数。</td>
-</tr>
-<tr>
-<td>Msg Delay Time(ms) 报文延时时间(ms)</td>
-<td>The min time between the same ID message if the Msg Send Type of message is not “Cycle” 当报文发送类型不为周期型时，相同ID报文之间的最小间隔。</td>
+<td>Msg Delay Time (ms)</td>
+<td>报文延时</td>
+<td>相同 ID 报文两次发送之间的最小间隔</td>
 </tr>
 </tbody></table>
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/2024/12/05/can-protocol/image-20241206115533135.png" class="lazy" title="image-20241206115533135">
+<p><strong>常见报文类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Normal</td>
+<td>常规应用报文</td>
+</tr>
+<tr>
+<td>NM</td>
+<td>网络管理报文</td>
+</tr>
+<tr>
+<td>Diag</td>
+<td>诊断报文</td>
+</tr>
+</tbody></table>
+<p><strong>常见发送方式</strong></p>
+<table>
+<thead>
+<tr>
+<th>发送方式</th>
+<th>典型行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cycle</td>
+<td>按固定周期持续发送</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>数据变化或事件发生时发送</td>
+</tr>
+<tr>
+<td>IfActive</td>
+<td>功能激活期间发送</td>
+</tr>
+<tr>
+<td>CE</td>
+<td>周期发送与事件发送组合</td>
+</tr>
+<tr>
+<td>CA</td>
+<td>周期发送与激活条件组合</td>
+</tr>
+</tbody></table>
+<p>组合发送方式的触发条件、快速周期和重复次数，应结合当前协议中的补充说明确认。</p>
+<h2 id="三、信号属性"><a href="#三、信号属性" class="headerlink" title="三、信号属性"></a>三、信号属性</h2><p><strong>定位与数据格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>协议字段</th>
+<th>中文含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Signal Name</td>
+<td>信号名称</td>
+<td>代码、协议和界面之间的重要索引</td>
+</tr>
+<tr>
+<td>Signal Description</td>
+<td>信号描述</td>
+<td>信号的业务含义</td>
+</tr>
+<tr>
+<td>Byte Order</td>
+<td>字节序</td>
+<td>常见为 Intel 或 Motorola</td>
+</tr>
+<tr>
+<td>Start Byte</td>
+<td>起始字节</td>
+<td>信号所在的第一个字节</td>
+</tr>
+<tr>
+<td>Start Bit</td>
+<td>起始位</td>
+<td>信号在报文中的起始 Bit</td>
+</tr>
+<tr>
+<td>Bit Length (Bit)</td>
+<td>信号长度</td>
+<td>信号占用的位数</td>
+</tr>
+<tr>
+<td>Data Type</td>
+<td>数据类型</td>
+<td>Unsigned、Signed、IEEE Float、IEEE Double 等</td>
+</tr>
+<tr>
+<td>Signal Send Type</td>
+<td>信号发送类型</td>
+<td>信号自身的触发或发送条件</td>
+</tr>
+</tbody></table>
+<p><strong>数值换算</strong></p>
+<table>
+<thead>
+<tr>
+<th>协议字段</th>
+<th>中文含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resolution</td>
+<td>精度&#x2F;比例因子</td>
+<td>原始值转换为物理值时使用</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>偏移量</td>
+<td>原始值转换为物理值时使用</td>
+</tr>
+<tr>
+<td>Signal Min. Value (phys)</td>
+<td>物理最小值</td>
+<td>换算后允许的最小值</td>
+</tr>
+<tr>
+<td>Signal Max. Value (phys)</td>
+<td>物理最大值</td>
+<td>换算后允许的最大值</td>
+</tr>
+<tr>
+<td>Signal Min. Value (Hex)</td>
+<td>总线最小值</td>
+<td>原始编码允许的最小值</td>
+</tr>
+<tr>
+<td>Signal Max. Value (Hex)</td>
+<td>总线最大值</td>
+<td>原始编码允许的最大值</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>单位</td>
+<td>例如 km&#x2F;h、℃、%、rpm</td>
+</tr>
+<tr>
+<td>Signal Value Description</td>
+<td>信号值描述</td>
+<td>枚举原始值对应的业务状态</td>
+</tr>
+</tbody></table>
+<p><strong>状态与特殊值</strong></p>
+<table>
+<thead>
+<tr>
+<th>协议字段</th>
+<th>中文含义</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Initial Value (Hex)</td>
+<td>初始值</td>
+<td>网络启动后、有效数据尚未产生时使用</td>
+</tr>
+<tr>
+<td>Invalid Value (Hex)</td>
+<td>无效值</td>
+<td>表示当前信号不可用或不可信</td>
+</tr>
+<tr>
+<td>Inactive Value (Hex)</td>
+<td>非使能值</td>
+<td>功能未激活时使用，常见于 IfActive 或组合发送方式</td>
+</tr>
+</tbody></table>
+<h2 id="四、字节序与数值换算"><a href="#四、字节序与数值换算" class="headerlink" title="四、字节序与数值换算"></a>四、字节序与数值换算</h2><p>字节序决定多字节信号在报文中的排列顺序。对于单字节信号，Intel 和 Motorola 不会造成字节交换；差异主要出现在信号跨越两个或更多字节时。</p>
+<p><strong>常见名称对照</strong></p>
+<table>
+<thead>
+<tr>
+<th>协议写法</th>
+<th>常见别名</th>
+<th>第一个字节保存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intel</td>
+<td>Little Endian、小端</td>
+<td>低有效字节（LSB）</td>
+</tr>
+<tr>
+<td>Motorola</td>
+<td>Big Endian、大端、Network Order</td>
+<td>高有效字节（MSB）</td>
+</tr>
+</tbody></table>
+<p><strong>Intel（Little Endian）</strong></p>
+<p>Intel 通常表示小端字节序：低有效字节放在低地址位置。</p>
+<p>以 16 位原始值 <code>0x1234</code> 为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Data[0] = 0x34</span><br><span class="line">Data[1] = 0x12</span><br><span class="line">Raw = Data[0] | (Data[1] &lt;&lt; 8)</span><br></pre></td></tr></table></figure>
 
-<h2 id="雷达功能"><a href="#雷达功能" class="headerlink" title="雷达功能"></a>雷达功能</h2><p>前进档时，雷达数据发生变化时需要弹出雷达界面，过几秒自动消失。</p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/intel-byte-order.svg" alt="Intel 小端字节序示意图"></p>
+<p>Intel 格式比较适合直接映射到常见小端 CPU 的整数存储，但解析 CAN 信号时仍应根据协议提取位段，不能直接假设整段内存布局完全一致。</p>
+<p><strong>Motorola（Big Endian）</strong></p>
+<p>Motorola 通常表示大端字节序：高有效字节放在低地址位置。</p>
+<p>同样以 <code>0x1234</code> 为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Data[0] = 0x12</span><br><span class="line">Data[1] = 0x34</span><br><span class="line">Raw = (Data[0] &lt;&lt; 8) | Data[1]</span><br></pre></td></tr></table></figure>
+
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/motorola-byte-order.svg" alt="Motorola 大端字节序示意图"></p>
+<p><strong>字节序和位编号不是同一件事</strong></p>
+<p>协议或工具中还可能出现下面两种位编号方式：</p>
+<table>
+<thead>
+<tr>
+<th>位编号方式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LSB0</td>
+<td>每个字节的最低有效位编号为 Bit 0</td>
+</tr>
+<tr>
+<td>MSB0</td>
+<td>每个字节的最高有效位编号为 Bit 0</td>
+</tr>
+</tbody></table>
+<p><code>Intel/Motorola</code> 描述多字节数据的排列方式，<code>LSB0/MSB0</code> 描述一个字节中的 Bit 编号方式。两者不能互相替代。</p>
+<p>解析跨字节信号时不能只交换字节，还要同时确认：</p>
+<ol>
+<li>协议中的 Bit 0 从哪一侧开始编号。</li>
+<li>Start Bit 表示最高有效位还是最低有效位。</li>
+<li>信号跨字节后的位增长方向。</li>
+<li>当前解析库采用 DBC 定义还是自定义矩阵定义。</li>
+</ol>
+<blockquote>
+<p>同样写着“Motorola + Start Bit”，不同工具导出的矩阵可能采用不同编号方式。最好使用一条已知报文进行反向验证。</p>
+</blockquote>
+<p><strong>混合字节序</strong></p>
+<p>少数历史协议可能使用 Middle Endian、Mixed Endian 或自定义字节交换，例如先交换 16 位字，再按大端排列。它们不是 CAN 通信矩阵中的通用标准，不能仅凭名称推断。</p>
+<p>遇到混合字节序时，笔记中应直接记录：</p>
+<ul>
+<li>报文中的实际字节序列。</li>
+<li>交换前后的完整示例值。</li>
+<li>每一步移位与组合公式。</li>
+<li>一条经过实车或日志验证的原始报文。</li>
+</ul>
+<p>例如协议明确规定字节顺序为 <code>Data[1] Data[0] Data[3] Data[2]</code> 时，应按该顺序显式重组，不能套用普通 Intel 或 Motorola 解析方法。</p>
+<p><strong>接收信号</strong></p>
+<p>从报文中截取信号位后得到原始值 <code>Raw</code>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Physical = Raw × Resolution + Offset</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Raw        = 100</span><br><span class="line">Resolution = 0.1</span><br><span class="line">Offset     = -40</span><br><span class="line"></span><br><span class="line">Physical   = 100 × 0.1 - 40</span><br><span class="line">           = -30 ℃</span><br></pre></td></tr></table></figure>
+
+<p><strong>发送信号</strong></p>
+<p>将物理值写回报文时使用反向计算：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Raw = (Physical - Offset) ÷ Resolution</span><br></pre></td></tr></table></figure>
+
+<p>计算完成后还需要：</p>
+<ol>
+<li>按协议要求进行取整。</li>
+<li>检查原始值是否超出允许范围。</li>
+<li>按正确的字节序写入指定位段。</li>
+<li>避免覆盖同一报文中的其他信号。</li>
+</ol>
+<h2 id="五、接收解析流程"><a href="#五、接收解析流程" class="headerlink" title="五、接收解析流程"></a>五、接收解析流程</h2><ol>
+<li>根据 <code>Msg ID</code> 找到报文。</li>
+<li>检查报文长度是否符合协议。</li>
+<li>根据字节序、起始位和位长度提取 <code>Raw</code>。</li>
+<li>如果是有符号类型，先完成符号扩展。</li>
+<li>判断 <code>Raw</code> 是否为 Initial、Invalid 或 Inactive。</li>
+<li>根据 Resolution 和 Offset 计算物理值。</li>
+<li>检查物理值是否在有效范围内。</li>
+<li>将有效数据交给业务层或界面。</li>
+</ol>
+<p>特殊值应在物理值换算前判断，否则无效编码可能被换算成看似正常的数值。</p>
+<p><strong>枚举信号</strong></p>
+<p>并不是所有信号都需要使用精度和偏移量换算。开关、档位和状态类信号通常直接查询 <code>Signal Value Description</code>。</p>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>Raw</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0x0</code></td>
+<td>关闭</td>
+</tr>
+<tr>
+<td><code>0x1</code></td>
+<td>开启</td>
+</tr>
+<tr>
+<td><code>0x2</code></td>
+<td>预留</td>
+</tr>
+<tr>
+<td><code>0x3</code></td>
+<td>无效</td>
+</tr>
+</tbody></table>
+<p>上表只用于说明枚举信号的阅读方式，实际编码必须以具体协议为准。</p>
+<h2 id="六、车机外发、反馈接收与方式选择"><a href="#六、车机外发、反馈接收与方式选择" class="headerlink" title="六、车机外发、反馈接收与方式选择"></a>六、车机外发、反馈接收与方式选择</h2><p>前面的 <code>Cycle</code>、<code>Event</code>、<code>IfActive</code>、<code>CE</code> 和 <code>CA</code> 描述的是<strong>一条 CAN 报文在总线上的调度方式</strong>。实际开发中还需要确定两个不同的问题：</p>
+<ol>
+<li>用户操作后，车机应该发送目标值、增减动作，还是完整控制帧。</li>
+<li>界面应该等待真实反馈，还是先显示目标状态再等待确认。</li>
+</ol>
+<p>这两个问题不能混为一谈。例如“设置温度为 24 ℃”属于绝对值控制，但承载它的报文仍然可能是周期报文、事件报文或周期加事件组合报文。</p>
+<h3 id="6-1-推荐的软件链路"><a href="#6-1-推荐的软件链路" class="headerlink" title="6.1 推荐的软件链路"></a>6.1 推荐的软件链路</h3><p>为了让 UI、车型差异和实际 CAN 报文解耦，推荐把收发链路分层：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">外发：UI → ViewModel/Action → 车型控制接口 → 报文编码 → CAN</span><br><span class="line">接收：CAN → 报文解析 → 业务状态 → Observer/Binding → UI</span><br></pre></td></tr></table></figure>
+
+<p>UI 层负责表达用户意图，不直接拼接 CAN 字节；车型控制层根据当前车型选择 CAN ID、信号定义、发送次数、有效位、计数器和校验。这样在高低配协议不同时，可以替换车型控制实现，而不用重写界面逻辑。</p>
+<h3 id="6-2-车机外发控制方式"><a href="#6-2-车机外发控制方式" class="headerlink" title="6.2 车机外发控制方式"></a>6.2 车机外发控制方式</h3><table>
+<thead>
+<tr>
+<th>控制方式</th>
+<th>车机发送的内容</th>
+<th>适用条件</th>
+<th>主要风险</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>绝对值设置</td>
+<td>明确的目标值，如 24 ℃、5 档、内循环</td>
+<td>协议提供目标值信号</td>
+<td>编码、范围或单位换算错误</td>
+</tr>
+<tr>
+<td>增减&#x2F;按键模拟</td>
+<td>加、减、按下、释放等动作</td>
+<td>协议只定义动作命令</td>
+<td>丢帧后车机与 ECU 状态可能不同步</td>
+</tr>
+<tr>
+<td>状态翻转</td>
+<td>根据当前反馈发送相反状态</td>
+<td>协议只有 Toggle，或明确要求反向控制</td>
+<td>初始反馈无效时容易发反</td>
+</tr>
+<tr>
+<td>完整控制帧</td>
+<td>包含多个控制字段的整帧数据</td>
+<td>协议要求整帧、周期、有效位、Counter 或 Checksum</td>
+<td>覆盖其他字段、计数器或校验错误</td>
+</tr>
+<tr>
+<td>请求—应答</td>
+<td>发送请求，等待执行结果或实际状态</td>
+<td>协议提供响应、确认或失败状态</td>
+<td>超时、重复请求和迟到响应处理不当</td>
+</tr>
+</tbody></table>
+<p><strong>绝对值设置</strong></p>
+<p>协议允许时优先发送确定目标，而不是发送 Toggle：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">推荐：设置内循环 = 1</span><br><span class="line">谨慎：切换一次循环状态</span><br></pre></td></tr></table></figure>
+
+<p>绝对值命令通常具有幂等性。相同目标重复发送，最终状态仍然一致，比较适合开关、温度、风量和模式控制。</p>
+<p><strong>增减或按键模拟</strong></p>
+<p>只有协议明确提供 <code>Increase</code>、<code>Decrease</code>、<code>Press</code>、<code>Release</code> 等动作时才使用。车机发送的是操作，不是最终结果，因此不能仅通过发送次数推断 ECU 的实际状态。</p>
+<p>对于按下&#x2F;释放协议，还应确认：</p>
+<ul>
+<li>按下与释放是否必须成对发送。</li>
+<li>长按是否需要周期保持。</li>
+<li>两次操作之间是否有最小间隔。</li>
+<li>丢失释放帧后 ECU 是否会自动超时。</li>
+</ul>
+<p><strong>状态翻转</strong></p>
+<p>只有同时满足下面条件时，才能根据当前值发送相反状态：</p>
+<ol>
+<li>当前反馈已经收到，并且不属于 Initial、Invalid 或超时状态。</li>
+<li>没有上一条同类命令正在等待确认。</li>
+<li>协议没有提供更可靠的绝对值控制。</li>
+</ol>
+<p>页面刚打开、反馈尚未初始化时，不应拿代码默认值执行 Toggle，否则可能把“开启”错误地发送成“关闭”。</p>
+<p><strong>完整控制帧</strong></p>
+<p>出现下面任意情况时，应按完整报文处理，不能只修改并发送一个孤立字节：</p>
+<ul>
+<li>报文需要固定周期发送。</li>
+<li>报文包含 Alive Counter。</li>
+<li>报文包含 Checksum、CRC 或校验和。</li>
+<li>控制信号旁边还有有效位、控制源或授权位。</li>
+<li>一帧同时承载温度、风量、模式和循环等多个控制量。</li>
+<li>协议规定事件发生后进入快速周期并重复发送多次。</li>
+</ul>
+<p>实现时应缓存同一报文中其他字段的最新合法值，只修改目标位，然后更新计数器、重新计算校验并按协议发送。高配自动空调比低配手动空调更容易采用这种方式。</p>
+<h3 id="6-3-接收与状态更新方式"><a href="#6-3-接收与状态更新方式" class="headerlink" title="6.3 接收与状态更新方式"></a>6.3 接收与状态更新方式</h3><p>CAN 接收端常见有下面几种数据获取方式：</p>
+<table>
+<thead>
+<tr>
+<th>接收方式</th>
+<th>行为</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>周期&#x2F;事件推送</td>
+<td>ECU 主动周期发送，或状态变化时发送</td>
+<td>大多数实时状态</td>
+</tr>
+<tr>
+<td>请求后响应</td>
+<td>车机查询，ECU返回当前状态或执行结果</td>
+<td>低频配置、诊断和确认类状态</td>
+</tr>
+<tr>
+<td>首次查询＋持续推送</td>
+<td>页面或节点启动时查询一次，后续监听周期&#x2F;事件报文</td>
+<td>需要可靠初始状态的设置页面</td>
+</tr>
+<tr>
+<td>超时失效</td>
+<td>一段时间未收到报文后，把状态标记为无效</td>
+<td>防止 UI 长期显示陈旧数据</td>
+</tr>
+</tbody></table>
+<p>接收代码除了提取信号，还应维护至少三类信息：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原始值/物理值</span><br><span class="line">是否有效</span><br><span class="line">最后一次有效报文时间</span><br></pre></td></tr></table></figure>
+
+<p>如果只有数值而没有有效性和时间信息，UI 很难区分“关闭”“尚未收到”和“通信已经中断”。</p>
+<h3 id="6-4-UI-根据反馈显示的方式"><a href="#6-4-UI-根据反馈显示的方式" class="headerlink" title="6.4 UI 根据反馈显示的方式"></a>6.4 UI 根据反馈显示的方式</h3><table>
+<thead>
+<tr>
+<th>UI 策略</th>
+<th>点击后的显示行为</th>
+<th>适用条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>纯反馈显示</td>
+<td>发送后不改变最终状态，收到 ECU 反馈才更新</td>
+<td>实际设备状态、反馈较快、不能接受误显示</td>
+</tr>
+<tr>
+<td>乐观显示＋反馈纠正</td>
+<td>立即显示目标并标记等待，收到反馈后确认或校正</td>
+<td>反馈可靠但存在延迟，交互要求较快</td>
+</tr>
+<tr>
+<td>发送值回显</td>
+<td>根据刚发送的目标值更新 UI</td>
+<td>只能作为临时目标显示，不能代表执行成功</td>
+</tr>
+<tr>
+<td>瞬时按压显示</td>
+<td>只显示按钮按下动画，不保持最终状态</td>
+<td>没有状态反馈，只能模拟物理按键</td>
+</tr>
+<tr>
+<td>组合反馈显示</td>
+<td>多个反馈字段统一计算一个 UI 状态</td>
+<td>AUTO、吹风组合、同步和优先级状态</td>
+</tr>
+</tbody></table>
+<p><strong>纯反馈显示</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击 → 发送命令 → ECU执行 → 收到状态反馈 → 更新UI</span><br></pre></td></tr></table></figure>
+
+<p>空调开关、AC、AUTO、除霜等真实设备状态优先采用这种方式。优点是不会出现“界面显示开启但车辆实际没有开启”，缺点是反馈较慢时用户可能觉得按钮没有响应。可以立即显示短暂的按压动画，但永久选中状态仍由反馈决定。</p>
+<p><strong>乐观显示加反馈纠正</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">保存原状态</span><br><span class="line">→ UI显示目标值并进入 Pending</span><br><span class="line">→ 发送命令</span><br><span class="line">→ 收到一致反馈：确认并结束 Pending</span><br><span class="line">→ 收到不同反馈：按真实状态校正</span><br><span class="line">→ 等待超时：恢复原状态或显示失败</span><br></pre></td></tr></table></figure>
+
+<p>超时时间应根据报文周期决定，通常至少覆盖 3～5 个反馈周期。还需要给每次操作增加序号或 Pending 标记，避免上一条命令的迟到反馈覆盖用户刚进行的新操作。</p>
+<p><strong>发送值回显</strong></p>
+<p>发送值回显只能证明车机完成了软件调用，不能证明报文已经上总线，更不能证明 ECU 已经执行。没有真实反馈时，可以显示“指令已发送”或目标值的临时样式，但不应把它标记为实际状态。</p>
+<p><strong>组合反馈显示</strong></p>
+<p>一个控件由多个信号共同决定时，应使用一个统一刷新方法集中计算：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">界面状态 = 模式反馈 + 除霜反馈 + AUTO反馈 + 有效状态</span><br></pre></td></tr></table></figure>
+
+<p>不要让多个 Observer 分别修改同一个控件，否则报文到达顺序不同可能导致 UI 闪烁或显示最后一个回调的错误结果。</p>
+<h3 id="6-5-方式选择流程"><a href="#6-5-方式选择流程" class="headerlink" title="6.5 方式选择流程"></a>6.5 方式选择流程</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">协议是否提供明确目标值？</span><br><span class="line">├─ 是 → 优先发送绝对值</span><br><span class="line">└─ 否</span><br><span class="line">   ├─ 提供加减/按键定义 → 发送动作指令</span><br><span class="line">   ├─ 只有 Toggle → 反馈有效后才能翻转</span><br><span class="line">   └─ 有周期、有效位、Counter、Checksum → 维护并发送完整帧</span><br><span class="line"></span><br><span class="line">是否有可信的实际状态反馈？</span><br><span class="line">├─ 没有 → 只显示按压或“已发送”，不保持最终状态</span><br><span class="line">└─ 有</span><br><span class="line">   ├─ 状态重要、反馈较快 → 纯反馈显示</span><br><span class="line">   ├─ 反馈较慢、交互要求快 → 乐观显示＋超时回滚</span><br><span class="line">   └─ 多字段共同决定 → 组合反馈统一计算</span><br></pre></td></tr></table></figure>
+
+<p>选择方式前应按顺序确认：</p>
+<ol>
+<li>在通信矩阵中确认发送节点、接收节点、CAN ID 和总线通道。</li>
+<li>判断协议给的是目标值信号、动作信号还是 Toggle。</li>
+<li>检查报文发送类型、周期、快速周期和重复次数。</li>
+<li>检查有效位、控制源、Counter、Checksum 和前置条件。</li>
+<li>找到真实状态反馈、响应结果和超时判定依据。</li>
+<li>使用原车操作日志或实车报文验证，不根据 UI 名称猜测协议含义。</li>
+</ol>
+<h3 id="6-6-高低配空调问题的快速判断"><a href="#6-6-高低配空调问题的快速判断" class="headerlink" title="6.6 高低配空调问题的快速判断"></a>6.6 高低配空调问题的快速判断</h3><p>当低配控制正常、高配没有反应时，可以对相同操作抓取车机调用日志、发送帧和反馈帧：</p>
+<table>
+<thead>
+<tr>
+<th>观察结果</th>
+<th>优先排查方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高配没有产生外发 CAN 帧</td>
+<td>车型配置、监听注册、发送路由或控制接口</td>
+</tr>
+<tr>
+<td>高低配发送完全相同，但只有低配执行</td>
+<td>高配 CAN ID、总线、有效位、完整帧、Counter、Checksum 或控制前提</td>
+</tr>
+<tr>
+<td>高配车辆已经执行，但 UI 没变化</td>
+<td>高配反馈 ID、信号位、有效值解析或 Observer 绑定</td>
+</tr>
+<tr>
+<td>UI立即变化，但车辆没有执行</td>
+<td>把发送值回显误当成真实反馈</td>
+</tr>
+<tr>
+<td>只有部分按钮无效</td>
+<td>对应信号的枚举、偏移、模式组合或前置条件</td>
+</tr>
+<tr>
+<td>页面刚进入第一次点击经常发反</td>
+<td>默认值被当成真实反馈执行 Toggle</td>
+</tr>
+</tbody></table>
+<p>排查时应分别证明四件事：用户操作已经进入控制接口、控制接口生成了正确报文、报文确实出现在目标总线上、ECU 返回了真实状态。只看到 UI 变化或发送函数日志，不能证明空调已经执行。</p>
+<h2 id="七、雷达功能示例"><a href="#七、雷达功能示例" class="headerlink" title="七、雷达功能示例"></a>七、雷达功能示例</h2><p><strong>需求</strong></p>
+<p>车辆处于前进档时，如果雷达数据发生变化，则弹出雷达界面；一段时间没有新的变化后，界面自动消失。</p>
+<p><strong>输入信号</strong></p>
+<ul>
+<li>当前档位。</li>
+<li>前雷达各探头距离或等级。</li>
+<li>雷达信号有效状态。</li>
+</ul>
+<p><strong>触发逻辑</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">档位为前进档</span><br><span class="line">并且雷达数据有效</span><br><span class="line">并且雷达数据相较上一次发生变化</span><br><span class="line">→ 显示雷达界面并重新开始隐藏计时</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现注意点</strong></p>
+<ol>
+<li>首次收到有效值时，需要明确是否算作“发生变化”。</li>
+<li>雷达数据持续变化时，应不断刷新隐藏计时。</li>
+<li>收到 Invalid Value 时，不应误触发界面。</li>
+<li>退出前进档后，应取消计时并按产品要求关闭界面。</li>
+<li>多个雷达信号位于同一报文时，可以比较解析后的整体状态，避免重复弹出。</li>
+</ol>
+<h2 id="八、排查与记录模板"><a href="#八、排查与记录模板" class="headerlink" title="八、排查与记录模板"></a>八、排查与记录模板</h2><p><strong>排查清单</strong></p>
+<p>当信号值或界面状态不正确时，按下面的顺序检查：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 报文 ID 是否正确，标准帧和扩展帧是否匹配。</li>
+<li><input disabled="" type="checkbox"> 报文长度是否符合协议。</li>
+<li><input disabled="" type="checkbox"> 接收周期是否正常，是否已经超时。</li>
+<li><input disabled="" type="checkbox"> Intel&#x2F;Motorola 字节序是否正确。</li>
+<li><input disabled="" type="checkbox"> Start Byte、Start Bit 和 Bit Length 是否正确。</li>
+<li><input disabled="" type="checkbox"> Signed&#x2F;Unsigned 类型是否正确。</li>
+<li><input disabled="" type="checkbox"> Resolution 和 Offset 是否正确。</li>
+<li><input disabled="" type="checkbox"> Initial、Invalid、Inactive 是否被单独处理。</li>
+<li><input disabled="" type="checkbox"> 枚举值是否完整映射。</li>
+<li><input disabled="" type="checkbox"> 相同报文中的其他信号是否被意外覆盖。</li>
+<li><input disabled="" type="checkbox"> UI 是否订阅并使用了正确的业务字段。</li>
+</ul>
+<p><strong>记录模板</strong></p>
+<p>以后新增笔记时，每条信号至少记录以下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">报文名称：</span><br><span class="line">报文 ID：</span><br><span class="line">发送节点：</span><br><span class="line">发送类型与周期：</span><br><span class="line">信号名称：</span><br><span class="line">起始位与长度：</span><br><span class="line">字节序：</span><br><span class="line">数据类型：</span><br><span class="line">精度与偏移量：</span><br><span class="line">有效范围：</span><br><span class="line">初始值/无效值/非使能值：</span><br><span class="line">枚举说明：</span><br><span class="line">接收或发送代码位置：</span><br><span class="line">界面或业务用途：</span><br><span class="line">验证报文：</span><br></pre></td></tr></table></figure>
+
+<p>这样可以把协议、解析代码和最终功能串在一起，后续排查时不必重新翻完整通信矩阵。</p>
 
 <div class="article-footer fs14">
     <section id="license">
-      <div class="header"><span>License</span></div>
+      <div class="header"><span>许可协议</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
 </div>
     </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2024/12/05/can-protocol/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2024/12/05/can-protocol/"/>
+        </div>
+        
+      </div>
+    </section>
     </div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/12/12/Kotlin%E7%BC%96%E7%A8%8B%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kotlin编程权威指南</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/12/05/Android-Studio/">Android Studio</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2024/12/12/Kotlin%E7%BC%96%E7%A8%8B%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kotlin编程权威指南</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/12/05/Android-Studio/">Android Studio</a></div></section></div>
 
 
 
 
 
 
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">John Doe</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
 
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%98%85%E8%AF%BB%E5%8D%8F%E8%AE%AE%E6%80%BB%E8%A7%88"><span class="toc-text">一、阅读协议总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%A5%E6%96%87%E5%B1%9E%E6%80%A7"><span class="toc-text">二、报文属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BF%A1%E5%8F%B7%E5%B1%9E%E6%80%A7"><span class="toc-text">三、信号属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AD%97%E8%8A%82%E5%BA%8F%E4%B8%8E%E6%95%B0%E5%80%BC%E6%8D%A2%E7%AE%97"><span class="toc-text">四、字节序与数值换算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8E%A5%E6%94%B6%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="toc-text">五、接收解析流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BD%A6%E6%9C%BA%E5%A4%96%E5%8F%91%E3%80%81%E5%8F%8D%E9%A6%88%E6%8E%A5%E6%94%B6%E4%B8%8E%E6%96%B9%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="toc-text">六、车机外发、反馈接收与方式选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%8E%A8%E8%8D%90%E7%9A%84%E8%BD%AF%E4%BB%B6%E9%93%BE%E8%B7%AF"><span class="toc-text">6.1 推荐的软件链路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E8%BD%A6%E6%9C%BA%E5%A4%96%E5%8F%91%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-text">6.2 车机外发控制方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%8E%A5%E6%94%B6%E4%B8%8E%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">6.3 接收与状态更新方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-UI-%E6%A0%B9%E6%8D%AE%E5%8F%8D%E9%A6%88%E6%98%BE%E7%A4%BA%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">6.4 UI 根据反馈显示的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E6%96%B9%E5%BC%8F%E9%80%89%E6%8B%A9%E6%B5%81%E7%A8%8B"><span class="toc-text">6.5 方式选择流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E9%AB%98%E4%BD%8E%E9%85%8D%E7%A9%BA%E8%B0%83%E9%97%AE%E9%A2%98%E7%9A%84%E5%BF%AB%E9%80%9F%E5%88%A4%E6%96%AD"><span class="toc-text">6.6 高低配空调问题的快速判断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%9B%B7%E8%BE%BE%E5%8A%9F%E8%83%BD%E7%A4%BA%E4%BE%8B"><span class="toc-text">七、雷达功能示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%8E%92%E6%9F%A5%E4%B8%8E%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF"><span class="toc-text">八、排查与记录模板</span></a></li></ol></div><div class="widget-footer">
 
-
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B7%E8%BE%BE%E5%8A%9F%E8%83%BD"><span class="toc-text">雷达功能</span></a></li></ol></div><div class="widget-footer">
-
-<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
@@ -260,10 +764,10 @@
 <script type="text/javascript">
   const ctx = {
     date_suffix: {
-      just: `Just`,
-      min: `minutes ago`,
-      hour: `hours ago`,
-      day: `days ago`,
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
     },
     root : `/`,
   };
@@ -552,9 +1056,9 @@
     window.localStorage.setItem('Stellar.theme', newTheme)
 
     const messages = {
-      light: `Switched to Light Mode`,
-      dark: `Switched to Dark Mode`,
-      auto: `Switched to Auto Mode`,
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
     }
     hud?.toast?.(messages[newTheme])
   }
@@ -640,7 +1144,7 @@
   });
 </script><script>
   ctx.fancybox = {
-    selector: `.timenode p>img`,
+    selector: `.md-text img:not([class]), .md-text .image img`,
     css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
     js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
   };
@@ -701,9 +1205,9 @@
     window.codeElements = document.querySelectorAll('.code');
     if (window.codeElements.length > 0) {
       ctx.copycode = {
-        default_text: `Copy`,
-        success_text: `Copied`,
-        toast: `复制成功`,
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
       };
       utils.js('/js/plugins/copycode.js');
     }
@@ -712,5 +1216,5 @@
 
 
 <!-- inject -->
-
+<script src="/js/toc-toggle.js" defer></script>
 </div></body></html>
