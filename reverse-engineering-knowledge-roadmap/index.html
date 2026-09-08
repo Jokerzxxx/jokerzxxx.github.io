@@ -1,0 +1,1306 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>逆向工程全景知识体系与学习路线 - 雾岛来信</title>
+
+  
+    <meta name="description" content="逆向工程不是“会用一个反编译器”，而是从二进制、运行行为和通信数据中恢复系统的结构、语义与约束。真正有价值的能力，是能把一个现象沿着入口、数据流、状态变化、系统调用、网络或总线交互一直追到根因，并用可复现的证据验证结论。 本文不限定平台，系统整理桌面程序、移动应用、Web、游戏、Native、操作系统、固件、嵌入式、硬件、网络与无线协议、工业与车载通信、恶意代码、漏洞研究、数字取证、文件格式、虚拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逆向工程全景知识体系与学习路线">
+<meta property="og:url" content="https://jokerzxxx.github.io/reverse-engineering-knowledge-roadmap/index.html">
+<meta property="og:site_name" content="雾岛来信">
+<meta property="og:description" content="逆向工程不是“会用一个反编译器”，而是从二进制、运行行为和通信数据中恢复系统的结构、语义与约束。真正有价值的能力，是能把一个现象沿着入口、数据流、状态变化、系统调用、网络或总线交互一直追到根因，并用可复现的证据验证结论。 本文不限定平台，系统整理桌面程序、移动应用、Web、游戏、Native、操作系统、固件、嵌入式、硬件、网络与无线协议、工业与车载通信、恶意代码、漏洞研究、数字取证、文件格式、虚拟">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-22T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T06:30:00.000Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="逆向工程">
+<meta property="article:tag" content="二进制分析">
+<meta property="article:tag" content="软件安全">
+<meta property="article:tag" content="固件与硬件">
+<meta property="article:tag" content="协议分析">
+<meta property="article:tag" content="安全研究">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="逆向工程,二进制分析,软件安全,固件与硬件,协议分析,安全研究">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar-mist-island.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">雾岛来信</div><div class="sub cap">在时间里，慢慢生长</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="专题" href="/topics/" style="color:#4F46E5"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/03/12/%E8%80%81%E5%A7%9A%E5%90%89%E4%BB%96%E4%BB%8E%E9%9B%B6%E8%B5%B7%E6%AD%A5%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/"><span class="title">老姚吉他从零起步基础教学</span></a><a class="item title" href="/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/"><span class="title">👍 2026工作日报</span></a><a class="item title" href="/reverse-engineering-knowledge-roadmap/"><span class="title">逆向工程全景知识体系与学习路线</span></a><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/">计算机安全</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/">安全研究</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">逆向工程</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-08-22T02:30:00.000Z">2026-08-22</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-22T06:30:00.000Z">2026-08-22</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>逆向工程全景知识体系与学习路线</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>逆向工程不是“会用一个反编译器”，而是从二进制、运行行为和通信数据中恢复系统的结构、语义与约束。真正有价值的能力，是能把一个现象沿着<strong>入口、数据流、状态变化、系统调用、网络或总线交互</strong>一直追到根因，并用可复现的证据验证结论。</p>
+<p>本文不限定平台，系统整理桌面程序、移动应用、Web、游戏、Native、操作系统、固件、嵌入式、硬件、网络与无线协议、工业与车载通信、恶意代码、漏洞研究、数字取证、文件格式、虚拟机以及自动化分析等方向所需的知识、工具、方法和学习路线。</p>
+<blockquote>
+<p><strong>合法合规边界</strong>：只分析自己拥有、明确获准测试、开源或专门用于练习的程序和设备。不要绕过付费、账号、访问控制、数字版权保护或生产系统安全措施；不要获取、传播他人的密钥、隐私数据和商业机密。分析前应确认授权范围、数据处理要求和成果披露方式。</p>
+</blockquote>
+<hr>
+<h2 id="一、先理解逆向到底在解决什么问题"><a href="#一、先理解逆向到底在解决什么问题" class="headerlink" title="一、先理解逆向到底在解决什么问题"></a>一、先理解逆向到底在解决什么问题</h2><p>常见逆向任务可以分为五类：</p>
+<ol>
+<li><strong>结构恢复</strong>：程序由哪些模块、组件、类、函数和资源构成。</li>
+<li><strong>行为定位</strong>：某个页面、按钮、弹窗、算法或协议消息由哪段逻辑触发。</li>
+<li><strong>数据追踪</strong>：输入如何经过解析、转换、存储，最后影响 UI、文件、网络或硬件。</li>
+<li><strong>协议还原</strong>：字段含义、字节序、比例、偏移、状态机、计数器和校验规则是什么。</li>
+<li><strong>故障诊断</strong>：问题属于没有发送、发送错误、对端未执行、反馈未解析，还是 UI 没有更新。</li>
+</ol>
+<p>因此，一个完整结论通常要回答：</p>
+<ul>
+<li>入口在哪里；</li>
+<li>数据从哪里来、到哪里去；</li>
+<li>中间经过了哪些转换和条件判断；</li>
+<li>运行时实际发生了什么；</li>
+<li>哪些证据支持结论，哪些部分仍只是推测。</li>
+</ul>
+<p>逆向不是把反编译结果“读一遍”，而是持续进行“提出假设 → 找证据 → 做实验 → 修正模型”的循环。</p>
+<hr>
+<h2 id="二、逆向工程的完整方向图谱"><a href="#二、逆向工程的完整方向图谱" class="headerlink" title="二、逆向工程的完整方向图谱"></a>二、逆向工程的完整方向图谱</h2><p>逆向工程没有单一终点。不同方向面对的样本、运行环境和证据不同，但底层都依赖对数据表示、程序执行和系统边界的理解。</p>
+<h3 id="2-1-通用二进制与算法逆向"><a href="#2-1-通用二进制与算法逆向" class="headerlink" title="2.1 通用二进制与算法逆向"></a>2.1 通用二进制与算法逆向</h3><p>这是多数低层方向的共同基础，目标是从机器码恢复函数、类型、数据结构、控制流和算法语义。</p>
+<p>需要掌握：</p>
+<ul>
+<li>x86&#x2F;x64、ARM&#x2F;AArch64、MIPS、RISC-V 等指令集；</li>
+<li>调用约定、ABI、栈帧、寄存器和异常处理；</li>
+<li>编译器优化、内联、尾调用、跳转表和链接时优化；</li>
+<li>C&#x2F;C++ 对象布局、虚表、RTTI、模板和名称修饰；</li>
+<li>常量、查表、循环和输入输出特征所反映的编码、压缩、校验、哈希与加密算法；</li>
+<li>符号恢复、类型恢复、函数识别和跨版本匹配。</li>
+</ul>
+<p>典型任务包括定位关键算法、还原私有数据结构、解释崩溃、进行兼容性研究以及分析不同版本的行为变化。</p>
+<h3 id="2-2-Windows-程序逆向"><a href="#2-2-Windows-程序逆向" class="headerlink" title="2.2 Windows 程序逆向"></a>2.2 Windows 程序逆向</h3><p>主要样本包括 EXE、DLL、驱动、服务、安装包和 .NET 程序。</p>
+<p>重点知识：PE 文件格式、Windows API、进程与线程、SEH&#x2F;VEH 异常处理、注册表、COM、RPC、服务、访问令牌、对象管理器、驱动模型和内核调试。.NET 方向还要理解 CLR、CIL、程序集元数据、反射和混淆。</p>
+<p>常见分析目标是恢复桌面软件业务逻辑、排查兼容性问题、分析驱动和系统交互、还原文件格式，以及进行获授权的恶意样本或漏洞分析。</p>
+<h3 id="2-3-Linux、Unix-与服务器程序逆向"><a href="#2-3-Linux、Unix-与服务器程序逆向" class="headerlink" title="2.3 Linux、Unix 与服务器程序逆向"></a>2.3 Linux、Unix 与服务器程序逆向</h3><p>主要对象包括 ELF 可执行文件、SO、守护进程、容器内程序、内核模块和命令行工具。</p>
+<p>重点知识：ELF、System V ABI、动态链接器、PLT&#x2F;GOT、系统调用、信号、<code>procfs</code>、权限、namespace、cgroup、ptrace、共享对象预加载以及 core dump。服务器程序还要结合并发模型、IPC、Socket 和配置加载过程理解行为。</p>
+<h3 id="2-4-Android-逆向"><a href="#2-4-Android-逆向" class="headerlink" title="2.4 Android 逆向"></a>2.4 Android 逆向</h3><p>对象包括 APK&#x2F;AAB、DEX、Smali、资源、ART&#x2F;OAT、JNI&#x2F;SO、Framework、系统服务和厂商应用。</p>
+<p>需要掌握 Android 组件、Manifest、资源系统、类加载、Binder、权限和签名、应用沙箱、SELinux、ART、JNI 以及系统日志。分析任务可能涉及应用结构恢复、故障定位、协议与数据流分析、恶意应用研究和系统兼容性分析。</p>
+<h3 id="2-5-iOS-与-macOS-逆向"><a href="#2-5-iOS-与-macOS-逆向" class="headerlink" title="2.5 iOS 与 macOS 逆向"></a>2.5 iOS 与 macOS 逆向</h3><p>主要样本包括 IPA、App Bundle、Mach-O、Framework、dylib、系统扩展和 macOS 应用。</p>
+<p>重点知识：Mach-O、dyld、Objective-C Runtime、Swift ABI、ARC、代码签名、Entitlement、Sandbox、XPC、Keychain、系统框架和 LLDB。还要区分模拟器与真机架构，以及应用逻辑、系统机制和平台安全策略之间的边界。</p>
+<h3 id="2-6-Web、JavaScript-与-WebAssembly-逆向"><a href="#2-6-Web、JavaScript-与-WebAssembly-逆向" class="headerlink" title="2.6 Web、JavaScript 与 WebAssembly 逆向"></a>2.6 Web、JavaScript 与 WebAssembly 逆向</h3><p>Web 逆向不只是查看接口。完整对象包括 HTML&#x2F;CSS、JavaScript、Source Map、Webpack 等打包产物、Service Worker、浏览器存储、WebSocket、WASM 和前后端状态协议。</p>
+<p>重点知识：浏览器执行模型、DOM、事件循环、闭包、Promise、模块系统、代码压缩与混淆、网络请求、序列化、缓存和跨域机制。常见任务是理解复杂前端行为、恢复数据格式、排查兼容性问题和审计自己系统的客户端安全设计。</p>
+<h3 id="2-7-游戏逆向"><a href="#2-7-游戏逆向" class="headerlink" title="2.7 游戏逆向"></a>2.7 游戏逆向</h3><p>游戏方向横跨 Native、脚本、图形、资源和网络。</p>
+<p>需要了解 Unity、Unreal 等引擎的对象与资源组织，Mono&#x2F;IL2CPP、Lua 等运行时，场景、实体组件、动画、渲染管线、资源包、存档和同步协议。研究应限定在自研、开源、模组许可或明确授权范围内，避免破坏在线服务公平性和访问控制。</p>
+<h3 id="2-8-固件与嵌入式系统逆向"><a href="#2-8-固件与嵌入式系统逆向" class="headerlink" title="2.8 固件与嵌入式系统逆向"></a>2.8 固件与嵌入式系统逆向</h3><p>对象包括路由器、摄像头、IoT、工控设备、家电、ECU、Bootloader、升级包和裸机程序。</p>
+<p>重点知识：固件容器、分区表、压缩格式、SquashFS&#x2F;UBIFS&#x2F;JFFS2 等文件系统、交叉编译、启动流程、Bootloader、RTOS、内存映射、外设寄存器、ARM&#x2F;MIPS&#x2F;RISC-V 架构和固件仿真。</p>
+<p>典型流程是识别芯片与架构、拆分固件、寻找文件系统和程序、恢复启动链与服务、必要时在隔离环境中仿真验证。</p>
+<h3 id="2-9-硬件逆向"><a href="#2-9-硬件逆向" class="headerlink" title="2.9 硬件逆向"></a>2.9 硬件逆向</h3><p>硬件逆向研究 PCB、芯片、总线和电气信号，是连接软件与真实设备行为的桥梁。</p>
+<p>需要掌握：</p>
+<ul>
+<li>基础电路、数字逻辑、电压与时序；</li>
+<li>芯片型号、数据手册、封装与引脚识别；</li>
+<li>UART、SPI、I²C、JTAG、SWD、GPIO；</li>
+<li>万用表、示波器、逻辑分析仪和调试器；</li>
+<li>Flash&#x2F;EEPROM 读取、启动模式和电路保护意识。</li>
+</ul>
+<p>硬件操作可能损坏设备或影响安全功能，应先确认电压、接地、隔离和设备授权，不在带有现实安全风险的生产设备上直接试验。</p>
+<h3 id="2-10-网络协议逆向"><a href="#2-10-网络协议逆向" class="headerlink" title="2.10 网络协议逆向"></a>2.10 网络协议逆向</h3><p>对象包括 TCP&#x2F;UDP 上的私有协议、HTTP API、WebSocket、即时通信、流媒体、RPC、消息队列和设备控制协议。</p>
+<p>需要从分层角度恢复端点、连接、分帧、长度、类型、序列号、状态机、心跳、重传、压缩、编码、校验以及请求与响应的对应关系。分析既要结合抓包，也要结合客户端代码、服务端日志和受控实验。</p>
+<h3 id="2-11-无线、射频与物联网协议逆向"><a href="#2-11-无线、射频与物联网协议逆向" class="headerlink" title="2.11 无线、射频与物联网协议逆向"></a>2.11 无线、射频与物联网协议逆向</h3><p>常见对象包括 Bluetooth&#x2F;BLE、Wi-Fi、Zigbee、Thread、NFC、RFID、LoRa、遥控器和私有无线协议。</p>
+<p>除了协议栈，还需理解频率、信道、调制、配对、广播、服务与特征、设备角色、重放风险和射频法规。复杂项目可能需要软件无线电，但应遵守当地无线电规定，避免干扰或接入不属于自己的设备。</p>
+<h3 id="2-12-车载、工业控制与设备总线逆向"><a href="#2-12-车载、工业控制与设备总线逆向" class="headerlink" title="2.12 车载、工业控制与设备总线逆向"></a>2.12 车载、工业控制与设备总线逆向</h3><p>该方向包括 CAN、LIN、FlexRay、J1939、UDS、DoIP、SOME&#x2F;IP、车载以太网，以及 Modbus、PROFINET、EtherCAT 等工业协议。</p>
+<p>重点是帧结构、信号映射、周期、计数器、校验、会话、诊断服务、网关路由和安全状态。由于它可能直接影响车辆或工业设备，只应使用台架、仿真环境、离线日志或明确授权的测试设备，并明确区分“软件生成了命令”和“真实设备安全执行了命令”。</p>
+<h3 id="2-13-文件格式、数据结构与数字媒体逆向"><a href="#2-13-文件格式、数据结构与数字媒体逆向" class="headerlink" title="2.13 文件格式、数据结构与数字媒体逆向"></a>2.13 文件格式、数据结构与数字媒体逆向</h3><p>对象包括私有文档、数据库、存档、资源包、日志、图片、音频、视频、模型和缓存文件。</p>
+<p>分析重点是文件头、魔数、版本、偏移、长度、索引、块结构、压缩、编码、校验和容错。通常通过多样本对比、十六进制观察、边界测试和解析脚本逐步建立格式规范。</p>
+<h3 id="2-14-虚拟机、字节码与语言运行时逆向"><a href="#2-14-虚拟机、字节码与语言运行时逆向" class="headerlink" title="2.14 虚拟机、字节码与语言运行时逆向"></a>2.14 虚拟机、字节码与语言运行时逆向</h3><p>除了 JVM&#x2F;DEX，还包括 .NET CLR、Python 字节码、Lua、JavaScript 引擎、WebAssembly，以及软件自定义的虚拟机。</p>
+<p>需要理解字节码指令、操作数栈或寄存器模型、常量池、对象模型、垃圾回收、解释执行、JIT、异常机制和模块加载。自定义虚拟机还需恢复指令分派、虚拟寄存器、编码格式与宿主 API。</p>
+<h3 id="2-15-操作系统、内核与驱动逆向"><a href="#2-15-操作系统、内核与驱动逆向" class="headerlink" title="2.15 操作系统、内核与驱动逆向"></a>2.15 操作系统、内核与驱动逆向</h3><p>对象包括内核、驱动、系统调用、文件系统、网络栈、Hypervisor 和系统服务。</p>
+<p>重点知识：特权级、中断与异常、内存管理、调度、设备模型、I&#x2F;O、内核同步、符号和崩溃转储。该方向常用于驱动兼容、系统故障诊断、安全研究和缺少源码组件的行为理解。</p>
+<h3 id="2-16-恶意代码分析"><a href="#2-16-恶意代码分析" class="headerlink" title="2.16 恶意代码分析"></a>2.16 恶意代码分析</h3><p>分析对象可能是木马、勒索软件、下载器、脚本、恶意文档和移动恶意应用。</p>
+<p>核心任务包括样本分类、静态特征、进程与文件行为、持久化、网络通信、配置提取、事件时间线和 IOC。必须使用专门隔离实验室、受控网络和可恢复快照，不在存有工作资料或真实账号的日常设备中运行未知样本。</p>
+<h3 id="2-17-漏洞研究与补丁差分"><a href="#2-17-漏洞研究与补丁差分" class="headerlink" title="2.17 漏洞研究与补丁差分"></a>2.17 漏洞研究与补丁差分</h3><p>该方向从输入面、信任边界、内存操作、权限判断和状态转换中寻找缺陷，也可比较修复前后版本定位安全补丁。</p>
+<p>需要掌握安全编码、内存破坏、整数问题、竞态、逻辑漏洞、模糊测试、崩溃归因和版本差分。漏洞验证必须遵守授权与披露规则，避免接触真实用户数据或扩大影响范围。</p>
+<h3 id="2-18-数字取证与内存分析"><a href="#2-18-数字取证与内存分析" class="headerlink" title="2.18 数字取证与内存分析"></a>2.18 数字取证与内存分析</h3><p>数字取证关注“发生了什么、何时发生、由谁触发、证据是否完整”。</p>
+<p>对象包括磁盘镜像、文件系统、内存镜像、进程、网络连接、浏览器数据、移动设备备份和系统日志。需要掌握时间线、哈希、写保护、证据链、已删除数据、内存结构和日志关联，分析过程本身不能污染原始证据。</p>
+<h3 id="2-19-软件保护与反分析机制研究"><a href="#2-19-软件保护与反分析机制研究" class="headerlink" title="2.19 软件保护与反分析机制研究"></a>2.19 软件保护与反分析机制研究</h3><p>该方向研究混淆、加壳、虚拟化保护、动态加载、反调试、完整性校验和环境检测的设计与识别。</p>
+<p>学习重点应放在保护机制原理、误报与兼容性、可观测特征和防御评估。分析第三方保护时仍需遵守授权，不能把安全研究变成绕过付费、许可或数字版权控制的手段。</p>
+<h3 id="2-20-兼容实现、考古与版本恢复"><a href="#2-20-兼容实现、考古与版本恢复" class="headerlink" title="2.20 兼容实现、考古与版本恢复"></a>2.20 兼容实现、考古与版本恢复</h3><p>有些逆向并非安全研究，而是为了保存旧软件、迁移数据、实现互操作或替换停产组件。</p>
+<p>常见任务包括恢复旧文件格式、重建协议客户端、模拟硬件接口、理解历史系统、进行洁净室兼容实现和迁移私有数据。需要特别注意著作权、专利、许可协议和洁净室流程，确保实现依据可公开观察的行为规范，而不是复制受保护源码。</p>
+<h3 id="2-21-自动化与规模化逆向"><a href="#2-21-自动化与规模化逆向" class="headerlink" title="2.21 自动化与规模化逆向"></a>2.21 自动化与规模化逆向</h3><p>当样本很多或版本频繁变化时，需要把人工经验转成自动化流程：</p>
+<ul>
+<li>批量解包、哈希、签名和元数据提取；</li>
+<li>字符串、导入函数、函数特征和调用图聚类；</li>
+<li>版本差分、符号迁移和相似函数匹配；</li>
+<li>日志解析、协议字段统计和异常检测；</li>
+<li>静态分析、污点分析、程序切片、符号执行和模糊测试；</li>
+<li>自动生成可搜索的样本索引与证据报告。</li>
+</ul>
+<p>自动化适合扩大覆盖面，但最终语义仍需人工结合上下文确认。</p>
+<hr>
+<h2 id="三、必须掌握的基础知识"><a href="#三、必须掌握的基础知识" class="headerlink" title="三、必须掌握的基础知识"></a>三、必须掌握的基础知识</h2><h3 id="3-1-编程语言与代码阅读"><a href="#3-1-编程语言与代码阅读" class="headerlink" title="3.1 编程语言与代码阅读"></a>3.1 编程语言与代码阅读</h3><p>至少应熟悉一门高级语言和一种低级表示。</p>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>需要掌握的内容</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Java&#x2F;Kotlin</td>
+<td>类、继承、接口、泛型、注解、反射、协程、Lambda</td>
+<td>阅读 Android 业务逻辑与框架调用</td>
+</tr>
+<tr>
+<td>C&#x2F;C++</td>
+<td>指针、内存、结构体、虚函数、ABI、编译链接</td>
+<td>分析 JNI、SO 和系统服务</td>
+</tr>
+<tr>
+<td>C#&#x2F;.NET</td>
+<td>程序集、元数据、反射、异步与 CLR</td>
+<td>阅读 Windows 和跨平台托管程序</td>
+</tr>
+<tr>
+<td>JavaScript&#x2F;TypeScript</td>
+<td>闭包、原型、异步、模块和构建工具</td>
+<td>分析 Web、Electron 和脚本程序</td>
+</tr>
+<tr>
+<td>Swift&#x2F;Objective-C</td>
+<td>Runtime、协议、ARC、闭包和 ABI</td>
+<td>分析 iOS 与 macOS 应用</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>文本、二进制、正则、文件与批处理</td>
+<td>编写提取、解码、比对脚本</td>
+</tr>
+<tr>
+<td>Smali</td>
+<td>寄存器、指令、分支、方法调用、字段访问</td>
+<td>在 DEX 层确认控制流和数据流</td>
+</tr>
+<tr>
+<td>汇编</td>
+<td>寄存器、栈、调用约定、跳转、访存</td>
+<td>阅读 ARM&#x2F;ARM64&#x2F;x86 Native 代码</td>
+</tr>
+</tbody></table>
+<p>不必一开始就精通所有语言。应先根据目标平台选择一条主线，例如 Windows 的 <strong>C&#x2F;C++ → x64 汇编 → Win32 API</strong>，Android 的 <strong>Java&#x2F;Kotlin → Smali → JNI → ARM64</strong>，或固件方向的 <strong>C → 目标指令集 → RTOS&#x2F;硬件接口</strong>。</p>
+<h3 id="3-2-数据表示与离散数学"><a href="#3-2-数据表示与离散数学" class="headerlink" title="3.2 数据表示与离散数学"></a>3.2 数据表示与离散数学</h3><p>逆向工作经常不是复杂数学，而是对数据表示足够敏感：</p>
+<ul>
+<li>二进制、十六进制与十进制转换；</li>
+<li>有符号数、无符号数与补码；</li>
+<li>大端、小端和位序；</li>
+<li>位掩码、移位、拼接与符号扩展；</li>
+<li>ASCII、UTF-8、UTF-16 等字符编码；</li>
+<li>定点数、浮点数、比例和偏移；</li>
+<li>XOR、求和、CRC、哈希和常见编码；</li>
+<li>集合、布尔逻辑、有限状态机和图。</li>
+</ul>
+<p>例如协议文档中的公式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">physical_value = raw_value × factor + offset</span><br></pre></td></tr></table></figure>
+
+<p>必须进一步确认原始值占几位、是否有符号、字节序如何、无效值是什么，以及单位和有效范围。只套公式而忽略这些条件，往往会得到“看起来合理但实际错误”的结果。</p>
+<h3 id="3-3-计算机组成与操作系统"><a href="#3-3-计算机组成与操作系统" class="headerlink" title="3.3 计算机组成与操作系统"></a>3.3 计算机组成与操作系统</h3><p>需要建立从源代码到运行进程的整体认识：</p>
+<ul>
+<li>CPU、寄存器、栈、堆、虚拟内存和内存映射；</li>
+<li>进程、线程、调度、同步和进程间通信；</li>
+<li>用户态、内核态、系统调用和权限模型；</li>
+<li>可执行文件的装载、动态链接、符号解析和重定位；</li>
+<li>文件、设备节点、Socket、共享内存和日志系统；</li>
+<li>崩溃、异常、信号、ANR 与 tombstone。</li>
+</ul>
+<p>这些知识决定了你能否解释“代码为什么这样运行”，而不只是描述“反编译器显示了什么”。</p>
+<h3 id="3-4-编译、链接与文件格式"><a href="#3-4-编译、链接与文件格式" class="headerlink" title="3.4 编译、链接与文件格式"></a>3.4 编译、链接与文件格式</h3><p>应理解以下转换链：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">源代码 → 编译器中间表示 → 目标文件 → 链接 → 可执行文件/动态库 → 装载运行</span><br></pre></td></tr></table></figure>
+
+<p>重点文件格式包括：</p>
+<ul>
+<li>Android：APK、AAB、DEX、ODEX&#x2F;VDEX、ART&#x2F;OAT、AXML、resources.arsc；</li>
+<li>Windows：PE、EXE、DLL、PDB、MSI、.NET Assembly；</li>
+<li>Linux&#x2F;Unix：ELF、SO、core dump、内核模块；</li>
+<li>Apple：Mach-O、IPA、App Bundle、dylib、dSYM；</li>
+<li>固件：镜像头、分区表、Bootloader、文件系统和升级包；</li>
+<li>Native 通用：符号表、节区、段、导入导出、重定位和调试信息；</li>
+<li>通用：ZIP、JSON、XML、Protocol Buffers、SQLite、图片和压缩格式。</li>
+</ul>
+<p>还要理解优化对逆向结果的影响：内联会让函数边界消失，常量传播会改变表达形式，混淆会破坏命名语义，裁剪会移除无用代码。因此，反编译代码只是工具根据机器表示重建出的近似结果，并不等于原始源码。</p>
+<h3 id="3-5-网络与通信协议"><a href="#3-5-网络与通信协议" class="headerlink" title="3.5 网络与通信协议"></a>3.5 网络与通信协议</h3><p>至少掌握：</p>
+<ul>
+<li>TCP&#x2F;IP 分层、IP、TCP、UDP、DNS、HTTP&#x2F;HTTPS；</li>
+<li>请求&#x2F;响应、长连接、重传、超时、序列号和心跳；</li>
+<li>TLS 的目标、证书校验和信任链；</li>
+<li>JSON、XML、Protobuf 等序列化方式；</li>
+<li>抓包中的时间、方向、端点、会话与重组；</li>
+<li>CAN&#x2F;LIN 等车载总线的帧、ID、周期、信号与状态机。</li>
+</ul>
+<p>协议逆向的核心不是“猜某个字节”，而是通过单变量实验、时间相关性和多组样本逐步排除其他解释。</p>
+<hr>
+<h3 id="3-6-安全、实验设计与证据意识"><a href="#3-6-安全、实验设计与证据意识" class="headerlink" title="3.6 安全、实验设计与证据意识"></a>3.6 安全、实验设计与证据意识</h3><p>技术能力之外，还需要理解威胁建模、信任边界、权限、认证、隐私、负责任披露和实验室隔离。每次分析都应保留样本哈希、工具版本、命令、时间线和失败结果，使结论能够复核。</p>
+<p>面对未知样本或硬件时，优先使用只读副本、虚拟机快照、隔离网络、写保护和限流措施。能否安全地停止实验，也是逆向能力的一部分。</p>
+<h2 id="四、应用平台逆向的共同框架"><a href="#四、应用平台逆向的共同框架" class="headerlink" title="四、应用平台逆向的共同框架"></a>四、应用平台逆向的共同框架</h2><p>无论目标是 Windows、Linux、Android、Apple 平台、Web 还是游戏，应用层分析通常都要完成五件事：识别封装格式和入口、恢复代码与资源、理解平台生命周期、追踪持久化与通信、验证最终系统副作用。下面先给出通用映射，再以 APK 展示一套较完整的分析方法。</p>
+<table>
+<thead>
+<tr>
+<th>分析层</th>
+<th>Windows&#x2F;Linux</th>
+<th>Android</th>
+<th>iOS&#x2F;macOS</th>
+<th>Web&#x2F;游戏</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>封装与入口</td>
+<td>PE&#x2F;ELF、main、服务</td>
+<td>APK、Manifest、组件</td>
+<td>Bundle、Mach-O、AppDelegate&#x2F;Scene</td>
+<td>HTML、脚本入口、引擎启动</td>
+</tr>
+<tr>
+<td>中间表示</td>
+<td>CIL、Native 机器码</td>
+<td>DEX&#x2F;Smali、Native</td>
+<td>Swift&#x2F;Objective-C、Native</td>
+<td>JavaScript、WASM、脚本字节码</td>
+</tr>
+<tr>
+<td>资源</td>
+<td>PE 资源、配置、数据目录</td>
+<td>resources.arsc、res、assets</td>
+<td>Asset Catalog、plist、Bundle 资源</td>
+<td>静态资源、资源包、场景与模型</td>
+</tr>
+<tr>
+<td>平台机制</td>
+<td>Win32、POSIX、服务、IPC</td>
+<td>ART、Binder、组件生命周期</td>
+<td>Runtime、XPC、Entitlement</td>
+<td>浏览器事件循环、引擎对象模型</td>
+</tr>
+<tr>
+<td>动态证据</td>
+<td>调试器、系统调用、事件日志</td>
+<td>logcat、dumpsys、调试器</td>
+<td>Console、Instruments、LLDB</td>
+<td>DevTools、引擎日志、网络轨迹</td>
+</tr>
+</tbody></table>
+<h3 id="4-1-Android-APK-示例：容器中有什么"><a href="#4-1-Android-APK-示例：容器中有什么" class="headerlink" title="4.1 Android APK 示例：容器中有什么"></a>4.1 Android APK 示例：容器中有什么</h3><p>APK 本质上是一个 ZIP 容器，常见内容包括：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AndroidManifest.xml   组件、权限、入口和应用配置</span><br><span class="line">classes*.dex          Java/Kotlin 编译后的字节码</span><br><span class="line">resources.arsc        编译后的资源索引与资源值</span><br><span class="line">res/                  布局、图片、字符串等资源</span><br><span class="line">assets/               应用自带的原始资源</span><br><span class="line">lib/&lt;abi&gt;/*.so        不同 CPU 架构的 Native 动态库</span><br><span class="line">META-INF/             部分签名与元数据</span><br></pre></td></tr></table></figure>
+
+<p>拿到 APK 后，先做基本盘点，而不是立即全文搜索：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apksigner verify --verbose app.apk</span><br><span class="line">aapt2 dump badging app.apk</span><br><span class="line">apkanalyzer manifest <span class="built_in">print</span> app.apk</span><br><span class="line">apkanalyzer files list app.apk</span><br></pre></td></tr></table></figure>
+
+<p>需要确认包名、版本、签名、最低&#x2F;目标 Android 版本、主入口、导出组件、声明权限、ABI、DEX 数量和 Native 库。这些信息会决定后续分析路线。</p>
+<h3 id="4-2-Android-APK-示例：四类关键对象"><a href="#4-2-Android-APK-示例：四类关键对象" class="headerlink" title="4.2 Android APK 示例：四类关键对象"></a>4.2 Android APK 示例：四类关键对象</h3><h4 id="组件与入口"><a href="#组件与入口" class="headerlink" title="组件与入口"></a>组件与入口</h4><p>从 Manifest 识别 Activity、Service、BroadcastReceiver、ContentProvider、Application 和 intent-filter。进一步追踪组件的生命周期方法、路由框架、深链和 Binder 接口。</p>
+<h4 id="资源与界面"><a href="#资源与界面" class="headerlink" title="资源与界面"></a>资源与界面</h4><p>页面文字、View ID、布局名、图片名和字符串资源通常比混淆后的类名更有语义。可以从界面上的文案或资源 ID 反向找到布局、点击监听、ViewModel 和业务方法。</p>
+<h4 id="DEX-与-Smali"><a href="#DEX-与-Smali" class="headerlink" title="DEX 与 Smali"></a>DEX 与 Smali</h4><p>JADX 适合恢复可读的 Java 代码，Apktool 适合查看资源和 Smali。两者应该相互验证：</p>
+<ul>
+<li>Java 反编译失败时回到 Smali；</li>
+<li>控制流看起来异常时检查真实分支指令；</li>
+<li>Kotlin 协程、匿名类和 Lambda 被重建得很复杂时，结合方法签名和调用点判断；</li>
+<li>多 DEX 应用要确认目标类实际位于哪个 DEX 中。</li>
+</ul>
+<h4 id="Native-与-JNI"><a href="#Native-与-JNI" class="headerlink" title="Native 与 JNI"></a>Native 与 JNI</h4><p>如果 Java 层只看到 <code>native</code> 方法或 <code>System.loadLibrary()</code>，就要进入 SO：</p>
+<ul>
+<li>静态注册：查找 <code>Java_包名_类名_方法名</code>；</li>
+<li>动态注册：关注 <code>JNI_OnLoad</code> 与 <code>RegisterNatives</code>；</li>
+<li>从 Java 声明确认参数和返回类型；</li>
+<li>从导入函数、字符串、交叉引用和调用图恢复逻辑；</li>
+<li>同时确认目标 ABI，避免拿 x86 结论解释 ARM64 行为。</li>
+</ul>
+<h3 id="4-3-Android-APK-示例：平台机制"><a href="#4-3-Android-APK-示例：平台机制" class="headerlink" title="4.3 Android APK 示例：平台机制"></a>4.3 Android APK 示例：平台机制</h3><p>只看 App 代码往往不够，还需要理解：</p>
+<ul>
+<li>Zygote、ART、类加载和应用启动；</li>
+<li>Binder、AIDL 和系统服务；</li>
+<li>Handler&#x2F;Looper、线程池与协程调度；</li>
+<li>SharedPreferences、SQLite、文件和 Keystore；</li>
+<li>权限、UID、SELinux、应用沙箱与签名权限；</li>
+<li>Framework API 与厂商定制服务；</li>
+<li>Logcat、ANR、崩溃日志和系统属性。</li>
+</ul>
+<p>遇到系统应用或厂商定制应用时，还应补充硬件抽象层、厂商服务、定制权限与应用 UI 之间的数据链。</p>
+<h3 id="4-4-将同一方法迁移到其他平台"><a href="#4-4-将同一方法迁移到其他平台" class="headerlink" title="4.4 将同一方法迁移到其他平台"></a>4.4 将同一方法迁移到其他平台</h3><ul>
+<li>Windows：从 PE 入口、窗口消息、资源和导入 API 追到服务、文件、注册表或网络副作用；</li>
+<li>Linux：从 ELF 入口、配置和参数追到系统调用、共享库、IPC 与守护进程；</li>
+<li>iOS&#x2F;macOS：从应用生命周期、Storyboard&#x2F;SwiftUI 或 Objective-C Runtime 追到 XPC、文件、Keychain 和网络；</li>
+<li>Web：从 DOM 事件和路由追到状态管理、序列化、请求、Worker 与浏览器存储；</li>
+<li>游戏：从场景、对象和输入事件追到脚本、引擎 Native 层、资源管理、存档与同步协议。</li>
+</ul>
+<p>不同平台的文件和工具不同，但“入口 → 数据流 → 状态 → 副作用 → 反馈”的推理框架相同。</p>
+<hr>
+<h2 id="五、Native-与机器码逆向"><a href="#五、Native-与机器码逆向" class="headerlink" title="五、Native 与机器码逆向"></a>五、Native 与机器码逆向</h2><h3 id="5-1-指令集与调用约定"><a href="#5-1-指令集与调用约定" class="headerlink" title="5.1 指令集与调用约定"></a>5.1 指令集与调用约定</h3><p>不同平台会遇到 x86&#x2F;x64、ARM&#x2F;AArch64、MIPS 和 RISC-V。应先掌握目标架构的寄存器、寻址、栈、条件跳转、函数调用和返回规则。以 Android 中常见的 AArch64 为例，至少需要认识：</p>
+<ul>
+<li><code>X0-X7</code>：常用参数和返回值寄存器；</li>
+<li><code>SP</code>：栈指针，<code>FP/X29</code>：帧指针，<code>LR/X30</code>：返回地址；</li>
+<li><code>LDR/STR</code>：加载与存储；</li>
+<li><code>MOV/ADD/SUB</code>：数据传递与算术；</li>
+<li><code>CMP/TST</code> 配合条件跳转；</li>
+<li><code>BL/BLR</code>：函数调用，<code>RET</code>：返回；</li>
+<li><code>ADRP + ADD/LDR</code>：访问全局数据和字符串的常见组合。</li>
+</ul>
+<p>更重要的是理解调用约定：参数放在哪里、返回值如何传递、哪些寄存器由调用者或被调用者保存、结构体如何布局。x64、AArch64 和嵌入式 ABI 的规则并不相同，不能把一种架构的经验直接套到另一种架构。</p>
+<h3 id="5-2-可执行文件分析重点"><a href="#5-2-可执行文件分析重点" class="headerlink" title="5.2 可执行文件分析重点"></a>5.2 可执行文件分析重点</h3><p>拿到二进制后，先从格式和结构信息入手。以下是 ELF&#x2F;SO 的示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file libtarget.so</span><br><span class="line">readelf -h -S -l -d -s libtarget.so</span><br><span class="line">nm -D libtarget.so</span><br><span class="line">strings -a libtarget.so</span><br></pre></td></tr></table></figure>
+
+<p>Windows PE 可使用 PE-bear、dumpbin 等工具，Mach-O 可使用 <code>otool</code>、<code>nm</code> 等工具完成对应盘点。无论格式如何，都要关注 CPU 架构、是否去符号、依赖库、导入导出、字符串、初始化函数、资源和重定位信息。随后从错误日志、协议常量、文件路径、URL、算法特征和系统 API 等高语义线索进入。</p>
+<h3 id="5-3-静态结果为什么会失真"><a href="#5-3-静态结果为什么会失真" class="headerlink" title="5.3 静态结果为什么会失真"></a>5.3 静态结果为什么会失真</h3><p>反编译器需要猜测变量类型、函数边界、结构体和控制流。优化后的代码还可能出现：</p>
+<ul>
+<li>一个源函数被内联到多个调用点；</li>
+<li>多个源变量复用同一寄存器或栈槽；</li>
+<li><code>switch</code> 被改写成跳转表；</li>
+<li>尾调用看起来像直接跳转；</li>
+<li>异常处理和协程状态机形成复杂分支；</li>
+<li>C++ 名字改编、模板和虚表降低可读性。</li>
+</ul>
+<p>可靠做法是同时检查伪代码、汇编、交叉引用、调用者、运行时参数和输出，而不是只相信单个反编译窗口。</p>
+<hr>
+<h2 id="六、静态分析与动态分析"><a href="#六、静态分析与动态分析" class="headerlink" title="六、静态分析与动态分析"></a>六、静态分析与动态分析</h2><h3 id="6-1-静态分析"><a href="#6-1-静态分析" class="headerlink" title="6.1 静态分析"></a>6.1 静态分析</h3><p>静态分析是在不运行目标程序的情况下恢复信息，适合全局盘点和建立假设。</p>
+<p>常用方法：</p>
+<ol>
+<li>查看文件类型、哈希、签名、版本和元数据；</li>
+<li>搜索字符串、资源 ID、类名、方法名和常量；</li>
+<li>追踪调用关系、字段读写和数据流；</li>
+<li>分析 Manifest、DEX、Smali、ELF 与配置文件；</li>
+<li>对比不同版本，定位新增、删除和行为变化。</li>
+</ol>
+<p>优点是覆盖面广、可重复、不会改变运行状态；缺点是难以确认反射、动态加载、运行时生成值和真实执行分支。</p>
+<h3 id="6-2-动态分析"><a href="#6-2-动态分析" class="headerlink" title="6.2 动态分析"></a>6.2 动态分析</h3><p>动态分析是在受控环境中观察程序真实行为，适合验证假设。</p>
+<p>常见证据来源：</p>
+<ul>
+<li>Logcat、系统日志、崩溃与 ANR；</li>
+<li>进程、线程、文件、数据库和网络连接变化；</li>
+<li>调试器中的断点、调用栈、寄存器和内存；</li>
+<li>方法或函数的参数、返回值与调用时序；</li>
+<li>网络抓包、串口日志、CAN 日志与硬件反馈；</li>
+<li>Perfetto、simpleperf 等性能轨迹。</li>
+</ul>
+<p>动态分析必须控制变量。一次只改变一个输入，记录操作时间、应用版本、设备环境和结果。否则面对并发、缓存和异步回调时，很容易建立错误因果关系。</p>
+<h3 id="6-3-二者如何配合"><a href="#6-3-二者如何配合" class="headerlink" title="6.3 二者如何配合"></a>6.3 二者如何配合</h3><p>推荐循环如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">观察现象</span><br><span class="line">  ↓</span><br><span class="line">静态定位候选入口与关键条件</span><br><span class="line">  ↓</span><br><span class="line">动态记录真实调用、参数和时序</span><br><span class="line">  ↓</span><br><span class="line">回到静态代码解释数据变换</span><br><span class="line">  ↓</span><br><span class="line">设计最小实验验证结论</span><br><span class="line">  ↓</span><br><span class="line">记录确定项、推测项和未知项</span><br></pre></td></tr></table></figure>
+
+<p>静态分析回答“可能怎样”，动态分析回答“这次实际怎样”，多次可控实验才能回答“规律是什么”。</p>
+<hr>
+<h2 id="七、通用逆向分析流程"><a href="#七、通用逆向分析流程" class="headerlink" title="七、通用逆向分析流程"></a>七、通用逆向分析流程</h2><h3 id="7-1-第一步：定义问题和边界"><a href="#7-1-第一步：定义问题和边界" class="headerlink" title="7.1 第一步：定义问题和边界"></a>7.1 第一步：定义问题和边界</h3><p>把“分析这个应用”改写成可验证的问题，例如：</p>
+<ul>
+<li>点击“开启空调”后，哪条调用链生成了控制帧？</li>
+<li>某个弹窗由哪个反馈字段触发？</li>
+<li>两个版本的登录失败逻辑有什么差异？</li>
+<li>某段二进制数据的长度、字节序和校验方式是什么？</li>
+</ul>
+<p>同时记录目标版本、文件哈希、设备型号、系统版本和授权范围。</p>
+<h3 id="7-2-第二步：建立样本清单"><a href="#7-2-第二步：建立样本清单" class="headerlink" title="7.2 第二步：建立样本清单"></a>7.2 第二步：建立样本清单</h3><p>对原始文件只读保存，分析副本。建议目录：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case/</span><br><span class="line">├─ input/          原始 APK、SO、日志、抓包</span><br><span class="line">├─ extracted/      解包和导出内容</span><br><span class="line">├─ scripts/        解码、比对与验证脚本</span><br><span class="line">├─ notes/          时间线、假设和结论</span><br><span class="line">└─ evidence/       截图、关键片段和实验结果</span><br></pre></td></tr></table></figure>
+
+<p>样本命名应包含版本、日期和来源。哈希可以防止后续把不同版本混在一起。</p>
+<h3 id="7-3-第三步：快速侦察"><a href="#7-3-第三步：快速侦察" class="headerlink" title="7.3 第三步：快速侦察"></a>7.3 第三步：快速侦察</h3><p>先用低成本方法回答：</p>
+<ul>
+<li>文件是什么格式、什么架构；</li>
+<li>是否加壳、混淆、去符号或动态加载；</li>
+<li>入口和高语义字符串在哪里；</li>
+<li>是否包含 Native 库、数据库、脚本或协议描述；</li>
+<li>与已知旧版本相比变化集中在哪些文件。</li>
+</ul>
+<p>这一步的目标是选择路线，不是立刻得出最终结论。</p>
+<h3 id="7-4-第四步：从高语义线索切入"><a href="#7-4-第四步：从高语义线索切入" class="headerlink" title="7.4 第四步：从高语义线索切入"></a>7.4 第四步：从高语义线索切入</h3><p>推荐优先级：</p>
+<ol>
+<li>页面文字、错误消息、日志标签；</li>
+<li>资源名、路由名、接口路径；</li>
+<li>Manifest 组件与入口；</li>
+<li>常量、协议 ID、命令字和状态码；</li>
+<li>关键系统 API 的交叉引用；</li>
+<li>调用图和数据流；</li>
+<li>无符号函数和纯汇编模式。</li>
+</ol>
+<p>从用户可见现象向内追踪，通常比从 <code>MainActivity</code> 漫无目的地向外阅读更高效。</p>
+<h3 id="7-5-第五步：建立数据流和状态机"><a href="#7-5-第五步：建立数据流和状态机" class="headerlink" title="7.5 第五步：建立数据流和状态机"></a>7.5 第五步：建立数据流和状态机</h3><p>把关键链路写成简单表格：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>位置</th>
+<th>输入</th>
+<th>处理</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UI</td>
+<td>点击监听</td>
+<td>用户操作</td>
+<td>参数归一化</td>
+<td>ViewModel 方法</td>
+</tr>
+<tr>
+<td>业务层</td>
+<td>UseCase&#x2F;Manager</td>
+<td>目标状态</td>
+<td>权限与前置条件判断</td>
+<td>控制命令</td>
+</tr>
+<tr>
+<td>协议层</td>
+<td>Encoder</td>
+<td>字段值</td>
+<td>位拼接、计数、校验</td>
+<td>完整帧</td>
+</tr>
+<tr>
+<td>通信层</td>
+<td>Service&#x2F;Socket&#x2F;CAN</td>
+<td>字节数组</td>
+<td>发送</td>
+<td>对端接收</td>
+</tr>
+<tr>
+<td>反馈层</td>
+<td>Parser</td>
+<td>反馈帧</td>
+<td>有效性与字段解析</td>
+<td>状态对象</td>
+</tr>
+<tr>
+<td>展示层</td>
+<td>Observer</td>
+<td>状态对象</td>
+<td>映射</td>
+<td>UI 更新</td>
+</tr>
+</tbody></table>
+<p>遇到多状态交互时，画出状态、事件、转移条件和副作用。对“偶现”问题，状态机往往比单条调用栈更有解释力。</p>
+<h3 id="7-6-第六步：设计最小验证实验"><a href="#7-6-第六步：设计最小验证实验" class="headerlink" title="7.6 第六步：设计最小验证实验"></a>7.6 第六步：设计最小验证实验</h3><p>好的实验具有以下特点：</p>
+<ul>
+<li>一次只改变一个变量；</li>
+<li>有基线组和对照组；</li>
+<li>记录准确时间，方便对齐日志；</li>
+<li>至少重复数次，排除偶然变化；</li>
+<li>同时观察请求与反馈；</li>
+<li>结论可以被他人按步骤复现。</li>
+</ul>
+<p>如果目标是协议字段，可分别测试最小值、中间值、最大值和无效值；如果目标是状态位，可只切换一个开关并保持其他条件不变。</p>
+<h3 id="7-7-第七步：输出证据化结论"><a href="#7-7-第七步：输出证据化结论" class="headerlink" title="7.7 第七步：输出证据化结论"></a>7.7 第七步：输出证据化结论</h3><p>报告中把内容分为三类：</p>
+<ul>
+<li><strong>已确认</strong>：代码、日志和实验互相印证；</li>
+<li><strong>高概率推测</strong>：有多项间接证据，但缺少关键运行验证；</li>
+<li><strong>未知</strong>：样本、权限、硬件或协议资料不足。</li>
+</ul>
+<p>避免把“反编译代码存在这条分支”写成“车辆一定会执行这个动作”，也不要把模拟器验证等同于真机、真实 ECU 或生产网络验证。</p>
+<hr>
+<h2 id="八、协议逆向方法"><a href="#八、协议逆向方法" class="headerlink" title="八、协议逆向方法"></a>八、协议逆向方法</h2><h3 id="8-1-网络协议"><a href="#8-1-网络协议" class="headerlink" title="8.1 网络协议"></a>8.1 网络协议</h3><p>分析网络协议时，按层拆分：</p>
+<ol>
+<li>端点：域名、IP、端口和连接方向；</li>
+<li>传输：TCP&#x2F;UDP、连接复用、超时与重传；</li>
+<li>会话：握手、登录、心跳、序列号与状态；</li>
+<li>消息：长度、类型、头部、载荷与校验；</li>
+<li>业务：字段语义、单位、错误码和前置条件。</li>
+</ol>
+<p>对于 HTTPS，优先使用自己控制的测试环境、调试构建、服务端日志或应用提供的诊断接口。遇到证书绑定、硬件密钥或企业安全策略时，应把它视为授权边界和环境约束，不应擅自绕过。</p>
+<h3 id="8-2-二进制消息与设备协议"><a href="#8-2-二进制消息与设备协议" class="headerlink" title="8.2 二进制消息与设备协议"></a>8.2 二进制消息与设备协议</h3><p>没有公开规范时，可以先寻找稳定边界：魔数、固定头、长度、消息类型、版本、序列号和校验。然后按以下顺序建立模型：</p>
+<ol>
+<li>收集成功、失败、边界值和不同版本的多组样本；</li>
+<li>判断分帧方式，区分消息头、载荷和尾部；</li>
+<li>通过长度变化和单变量实验定位候选字段；</li>
+<li>测试大小端、有无符号、位域、比例、偏移和枚举；</li>
+<li>对齐请求与响应，恢复会话和状态转移；</li>
+<li>用独立解析脚本验证所有样本，并保留无法解释的字节；</li>
+<li>只有在授权测试端点上，才使用主动生成的测试消息验证编码规则。</li>
+</ol>
+<p>不能因为几个样本“恰好符合”就宣布字段已确认。尤其要防止把时间戳、随机数、压缩数据或加密载荷误认为业务信号。</p>
+<h3 id="8-3-CAN-协议示例"><a href="#8-3-CAN-协议示例" class="headerlink" title="8.3 CAN 协议示例"></a>8.3 CAN 协议示例</h3><p>CAN 分析至少要记录：</p>
+<ul>
+<li>总线通道、波特率、标准帧或扩展帧；</li>
+<li>报文 ID、方向、DLC 和周期；</li>
+<li>数据字节、变化位和变化时间；</li>
+<li>信号起始位、长度、字节序、符号、比例、偏移和单位；</li>
+<li>有效位、Alive Counter、Checksum&#x2F;CRC；</li>
+<li>操作前置条件、请求次数、反馈 ID 和超时行为。</li>
+</ul>
+<p>推荐使用单变量对比：保持环境不变，只操作一个功能，对齐操作时间前后的报文，筛出变化 ID，再观察具体位。结论至少要跨多个样本验证。</p>
+<p>以“点击按钮后车辆没有响应”为例，应依次区分：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">按钮是否触发</span><br><span class="line">  → ViewModel/Manager 是否收到命令</span><br><span class="line">  → 协议层是否生成完整帧</span><br><span class="line">  → 是否发往正确总线和 ID</span><br><span class="line">  → 计数器、校验和前置条件是否正确</span><br><span class="line">  → ECU 是否执行</span><br><span class="line">  → 反馈帧是否到达并有效</span><br><span class="line">  → 解析、状态分发和 UI 是否更新</span><br></pre></td></tr></table></figure>
+
+<p>请求 ID 与反馈 ID 往往不同；“已发送”也不代表“对端已执行”。所有 <code>FF</code>、保留值或有效位为假的反馈，应先按协议判断是否为未知或无效，不能直接当成真实状态。</p>
+<h3 id="8-4-无线与工业协议的额外注意事项"><a href="#8-4-无线与工业协议的额外注意事项" class="headerlink" title="8.4 无线与工业协议的额外注意事项"></a>8.4 无线与工业协议的额外注意事项</h3><ul>
+<li>无线协议要同时记录频率&#x2F;信道、设备角色、广播或连接状态、配对阶段和链路层重传；</li>
+<li>BLE 要区分广播数据、GATT 服务、Characteristic、通知与写入响应；</li>
+<li>工业协议要记录主从关系、站号、寄存器或对象字典、周期和故障安全状态；</li>
+<li>车载与工业网络的主动测试应优先使用仿真或台架，并设置物理断开、限速和急停措施；</li>
+<li>加密或认证后的载荷应结合受控端点日志和客户端代码理解，不凭密文变化猜业务字段。</li>
+</ul>
+<hr>
+<h2 id="九、常用工具及各自职责"><a href="#九、常用工具及各自职责" class="headerlink" title="九、常用工具及各自职责"></a>九、常用工具及各自职责</h2><p>工具越多不代表能力越强，关键是知道每个工具能证明什么。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>常用工具</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>通用二进制静态分析</td>
+<td>Ghidra、IDA、Binary Ninja、Cutter</td>
+<td>反汇编、反编译、交叉引用和类型恢复</td>
+</tr>
+<tr>
+<td>Windows PE&#x2F;.NET</td>
+<td>PE-bear、dumpbin、ILSpy、dnSpyEx</td>
+<td>PE 结构、导入导出、程序集和 CIL 分析</td>
+</tr>
+<tr>
+<td>Windows 动态分析</td>
+<td>WinDbg、x64dbg、Process Monitor</td>
+<td>调试、异常、系统调用与文件注册表行为</td>
+</tr>
+<tr>
+<td>Linux&#x2F;Unix</td>
+<td>readelf、objdump、nm、strace、ltrace、GDB</td>
+<td>ELF、系统调用、库调用和运行调试</td>
+</tr>
+<tr>
+<td>Apple 平台</td>
+<td>otool、LLDB、Hopper</td>
+<td>Mach-O、Objective-C&#x2F;Swift 和运行调试</td>
+</tr>
+<tr>
+<td>APK 基本信息</td>
+<td>apksigner、aapt2、apkanalyzer</td>
+<td>签名、Manifest、资源和文件清单</td>
+</tr>
+<tr>
+<td>Java&#x2F;Kotlin 静态分析</td>
+<td>JADX</td>
+<td>类、方法、引用和资源关联</td>
+</tr>
+<tr>
+<td>资源与 Smali</td>
+<td>Apktool、baksmali&#x2F;smali</td>
+<td>解码资源、查看 DEX 指令</td>
+</tr>
+<tr>
+<td>Android 运行观察</td>
+<td>adb、logcat、dumpsys、bugreport</td>
+<td>组件、日志、系统状态和诊断信息</td>
+</tr>
+<tr>
+<td>Native 调试</td>
+<td>LLDB、GDB</td>
+<td>断点、调用栈、寄存器和内存</td>
+</tr>
+<tr>
+<td>Web&#x2F;JavaScript&#x2F;WASM</td>
+<td>浏览器开发者工具、Source Map、wasm2wat</td>
+<td>脚本、网络、存储和 WASM 结构</td>
+</tr>
+<tr>
+<td>固件分析</td>
+<td>binwalk、file、unsquashfs、QEMU</td>
+<td>固件识别、拆分、文件系统提取和仿真</td>
+</tr>
+<tr>
+<td>硬件接口</td>
+<td>OpenOCD、逻辑分析仪、示波器、串口工具</td>
+<td>JTAG&#x2F;SWD 调试和数字信号观察</td>
+</tr>
+<tr>
+<td>性能轨迹</td>
+<td>Perfetto、simpleperf</td>
+<td>调度、耗时、CPU 与系统事件</td>
+</tr>
+<tr>
+<td>网络分析</td>
+<td>Wireshark、tcpdump、Charles</td>
+<td>流量、会话和协议字段</td>
+</tr>
+<tr>
+<td>数据处理</td>
+<td>Python、010 Editor、HxD</td>
+<td>批量提取、二进制模板、差分和解码</td>
+</tr>
+<tr>
+<td>CAN 分析</td>
+<td>CANoe、CANalyzer、PCAN、SavvyCAN</td>
+<td>报文采集、过滤、回放和信号验证</td>
+</tr>
+<tr>
+<td>无线协议</td>
+<td>Wireshark、Ubertooth、软件无线电工具</td>
+<td>在授权环境中观察蓝牙与射频协议</td>
+</tr>
+<tr>
+<td>数字取证</td>
+<td>Autopsy、Volatility、Sleuth Kit</td>
+<td>磁盘、文件系统、内存和时间线分析</td>
+</tr>
+<tr>
+<td>恶意代码实验室</td>
+<td>虚拟机、快照、隔离网络、沙箱</td>
+<td>隔离运行、行为记录和环境恢复</td>
+</tr>
+<tr>
+<td>模糊测试与程序分析</td>
+<td>AFL++、libFuzzer、angr</td>
+<td>输入生成、崩溃发现和路径分析</td>
+</tr>
+<tr>
+<td>版本对比</td>
+<td>diff、Git、BinDiff&#x2F;Diaphora</td>
+<td>文本、资源和二进制差异</td>
+</tr>
+</tbody></table>
+<p>运行时插桩框架可用于自己应用、测试靶场和获授权环境中的诊断，但它们不是学习逆向的捷径。没有平台机制、调用约定和数据流基础，即使抓到了参数，也很难正确解释其含义。</p>
+<hr>
+<h2 id="十、容易踩的坑"><a href="#十、容易踩的坑" class="headerlink" title="十、容易踩的坑"></a>十、容易踩的坑</h2><h3 id="10-1-把反编译代码当成原始源码"><a href="#10-1-把反编译代码当成原始源码" class="headerlink" title="10.1 把反编译代码当成原始源码"></a>10.1 把反编译代码当成原始源码</h3><p>变量名、类型、循环结构和条件表达式都可能是反编译器猜测。关键结论要回到 Smali 或汇编确认。</p>
+<h3 id="10-2-只搜字符串，不追数据流"><a href="#10-2-只搜字符串，不追数据流" class="headerlink" title="10.2 只搜字符串，不追数据流"></a>10.2 只搜字符串，不追数据流</h3><p>字符串只能帮你找到附近代码。还要继续检查调用者、参数来源、返回值去向和异步回调。</p>
+<h3 id="10-3-混淆后按类名猜功能"><a href="#10-3-混淆后按类名猜功能" class="headerlink" title="10.3 混淆后按类名猜功能"></a>10.3 混淆后按类名猜功能</h3><p>混淆类名几乎没有语义。资源、接口、日志、系统 API、数据结构和调用关系通常更可靠。</p>
+<h3 id="10-4-只看发送，不看反馈"><a href="#10-4-只看发送，不看反馈" class="headerlink" title="10.4 只看发送，不看反馈"></a>10.4 只看发送，不看反馈</h3><p>无论网络还是 CAN，请求成功写出都不等于对端接受。需要对齐响应、错误码、状态反馈和 UI 更新。</p>
+<h3 id="10-5-忽略版本与环境"><a href="#10-5-忽略版本与环境" class="headerlink" title="10.5 忽略版本与环境"></a>10.5 忽略版本与环境</h3><p>同一程序的不同版本、CPU 架构、操作系统、设备型号和配置可能走完全不同的分支。报告中必须写清样本和环境。</p>
+<h3 id="10-6-一开始就修改程序"><a href="#10-6-一开始就修改程序" class="headerlink" title="10.6 一开始就修改程序"></a>10.6 一开始就修改程序</h3><p>在没有建立基线前修改代码，会把原始行为和修改引入的行为混在一起。应先完成只读分析和最小复现，再决定是否需要在获授权样本上做验证性修改。</p>
+<h3 id="10-7-工具输出很多，结论证据很少"><a href="#10-7-工具输出很多，结论证据很少" class="headerlink" title="10.7 工具输出很多，结论证据很少"></a>10.7 工具输出很多，结论证据很少</h3><p>堆积截图和反编译文件不是报告。每份证据都应服务于一个问题，并说明它支持或排除了什么假设。</p>
+<hr>
+<h2 id="十一、推荐学习路线"><a href="#十一、推荐学习路线" class="headerlink" title="十一、推荐学习路线"></a>十一、推荐学习路线</h2><h3 id="阶段一：建立公共基础"><a href="#阶段一：建立公共基础" class="headerlink" title="阶段一：建立公共基础"></a>阶段一：建立公共基础</h3><p>目标：能准确理解程序和二进制数据的基本表示。</p>
+<ul>
+<li>学习 C 语言和一门适合目标平台的高级语言；</li>
+<li>熟练使用二进制、十六进制、补码、位运算和字符编码；</li>
+<li>理解进程、线程、虚拟内存、文件、网络和权限；</li>
+<li>学习编译、汇编、链接、装载与调试的完整过程；</li>
+<li>使用 Python 完成哈希、字符串提取、二进制读写和样本差分。</li>
+</ul>
+<p><strong>阶段产物</strong>：自己编写并编译一个小程序，解释其文件结构、关键函数、数据布局和运行过程。</p>
+<h3 id="阶段二：选择一种文件格式和指令集"><a href="#阶段二：选择一种文件格式和指令集" class="headerlink" title="阶段二：选择一种文件格式和指令集"></a>阶段二：选择一种文件格式和指令集</h3><p>目标：能够独立完成简单 Native 程序的静态分析。</p>
+<ul>
+<li>从 PE、ELF、Mach-O 中选择与目标平台对应的一种；</li>
+<li>从 x64、AArch64 等架构中选择一种学习调用约定和常用指令；</li>
+<li>对照自己程序的源码、反编译伪代码和汇编；</li>
+<li>练习识别函数、分支、循环、结构体、字符串和库调用；</li>
+<li>分别以无优化、开启优化和去符号方式编译，比较结果变化。</li>
+</ul>
+<p><strong>阶段产物</strong>：一份包含入口、调用图、关键数据结构和算法说明的静态分析报告。</p>
+<h3 id="阶段三：动态验证与系统观察"><a href="#阶段三：动态验证与系统观察" class="headerlink" title="阶段三：动态验证与系统观察"></a>阶段三：动态验证与系统观察</h3><p>目标：能用运行证据确认静态假设。</p>
+<ul>
+<li>掌握目标平台的调试器、日志、进程和文件观察工具；</li>
+<li>练习断点、单步、调用栈、寄存器、内存和异常分析；</li>
+<li>对齐用户输入与文件、网络、日志、进程和界面变化；</li>
+<li>记录未修改基线，并用单变量实验重复验证；</li>
+<li>学习崩溃转储和最小复现方法。</li>
+</ul>
+<p><strong>阶段产物</strong>：一份从输入到最终副作用的时序、调用链和数据流报告。</p>
+<h3 id="阶段四：选择一个应用平台分支"><a href="#阶段四：选择一个应用平台分支" class="headerlink" title="阶段四：选择一个应用平台分支"></a>阶段四：选择一个应用平台分支</h3><p>目标：把通用能力迁移到真实平台。</p>
+<ul>
+<li>Windows：PE、Win32、.NET、服务、驱动与系统调试；</li>
+<li>Linux：ELF、动态链接、系统调用、守护进程与内核接口；</li>
+<li>Android：APK、DEX、Smali、ART、Binder 与 JNI；</li>
+<li>Apple：Mach-O、Objective-C Runtime、Swift、XPC 与签名；</li>
+<li>Web：JavaScript、浏览器执行模型、WASM 与前后端协议；</li>
+<li>游戏：引擎、脚本运行时、资源、对象模型与同步协议。</li>
+</ul>
+<p><strong>阶段产物</strong>：针对所选平台完成一个从界面或入口到系统副作用的端到端分析。</p>
+<h3 id="阶段五：选择一个设备、数据或安全分支"><a href="#阶段五：选择一个设备、数据或安全分支" class="headerlink" title="阶段五：选择一个设备、数据或安全分支"></a>阶段五：选择一个设备、数据或安全分支</h3><p>目标：形成可解决专业问题的纵深能力。</p>
+<ul>
+<li>固件&#x2F;嵌入式：架构识别、固件拆分、文件系统、RTOS 和仿真；</li>
+<li>硬件：电路基础、UART&#x2F;SPI&#x2F;I²C、JTAG&#x2F;SWD 和信号采集；</li>
+<li>协议：网络、无线、车载或工业协议的字段与状态机恢复；</li>
+<li>数据格式：私有文件、数据库、媒体和资源包解析；</li>
+<li>安全：恶意代码、漏洞研究、补丁差分或数字取证；</li>
+<li>系统：内核、驱动、Hypervisor、文件系统和崩溃分析。</li>
+</ul>
+<p><strong>阶段产物</strong>：一份包含环境、样本、实验、证据、确定项和未知项的专题报告。</p>
+<h3 id="阶段六：自动化与研究能力"><a href="#阶段六：自动化与研究能力" class="headerlink" title="阶段六：自动化与研究能力"></a>阶段六：自动化与研究能力</h3><p>目标：从分析单个样本提升到处理版本和样本集合。</p>
+<ul>
+<li>编写 Ghidra&#x2F;IDA&#x2F;Python 自动化脚本；</li>
+<li>学习函数匹配、版本差分和符号迁移；</li>
+<li>了解模糊测试、符号执行、污点分析和程序切片；</li>
+<li>建立样本、元数据、日志、函数和协议字段索引；</li>
+<li>形成可复用的实验模板与报告规范。</li>
+</ul>
+<p>建议始终使用自己编写的程序、开源项目、CTF、官方训练靶场或明确授权样本练习，并逐步提高复杂度。</p>
+<hr>
+<h2 id="十二、一次分析任务的检查清单"><a href="#十二、一次分析任务的检查清单" class="headerlink" title="十二、一次分析任务的检查清单"></a>十二、一次分析任务的检查清单</h2><h3 id="开始前"><a href="#开始前" class="headerlink" title="开始前"></a>开始前</h3><ul>
+<li><input disabled="" type="checkbox"> 是否拥有明确授权？</li>
+<li><input disabled="" type="checkbox"> 问题是否可验证、范围是否明确？</li>
+<li><input disabled="" type="checkbox"> 是否记录样本来源、版本、哈希和环境？</li>
+<li><input disabled="" type="checkbox"> 是否保留只读原始样本？</li>
+</ul>
+<h3 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h3><ul>
+<li><input disabled="" type="checkbox"> 是否识别文件格式、架构、入口、依赖、资源和配置？</li>
+<li><input disabled="" type="checkbox"> 是否从高语义线索追到调用链？</li>
+<li><input disabled="" type="checkbox"> 关键条件是否回到字节码或汇编确认？</li>
+<li><input disabled="" type="checkbox"> 是否检查动态加载、反射、脚本、插件和跨进程边界？</li>
+</ul>
+<h3 id="动态验证"><a href="#动态验证" class="headerlink" title="动态验证"></a>动态验证</h3><ul>
+<li><input disabled="" type="checkbox"> 是否建立未修改的行为基线？</li>
+<li><input disabled="" type="checkbox"> 是否一次只改变一个变量？</li>
+<li><input disabled="" type="checkbox"> 是否记录操作时间、日志、请求和反馈？</li>
+<li><input disabled="" type="checkbox"> 是否重复实验并保留失败样本？</li>
+</ul>
+<h3 id="输出结论"><a href="#输出结论" class="headerlink" title="输出结论"></a>输出结论</h3><ul>
+<li><input disabled="" type="checkbox"> 是否区分已确认、推测和未知？</li>
+<li><input disabled="" type="checkbox"> 是否说明验证范围和未覆盖环境？</li>
+<li><input disabled="" type="checkbox"> 是否能由另一名分析者复现？</li>
+<li><input disabled="" type="checkbox"> 是否移除了密钥、账号、隐私和敏感数据？</li>
+</ul>
+<hr>
+<h2 id="十三、结语"><a href="#十三、结语" class="headerlink" title="十三、结语"></a>十三、结语</h2><p>逆向工程的核心能力可以概括为四点：</p>
+<ol>
+<li><strong>读懂表示</strong>：理解源码、字节码、汇编、文件格式和协议数据。</li>
+<li><strong>追踪链路</strong>：从入口沿调用与数据流追到真正的副作用。</li>
+<li><strong>设计实验</strong>：控制变量，用运行证据验证而不是凭直觉猜测。</li>
+<li><strong>尊重边界</strong>：在授权范围内工作，保护数据，并如实说明结论的验证范围。</li>
+</ol>
+<p>工具会更新，平台会变化，但这四项能力长期有效。最好的学习方式，是从自己能完全控制的小程序开始：先写出来，再编译、拆解、观察、还原，最后把每一步整理成可复现的证据链。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/reverse-engineering-knowledge-roadmap/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/reverse-engineering-knowledge-roadmap/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/">Spring实战</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/topics/">专题地图</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 愿每一次记录，都有回声。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="true"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%90%86%E8%A7%A3%E9%80%86%E5%90%91%E5%88%B0%E5%BA%95%E5%9C%A8%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-text">一、先理解逆向到底在解决什么问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E6%96%B9%E5%90%91%E5%9B%BE%E8%B0%B1"><span class="toc-text">二、逆向工程的完整方向图谱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%80%9A%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%8E%E7%AE%97%E6%B3%95%E9%80%86%E5%90%91"><span class="toc-text">2.1 通用二进制与算法逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Windows-%E7%A8%8B%E5%BA%8F%E9%80%86%E5%90%91"><span class="toc-text">2.2 Windows 程序逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Linux%E3%80%81Unix-%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A8%8B%E5%BA%8F%E9%80%86%E5%90%91"><span class="toc-text">2.3 Linux、Unix 与服务器程序逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Android-%E9%80%86%E5%90%91"><span class="toc-text">2.4 Android 逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-iOS-%E4%B8%8E-macOS-%E9%80%86%E5%90%91"><span class="toc-text">2.5 iOS 与 macOS 逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-Web%E3%80%81JavaScript-%E4%B8%8E-WebAssembly-%E9%80%86%E5%90%91"><span class="toc-text">2.6 Web、JavaScript 与 WebAssembly 逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91"><span class="toc-text">2.7 游戏逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-%E5%9B%BA%E4%BB%B6%E4%B8%8E%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E9%80%86%E5%90%91"><span class="toc-text">2.8 固件与嵌入式系统逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-%E7%A1%AC%E4%BB%B6%E9%80%86%E5%90%91"><span class="toc-text">2.9 硬件逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91"><span class="toc-text">2.10 网络协议逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-%E6%97%A0%E7%BA%BF%E3%80%81%E5%B0%84%E9%A2%91%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91"><span class="toc-text">2.11 无线、射频与物联网协议逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-%E8%BD%A6%E8%BD%BD%E3%80%81%E5%B7%A5%E4%B8%9A%E6%8E%A7%E5%88%B6%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BA%BF%E9%80%86%E5%90%91"><span class="toc-text">2.12 车载、工业控制与设备总线逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E6%95%B0%E5%AD%97%E5%AA%92%E4%BD%93%E9%80%86%E5%90%91"><span class="toc-text">2.13 文件格式、数据结构与数字媒体逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%81%E5%AD%97%E8%8A%82%E7%A0%81%E4%B8%8E%E8%AF%AD%E8%A8%80%E8%BF%90%E8%A1%8C%E6%97%B6%E9%80%86%E5%90%91"><span class="toc-text">2.14 虚拟机、字节码与语言运行时逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%81%E5%86%85%E6%A0%B8%E4%B8%8E%E9%A9%B1%E5%8A%A8%E9%80%86%E5%90%91"><span class="toc-text">2.15 操作系统、内核与驱动逆向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-16-%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">2.16 恶意代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-17-%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6%E4%B8%8E%E8%A1%A5%E4%B8%81%E5%B7%AE%E5%88%86"><span class="toc-text">2.17 漏洞研究与补丁差分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-18-%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="toc-text">2.18 数字取证与内存分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-19-%E8%BD%AF%E4%BB%B6%E4%BF%9D%E6%8A%A4%E4%B8%8E%E5%8F%8D%E5%88%86%E6%9E%90%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6"><span class="toc-text">2.19 软件保护与反分析机制研究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-20-%E5%85%BC%E5%AE%B9%E5%AE%9E%E7%8E%B0%E3%80%81%E8%80%83%E5%8F%A4%E4%B8%8E%E7%89%88%E6%9C%AC%E6%81%A2%E5%A4%8D"><span class="toc-text">2.20 兼容实现、考古与版本恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-21-%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E8%A7%84%E6%A8%A1%E5%8C%96%E9%80%86%E5%90%91"><span class="toc-text">2.21 自动化与规模化逆向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">三、必须掌握的基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB"><span class="toc-text">3.1 编程语言与代码阅读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%B8%8E%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6"><span class="toc-text">3.2 数据表示与离散数学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.3 计算机组成与操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%BC%96%E8%AF%91%E3%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-text">3.4 编译、链接与文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="toc-text">3.5 网络与通信协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%AE%89%E5%85%A8%E3%80%81%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AF%81%E6%8D%AE%E6%84%8F%E8%AF%86"><span class="toc-text">3.6 安全、实验设计与证据意识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0%E9%80%86%E5%90%91%E7%9A%84%E5%85%B1%E5%90%8C%E6%A1%86%E6%9E%B6"><span class="toc-text">四、应用平台逆向的共同框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Android-APK-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88"><span class="toc-text">4.1 Android APK 示例：容器中有什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Android-APK-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%9B%9B%E7%B1%BB%E5%85%B3%E9%94%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text">4.2 Android APK 示例：四类关键对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%85%A5%E5%8F%A3"><span class="toc-text">组件与入口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%B8%8E%E7%95%8C%E9%9D%A2"><span class="toc-text">资源与界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DEX-%E4%B8%8E-Smali"><span class="toc-text">DEX 与 Smali</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Native-%E4%B8%8E-JNI"><span class="toc-text">Native 与 JNI</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Android-APK-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E5%B9%B3%E5%8F%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">4.3 Android APK 示例：平台机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%B0%86%E5%90%8C%E4%B8%80%E6%96%B9%E6%B3%95%E8%BF%81%E7%A7%BB%E5%88%B0%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0"><span class="toc-text">4.4 将同一方法迁移到其他平台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Native-%E4%B8%8E%E6%9C%BA%E5%99%A8%E7%A0%81%E9%80%86%E5%90%91"><span class="toc-text">五、Native 与机器码逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%8C%87%E4%BB%A4%E9%9B%86%E4%B8%8E%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="toc-text">5.1 指令集与调用约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E9%87%8D%E7%82%B9"><span class="toc-text">5.2 可执行文件分析重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E9%9D%99%E6%80%81%E7%BB%93%E6%9E%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%A4%B1%E7%9C%9F"><span class="toc-text">5.3 静态结果为什么会失真</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E4%B8%8E%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-text">六、静态分析与动态分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-text">6.1 静态分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-text">6.2 动态分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E4%BA%8C%E8%80%85%E5%A6%82%E4%BD%95%E9%85%8D%E5%90%88"><span class="toc-text">6.3 二者如何配合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%80%9A%E7%94%A8%E9%80%86%E5%90%91%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="toc-text">七、通用逆向分析流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%9A%E4%B9%89%E9%97%AE%E9%A2%98%E5%92%8C%E8%BE%B9%E7%95%8C"><span class="toc-text">7.1 第一步：定义问题和边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E6%A0%B7%E6%9C%AC%E6%B8%85%E5%8D%95"><span class="toc-text">7.2 第二步：建立样本清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%BF%AB%E9%80%9F%E4%BE%A6%E5%AF%9F"><span class="toc-text">7.3 第三步：快速侦察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E4%BB%8E%E9%AB%98%E8%AF%AD%E4%B9%89%E7%BA%BF%E7%B4%A2%E5%88%87%E5%85%A5"><span class="toc-text">7.4 第四步：从高语义线索切入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E6%B5%81%E5%92%8C%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-text">7.5 第五步：建立数据流和状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%9C%80%E5%B0%8F%E9%AA%8C%E8%AF%81%E5%AE%9E%E9%AA%8C"><span class="toc-text">7.6 第六步：设计最小验证实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-7-%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E8%BE%93%E5%87%BA%E8%AF%81%E6%8D%AE%E5%8C%96%E7%BB%93%E8%AE%BA"><span class="toc-text">7.7 第七步：输出证据化结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91%E6%96%B9%E6%B3%95"><span class="toc-text">八、协议逆向方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-text">8.1 网络协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B6%88%E6%81%AF%E4%B8%8E%E8%AE%BE%E5%A4%87%E5%8D%8F%E8%AE%AE"><span class="toc-text">8.2 二进制消息与设备协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-CAN-%E5%8D%8F%E8%AE%AE%E7%A4%BA%E4%BE%8B"><span class="toc-text">8.3 CAN 协议示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E7%9A%84%E9%A2%9D%E5%A4%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">8.4 无线与工业协议的额外注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%90%84%E8%87%AA%E8%81%8C%E8%B4%A3"><span class="toc-text">九、常用工具及各自职责</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%AE%B9%E6%98%93%E8%B8%A9%E7%9A%84%E5%9D%91"><span class="toc-text">十、容易踩的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E6%8A%8A%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81%E5%BD%93%E6%88%90%E5%8E%9F%E5%A7%8B%E6%BA%90%E7%A0%81"><span class="toc-text">10.1 把反编译代码当成原始源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-%E5%8F%AA%E6%90%9C%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E4%B8%8D%E8%BF%BD%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-text">10.2 只搜字符串，不追数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-%E6%B7%B7%E6%B7%86%E5%90%8E%E6%8C%89%E7%B1%BB%E5%90%8D%E7%8C%9C%E5%8A%9F%E8%83%BD"><span class="toc-text">10.3 混淆后按类名猜功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-%E5%8F%AA%E7%9C%8B%E5%8F%91%E9%80%81%EF%BC%8C%E4%B8%8D%E7%9C%8B%E5%8F%8D%E9%A6%88"><span class="toc-text">10.4 只看发送，不看反馈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-%E5%BF%BD%E7%95%A5%E7%89%88%E6%9C%AC%E4%B8%8E%E7%8E%AF%E5%A2%83"><span class="toc-text">10.5 忽略版本与环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-6-%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E4%BF%AE%E6%94%B9%E7%A8%8B%E5%BA%8F"><span class="toc-text">10.6 一开始就修改程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-7-%E5%B7%A5%E5%85%B7%E8%BE%93%E5%87%BA%E5%BE%88%E5%A4%9A%EF%BC%8C%E7%BB%93%E8%AE%BA%E8%AF%81%E6%8D%AE%E5%BE%88%E5%B0%91"><span class="toc-text">10.7 工具输出很多，结论证据很少</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%8E%A8%E8%8D%90%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-text">十一、推荐学习路线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80"><span class="toc-text">阶段一：建立公共基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E9%80%89%E6%8B%A9%E4%B8%80%E7%A7%8D%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-text">阶段二：选择一种文件格式和指令集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E5%8A%A8%E6%80%81%E9%AA%8C%E8%AF%81%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%A7%82%E5%AF%9F"><span class="toc-text">阶段三：动态验证与系统观察</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E5%9B%9B%EF%BC%9A%E9%80%89%E6%8B%A9%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E5%B9%B3%E5%8F%B0%E5%88%86%E6%94%AF"><span class="toc-text">阶段四：选择一个应用平台分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%94%EF%BC%9A%E9%80%89%E6%8B%A9%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E3%80%81%E6%95%B0%E6%8D%AE%E6%88%96%E5%AE%89%E5%85%A8%E5%88%86%E6%94%AF"><span class="toc-text">阶段五：选择一个设备、数据或安全分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E5%85%AD%EF%BC%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E7%A0%94%E7%A9%B6%E8%83%BD%E5%8A%9B"><span class="toc-text">阶段六：自动化与研究能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E4%B8%80%E6%AC%A1%E5%88%86%E6%9E%90%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95"><span class="toc-text">十二、一次分析任务的检查清单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%89%8D"><span class="toc-text">开始前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="toc-text">静态分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%AA%8C%E8%AF%81"><span class="toc-text">动态验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E7%BB%93%E8%AE%BA"><span class="toc-text">输出结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E7%BB%93%E8%AF%AD"><span class="toc-text">十三、结语</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

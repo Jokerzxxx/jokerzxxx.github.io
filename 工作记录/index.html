@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>👍 2026工作日报 - 码上弦音</title>
+  <title>👍 2026工作日报 - 雾岛来信</title>
 
   
-    <meta name="description" content="本周工作总结（8月3日—8月7日） 完成 P7 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。 完成 543 充放电与车辆状态优化：支持车内、车外放电组合控制和停止充电复位，优化 SOCE 显示与布局；未收">
+    <meta name="description" content="本周工作总结（8月3日—8月7日） 【UI_Settings &#x2F; P7】完成 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。 【CanBusInfo &#x2F; 543 P2】完成充放电与车辆状">
 <meta property="og:type" content="article">
 <meta property="og:title" content="👍 2026工作日报">
 <meta property="og:url" content="https://jokerzxxx.github.io/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/index.html">
-<meta property="og:site_name" content="码上弦音">
-<meta property="og:description" content="本周工作总结（8月3日—8月7日） 完成 P7 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。 完成 543 充放电与车辆状态优化：支持车内、车外放电组合控制和停止充电复位，优化 SOCE 显示与布局；未收">
+<meta property="og:site_name" content="雾岛来信">
+<meta property="og:description" content="本周工作总结（8月3日—8月7日） 【UI_Settings &#x2F; P7】完成 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。 【CanBusInfo &#x2F; 543 P2】完成充放电与车辆状">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-31T09:30:00.000Z">
-<meta property="article:modified_time" content="2026-08-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-06T16:00:00.000Z">
 <meta property="article:author" content="Jokerzxxx">
 <meta property="article:tag" content="工作记录">
 <meta name="twitter:card" content="summary_large_image">
@@ -53,18 +53,18 @@
 <div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">码上弦音</div><div class="sub cap">代码作谱 · 吉他成歌</div></a></div></header>
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar-mist-island.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">雾岛来信</div><div class="sub cap">在时间里，慢慢生长</div></a></div></header>
 
 <div class="nav-area">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
-<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="专题" href="/topics/" style="color:#4F46E5"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
 </div>
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a><a class="item title" href="/2026/08/21/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="title">现代操作系统</span></a><a class="item title" href="/2026/08/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"><span class="title">计算机网络：自顶向下方法</span></a><a class="item title" href="/2026/08/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Android%E5%86%85%E6%A0%B8%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"><span class="title">深入理解Android内核设计思想</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/03/12/%E8%80%81%E5%A7%9A%E5%90%89%E4%BB%96%E4%BB%8E%E9%9B%B6%E8%B5%B7%E6%AD%A5%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/"><span class="title">老姚吉他从零起步基础教学</span></a><a class="item title" href="/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/"><span class="title">👍 2026工作日报</span></a><a class="item title" href="/reverse-engineering-knowledge-roadmap/"><span class="title">逆向工程全景知识体系与学习路线</span></a><a class="item title" href="/2026/08/21/Spring%E5%AE%9E%E6%88%98/"><span class="title">Spring实战</span></a><a class="item title" href="/2026/08/21/Android-Studio%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/"><span class="title">Android Studio开发实战</span></a><a class="item title" href="/2026/08/21/%E7%96%AF%E7%8B%82Android%E8%AE%B2%E4%B9%89/"><span class="title">疯狂Android讲义</span></a><a class="item title" href="/2026/08/21/%E9%AB%98%E6%80%A7%E8%83%BDMySQL/"><span class="title">高性能MySQL</span></a><a class="item title" href="/2026/08/21/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="title">设计模式：可复用面向对象软件的基础</span></a><a class="item title" href="/2026/08/21/Effective-Java/"><span class="title">Effective Java</span></a><a class="item title" href="/2026/08/21/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/"><span class="title">算法导论</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -77,7 +77,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/">工作记录</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-07-31T09:30:00.000Z">2026-07-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-08-07T16:00:00.000Z">2026-08-08</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-07-31T09:30:00.000Z">2026-07-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-06T16:00:00.000Z">2026-09-07</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -89,112 +89,477 @@
     
   </div>
   </div><article class="md-text content"><h2 id="本周工作总结（8月3日—8月7日）"><a href="#本周工作总结（8月3日—8月7日）" class="headerlink" title="本周工作总结（8月3日—8月7日）"></a>本周工作总结（8月3日—8月7日）</h2><ul>
-<li>完成 P7 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。</li>
-<li>完成 543 充放电与车辆状态优化：支持车内、车外放电组合控制和停止充电复位，优化 SOCE 显示与布局；未收到 CAN 信号时，胎压、胎温以占位符显示，避免误显示为 <code>0.0</code>。</li>
-<li>完成倒挡雷达显示问题修复：横屏关闭雷达开关时首次倒挡不再异常显示，保留竖屏常显逻辑；待实车复测确认。</li>
-<li>推进 ID557 协议适配与资源完善：完成车型名称映射、空调及车辆状态相关逻辑调整，多语言资源校验与 Android XML 转义修复。</li>
-<li>完成 X9 蓝牙联系人姓名 CAN 外发，并更新 ID556 车型差异码与发送逻辑；ID556 的 <code>can_type.xls</code> 更新仍待关闭 WPS 后处理。</li>
+<li>【UI_Settings &#x2F; P7】完成 GSR 辅助驾驶功能迭代：优化 GSR&#x2F;ISA 页面布局，补充左右舵配置、辅助驾驶开关 CAN 收发、默认开启和未操作信号处理；GSA&#x2F;ISA 指令改为单帧发送并统一 BCAN 通道，协议回归及 Kotlin 编译通过。</li>
+<li>【CanBusInfo &#x2F; 543 P2】完成充放电与车辆状态优化：支持车内、车外放电组合控制和停止充电复位，优化 SOCE 显示与布局；未收到 CAN 信号时，胎压、胎温以占位符显示，避免误显示为 <code>0.0</code>。</li>
+<li>【Launcher &#x2F; P2】完成倒挡雷达显示问题修复：横屏关闭雷达开关时首次倒挡不再异常显示，保留竖屏常显逻辑；待实车复测确认。</li>
+<li>【CanBusInfo &#x2F; ID557】推进协议适配与资源完善：完成车型名称映射、空调及车辆状态相关逻辑调整，多语言资源校验与 Android XML 转义修复。</li>
+<li>【CanBusInfo &#x2F; X9、ID556】完成 X9 蓝牙联系人姓名 CAN 外发，并更新 ID556 车型差异码与发送逻辑；ID556 的 <code>can_type.xls</code> 更新仍待关闭 WPS 后处理。</li>
 </ul>
 <p><strong>遗留与风险：</strong>需完成 IHU_StopCharge 实车复测；倒挡雷达修复待实机确认；ID556、ID557 的车型配置表需在解除文件占用后复核更新。</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><a href="#2026-08-01">8月1日</a></li>
-<li><a href="#2026-08-03">8月3日</a></li>
-<li><a href="#2026-08-04">8月4日</a></li>
-<li><a href="#2026-08-05">8月5日</a></li>
-<li><a href="#2026-08-06">8月6日</a></li>
-<li><a href="#2026-08-07">8月7日</a></li>
-<li><a href="#2026-07-31">7月31日</a></li>
-</ul>
-<h2 id="2026-07-31">7月31日</h2>
-
-<div class="work-log-table-wrap">
-<table class="work-log-table">
-  <thead>
-    <tr>
-      <th>重要工作事项</th>
-      <th>进度</th>
-      <th>已完成</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>完成 P7 辅助驾驶页面和开关交互。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>完成页面布局、图标和弹窗样式调整。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>完成关闭确认、从属项联动和 AEBS 自动恢复。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>整理 P7 图片资源，补齐多语言文案。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>调整 L9 India 入口并同步相关资源。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>完成资源构建和 XML、多语言校验。</td>
-      <td><span class="work-progress done">✦ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>接入辅助驾驶开关 CAN 指令和反馈。</td>
-      <td><span class="work-progress ongoing">↔ 进行中</span></td>
-      <td><span class="work-check">□</span></td>
-    </tr>
-    <tr>
-      <td>处理 JDK 编译问题和 CanBusInfo 内存溢出。</td>
-      <td><span class="work-progress ongoing">↔ 进行中</span></td>
-      <td><span class="work-check">□</span></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="日期导航"><a href="#日期导航" class="headerlink" title="日期导航"></a>日期导航</h2><div class="work-log-archive">
+  <details class="work-log-month is-current" open>
+    <summary><span>2026 年 9 月</span><em>4 天</em></summary>
+    <div class="work-log-date-list">
+      <a href="#2026-09-05">9月5日</a><a href="#2026-09-04">9月4日</a><a href="#2026-09-03">9月3日</a><a href="#2026-09-02">9月2日</a>
+    </div>
+  </details>
+  <details class="work-log-month">
+    <summary><span>2026 年 8 月</span><em>19 天</em></summary>
+    <div class="work-log-date-list">
+      <a href="#2026-08-29">8月29日</a><a href="#2026-08-28">8月28日</a><a href="#2026-08-27">8月27日</a><a href="#2026-08-26">8月26日</a><a href="#2026-08-25">8月25日</a><a href="#2026-08-24">8月24日</a><a href="#2026-08-21">8月21日</a><a href="#2026-08-17">8月17日</a><a href="#2026-08-15">8月15日</a><a href="#2026-08-14">8月14日</a><a href="#2026-08-12">8月12日</a><a href="#2026-08-11">8月11日</a><a href="#2026-08-10">8月10日</a><a href="#2026-08-07">8月7日</a><a href="#2026-08-06">8月6日</a><a href="#2026-08-05">8月5日</a><a href="#2026-08-04">8月4日</a><a href="#2026-08-03">8月3日</a><a href="#2026-08-01">8月1日</a>
+    </div>
+  </details>
+  <details class="work-log-month">
+    <summary><span>2026 年 7 月</span><em>9 天</em></summary>
+    <div class="work-log-date-list">
+      <a href="#2026-07-31">7月31日</a><a href="#2026-07-30">7月30日</a><a href="#2026-07-27">7月27日</a><a href="#2026-07-24">7月24日</a><a href="#2026-07-23">7月23日</a><a href="#2026-07-20">7月20日</a><a href="#2026-07-15">7月15日</a><a href="#2026-07-14">7月14日</a><a href="#2026-07-09">7月9日</a>
+    </div>
+  </details>
 </div>
 
-<h2 id="2026-08-01">8月1日</h2>
-
-<div class="work-log-table-wrap">
-<table class="work-log-table">
-  <thead>
-    <tr>
-      <th>重要工作事项</th>
-      <th>进度</th>
-      <th>已完成</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>增加 GSR、ISA 开关外发。</td>
-      <td><span class="work-progress ongoing">↔ 进行中</span></td>
-      <td><span class="work-check">□</span></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<h2 id="2026-08-03">8月3日</h2>
+<div class="work-log-day-title" id="2026-09-05">9月5日</div>
 
 <div class="work-log-table-wrap">
 <table class="work-log-table">
   <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
   <tbody>
     <tr>
-      <td>修复横屏倒挡时，关闭雷达开关后首次仍自动显示雷达的问题；统一按最终显示状态判断，保留竖屏始终显示的逻辑。</td>
-      <td><span class="work-progress ongoing">→ 待实机验证</span></td>
+      <td>【Bluetooth UI / X9、CanBusInfo】修复仪表蓝牙来电名称缺失：联系人姓名、APP 和 SIM 标识同步外发至 CAN。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【ModuleConfig / P7】调整辅助驾驶菜单默认配置为隐藏，避免设置页面异常入口触发。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher Widget / P2、CanBusInfo / 543 P2】分析中间件就绪标志与 CAN 订阅、界面反馈监听的关系。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-09-04">9月4日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】统一拦截全 <code>0xFF</code> CAN 载荷，清理分散的重复判断。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】将 <code>0x4F3</code> 车速接入共享 CAN 车速通道，供驾驶能耗统计曲线使用。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】优化充电状态提示区域间距，适配数值长度变化。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-09-03">9月3日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Launcher Widget / UI82】扩大风速进度条透明触摸区域，提升触摸灵敏度且不改变视觉尺寸。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Radio / K9】修复搜台结果更新后的预设项缩放动画线程与消息重复问题。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-09-02">9月2日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / P7】暂时隐藏视频和辅助驾驶菜单入口，保留页面、资源及 CAN 逻辑。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Driving Data】确认当前设备未安装驾驶数据应用，避免无效 Activity 跳转。</td>
+      <td><span class="work-progress done">✓ 已确认</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-29">8月29日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Launcher Widget / P2】更新灯光资源，完成前雾灯蓝色选中态替换。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher Widget / UI82、UI81】梳理组件配置与仪表设置入口依赖。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】实现 <code>0x43C</code> 后雷达解析，补齐三区域映射和无效距离过滤。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Radio / UI81】定位 ACC 重启后收音预设数字截断的初始化竞争原因。</td>
+      <td><span class="work-progress done">✓ 已定位</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-28">8月28日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / UI82】在工厂设置增加车型选项，支持默认和轻卡车型切换。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / UI82】补齐专属布局、中英文资源并完成 Java 编译和 XML 校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【名商轻卡 / CAN ID443】分析海外版静音覆盖问题，明确需按方向盘与报文来源分别仲裁静音状态。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-27">8月27日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Launcher Widget / Q9】修复音乐插件在 ACC 恢复后显示为空的问题。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Media / N9】修复图片切换后翻转无响应，确保当前图片路径同步。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-26">8月26日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Media / N9】修复图片播放中长按切换时的空指针闪退。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher / K9】定位语言切换后键盘图标出现的原因，给出输入法默认隐藏方案。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-25">8月25日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】调整车辆设置全屏布局，避免底部内容被导航栏遮挡。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】移除驾驶控制页外层滚动，车模不再随设置内容滑动。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【SystemUiLib / N9】补齐 <code>add_function2</code> 的多语言资源并完成 XML 校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【名商轻卡 / CAN ID443】定位车速超过 50 km/h 的报文，确认关键车速字节从 <code>0x32</code> 变为 <code>0x33</code>。</td>
+      <td><span class="work-progress done">✓ 已定位</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher / K9】梳理 CAN 报警提示浮层链路、提示优先级和音频风险。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-24">8月24日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / ID560】新增北汽电动车协议，完善空调、雷达、时间同步和车机交互。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID560】完成 Java、JSON、语言资源和车型表校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-21">8月21日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / ID558】新增 UAZ / GAZ 协议，接入车身、空调状态、方控、雷达、四驱、设置和时间功能。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID558】完成 Java、XML 和 UI JSON 校验，并纳入 SVN 变更集。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】核对 <code>0x17</code> 订阅收发数量，确认单次日志 39 个请求仅匹配 32 个唯一接收 ID。</td>
+      <td><span class="work-progress ongoing">→ 已分析</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-17">8月17日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】分析电池热失控弹窗触发原因，整理危险提示和立即下车提示的排查结论。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-15">8月15日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / ID219】更新车型列表，补齐标致、雪铁龙 66 项低/中/高配置映射。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID219】完成 XML 解析和车型映射校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】调整维修模式人工重试：2 秒超时后允许 3 秒内免密重试，最多 3 次。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-14">8月14日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】优化胎压、胎温无信号显示，移除动态数值默认值。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher / P2、CanBusInfo / 543 P2】补齐高配空调节能模式的 UI 绑定和外发链路，并核对现有接收处理。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】分析维修、工程模式的入口、状态流转和 CAN 反馈链路。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-12">8月12日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 通用发送】修复 CAN 指令延时发送的时序和复位逻辑。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 车型选择】修正车型选择回显逻辑。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID434】梳理空调语音从输入到 CAN 执行的完整链路。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-11">8月11日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】修复空调吹风模式状态异常时未外发的问题。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】梳理智能驾驶设置和大灯高度调节的功能链路。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-10">8月10日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 协议车型配置】整理雷诺、达西亚等 7 个品牌的车型列表，输出 52 个车型和 133 项配置明细。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 协议车型配置】完成车型选择字节和十六进制字段校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CANBox Upgrade】分析协议盒升级波特率流程，定位 MCU 升级应答缺失导致流程停滞。</td>
+      <td><span class="work-progress ongoing">→ 待处理</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-07">8月7日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / ID557】完成多语言资源处理，修复 Android XML 撇号转义问题，校验 37 个语言资源文件和 101 个相关键。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / X9】参考 62 项目实现蓝牙联系人姓名外发，接入 APP、SIM 和通讯录姓名，并处理姓名与号码时序、回退和清理。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID556】根据 <code>0x33</code> 协议补充车型差异码，更新车型映射和 Data3 发送逻辑；车型表更新待处理。</td>
+      <td><span class="work-progress ongoing">→ 待释放表格文件</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-06">8月6日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】调整充放电控制：合并车内、车外放电状态，补充停止充电复位，并优化 SOCE 百分比与车外放电按钮左对齐。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / ID557】解析协议并整理相关资源；尝试批量生成多语言文案，受翻译服务不可用影响，暂保留未可靠确认的译文。</td>
+      <td><span class="work-progress ongoing">→ 进行中</span></td>
       <td><span class="work-check">□</span></td>
     </tr>
     <tr>
-      <td>根据客户视频和复现条件，整理倒挡雷达异常的现场验证步骤。</td>
+      <td>【CanBusInfo / 构建环境】排查 Gradle 执行历史缓存锁，确认原因为孤立守护进程。</td>
       <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
@@ -202,39 +567,19 @@
 </table>
 </div>
 
-<h2 id="2026-08-04">8月4日</h2>
+<div class="work-log-day-title" id="2026-08-05">8月5日</div>
 
 <div class="work-log-table-wrap">
 <table class="work-log-table">
   <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
   <tbody>
     <tr>
-      <td>调整 P7 辅助驾驶 GSA/ISA 的 <code>0x1ACDDE28</code> 外发为单帧，并保持 AEB 三帧及 LDW 外发行为不变。</td>
+      <td>【UI_Settings / P7】优化 GSR、ISA 开关标题与图标布局，处理换行、间距和垂直居中问题。</td>
       <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
     <tr>
-      <td>统一辅助驾驶 CAN 指令 BCAN 通道为 <code>0x01</code>，完成单帧和协议回归，以及 UI_Settings Kotlin 编译验证。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<h2 id="2026-08-05">8月5日</h2>
-
-<div class="work-log-table-wrap">
-<table class="work-log-table">
-  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
-  <tbody>
-    <tr>
-      <td>优化 P7 辅助驾驶 GSR、ISA 开关标题与图标布局，处理换行、间距和垂直居中问题。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>分析高配空调 ASC 数据和 IHU_StopCharge 周期报文，确认样本中未复现持续停止充电，并定位代码缺少复位的风险。</td>
+      <td>【CanBusInfo / 543 P2】分析高配空调 ASC 数据和 IHU_StopCharge 周期报文，确认样本中未复现持续停止充电，并定位代码缺少复位的风险。</td>
       <td><span class="work-progress ongoing">→ 待实车复测</span></td>
       <td><span class="work-check">□</span></td>
     </tr>
@@ -242,24 +587,19 @@
 </table>
 </div>
 
-<h2 id="2026-08-06">8月6日</h2>
+<div class="work-log-day-title" id="2026-08-04">8月4日</div>
 
 <div class="work-log-table-wrap">
 <table class="work-log-table">
   <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
   <tbody>
     <tr>
-      <td>调整 543 充放电控制：合并车内、车外放电状态，补充停止充电复位，并优化 SOCE 百分比与车外放电按钮左对齐。</td>
+      <td>【UI_Settings / P7】调整 GSA/ISA 的 <code>0x1ACDDE28</code> 外发为单帧，并保持 AEB 三帧及 LDW 外发行为不变。</td>
       <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
     <tr>
-      <td>解析 CAN ID557 协议并整理相关资源；尝试批量生成多语言文案，受翻译服务不可用影响，暂保留未可靠确认的译文。</td>
-      <td><span class="work-progress ongoing">→ 进行中</span></td>
-      <td><span class="work-check">□</span></td>
-    </tr>
-    <tr>
-      <td>排查 Gradle 执行历史缓存锁，确认原因为孤立 Gradle 守护进程，并清理后验证模块任务构建成功。</td>
+      <td>【UI_Settings / P7】统一辅助驾驶 CAN 指令 BCAN 通道为 <code>0x01</code>，完成单帧和协议回归。</td>
       <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
@@ -267,26 +607,238 @@
 </table>
 </div>
 
-<h2 id="2026-08-07">8月7日</h2>
+<div class="work-log-day-title" id="2026-08-03">8月3日</div>
 
 <div class="work-log-table-wrap">
 <table class="work-log-table">
   <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
   <tbody>
     <tr>
-      <td>完成 ID557 多语言资源处理，修复 Android XML 撇号转义问题，校验 37 个语言资源文件和 101 个相关键。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>参考 62 项目实现 X9 蓝牙联系人姓名外发，接入 APP、SIM 和通讯录姓名，并在 CAN 端处理姓名与号码时序、回退和清理。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>根据 0x33 协议补充 ID556 车型差异码，更新车型映射和 Data3 发送逻辑；代码编译通过，但 can_type.xls 仍需在关闭 WPS 后安装更新副本。</td>
-      <td><span class="work-progress ongoing">→ 待释放表格文件</span></td>
+      <td>【Launcher / P2】修复横屏倒挡时，关闭雷达开关后首次仍自动显示雷达的问题；统一按最终显示状态判断，保留竖屏始终显示的逻辑。</td>
+      <td><span class="work-progress ongoing">→ 待实机验证</span></td>
       <td><span class="work-check">□</span></td>
+    </tr>
+    <tr>
+      <td>【Launcher / P2】根据客户视频和复现条件，整理倒挡雷达异常的现场验证步骤。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-08-01">8月1日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead>
+    <tr>
+      <th>重要工作事项</th>
+      <th>进度</th>
+      <th>已完成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / P7】增加 GSR、ISA 开关外发。</td>
+      <td><span class="work-progress ongoing">↔ 进行中</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-31">7月31日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead>
+    <tr>
+      <th>重要工作事项</th>
+      <th>进度</th>
+      <th>已完成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / P7】完成辅助驾驶页面和开关交互。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7】完成页面布局、图标和弹窗样式调整。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7】完成关闭确认、从属项联动和 AEBS 自动恢复。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7】整理图片资源，补齐多语言文案。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / L9】调整 India 入口并同步相关资源。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7、L9】完成资源构建和 XML、多语言校验。</td>
+      <td><span class="work-progress done">✦ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7】接入辅助驾驶开关 CAN 指令和反馈。</td>
+      <td><span class="work-progress ongoing">↔ 进行中</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 构建环境】处理 JDK 编译问题和内存溢出。</td>
+      <td><span class="work-progress ongoing">↔ 进行中</span></td>
+      <td><span class="work-check">□</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-30">7月30日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / L9、N9】梳理限速设置差异及差速锁启动时序，明确状态码与监听生命周期处理。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-27">7月27日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 协议工具】完成 protocol.ps1 一键协议生成流程，支持初始化、构建及生成代码与手写代码隔离。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-24">7月24日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2】完成 0x295、0x3FA TBox 时间解析，并结合协议、源码和实车日志样本校验。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-23">7月23日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CanBusInfo / 543 P2、B1】将灯光界面状态改为优先跟随 CAN 反馈，统一自动灯、示宽灯和近光灯显示。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】完成空调风向反馈驱动，梳理前后排温度数值显示适配方案。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / 543 P2】优化充电续航、SOC 向上取整及充电页重复启动问题。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-20">7月20日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Protocol / 协议解析器】完善 PDF 协议解析与 Java 生成，修复 Slave/Host 卡片、OCR 枚举和命令表处理，并完成 5 份真实 PDF 端到端验证。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-15">7月15日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【CAN 控制 / 空调、雨刮】核对 PTC、AUTO 控制报文与状态来源，完成雨刮间歇档位到秒数的映射梳理。</td>
+      <td><span class="work-progress done">✓ 已分析</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-14">7月14日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【Launcher、CanBusInfo / UI82】完成 UI81 至 UI82 的目录、命名和资源迁移。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【CanBusInfo / UI82】将空调风量显示由 10 档调整为 7 档，并修复空调控制协议和值映射。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="work-log-day-title" id="2026-07-09">7月9日</div>
+
+<div class="work-log-table-wrap">
+<table class="work-log-table">
+  <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>【UI_Settings / P7】从 L9 迁移并独立 P7 倒车影像界面，完成目录、包名、类名和资源命名替换。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
+    </tr>
+    <tr>
+      <td>【UI_Settings / P7、L9】完善三路/四路影像和转向切换，修复转向延迟恢复竞态，并清理 L9 的 P7 遗留逻辑。</td>
+      <td><span class="work-progress done">✓ 已完成</span></td>
+      <td><span class="work-check done">✓</span></td>
     </tr>
   </tbody>
 </table>
@@ -297,7 +849,7 @@
 <li>关闭 WPS 后安装并复核 ID556 的 <code>can_type.xls</code> 更新副本。</li>
 <li>提供可靠的 ID557 多语言译文或术语表，完成剩余语言资源确认。</li>
 </ul>
-<p>后续新增日报时，在“目录”中增加日期链接，并在下方追加对应日期的表格。</p>
+<p>后续新增日报时，在对应月份中增加日期标签，并在下方追加对应日期的表格。</p>
 
 <div class="article-footer fs14">
     <section id="license">
@@ -327,12 +879,12 @@
 
 
 
-<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 以代码为谱，让生活成歌。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/topics/">专题地图</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 愿每一次记录，都有回声。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%EF%BC%888%E6%9C%883%E6%97%A5%E2%80%948%E6%9C%887%E6%97%A5%EF%BC%89"><span class="toc-text">本周工作总结（8月3日—8月7日）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-07-31"><span class="toc-text">7月31日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-01"><span class="toc-text">8月1日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-03"><span class="toc-text">8月3日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-04"><span class="toc-text">8月4日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-05"><span class="toc-text">8月5日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-06"><span class="toc-text">8月6日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-08-07"><span class="toc-text">8月7日</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E5%AE%89%E6%8E%92"><span class="toc-text">后续安排</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%91%A8%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%EF%BC%888%E6%9C%883%E6%97%A5%E2%80%948%E6%9C%887%E6%97%A5%EF%BC%89"><span class="toc-text">本周工作总结（8月3日—8月7日）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%AF%BC%E8%88%AA"><span class="toc-text">日期导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E5%AE%89%E6%8E%92"><span class="toc-text">后续安排</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
