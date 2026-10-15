@@ -122,11 +122,6 @@
   <thead><tr><th>重要工作事项</th><th>进度</th><th>已完成</th></tr></thead>
   <tbody>
     <tr>
-      <td>【MSDZLS Studio】按桌面版 `color.ini` 证据复刻 `日常_签到` 和 `日常_VIP签到` 两条流程，补齐顶部入口、签到界面识别、加载超时、按钮查找失败和背包已满提示，并修复 `123u` 交接后 Flash 位于跨域子框架导致的“未进入游戏主界面”误判；单元测试和 Electron 冒烟测试通过。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
       <td>【308 Misc / GSR、P7】读取 GSR ISA 开关记忆并核对实际源码，确认 ECU 回读仍会写入偏好、用户下发未持久化、默认值未按“Don't process”处理，以及 CanBus `getIsaSpeedLimitToneValue()` 默认值问题；整理四项修改方案，尚未落源码。</td>
       <td><span class="work-progress ongoing">→ 已分析</span></td>
       <td><span class="work-check">□</span></td>
@@ -164,11 +159,6 @@
     <tr>
       <td>【名商燃油 / AEB】完成上电默认状态复现：20 次完整 Android 冷启动均为关闭；先注入有效 `0x0CF02FA0` 置开，再执行 ACC OFF/ON 后，连续 5 次在无有效 AEB 报文时均保持开启，确认客户场景更接近 ACC 或休眠唤醒，并归档截图与日志。</td>
       <td><span class="work-progress done">✓ 已复现</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>【MSDZLS Studio】移除 4399 网页 VIP 自动流程、设置项、HUD 入口和网页贵宾接口；增加游戏内 VIP 面板特征检测，并将点击升级为 Chromium DevTools 鼠标事件，失败时回退到原生点击；44 项测试通过。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
     <tr>
@@ -368,11 +358,6 @@
     </tr>
     <tr>
       <td>【Launcher / M9】同步 L9 `r88588` 的本地音乐和蓝牙音乐弹窗修复。</td>
-      <td><span class="work-progress done">✓ 已完成</span></td>
-      <td><span class="work-check done">✓</span></td>
-    </tr>
-    <tr>
-      <td>【MSDZLS Desktop】建立 `_generated` 独立输出目录，并将设备名改为车型编译期配置。</td>
       <td><span class="work-progress done">✓ 已完成</span></td>
       <td><span class="work-check done">✓</span></td>
     </tr>
