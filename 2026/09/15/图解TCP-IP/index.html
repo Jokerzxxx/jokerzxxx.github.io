@@ -1,0 +1,2085 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>图解TCP/IP（第5版） - 雾岛来信</title>
+
+  
+    <meta name="description" content="图解TCP&#x2F;IP（第5版） 作者：竹下隆史、村山公保、荒井透、苅田幸雄全书共329页，日本经典的TCP&#x2F;IP入门教材，以大量图解和通俗易懂的语言讲解计算机网络和TCP&#x2F;IP协议，从网络基础到应用层协议，再到网络安全和管理，是网络入门的优秀读物。   第1章 网络基础知识计算机网络的定义什么是计算机网络：  多台计算机通过通信线路连接，实现数据交换和资源共享 网络的本质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解TCP&#x2F;IP（第5版）">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/09/15/%E5%9B%BE%E8%A7%A3TCP-IP/index.html">
+<meta property="og:site_name" content="雾岛来信">
+<meta property="og:description" content="图解TCP&#x2F;IP（第5版） 作者：竹下隆史、村山公保、荒井透、苅田幸雄全书共329页，日本经典的TCP&#x2F;IP入门教材，以大量图解和通俗易懂的语言讲解计算机网络和TCP&#x2F;IP协议，从网络基础到应用层协议，再到网络安全和管理，是网络入门的优秀读物。   第1章 网络基础知识计算机网络的定义什么是计算机网络：  多台计算机通过通信线路连接，实现数据交换和资源共享 网络的本质">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-14T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-14T04:11:30.029Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="入门">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="TCP&#x2F;IP">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="阅读,入门,计算机网络,TCP/IP,网络协议">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar-mist-island.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">雾岛来信</div><div class="sub cap">在时间里，慢慢生长</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="专题" href="/topics/" style="color:#4F46E5"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/"><span class="title">👍 2026工作日报</span></a><a class="item title" href="/2026/09/15/%E5%9B%BE%E8%A7%A3TCP-IP/"><span class="title">图解TCP/IP（第5版）</span></a><a class="item title" href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73/"><span class="title">TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议</span></a><a class="item title" href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%AE%9E%E7%8E%B0/"><span class="title">TCP/IP详解 卷2：实现</span></a><a class="item title" href="/2026/09/14/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B71-%E5%8D%8F%E8%AE%AE/"><span class="title">TCP/IP详解 卷1：协议</span></a><a class="item title" href="/2026/09/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/"><span class="title">深入理解计算机系统</span></a><a class="item title" href="/2026/09/14/%E5%90%89%E4%BB%96%E8%87%AA%E5%AD%A6%E4%B8%89%E6%9C%88%E9%80%9A/"><span class="title">吉他自学三月通</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E5%86%8C/"><span class="title">伯克利现代吉他教程（第三册）</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E5%86%8C/"><span class="title">伯克利现代吉他教程（第二册）</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E5%86%8C/"><span class="title">伯克利现代吉他教程（第一册）</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-09-14T17:00:00.000Z">2026-09-15</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-14T04:11:30.029Z">2026-09-14</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>图解TCP/IP（第5版）</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="图解TCP-IP（第5版）"><a href="#图解TCP-IP（第5版）" class="headerlink" title="图解TCP&#x2F;IP（第5版）"></a>图解TCP&#x2F;IP（第5版）</h1><blockquote>
+<p>作者：竹下隆史、村山公保、荒井透、苅田幸雄<br>全书共329页，日本经典的TCP&#x2F;IP入门教材，以大量图解和通俗易懂的语言讲解计算机网络和TCP&#x2F;IP协议，从网络基础到应用层协议，再到网络安全和管理，是网络入门的优秀读物。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-网络基础知识"><a href="#第1章-网络基础知识" class="headerlink" title="第1章 网络基础知识"></a>第1章 网络基础知识</h2><h3 id="计算机网络的定义"><a href="#计算机网络的定义" class="headerlink" title="计算机网络的定义"></a>计算机网络的定义</h3><p><strong>什么是计算机网络</strong>：</p>
+<ul>
+<li>多台计算机通过通信线路连接，实现数据交换和资源共享</li>
+<li>网络的本质是信息的传递和共享</li>
+<li>从简单的两台计算机直连，到覆盖全球的互联网</li>
+</ul>
+<p><strong>网络的分类</strong>：</p>
+<ul>
+<li>按覆盖范围：<ul>
+<li>PAN（个人局域网）：几米范围，如蓝牙、红外</li>
+<li>LAN（局域网）：一栋建筑或一个园区，如以太网、WiFi</li>
+<li>MAN（城域网）：一个城市范围</li>
+<li>WAN（广域网）：跨城市、跨国家，如互联网</li>
+</ul>
+</li>
+<li>按拓扑结构：<ul>
+<li>总线型：所有节点共享一条总线</li>
+<li>星型：所有节点连接到中心节点</li>
+<li>环型：节点首尾相连形成环</li>
+<li>网状型：节点之间有多条路径（互联网）</li>
+</ul>
+</li>
+<li>按使用目的：<ul>
+<li>公用网：面向公众，如互联网</li>
+<li>专用网：特定组织使用，如企业内网</li>
+</ul>
+</li>
+</ul>
+<h3 id="协议与分层"><a href="#协议与分层" class="headerlink" title="协议与分层"></a>协议与分层</h3><p><strong>协议（Protocol）</strong>：</p>
+<ul>
+<li>计算机之间通信的规则和约定</li>
+<li>定义了数据格式、传输顺序、错误处理等</li>
+<li>类似人类语言的语法和词汇</li>
+<li>常见协议：TCP、IP、HTTP、FTP、SMTP等</li>
+</ul>
+<p><strong>分层的必要性</strong>：</p>
+<ul>
+<li>网络通信复杂，需要分解为多个层次</li>
+<li>每层负责特定功能，层与层之间通过接口交互</li>
+<li>分层的优势：<ul>
+<li>模块化：每层独立设计和实现</li>
+<li>可替换：某层实现可以替换而不影响其他层</li>
+<li>易于理解和学习</li>
+<li>标准化：各层接口标准化</li>
+</ul>
+</li>
+</ul>
+<p><strong>OSI七层参考模型</strong>：</p>
+<ol>
+<li>物理层：传输比特流，定义电气、机械、功能特性</li>
+<li>数据链路层：节点间数据帧传输，差错检测、MAC寻址</li>
+<li>网络层：路由选择、IP寻址、分组转发</li>
+<li>传输层：端到端通信、可靠传输、流量控制、端口寻址</li>
+<li>会话层：建立、管理、终止会话</li>
+<li>表示层：数据格式转换、加密解密、压缩解压缩</li>
+<li>应用层：为应用程序提供网络服务（HTTP、FTP、SMTP等）</li>
+</ol>
+<p><strong>TCP&#x2F;IP四层模型</strong>：</p>
+<ol>
+<li>网络接口层（链路层）：对应OSI的物理层+数据链路层</li>
+<li>网际层（网络层）：IP协议</li>
+<li>传输层：TCP、UDP</li>
+<li>应用层：对应OSI的会话层+表示层+应用层（HTTP、FTP等）</li>
+</ol>
+<p><strong>OSI与TCP&#x2F;IP的对比</strong>：</p>
+<ul>
+<li>OSI是理论参考模型，TCP&#x2F;IP是实际使用的模型</li>
+<li>OSI七层，TCP&#x2F;IP四层</li>
+<li>TCP&#x2F;IP的应用层合并了OSI的会话、表示、应用三层</li>
+<li>TCP&#x2F;IP的网络接口层合并了OSI的物理、数据链路层</li>
+<li>学习时通常结合两者理解</li>
+</ul>
+<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p><strong>电路交换</strong>：</p>
+<ul>
+<li>通信前建立专用物理通路</li>
+<li>通信期间独占通路</li>
+<li>类似电话系统</li>
+<li>优点：实时性好，无冲突</li>
+<li>缺点：建立连接慢，线路利用率低</li>
+</ul>
+<p><strong>分组交换（包交换）</strong>：</p>
+<ul>
+<li>数据分成多个分组（包），每个分组独立传输</li>
+<li>共享通信线路，统计多路复用</li>
+<li>类似邮政系统</li>
+<li>优点：线路利用率高，灵活</li>
+<li>缺点：有延迟，可能丢包，需要排序</li>
+<li>互联网使用分组交换</li>
+</ul>
+<p><strong>报文交换</strong>：</p>
+<ul>
+<li>整个报文作为一个单元传输</li>
+<li>每节点存储转发</li>
+<li>类似电报</li>
+<li>现在较少使用</li>
+</ul>
+<h3 id="网络的构成要素"><a href="#网络的构成要素" class="headerlink" title="网络的构成要素"></a>网络的构成要素</h3><p><strong>网络硬件</strong>：</p>
+<ul>
+<li>网卡（NIC）：计算机接入网络的接口</li>
+<li>中继器（Repeater）：放大信号，延长传输距离（物理层）</li>
+<li>集线器（Hub）：多端口中继器，共享带宽（物理层）</li>
+<li>网桥（Bridge）：连接两个网段，按MAC地址转发（数据链路层）</li>
+<li>交换机（Switch）：多端口网桥，独享带宽（数据链路层）</li>
+<li>路由器（Router）：连接不同网络，按IP地址转发（网络层）</li>
+<li>网关（Gateway）：连接不同协议的网络（高层）</li>
+<li>调制解调器（Modem）：数字信号与模拟信号转换</li>
+</ul>
+<p><strong>网络软件</strong>：</p>
+<ul>
+<li>操作系统：网络协议栈实现</li>
+<li>协议栈：TCP&#x2F;IP协议实现</li>
+<li>应用程序：浏览器、邮件客户端等</li>
+<li>网络管理软件：监控、配置网络</li>
+</ul>
+<hr>
+<h2 id="第2章-TCP-IP基础知识"><a href="#第2章-TCP-IP基础知识" class="headerlink" title="第2章 TCP&#x2F;IP基础知识"></a>第2章 TCP&#x2F;IP基础知识</h2><h3 id="TCP-IP的历史"><a href="#TCP-IP的历史" class="headerlink" title="TCP&#x2F;IP的历史"></a>TCP&#x2F;IP的历史</h3><p><strong>ARPANET</strong>：</p>
+<ul>
+<li>1969年，美国国防部高级研究计划局（ARPA）建立</li>
+<li>最初4个节点：UCLA、UCSB、SRI、犹他大学</li>
+<li>目的：在核战争条件下保持通信</li>
+<li>分组交换网络的先驱</li>
+</ul>
+<p><strong>TCP&#x2F;IP的诞生</strong>：</p>
+<ul>
+<li>1970年代，Vint Cerf和Bob Kahn设计TCP&#x2F;IP</li>
+<li>1983年，ARPANET正式切换到TCP&#x2F;IP</li>
+<li>1980年代，TCP&#x2F;IP在大学和研究机构普及</li>
+<li>1990年代，万维网（WWW）出现，互联网爆发</li>
+<li>TCP&#x2F;IP成为互联网的事实标准</li>
+</ul>
+<p><strong>TCP&#x2F;IP的特点</strong>：</p>
+<ul>
+<li>开放性：协议公开，任何人都可以实现</li>
+<li>与硬件无关：可运行在各种物理网络上</li>
+<li>端到端原则：智能放在端系统，网络保持简单</li>
+<li>统一寻址：IP地址统一标识网络设备</li>
+<li>标准化：IETF负责协议标准化</li>
+</ul>
+<h3 id="TCP-IP分层模型"><a href="#TCP-IP分层模型" class="headerlink" title="TCP&#x2F;IP分层模型"></a>TCP&#x2F;IP分层模型</h3><p><strong>TCP&#x2F;IP四层</strong>：</p>
+<ol>
+<li><p><strong>网络接口层（链路层）</strong>：</p>
+<ul>
+<li>负责将IP数据报封装成帧，通过物理网络传输</li>
+<li>包括设备驱动程序、网卡</li>
+<li>协议：以太网、WiFi、PPP、ARP等</li>
+<li>对应OSI的物理层+数据链路层</li>
+</ul>
+</li>
+<li><p><strong>网际层（网络层）</strong>：</p>
+<ul>
+<li>负责主机之间的通信，路由选择</li>
+<li>核心协议：IP（网际协议）</li>
+<li>辅助协议：ICMP（控制报文）、IGMP（组管理）、ARP（地址解析）</li>
+<li>无连接、不可靠（不保证交付）</li>
+</ul>
+</li>
+<li><p><strong>传输层</strong>：</p>
+<ul>
+<li>负责应用程序之间的通信（端到端）</li>
+<li>TCP：面向连接、可靠、字节流</li>
+<li>UDP：无连接、不可靠、数据报</li>
+<li>端口号标识应用程序</li>
+</ul>
+</li>
+<li><p><strong>应用层</strong>：</p>
+<ul>
+<li>为用户提供各种网络服务</li>
+<li>协议：HTTP、FTP、SMTP、POP3、IMAP、DNS、SSH、Telnet等</li>
+<li>对应OSI的会话层+表示层+应用层</li>
+</ul>
+</li>
+</ol>
+<p><strong>数据封装与解封装</strong>：</p>
+<ul>
+<li>发送方：应用层数据 → 加TCP首部（段）→ 加IP首部（数据报）→ 加帧首部&#x2F;尾部（帧）→ 比特流传输</li>
+<li>接收方：反向解封装，逐层去掉首部，交付给上层</li>
+<li>每层只处理自己层的首部，不关心上层数据</li>
+<li>类似信件封装：信纸（应用层）→ 信封（传输层）→ 邮袋（网络层）→ 邮车（链路层）</li>
+</ul>
+<h3 id="传输层与网际层的作用"><a href="#传输层与网际层的作用" class="headerlink" title="传输层与网际层的作用"></a>传输层与网际层的作用</h3><p><strong>网际层（IP）的作用</strong>：</p>
+<ul>
+<li>主机到主机的通信</li>
+<li>IP地址标识主机</li>
+<li>路由选择：确定数据报的传输路径</li>
+<li>分组转发：将数据报从一个网络转发到另一个网络</li>
+<li>分片与重组：处理不同MTU的网络</li>
+<li>不保证可靠交付，不保证顺序</li>
+</ul>
+<p><strong>传输层（TCP&#x2F;UDP）的作用</strong>：</p>
+<ul>
+<li>应用程序到应用程序的通信（端到端）</li>
+<li>端口号标识应用程序</li>
+<li>TCP提供可靠传输（确认、重传、排序、流量控制、拥塞控制）</li>
+<li>UDP提供简单高效的传输（无连接、低延迟）</li>
+<li>复用与分用：多个应用程序共享网络连接</li>
+</ul>
+<p><strong>IP与TCP&#x2F;UDP的协作</strong>：</p>
+<ul>
+<li>IP负责将数据送到目标主机</li>
+<li>TCP&#x2F;UDP负责将数据送到目标应用程序</li>
+<li>IP地址+端口号唯一标识一个通信端点（套接字）</li>
+<li>源IP+源端口+目的IP+目的端口+协议 唯一标识一个连接</li>
+</ul>
+<hr>
+<h2 id="第3章-数据链路"><a href="#第3章-数据链路" class="headerlink" title="第3章 数据链路"></a>第3章 数据链路</h2><h3 id="数据链路层的作用"><a href="#数据链路层的作用" class="headerlink" title="数据链路层的作用"></a>数据链路层的作用</h3><p><strong>数据链路层的功能</strong>：</p>
+<ul>
+<li>将网络层的IP数据报封装成帧</li>
+<li>在相邻节点之间传输帧</li>
+<li>帧同步：确定帧的开始和结束</li>
+<li>物理寻址：MAC地址标识网卡</li>
+<li>差错检测：CRC校验检测传输错误</li>
+<li>流量控制：防止发送方淹没接收方</li>
+<li>介质访问控制：多个节点共享介质时的访问控制</li>
+</ul>
+<p><strong>数据链路层的子层</strong>：</p>
+<ul>
+<li>LLC（逻辑链路控制）：向网络层提供统一接口，差错控制、流量控制</li>
+<li>MAC（介质访问控制）：介质访问控制、物理寻址、帧封装</li>
+<li>现代以太网中LLC使用较少</li>
+</ul>
+<h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p><strong>MAC地址的结构</strong>：</p>
+<ul>
+<li>48位（6字节），烧录在网卡中</li>
+<li>表示为十六进制，如00:1A:2B:3C:4D:5E</li>
+<li>前24位：OUI（组织唯一标识符），厂商标识</li>
+<li>后24位：厂商分配的序列号</li>
+<li>全球唯一</li>
+</ul>
+<p><strong>特殊MAC地址</strong>：</p>
+<ul>
+<li>广播地址：FF:FF:FF:FF:FF:FF，发送给同一网段所有主机</li>
+<li>组播地址：第1字节最低位为1，发送给一组主机</li>
+<li>单播地址：第1字节最低位为0，发送给特定主机</li>
+</ul>
+<p><strong>MAC地址与IP地址的区别</strong>：</p>
+<ul>
+<li>MAC地址：物理地址，标识网卡，全球唯一，不随位置变化</li>
+<li>IP地址：逻辑地址，标识网络位置，随位置变化</li>
+<li>MAC地址用于同一网段内的通信</li>
+<li>IP地址用于跨网段的通信</li>
+<li>ARP协议将IP地址解析为MAC地址</li>
+</ul>
+<h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><p><strong>以太网的历史</strong>：</p>
+<ul>
+<li>1970年代，Xerox PARC的Bob Metcalfe发明</li>
+<li>1980年，DEC、Intel、Xerox联合发布以太网标准</li>
+<li>1983年，IEEE 802.3标准</li>
+<li>成为最主流的局域网技术</li>
+</ul>
+<p><strong>以太网帧格式</strong>：</p>
+<ul>
+<li>前导码（7字节）+ 帧起始定界符（1字节）</li>
+<li>目的MAC地址（6字节）</li>
+<li>源MAC地址（6字节）</li>
+<li>类型&#x2F;长度（2字节）：0x0800&#x3D;IP，0x0806&#x3D;ARP，0x86DD&#x3D;IPv6</li>
+<li>数据（46-1500字节）</li>
+<li>FCS（帧校验序列，4字节）：CRC校验</li>
+</ul>
+<p><strong>以太网的特点</strong>：</p>
+<ul>
+<li>CSMA&#x2F;CD（载波监听多路访问&#x2F;冲突检测）：早期半双工以太网</li>
+<li>现代以太网全双工，交换机隔离冲突域，不需要CSMA&#x2F;CD</li>
+<li>MTU：1500字节</li>
+<li>速率：10Mbps、100Mbps、1Gbps、10Gbps、40Gbps、100Gbps</li>
+<li>简单、廉价、高速</li>
+</ul>
+<h3 id="其他数据链路技术"><a href="#其他数据链路技术" class="headerlink" title="其他数据链路技术"></a>其他数据链路技术</h3><p><strong>WiFi（IEEE 802.11）</strong>：</p>
+<ul>
+<li>无线局域网技术</li>
+<li>CSMA&#x2F;CA（载波监听多路访问&#x2F;冲突避免）</li>
+<li>接入点（AP）模式和自组织（Ad Hoc）模式</li>
+<li>加密：WEP（不安全）、WPA、WPA2、WPA3</li>
+<li>速率：802.11b(11M)、802.11g(54M)、802.11n(600M)、802.11ac(1G+)、802.11ax(WiFi 6)</li>
+</ul>
+<p><strong>PPP（点对点协议）</strong>：</p>
+<ul>
+<li>用于点对点链路（拨号、DSL、VPN）</li>
+<li>帧格式：标志、地址、控制、协议、数据、FCS</li>
+<li>支持认证（PAP、CHAP）</li>
+<li>支持多协议（IP、IPX等）</li>
+</ul>
+<p><strong>令牌环（Token Ring）</strong>：</p>
+<ul>
+<li>IBM开发，IEEE 802.5</li>
+<li>令牌传递机制，无冲突</li>
+<li>已被以太网淘汰</li>
+</ul>
+<p><strong>FDDI（光纤分布式数据接口）</strong>：</p>
+<ul>
+<li>光纤环型网络，100Mbps</li>
+<li>双环冗余，可靠性高</li>
+<li>已被快速以太网和千兆以太网淘汰</li>
+</ul>
+<hr>
+<h2 id="第4章-IP协议"><a href="#第4章-IP协议" class="headerlink" title="第4章 IP协议"></a>第4章 IP协议</h2><h3 id="IP的作用与特点"><a href="#IP的作用与特点" class="headerlink" title="IP的作用与特点"></a>IP的作用与特点</h3><p><strong>IP（网际协议）的作用</strong>：</p>
+<ul>
+<li>为主机提供逻辑地址（IP地址）</li>
+<li>路由选择：确定数据报从源到目的的路径</li>
+<li>分组转发：将数据报从一个网络转发到另一个网络</li>
+<li>分片与重组：处理不同MTU的网络</li>
+<li>是TCP&#x2F;IP协议族的核心</li>
+</ul>
+<p><strong>IP的特点</strong>：</p>
+<ul>
+<li>无连接：发送数据前不建立连接</li>
+<li>不可靠：不保证交付、不保证顺序、不重复</li>
+<li>尽力而为：尽最大努力交付，但不保证</li>
+<li>简单高效：协议简单，网络保持简单（端到端原则）</li>
+<li>可靠性由上层（TCP）提供</li>
+</ul>
+<h3 id="IPv4地址"><a href="#IPv4地址" class="headerlink" title="IPv4地址"></a>IPv4地址</h3><p><strong>IPv4地址结构</strong>：</p>
+<ul>
+<li>32位地址，表示为点分十进制（如192.168.1.1）</li>
+<li>分为网络号和主机号两部分</li>
+<li>网络号：标识网络</li>
+<li>主机号：标识网络中的主机</li>
+</ul>
+<p><strong>分类地址</strong>：</p>
+<ul>
+<li>A类：0开头，8位网络号，24位主机号，1.0.0.0-126.255.255.255</li>
+<li>B类：10开头，16位网络号，16位主机号，128.0.0.0-191.255.255.255</li>
+<li>C类：110开头，24位网络号，8位主机号，192.0.0.0-223.255.255.255</li>
+<li>D类：1110开头，组播地址，224.0.0.0-239.255.255.255</li>
+<li>E类：1111开头，保留地址，240.0.0.0-255.255.255.255</li>
+</ul>
+<p><strong>特殊地址</strong>：</p>
+<ul>
+<li>0.0.0.0：本主机，所有网络</li>
+<li>255.255.255.255：受限广播</li>
+<li>127.0.0.0&#x2F;8：环回地址</li>
+<li>10.0.0.0&#x2F;8、172.16.0.0&#x2F;12、192.168.0.0&#x2F;16：私有地址</li>
+<li>169.254.0.0&#x2F;16：链路本地地址（自动配置）</li>
+<li>网络地址：主机号全0</li>
+<li>广播地址：主机号全1</li>
+</ul>
+<p><strong>子网划分</strong>：</p>
+<ul>
+<li>将主机号进一步划分为子网号和主机号</li>
+<li>子网掩码：网络号+子网号为1，主机号为0</li>
+<li>提高地址利用率，减少广播域</li>
+<li>如255.255.255.0（&#x2F;24）</li>
+</ul>
+<p><strong>CIDR（无类别域间路由）</strong>：</p>
+<ul>
+<li>取消分类，使用前缀长度表示</li>
+<li>如192.168.1.0&#x2F;24</li>
+<li>支持可变长子网掩码（VLSM）</li>
+<li>路由聚合（超网），减少路由表</li>
+</ul>
+<h3 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h3><p><strong>IP首部格式</strong>：</p>
+<ul>
+<li>版本（4位）：IPv4&#x3D;4</li>
+<li>首部长度（4位）：以4字节为单位，通常5（20字节）</li>
+<li>服务类型（TOS，8位）：优先级、延迟、吞吐量、可靠性</li>
+<li>总长度（16位）：首部+数据，最大65535</li>
+<li>标识（16位）：分片重组用</li>
+<li>标志（3位）：保留、DF（不分片）、MF（更多分片）</li>
+<li>片偏移（13位）：分片位置，以8字节为单位</li>
+<li>生存时间（TTL，8位）：每经过一个路由器减1，为0时丢弃</li>
+<li>协议（8位）：上层协议，1&#x3D;ICMP，6&#x3D;TCP，17&#x3D;UDP</li>
+<li>首部校验和（16位）：只校验首部</li>
+<li>源IP地址（32位）</li>
+<li>目的IP地址（32位）</li>
+<li>选项（可选，最多40字节）</li>
+<li>数据</li>
+</ul>
+<p><strong>IP分片</strong>：</p>
+<ul>
+<li>当IP数据报大于出口MTU且DF位未设置时，路由器分片</li>
+<li>每个分片有自己的IP首部</li>
+<li>标识相同，标志和片偏移不同</li>
+<li>只有第一个分片有传输层首部</li>
+<li>目标主机重组所有分片</li>
+<li>重组超时（通常30-60秒）未完成则丢弃，发送ICMP超时</li>
+</ul>
+<h3 id="路由选择"><a href="#路由选择" class="headerlink" title="路由选择"></a>路由选择</h3><p><strong>路由表</strong>：</p>
+<ul>
+<li>每个主机和路由器维护路由表</li>
+<li>条目：目标网络、子网掩码、下一跳、接口、度量</li>
+<li>最长前缀匹配</li>
+<li>默认路由：0.0.0.0&#x2F;0</li>
+</ul>
+<p><strong>路由过程</strong>：</p>
+<ol>
+<li>主机发送IP数据报</li>
+<li>判断目标是否在同一网段：<ul>
+<li>同一网段：直接交付，ARP解析目标MAC</li>
+<li>不同网段：交付给默认网关，ARP解析网关MAC</li>
+</ul>
+</li>
+<li>路由器收到数据报：<ul>
+<li>查找路由表，确定下一跳</li>
+<li>减少TTL，重新计算校验和</li>
+<li>如果需要，分片</li>
+<li>转发到下一跳</li>
+</ul>
+</li>
+<li>重复直到到达目标主机</li>
+</ol>
+<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><p><strong>IPv6的必要性</strong>：</p>
+<ul>
+<li>IPv4地址耗尽（43亿，实际可用更少）</li>
+<li>互联网设备爆炸式增长（手机、IoT等）</li>
+<li>NAT缓解但不能根本解决</li>
+<li>IPv6提供128位地址（约3.4×10^38）</li>
+</ul>
+<p><strong>IPv6地址表示</strong>：</p>
+<ul>
+<li>128位，8组4位十六进制，如2001:0db8:85a3:0000:0000:8a2e:0370:7334</li>
+<li>前导零可省略：2001:db8:85a3:0:0:8a2e:370:7334</li>
+<li>连续零可用::表示（只能一次）：2001:db8:85a3::8a2e:370:7334</li>
+<li>环回地址：::1</li>
+<li>未指定地址：::</li>
+<li>链路本地地址：fe80::&#x2F;10</li>
+<li>唯一本地地址：fc00::&#x2F;7（类似IPv4私有地址）</li>
+<li>组播地址：ff00::&#x2F;8</li>
+</ul>
+<p><strong>IPv6的改进</strong>：</p>
+<ul>
+<li>更大的地址空间</li>
+<li>简化的首部（固定40字节，减少路由器处理）</li>
+<li>扩展首部（选项通过扩展首部实现，灵活）</li>
+<li>内置安全（IPsec）</li>
+<li>更好的QoS支持（流标签）</li>
+<li>无状态地址自动配置（SLAAC）</li>
+<li>取消分片（路由器不分片，源主机使用PMTU发现）</li>
+<li>取消广播（使用组播）</li>
+</ul>
+<p><strong>IPv4向IPv6过渡</strong>：</p>
+<ul>
+<li>双栈：同时运行IPv4和IPv6</li>
+<li>隧道：IPv6数据报封装在IPv4中传输</li>
+<li>转换：NAT64、DNS64等转换技术</li>
+<li>渐进式过渡，长期共存</li>
+</ul>
+<hr>
+<h2 id="第5章-IP协议相关技术"><a href="#第5章-IP协议相关技术" class="headerlink" title="第5章 IP协议相关技术"></a>第5章 IP协议相关技术</h2><h3 id="ARP：地址解析协议"><a href="#ARP：地址解析协议" class="headerlink" title="ARP：地址解析协议"></a>ARP：地址解析协议</h3><p><strong>ARP的作用</strong>：</p>
+<ul>
+<li>将IP地址解析为MAC地址</li>
+<li>同一网段内通信需要MAC地址</li>
+<li>主机维护ARP缓存</li>
+</ul>
+<p><strong>ARP工作过程</strong>：</p>
+<ol>
+<li>主机A要向主机B发送数据</li>
+<li>A查ARP缓存，有B的MAC则直接用</li>
+<li>没有则发送ARP请求（广播）：”谁有IP B？请告诉A”</li>
+<li>所有主机收到，只有B识别自己的IP，发送ARP应答（单播）</li>
+<li>A收到应答，更新ARP缓存</li>
+<li>A使用B的MAC发送数据</li>
+</ol>
+<p><strong>ARP报文格式</strong>：</p>
+<ul>
+<li>硬件类型：1&#x3D;以太网</li>
+<li>协议类型：0x0800&#x3D;IP</li>
+<li>硬件地址长度：6</li>
+<li>协议地址长度：4</li>
+<li>操作码：1&#x3D;请求，2&#x3D;应答</li>
+<li>发送端MAC、发送端IP、目标MAC、目标IP</li>
+</ul>
+<p><strong>免费ARP（Gratuitous ARP）</strong>：</p>
+<ul>
+<li>主机发送ARP请求查询自己的IP</li>
+<li>作用：检测IP冲突、更新其他主机缓存</li>
+<li>接口启动时发送</li>
+</ul>
+<p><strong>RARP（逆地址解析协议）</strong>：</p>
+<ul>
+<li>将MAC地址解析为IP地址</li>
+<li>用于无盘工作站</li>
+<li>已被BOOTP和DHCP取代</li>
+</ul>
+<h3 id="DHCP：动态主机配置协议"><a href="#DHCP：动态主机配置协议" class="headerlink" title="DHCP：动态主机配置协议"></a>DHCP：动态主机配置协议</h3><p><strong>DHCP的作用</strong>：</p>
+<ul>
+<li>自动为主机分配IP地址和其他配置信息</li>
+<li>减少手动配置，提高管理效率</li>
+<li>基于UDP，服务器端口67，客户端端口68</li>
+</ul>
+<p><strong>DHCP工作过程（DORA）</strong>：</p>
+<ol>
+<li>Discover（发现）：客户端广播DHCP发现报文</li>
+<li>Offer（提供）：服务器回复DHCP提供报文（含IP地址等）</li>
+<li>Request（请求）：客户端选择一个提供，广播DHCP请求</li>
+<li>Acknowledge（确认）：服务器回复DHCP确认，分配完成</li>
+</ol>
+<p><strong>DHCP分配的信息</strong>：</p>
+<ul>
+<li>IP地址</li>
+<li>子网掩码</li>
+<li>默认网关</li>
+<li>DNS服务器</li>
+<li>域名</li>
+<li>租约时间</li>
+<li>其他选项（NTP服务器、WINS等）</li>
+</ul>
+<p><strong>DHCP租约</strong>：</p>
+<ul>
+<li>IP地址有租约时间</li>
+<li>租约过半时客户端尝试续租</li>
+<li>租约过87.5%时重新申请</li>
+<li>租约到期未续租则释放地址</li>
+</ul>
+<h3 id="ICMP：网际控制报文协议"><a href="#ICMP：网际控制报文协议" class="headerlink" title="ICMP：网际控制报文协议"></a>ICMP：网际控制报文协议</h3><p><strong>ICMP的作用</strong>：</p>
+<ul>
+<li>IP协议的辅助协议</li>
+<li>传递差错和控制信息</li>
+<li>封装在IP数据报中传输</li>
+<li>不保证可靠传输</li>
+</ul>
+<p><strong>ICMP报文类型</strong>：</p>
+<ul>
+<li>差错报告：<ul>
+<li>目的不可达（网络不可达、主机不可达、端口不可达、需要分片）</li>
+<li>源抑制（拥塞控制）</li>
+<li>重定向（更优路由）</li>
+<li>超时（TTL超时、分片重组超时）</li>
+<li>参数问题</li>
+</ul>
+</li>
+<li>查询：<ul>
+<li>回显请求&#x2F;应答（Ping）</li>
+<li>时间戳请求&#x2F;应答</li>
+<li>地址掩码请求&#x2F;应答</li>
+<li>路由器通告&#x2F;请求</li>
+</ul>
+</li>
+</ul>
+<p><strong>Ping</strong>：</p>
+<ul>
+<li>使用ICMP回显请求&#x2F;应答</li>
+<li>测试主机可达性</li>
+<li>测量往返时间（RTT）</li>
+<li>统计丢包率</li>
+</ul>
+<p><strong>Traceroute</strong>：</p>
+<ul>
+<li>使用ICMP超时报文</li>
+<li>逐步增加TTL，追踪路由路径</li>
+<li>每跳返回ICMP超时，显示路由器IP和RTT</li>
+</ul>
+<h3 id="NAT：网络地址转换"><a href="#NAT：网络地址转换" class="headerlink" title="NAT：网络地址转换"></a>NAT：网络地址转换</h3><p><strong>NAT的作用</strong>：</p>
+<ul>
+<li>将私有IP地址转换为公网IP地址</li>
+<li>缓解IPv4地址短缺</li>
+<li>隐藏内部网络结构，提高安全性</li>
+<li>多个内部主机共享一个公网IP</li>
+</ul>
+<p><strong>NAT工作原理</strong>：</p>
+<ul>
+<li>内部主机使用私有地址（10.x、172.16-31.x、192.168.x）</li>
+<li>NAT路由器维护地址转换表</li>
+<li>出站：源私有IP+端口 → 公网IP+端口</li>
+<li>入站：目的公网IP+端口 → 私有IP+端口</li>
+<li>NAPT（网络地址端口转换）：同时转换IP和端口，支持多主机共享</li>
+</ul>
+<p><strong>NAT的类型</strong>：</p>
+<ul>
+<li>静态NAT：一对一固定映射</li>
+<li>动态NAT：从地址池动态分配</li>
+<li>NAPT&#x2F;PAT：多对一端口复用（最常用）</li>
+</ul>
+<p><strong>NAT的问题</strong>：</p>
+<ul>
+<li>破坏端到端原则</li>
+<li>外部无法主动访问内部主机</li>
+<li>P2P应用需要打洞（STUN&#x2F;TURN）</li>
+<li>某些协议（FTP、SIP）需要ALG（应用层网关）</li>
+<li>性能瓶颈</li>
+<li>IPv6可以消除NAT</li>
+</ul>
+<h3 id="VPN：虚拟专用网络"><a href="#VPN：虚拟专用网络" class="headerlink" title="VPN：虚拟专用网络"></a>VPN：虚拟专用网络</h3><p><strong>VPN的作用</strong>：</p>
+<ul>
+<li>在公共网络（互联网）上建立私有通信通道</li>
+<li>远程访问企业内网</li>
+<li>连接多个分支机构</li>
+<li>加密通信，提高安全性</li>
+</ul>
+<p><strong>VPN的类型</strong>：</p>
+<ul>
+<li>远程访问VPN：个人用户远程接入</li>
+<li>站点到站点VPN：网络之间互联</li>
+<li>按协议：<ul>
+<li>IPsec VPN：网络层，安全</li>
+<li>SSL&#x2F;TLS VPN：应用层，方便（浏览器）</li>
+<li>PPTP、L2TP：较老</li>
+</ul>
+</li>
+</ul>
+<p><strong>VPN的关键技术</strong>：</p>
+<ul>
+<li>隧道（Tunneling）：将一种协议封装在另一种协议中传输</li>
+<li>加密：确保数据机密性</li>
+<li>认证：验证身份</li>
+<li>密钥管理</li>
+</ul>
+<hr>
+<h2 id="第6章-TCP与UDP"><a href="#第6章-TCP与UDP" class="headerlink" title="第6章 TCP与UDP"></a>第6章 TCP与UDP</h2><h3 id="传输层的作用"><a href="#传输层的作用" class="headerlink" title="传输层的作用"></a>传输层的作用</h3><p><strong>传输层的功能</strong>：</p>
+<ul>
+<li>提供应用程序之间的通信（端到端）</li>
+<li>端口号标识应用程序</li>
+<li>复用与分用</li>
+<li>可选的可靠传输（TCP）</li>
+<li>流量控制、拥塞控制（TCP）</li>
+</ul>
+<p><strong>端口号</strong>：</p>
+<ul>
+<li>16位整数，0-65535</li>
+<li>知名端口：0-1023（HTTP&#x3D;80，HTTPS&#x3D;443，FTP&#x3D;21，SSH&#x3D;22，DNS&#x3D;53）</li>
+<li>注册端口：1024-49151</li>
+<li>动态&#x2F;私有端口：49152-65535（客户端临时端口）</li>
+<li>IP地址+端口号&#x3D;套接字（Socket），唯一标识通信端点</li>
+</ul>
+<h3 id="UDP：用户数据报协议"><a href="#UDP：用户数据报协议" class="headerlink" title="UDP：用户数据报协议"></a>UDP：用户数据报协议</h3><p><strong>UDP的特点</strong>：</p>
+<ul>
+<li>无连接：发送前不建立连接</li>
+<li>不可靠：不保证交付、顺序、不重复</li>
+<li>数据报模式：保留消息边界</li>
+<li>首部开销小（8字节）</li>
+<li>无流量控制、拥塞控制</li>
+<li>支持广播和组播</li>
+<li>低延迟</li>
+</ul>
+<p><strong>UDP首部</strong>：</p>
+<ul>
+<li>源端口（16位）</li>
+<li>目的端口（16位）</li>
+<li>长度（16位）：首部+数据</li>
+<li>校验和（16位）：可选，覆盖伪首部+首部+数据</li>
+</ul>
+<p><strong>UDP的应用场景</strong>：</p>
+<ul>
+<li>DNS查询</li>
+<li>DHCP</li>
+<li>视频&#x2F;音频流媒体</li>
+<li>在线游戏</li>
+<li>VoIP</li>
+<li>实时应用（可容忍少量丢包，需要低延迟）</li>
+<li>简单请求-响应（应用层自己处理可靠性）</li>
+</ul>
+<h3 id="TCP：传输控制协议"><a href="#TCP：传输控制协议" class="headerlink" title="TCP：传输控制协议"></a>TCP：传输控制协议</h3><p><strong>TCP的特点</strong>：</p>
+<ul>
+<li>面向连接：通信前建立连接（三次握手）</li>
+<li>可靠传输：确认、重传、排序、校验和</li>
+<li>全双工：同一连接双向传输</li>
+<li>字节流：不保留消息边界</li>
+<li>流量控制：滑动窗口，防止发送方淹没接收方</li>
+<li>拥塞控制：防止发送方淹没网络</li>
+<li>点对点：一对一通信</li>
+</ul>
+<p><strong>TCP首部</strong>：</p>
+<ul>
+<li>源端口（16位）</li>
+<li>目的端口（16位）</li>
+<li>序号（32位）：本报文段数据第一个字节的序号</li>
+<li>确认号（32位）：期望收到的下一个字节序号</li>
+<li>首部长度（4位）：以4字节为单位</li>
+<li>保留（6位）</li>
+<li>标志位（6位）：URG、ACK、PSH、RST、SYN、FIN</li>
+<li>窗口大小（16位）：接收窗口</li>
+<li>校验和（16位）</li>
+<li>紧急指针（16位）</li>
+<li>选项（可选，最多40字节）：MSS、窗口扩大、时间戳、SACK</li>
+</ul>
+<p><strong>TCP连接建立（三次握手）</strong>：</p>
+<ol>
+<li>客户端发送SYN（序号&#x3D;ISN(c)）</li>
+<li>服务器回复SYN+ACK（序号&#x3D;ISN(s)，确认号&#x3D;ISN(c)+1）</li>
+<li>客户端发送ACK（确认号&#x3D;ISN(s)+1）</li>
+</ol>
+<ul>
+<li>连接建立，双方可以发送数据</li>
+<li>为什么三次：确认双方的发送和接收能力，同步初始序号</li>
+</ul>
+<p><strong>TCP连接终止（四次挥手）</strong>：</p>
+<ol>
+<li>客户端发送FIN（数据发送完成）</li>
+<li>服务器回复ACK</li>
+<li>服务器发送FIN（数据也发送完成）</li>
+<li>客户端回复ACK</li>
+</ol>
+<ul>
+<li>连接完全关闭</li>
+<li>主动关闭方进入TIME_WAIT（2MSL）</li>
+</ul>
+<p><strong>TCP可靠传输机制</strong>：</p>
+<ul>
+<li>序号：每个字节有序号</li>
+<li>确认：累计确认，确认号之前的都已收到</li>
+<li>校验和：检测数据损坏</li>
+<li>重传：超时未确认则重传</li>
+<li>排序：乱序数据重新排序</li>
+<li>去重：重复数据丢弃</li>
+</ul>
+<p><strong>TCP流量控制</strong>：</p>
+<ul>
+<li>滑动窗口机制</li>
+<li>接收方在ACK中通告窗口大小（接收缓冲区可用空间）</li>
+<li>发送方发送的数据不超过窗口大小</li>
+<li>防止发送方发送过快，接收方处理不过来</li>
+<li>零窗口：接收方缓冲区满，发送方停止发送，定期探测</li>
+</ul>
+<p><strong>TCP拥塞控制</strong>：</p>
+<ul>
+<li>慢启动：连接建立或超时后，拥塞窗口从1MSS开始指数增长</li>
+<li>拥塞避免：达到慢启动阈值后，拥塞窗口线性增长</li>
+<li>快速重传：收到三个重复ACK立即重传</li>
+<li>快速恢复：快速重传后不进入慢启动，直接进入拥塞避免</li>
+<li>加法增加乘法减小（AIMD）</li>
+<li>现代算法：CUBIC（Linux默认）、BBR等</li>
+</ul>
+<p><strong>TCP与UDP的对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接</td>
+<td>面向连接</td>
+<td>无连接</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>可靠</td>
+<td>不可靠</td>
+</tr>
+<tr>
+<td>顺序</td>
+<td>保证</td>
+<td>不保证</td>
+</tr>
+<tr>
+<td>流量控制</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>拥塞控制</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>首部开销</td>
+<td>20-60字节</td>
+<td>8字节</td>
+</tr>
+<tr>
+<td>数据模式</td>
+<td>字节流</td>
+<td>数据报</td>
+</tr>
+<tr>
+<td>广播&#x2F;组播</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>较高</td>
+<td>较低</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>文件传输、Web、邮件</td>
+<td>实时应用、DNS、游戏</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第7章-路由协议"><a href="#第7章-路由协议" class="headerlink" title="第7章 路由协议"></a>第7章 路由协议</h2><h3 id="路由基础"><a href="#路由基础" class="headerlink" title="路由基础"></a>路由基础</h3><p><strong>路由的概念</strong>：</p>
+<ul>
+<li>路由器根据路由表转发IP数据报</li>
+<li>路由表可以静态配置，也可以通过路由协议动态学习</li>
+<li>路由协议：路由器之间交换路由信息，自动构建路由表</li>
+</ul>
+<p><strong>路由协议的分类</strong>：</p>
+<ul>
+<li>按作用范围：<ul>
+<li>IGP（内部网关协议）：自治系统内部，如RIP、OSPF、IS-IS</li>
+<li>EGP（外部网关协议）：自治系统之间，如BGP</li>
+</ul>
+</li>
+<li>按算法：<ul>
+<li>距离矢量：RIP</li>
+<li>链路状态：OSPF、IS-IS</li>
+<li>路径矢量：BGP</li>
+</ul>
+</li>
+</ul>
+<p><strong>自治系统（AS）</strong>：</p>
+<ul>
+<li>同一管理域的网络集合</li>
+<li>有唯一AS号（16位或32位）</li>
+<li>AS内部运行IGP，AS之间运行BGP</li>
+<li>如：ISP、大型企业、大学</li>
+</ul>
+<h3 id="RIP：路由信息协议"><a href="#RIP：路由信息协议" class="headerlink" title="RIP：路由信息协议"></a>RIP：路由信息协议</h3><p><strong>RIP的特点</strong>：</p>
+<ul>
+<li>距离矢量协议</li>
+<li>度量：跳数（最大15跳，16表示不可达）</li>
+<li>每30秒广播&#x2F;组播整个路由表</li>
+<li>触发更新：拓扑变化时立即发送</li>
+<li>UDP端口520</li>
+<li>RIPv1：有类路由，广播更新</li>
+<li>RIPv2：无类路由，支持认证，组播更新（224.0.0.9）</li>
+<li>适用于小型网络</li>
+</ul>
+<p><strong>RIP的问题</strong>：</p>
+<ul>
+<li>跳数限制（最大15跳）</li>
+<li>收敛慢（计数到无穷问题）</li>
+<li>不考虑带宽、延迟等因素</li>
+<li>定期更新浪费带宽</li>
+<li>不适合大型网络</li>
+</ul>
+<p><strong>RIP防环机制</strong>：</p>
+<ul>
+<li>水平分割：不从收到路由的接口发回该路由</li>
+<li>毒性逆转：将从某接口收到的路由度量设为16发回</li>
+<li>触发更新</li>
+<li>抑制计时</li>
+</ul>
+<h3 id="OSPF：开放最短路径优先"><a href="#OSPF：开放最短路径优先" class="headerlink" title="OSPF：开放最短路径优先"></a>OSPF：开放最短路径优先</h3><p><strong>OSPF的特点</strong>：</p>
+<ul>
+<li>链路状态协议</li>
+<li>度量：代价（Cost，通常基于带宽）</li>
+<li>使用SPF（Dijkstra）算法计算最短路径</li>
+<li>组播更新（224.0.0.5、224.0.0.6）</li>
+<li>支持区域划分（Area），减少路由表规模</li>
+<li>支持认证</li>
+<li>收敛快</li>
+<li>适用于中大型企业网络</li>
+</ul>
+<p><strong>OSPF基本概念</strong>：</p>
+<ul>
+<li>链路状态通告（LSA）：描述路由器的链路状态</li>
+<li>链路状态数据库（LSDB）：所有LSA的集合</li>
+<li>区域（Area）：逻辑分组，Area 0是骨干区域</li>
+<li>路由器类型：<ul>
+<li>内部路由器：所有接口在同一区域</li>
+<li>骨干路由器：接口在Area 0</li>
+<li>ABR（区域边界路由器）：连接多个区域</li>
+<li>ASBR（自治系统边界路由器）：连接外部路由</li>
+</ul>
+</li>
+<li>DR&#x2F;BDR：广播网络中的指定路由器&#x2F;备份指定路由器</li>
+</ul>
+<p><strong>OSPF的优势</strong>：</p>
+<ul>
+<li>无跳数限制</li>
+<li>收敛快</li>
+<li>支持VLSM和CIDR</li>
+<li>度量考虑带宽</li>
+<li>区域划分，可扩展</li>
+<li>是企业网最常用的内部网关协议</li>
+</ul>
+<h3 id="BGP：边界网关协议"><a href="#BGP：边界网关协议" class="headerlink" title="BGP：边界网关协议"></a>BGP：边界网关协议</h3><p><strong>BGP的特点</strong>：</p>
+<ul>
+<li>路径矢量协议</li>
+<li>用于自治系统（AS）之间的路由</li>
+<li>度量：AS路径（经过的AS号列表）</li>
+<li>基于TCP（端口179）</li>
+<li>策略丰富，可基于多种属性选择路由</li>
+<li>是互联网的核心路由协议</li>
+</ul>
+<p><strong>BGP基本概念</strong>：</p>
+<ul>
+<li>eBGP：不同AS之间的BGP</li>
+<li>iBGP：同一AS内部的BGP</li>
+<li>BGP属性：<ul>
+<li>AS路径：经过的AS列表</li>
+<li>下一跳：下一跳路由器IP</li>
+<li>本地优先级（Local Preference）：iBGP内选路</li>
+<li>MED：影响邻居AS的入站流量</li>
+<li>团体（Community）：标记路由，便于策略</li>
+</ul>
+</li>
+<li>路由选择基于策略，不一定是最短路径</li>
+</ul>
+<p><strong>BGP的重要性</strong>：</p>
+<ul>
+<li>互联网由数万个AS组成</li>
+<li>BGP负责AS之间的路由交换</li>
+<li>没有BGP就没有互联网</li>
+<li>是网络工程师必须掌握的协议</li>
+</ul>
+<hr>
+<h2 id="第8章-应用协议"><a href="#第8章-应用协议" class="headerlink" title="第8章 应用协议"></a>第8章 应用协议</h2><h3 id="应用层概述"><a href="#应用层概述" class="headerlink" title="应用层概述"></a>应用层概述</h3><p><strong>应用层的作用</strong>：</p>
+<ul>
+<li>为用户应用程序提供网络服务</li>
+<li>定义应用程序之间通信的规则</li>
+<li>基于传输层（TCP&#x2F;UDP）</li>
+<li>协议众多，针对不同应用场景</li>
+</ul>
+<p><strong>客户-服务器模型</strong>：</p>
+<ul>
+<li>服务器：提供服务，监听知名端口</li>
+<li>客户端：请求服务，使用临时端口</li>
+<li>大多数网络应用采用此模型</li>
+<li>如：Web（HTTP）、文件传输（FTP）、邮件（SMTP&#x2F;POP3&#x2F;IMAP）</li>
+</ul>
+<p><strong>P2P模型</strong>：</p>
+<ul>
+<li>对等网络，节点既是客户端又是服务器</li>
+<li>无中心服务器</li>
+<li>如：BitTorrent、Skype（部分）</li>
+<li>优点：可扩展、健壮</li>
+<li>缺点：管理困难、安全问题</li>
+</ul>
+<h3 id="DNS：域名系统"><a href="#DNS：域名系统" class="headerlink" title="DNS：域名系统"></a>DNS：域名系统</h3><p><strong>DNS的作用</strong>：</p>
+<ul>
+<li>将域名（如<a target="_blank" rel="noopener" href="http://www.example.com)解析为ip地址/">www.example.com）解析为IP地址</a></li>
+<li>分布式层次数据库</li>
+<li>基于UDP（也可用TCP），端口53</li>
+<li>互联网的基础服务</li>
+</ul>
+<p><strong>DNS域名结构</strong>：</p>
+<ul>
+<li>层次化命名，从右到左：<ul>
+<li>根域：.</li>
+<li>顶级域（TLD）：.com、.org、.net、.cn、.edu等</li>
+<li>二级域：example.com</li>
+<li>子域：<a target="_blank" rel="noopener" href="http://www.example.com、mail.example.com/">www.example.com、mail.example.com</a></li>
+</ul>
+</li>
+<li>完全合格域名（FQDN）：以点结尾，如<a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a>.</li>
+</ul>
+<p><strong>DNS服务器类型</strong>：</p>
+<ul>
+<li>根域名服务器：全球13组（A-M），管理顶级域</li>
+<li>顶级域服务器：管理.com、.cn等顶级域</li>
+<li>权威域名服务器：管理特定域的DNS记录</li>
+<li>递归解析器：代替用户查询，缓存结果</li>
+</ul>
+<p><strong>DNS查询过程</strong>：</p>
+<ol>
+<li>客户端向本地DNS服务器（递归解析器）查询</li>
+<li>本地服务器查缓存，有则返回</li>
+<li>没有则迭代查询：<ul>
+<li>问根服务器：.com服务器在哪？</li>
+<li>问.com服务器：example.com服务器在哪？</li>
+<li>问example.com服务器：<a href="http://www.example.com的IP是多少？">www.example.com的IP是多少？</a></li>
+</ul>
+</li>
+<li>本地服务器缓存结果，返回给客户端</li>
+</ol>
+<p><strong>DNS记录类型</strong>：</p>
+<ul>
+<li>A：IPv4地址</li>
+<li>AAAA：IPv6地址</li>
+<li>CNAME：别名（规范名）</li>
+<li>MX：邮件服务器</li>
+<li>NS：域名服务器</li>
+<li>TXT：文本记录（SPF、DKIM等）</li>
+<li>PTR：反向解析（IP→域名）</li>
+<li>SOA：起始授权记录</li>
+</ul>
+<h3 id="HTTP：超文本传输协议"><a href="#HTTP：超文本传输协议" class="headerlink" title="HTTP：超文本传输协议"></a>HTTP：超文本传输协议</h3><p><strong>HTTP概述</strong>：</p>
+<ul>
+<li>Web的基础协议</li>
+<li>基于TCP，端口80（HTTPS端口443）</li>
+<li>请求-响应模式</li>
+<li>无状态（服务器不保存客户端状态）</li>
+<li>HTTP&#x2F;1.0、HTTP&#x2F;1.1、HTTP&#x2F;2、HTTP&#x2F;3</li>
+</ul>
+<p><strong>HTTP请求</strong>：</p>
+<ul>
+<li>请求行：方法 + URI + 版本</li>
+<li>请求头：Host、User-Agent、Accept、Cookie等</li>
+<li>空行</li>
+<li>请求体（POST&#x2F;PUT等）</li>
+</ul>
+<p><strong>HTTP方法</strong>：</p>
+<ul>
+<li>GET：获取资源</li>
+<li>POST：提交数据</li>
+<li>PUT：替换资源</li>
+<li>DELETE：删除资源</li>
+<li>HEAD：获取头部</li>
+<li>OPTIONS：获取支持的方法</li>
+<li>PATCH：部分更新</li>
+</ul>
+<p><strong>HTTP响应</strong>：</p>
+<ul>
+<li>状态行：版本 + 状态码 + 原因短语</li>
+<li>响应头：Content-Type、Content-Length、Set-Cookie等</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+<p><strong>HTTP状态码</strong>：</p>
+<ul>
+<li>1xx：信息（100 Continue）</li>
+<li>2xx：成功（200 OK、201 Created、204 No Content）</li>
+<li>3xx：重定向（301 Moved Permanently、302 Found、304 Not Modified）</li>
+<li>4xx：客户端错误（400 Bad Request、401 Unauthorized、403 Forbidden、404 Not Found）</li>
+<li>5xx：服务器错误（500 Internal Server Error、502 Bad Gateway、503 Service Unavailable）</li>
+</ul>
+<p><strong>HTTPS</strong>：</p>
+<ul>
+<li>HTTP over TLS&#x2F;SSL</li>
+<li>加密通信，防止窃听和篡改</li>
+<li>验证服务器身份</li>
+<li>端口443</li>
+<li>已成为Web标准</li>
+</ul>
+<h3 id="FTP：文件传输协议"><a href="#FTP：文件传输协议" class="headerlink" title="FTP：文件传输协议"></a>FTP：文件传输协议</h3><p><strong>FTP概述</strong>：</p>
+<ul>
+<li>文件传输协议</li>
+<li>基于TCP</li>
+<li>两个连接：<ul>
+<li>控制连接：端口21，传输命令</li>
+<li>数据连接：端口20（主动模式）或随机端口（被动模式），传输数据</li>
+</ul>
+</li>
+<li>支持认证（用户名&#x2F;密码）</li>
+<li>支持二进制和文本模式</li>
+</ul>
+<p><strong>FTP模式</strong>：</p>
+<ul>
+<li>主动模式（PORT）：服务器主动连接客户端数据端口</li>
+<li>被动模式（PASV）：客户端主动连接服务器数据端口</li>
+<li>被动模式更适合客户端在NAT&#x2F;防火墙后的情况</li>
+</ul>
+<p><strong>FTP的问题</strong>：</p>
+<ul>
+<li>明文传输（包括密码）</li>
+<li>双连接，防火墙&#x2F;NAT处理复杂</li>
+<li>已被SFTP（SSH文件传输）和FTPS（FTP over TLS）取代</li>
+</ul>
+<h3 id="邮件协议"><a href="#邮件协议" class="headerlink" title="邮件协议"></a>邮件协议</h3><p><strong>SMTP（简单邮件传输协议）</strong>：</p>
+<ul>
+<li>发送邮件</li>
+<li>基于TCP，端口25（提交端口587）</li>
+<li>命令-响应模式</li>
+<li>用于邮件服务器之间传输，以及客户端向服务器发送</li>
+<li>不支持接收邮件</li>
+</ul>
+<p><strong>POP3（邮局协议版本3）</strong>：</p>
+<ul>
+<li>接收邮件</li>
+<li>基于TCP，端口110（加密995）</li>
+<li>从服务器下载邮件到本地</li>
+<li>默认下载后从服务器删除</li>
+<li>简单，适合单设备</li>
+</ul>
+<p><strong>IMAP（互联网消息访问协议）</strong>：</p>
+<ul>
+<li>接收邮件</li>
+<li>基于TCP，端口143（加密993）</li>
+<li>邮件保存在服务器，多设备同步</li>
+<li>支持文件夹、搜索、标记</li>
+<li>比POP3更强大，适合多设备</li>
+</ul>
+<p><strong>邮件传输流程</strong>：</p>
+<ol>
+<li>发件人用SMTP将邮件发送到发件人邮件服务器</li>
+<li>发件人服务器用SMTP将邮件发送到收件人邮件服务器（DNS MX记录）</li>
+<li>收件人服务器保存邮件</li>
+<li>收件人用POP3或IMAP从服务器读取邮件</li>
+</ol>
+<h3 id="其他应用协议"><a href="#其他应用协议" class="headerlink" title="其他应用协议"></a>其他应用协议</h3><p><strong>SSH（安全外壳）</strong>：</p>
+<ul>
+<li>远程登录和执行命令</li>
+<li>基于TCP，端口22</li>
+<li>加密通信，替代Telnet</li>
+<li>支持公钥认证</li>
+<li>端口转发、SFTP</li>
+</ul>
+<p><strong>Telnet</strong>：</p>
+<ul>
+<li>远程登录</li>
+<li>基于TCP，端口23</li>
+<li>明文传输，不安全</li>
+<li>已被SSH取代</li>
+</ul>
+<p><strong>SNMP（简单网络管理协议）</strong>：</p>
+<ul>
+<li>网络设备管理</li>
+<li>基于UDP，端口161&#x2F;162</li>
+<li>监控和配置网络设备</li>
+<li>MIB（管理信息库）</li>
+</ul>
+<p><strong>NTP（网络时间协议）</strong>：</p>
+<ul>
+<li>时间同步</li>
+<li>基于UDP，端口123</li>
+<li>同步计算机时钟</li>
+<li>分层结构（Stratum）</li>
+</ul>
+<hr>
+<h2 id="第9章-网络安全"><a href="#第9章-网络安全" class="headerlink" title="第9章 网络安全"></a>第9章 网络安全</h2><h3 id="网络安全基础"><a href="#网络安全基础" class="headerlink" title="网络安全基础"></a>网络安全基础</h3><p><strong>网络安全的目标</strong>：</p>
+<ul>
+<li>机密性（Confidentiality）：信息不被未授权访问</li>
+<li>完整性（Integrity）：信息不被篡改</li>
+<li>可用性（Availability）：服务持续可用</li>
+<li>认证（Authentication）：验证身份</li>
+<li>不可否认性（Non-repudiation）：无法否认操作</li>
+</ul>
+<p><strong>常见安全威胁</strong>：</p>
+<ul>
+<li>窃听（Eavesdropping）：监听通信内容</li>
+<li>篡改（Tampering）：修改通信内容</li>
+<li>伪装（Spoofing）：冒充他人身份</li>
+<li>重放（Replay）：重复发送合法消息</li>
+<li>拒绝服务（DoS&#x2F;DDoS）：耗尽资源，使服务不可用</li>
+<li>中间人攻击（MITM）：攻击者插入通信双方之间</li>
+<li>恶意软件：病毒、蠕虫、木马、勒索软件</li>
+<li>社会工程学：钓鱼、欺诈</li>
+</ul>
+<h3 id="加密技术"><a href="#加密技术" class="headerlink" title="加密技术"></a>加密技术</h3><p><strong>对称加密</strong>：</p>
+<ul>
+<li>加密和解密使用相同密钥</li>
+<li>算法：DES、3DES、AES、Blowfish</li>
+<li>优点：速度快</li>
+<li>缺点：密钥分发困难</li>
+<li>适合大量数据加密</li>
+</ul>
+<p><strong>非对称加密（公钥加密）</strong>：</p>
+<ul>
+<li>公钥和私钥一对</li>
+<li>公钥加密，私钥解密</li>
+<li>私钥签名，公钥验证</li>
+<li>算法：RSA、ECC、DSA</li>
+<li>优点：无需共享密钥，可用于认证和签名</li>
+<li>缺点：速度慢</li>
+<li>适合密钥交换和数字签名</li>
+</ul>
+<p><strong>混合加密</strong>：</p>
+<ul>
+<li>结合对称和非对称加密</li>
+<li>用非对称加密交换对称密钥</li>
+<li>用对称密钥加密数据</li>
+<li>TLS&#x2F;SSL使用此方式</li>
+</ul>
+<p><strong>哈希函数</strong>：</p>
+<ul>
+<li>将任意长度输入映射为固定长度输出</li>
+<li>单向：无法从输出反推输入</li>
+<li>抗碰撞：难以找到两个不同输入有相同输出</li>
+<li>算法：MD5（不安全）、SHA-1（不安全）、SHA-256、SHA-3</li>
+<li>用途：完整性校验、密码存储、数字签名</li>
+</ul>
+<p><strong>数字签名</strong>：</p>
+<ul>
+<li>私钥加密消息哈希</li>
+<li>公钥验证签名</li>
+<li>提供认证、完整性、不可否认性</li>
+<li>算法：RSA签名、ECDSA</li>
+</ul>
+<p><strong>数字证书</strong>：</p>
+<ul>
+<li>证明公钥属于某个实体</li>
+<li>由CA（证书颁发机构）签发</li>
+<li>包含：主体、公钥、CA签名、有效期等</li>
+<li>X.509标准</li>
+<li>HTTPS使用数字证书验证服务器身份</li>
+</ul>
+<h3 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS&#x2F;SSL"></a>TLS&#x2F;SSL</h3><p><strong>TLS（传输层安全）</strong>：</p>
+<ul>
+<li>前身是SSL（安全套接字层）</li>
+<li>在传输层和应用层之间提供安全</li>
+<li>提供：加密、认证、完整性</li>
+<li>HTTPS &#x3D; HTTP over TLS</li>
+<li>版本：SSL 3.0（不安全）、TLS 1.0、1.1、1.2、1.3</li>
+</ul>
+<p><strong>TLS握手过程</strong>：</p>
+<ol>
+<li>客户端发送ClientHello（支持的加密套件、随机数）</li>
+<li>服务器回复ServerHello（选择的加密套件、随机数）、证书、ServerHelloDone</li>
+<li>客户端验证证书</li>
+<li>客户端发送ClientKeyExchange（预主密钥，用服务器公钥加密）</li>
+<li>双方计算会话密钥（对称密钥）</li>
+<li>客户端发送ChangeCipherSpec、Finished</li>
+<li>服务器发送ChangeCipherSpec、Finished</li>
+<li>握手完成，使用会话密钥加密通信</li>
+</ol>
+<p><strong>TLS的重要性</strong>：</p>
+<ul>
+<li>保护Web通信安全</li>
+<li>防止窃听、篡改、伪装</li>
+<li>已成为互联网标准</li>
+<li>现代网站默认使用HTTPS</li>
+</ul>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p><strong>防火墙的作用</strong>：</p>
+<ul>
+<li>隔离内部网络和外部网络</li>
+<li>根据规则过滤网络流量</li>
+<li>保护内部网络安全</li>
+<li>是网络安全的基础设备</li>
+</ul>
+<p><strong>防火墙类型</strong>：</p>
+<ul>
+<li>包过滤防火墙：根据IP、端口、协议过滤（网络层）</li>
+<li>状态检测防火墙：跟踪连接状态（传输层）</li>
+<li>应用层防火墙&#x2F;代理：检查应用层内容（应用层）</li>
+<li>下一代防火墙（NGFW）：集成入侵检测、应用识别等</li>
+</ul>
+<p><strong>防火墙规则</strong>：</p>
+<ul>
+<li>允许或拒绝特定流量</li>
+<li>基于：源IP、目的IP、源端口、目的端口、协议、接口</li>
+<li>默认拒绝（默认拒绝所有，只允许明确许可的）</li>
+<li>默认允许（默认允许所有，只拒绝明确禁止的）</li>
+</ul>
+<p><strong>防火墙的局限性</strong>：</p>
+<ul>
+<li>不能防止内部攻击</li>
+<li>不能防止病毒和恶意软件</li>
+<li>不能防止社会工程学攻击</li>
+<li>配置复杂，可能有漏洞</li>
+<li>是安全的一部分，不是全部</li>
+</ul>
+<h3 id="入侵检测与防御"><a href="#入侵检测与防御" class="headerlink" title="入侵检测与防御"></a>入侵检测与防御</h3><p><strong>IDS（入侵检测系统）</strong>：</p>
+<ul>
+<li>监控网络流量，检测攻击</li>
+<li>发现攻击时告警</li>
+<li>不阻断流量</li>
+<li>类型：NIDS（网络IDS）、HIDS（主机IDS）</li>
+<li>检测方法：特征匹配、异常检测</li>
+</ul>
+<p><strong>IPS（入侵防御系统）</strong>：</p>
+<ul>
+<li>在IDS基础上增加阻断能力</li>
+<li>发现攻击时主动阻断</li>
+<li>串联部署</li>
+<li>下一代防火墙集成IPS功能</li>
+</ul>
+<h3 id="其他安全技术"><a href="#其他安全技术" class="headerlink" title="其他安全技术"></a>其他安全技术</h3><p><strong>VPN（虚拟专用网络）</strong>：</p>
+<ul>
+<li>在公共网络上建立加密通道</li>
+<li>远程安全访问</li>
+<li>IPsec VPN、SSL VPN</li>
+</ul>
+<p><strong>NAT</strong>：</p>
+<ul>
+<li>隐藏内部网络结构</li>
+<li>外部无法主动访问内部主机</li>
+<li>一定程度的安全（但不是安全机制）</li>
+</ul>
+<p><strong>代理服务器</strong>：</p>
+<ul>
+<li>代替客户端访问网络</li>
+<li>隐藏客户端IP</li>
+<li>内容过滤和缓存</li>
+<li>正向代理、反向代理</li>
+</ul>
+<p><strong>安全最佳实践</strong>：</p>
+<ul>
+<li>纵深防御：多层安全防护</li>
+<li>最小权限：只授予必要权限</li>
+<li>定期更新补丁</li>
+<li>强密码和多因素认证</li>
+<li>数据加密</li>
+<li>定期备份</li>
+<li>安全审计和监控</li>
+<li>员工安全培训</li>
+</ul>
+<hr>
+<h2 id="第10章-网络管理与运维"><a href="#第10章-网络管理与运维" class="headerlink" title="第10章 网络管理与运维"></a>第10章 网络管理与运维</h2><h3 id="网络管理基础"><a href="#网络管理基础" class="headerlink" title="网络管理基础"></a>网络管理基础</h3><p><strong>网络管理的目标</strong>：</p>
+<ul>
+<li>确保网络稳定运行</li>
+<li>快速发现和排除故障</li>
+<li>优化网络性能</li>
+<li>规划网络扩展</li>
+<li>保障网络安全</li>
+</ul>
+<p><strong>网络管理功能（FCAPS）</strong>：</p>
+<ul>
+<li>故障管理（Fault）：检测、定位、恢复故障</li>
+<li>配置管理（Configuration）：配置网络设备</li>
+<li>计费管理（Accounting）：资源使用统计和计费</li>
+<li>性能管理（Performance）：监控和优化性能</li>
+<li>安全管理（Security）：访问控制、加密、审计</li>
+</ul>
+<h3 id="SNMP：简单网络管理协议"><a href="#SNMP：简单网络管理协议" class="headerlink" title="SNMP：简单网络管理协议"></a>SNMP：简单网络管理协议</h3><p><strong>SNMP概述</strong>：</p>
+<ul>
+<li>网络管理的标准协议</li>
+<li>基于UDP，端口161（查询）、162（Trap）</li>
+<li>管理器-代理模型</li>
+<li>版本：SNMPv1、SNMPv2c、SNMPv3（安全增强）</li>
+</ul>
+<p><strong>SNMP基本概念</strong>：</p>
+<ul>
+<li>NMS（网络管理系统）：管理站，运行管理软件</li>
+<li>Agent：代理，运行在被管理设备上</li>
+<li>MIB（管理信息库）：被管理对象的层次结构数据库</li>
+<li>OID（对象标识符）：唯一标识MIB中的对象</li>
+<li>社区字符串（Community）：v1&#x2F;v2c的认证机制（类似密码）</li>
+</ul>
+<p><strong>SNMP操作</strong>：</p>
+<ul>
+<li>Get：获取对象值</li>
+<li>GetNext：获取下一个对象值（遍历）</li>
+<li>GetBulk：批量获取（v2）</li>
+<li>Set：设置对象值</li>
+<li>Trap：代理主动向管理器发送告警</li>
+<li>Inform：确认的Trap（v2）</li>
+</ul>
+<p><strong>MIB结构</strong>：</p>
+<ul>
+<li>树形层次结构</li>
+<li>根节点下：iso(1) → org(3) → dod(6) → internet(1)</li>
+<li>internet下：directory(1)、mgmt(2)、experimental(3)、private(4)</li>
+<li>mgmt下：mib-2(1)，包含系统、接口、IP、ICMP、TCP、UDP等标准MIB</li>
+<li>OID示例：1.3.6.1.2.1.1.1（系统描述）</li>
+</ul>
+<h3 id="网络监控"><a href="#网络监控" class="headerlink" title="网络监控"></a>网络监控</h3><p><strong>监控指标</strong>：</p>
+<ul>
+<li>可用性：设备&#x2F;服务是否在线</li>
+<li>响应时间：Ping延迟、应用响应时间</li>
+<li>带宽利用率：接口进出流量</li>
+<li>错误率：CRC错误、丢包</li>
+<li>CPU&#x2F;内存利用率：设备资源使用</li>
+<li>连接数：TCP连接数、并发用户数</li>
+</ul>
+<p><strong>监控工具</strong>：</p>
+<ul>
+<li>开源：Zabbix、Nagios、Prometheus+Grafana、Cacti</li>
+<li>商业：SolarWinds、PRTG、WhatsUp Gold</li>
+<li>命令行：ping、traceroute、mtr、netstat、ss、tcpdump、wireshark</li>
+</ul>
+<p><strong>告警</strong>：</p>
+<ul>
+<li>阈值告警：指标超过阈值时告警</li>
+<li>状态告警：设备&#x2F;服务状态变化时告警</li>
+<li>告警通道：邮件、短信、微信、钉钉、电话</li>
+<li>告警分级：紧急、重要、一般、提示</li>
+<li>避免告警风暴：抑制、聚合、升级</li>
+</ul>
+<h3 id="网络故障排查"><a href="#网络故障排查" class="headerlink" title="网络故障排查"></a>网络故障排查</h3><p><strong>故障排查方法论</strong>：</p>
+<ol>
+<li>确定问题：明确故障现象和影响范围</li>
+<li>收集信息：日志、监控数据、用户反馈</li>
+<li>分析原因：自底向上或自顶向下排查</li>
+<li>制定方案：确定修复方案</li>
+<li>实施修复：执行修复操作</li>
+<li>验证结果：确认故障已解决</li>
+<li>记录总结：记录故障原因和解决方案</li>
+</ol>
+<p><strong>分层排查法（OSI七层）</strong>：</p>
+<ul>
+<li>物理层：线缆、接口、电源</li>
+<li>数据链路层：MAC地址、VLAN、交换机</li>
+<li>网络层：IP地址、路由、防火墙</li>
+<li>传输层：端口、TCP&#x2F;UDP、防火墙</li>
+<li>会话层：会话建立</li>
+<li>表示层：编码、加密</li>
+<li>应用层：应用配置、日志</li>
+</ul>
+<p><strong>常用排查工具</strong>：</p>
+<ul>
+<li>ping：测试连通性和延迟</li>
+<li>traceroute&#x2F;mtr：追踪路由路径</li>
+<li>ipconfig&#x2F;ifconfig：查看网络配置</li>
+<li>netstat&#x2F;ss：查看连接和端口</li>
+<li>nslookup&#x2F;dig：DNS查询</li>
+<li>tcpdump：抓包分析</li>
+<li>Wireshark：图形化抓包分析</li>
+<li>curl&#x2F;wget：测试HTTP服务</li>
+<li>telnet&#x2F;nc：测试端口连通性</li>
+</ul>
+<h3 id="网络性能优化"><a href="#网络性能优化" class="headerlink" title="网络性能优化"></a>网络性能优化</h3><p><strong>性能瓶颈分析</strong>：</p>
+<ul>
+<li>带宽瓶颈：链路带宽不足</li>
+<li>延迟瓶颈：传播延迟、处理延迟</li>
+<li>丢包：拥塞、错误</li>
+<li>设备性能：CPU、内存、转发能力</li>
+<li>应用性能：应用程序效率</li>
+</ul>
+<p><strong>优化方法</strong>：</p>
+<ul>
+<li>带宽升级：增加链路带宽</li>
+<li>流量整形：控制流量速率</li>
+<li>负载均衡：分散流量到多条链路&#x2F;多台服务器</li>
+<li>缓存：减少重复传输</li>
+<li>压缩：减少数据量</li>
+<li>协议优化：TCP参数调优、使用HTTP&#x2F;2</li>
+<li>CDN：内容分发网络</li>
+<li>QoS：服务质量，优先保障重要流量</li>
+</ul>
+<h3 id="网络规划与设计"><a href="#网络规划与设计" class="headerlink" title="网络规划与设计"></a>网络规划与设计</h3><p><strong>网络设计原则</strong>：</p>
+<ul>
+<li>分层设计：核心层、汇聚层、接入层</li>
+<li>冗余设计：设备冗余、链路冗余，避免单点故障</li>
+<li>可扩展性：预留扩展空间</li>
+<li>安全性：防火墙、隔离、访问控制</li>
+<li>可管理性：易于监控和管理</li>
+<li>性价比：在满足需求的前提下控制成本</li>
+</ul>
+<p><strong>网络拓扑</strong>：</p>
+<ul>
+<li>星型：中心节点，简单但中心是单点故障</li>
+<li>环型：环形连接，有冗余</li>
+<li>网状：全连接，高可靠但成本高</li>
+<li>树型&#x2F;层次型：分层，可扩展（企业网常用）</li>
+<li>混合型：结合多种拓扑</li>
+</ul>
+<p><strong>IP地址规划</strong>：</p>
+<ul>
+<li>合理分配地址空间</li>
+<li>按部门&#x2F;楼层&#x2F;区域划分子网</li>
+<li>预留扩展地址</li>
+<li>私有地址用于内部，公网地址用于互联网连接</li>
+<li>VLAN规划：按功能&#x2F;部门划分VLAN</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《图解TCP&#x2F;IP（第5版）》是日本经典的TCP&#x2F;IP入门教材，由竹下隆史、村山公保、荒井透、苅田幸雄编写，以大量图解和通俗易懂的语言讲解计算机网络和TCP&#x2F;IP协议。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1章</td>
+<td>网络基础知识</td>
+<td>网络定义与分类、协议与分层、OSI七层、TCP&#x2F;IP四层、传输方式、网络构成要素</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>TCP&#x2F;IP基础知识</td>
+<td>TCP&#x2F;IP历史、四层模型、数据封装解封装、传输层与网际层的作用</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>数据链路</td>
+<td>数据链路层功能、MAC地址、以太网、WiFi、PPP、令牌环、FDDI</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>IP协议</td>
+<td>IP作用与特点、IPv4地址（分类&#x2F;子网&#x2F;CIDR）、IP数据报、分片、路由选择、IPv6</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>IP相关技术</td>
+<td>ARP、DHCP、ICMP（Ping&#x2F;Traceroute）、NAT、VPN</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>TCP与UDP</td>
+<td>传输层作用、端口号、UDP特点与应用、TCP特点与首部、三次握手&#x2F;四次挥手、可靠传输、流量控制、拥塞控制、TCP vs UDP</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>路由协议</td>
+<td>路由基础、RIP、OSPF、BGP、自治系统</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>应用协议</td>
+<td>客户-服务器模型、DNS、HTTP&#x2F;HTTPS、FTP、邮件协议（SMTP&#x2F;POP3&#x2F;IMAP）、SSH、SNMP、NTP</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>网络安全</td>
+<td>安全目标、加密技术（对称&#x2F;非对称&#x2F;哈希&#x2F;签名&#x2F;证书）、TLS&#x2F;SSL、防火墙、IDS&#x2F;IPS、VPN、安全最佳实践</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>网络管理与运维</td>
+<td>网络管理功能（FCAPS）、SNMP、网络监控、故障排查、性能优化、网络规划设计</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>本书是入门级教材，图文并茂，适合网络初学者</li>
+<li>第1-2章是基础，理解分层模型和数据封装</li>
+<li>第3-6章是核心（链路层、IP、TCP&#x2F;UDP），必须掌握</li>
+<li>第7章路由协议对网络工程师重要</li>
+<li>第8章应用协议对开发者和运维都重要</li>
+<li>第9-10章是进阶内容（安全、管理运维）</li>
+<li>配合实验学习：用Wireshark抓包分析实际流量</li>
+<li>搭建实验环境（GNS3、Packet Tracer、虚拟机）练习配置</li>
+<li>配合《计算机网络：自顶向下方法》和《TCP&#x2F;IP详解》深入学习</li>
+<li>本书第5版更新了IPv6、HTTP&#x2F;2、网络安全等内容，但仍以IPv4和传统协议为主</li>
+<li>适合作为网络入门的第一本书，建立整体概念后再深入学习特定领域</li>
+</ul>
+<p>这本书是网络入门的优秀读物，以图解方式降低学习门槛，帮助初学者建立计算机网络和TCP&#x2F;IP协议的整体认知，是网络学习的良好起点。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/09/15/%E5%9B%BE%E8%A7%A3TCP-IP/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/09/15/%E5%9B%BE%E8%A7%A3TCP-IP/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73/">TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/topics/">专题地图</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 愿每一次记录，都有回声。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3TCP-IP%EF%BC%88%E7%AC%AC5%E7%89%88%EF%BC%89"><span class="toc-text">图解TCP&#x2F;IP（第5版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">第1章 网络基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">第2章 TCP&#x2F;IP基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF"><span class="toc-text">第3章 数据链路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-IP%E5%8D%8F%E8%AE%AE"><span class="toc-text">第4章 IP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF"><span class="toc-text">第5章 IP协议相关技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-TCP%E4%B8%8EUDP"><span class="toc-text">第6章 TCP与UDP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="toc-text">第7章 路由协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE"><span class="toc-text">第8章 应用协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="toc-text">第9章 网络安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E4%B8%8E%E8%BF%90%E7%BB%B4"><span class="toc-text">第10章 网络管理与运维</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>

@@ -1,0 +1,1659 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>TCP/IP详解 卷2：实现 - 雾岛来信</title>
+
+  
+    <meta name="description" content="TCP&#x2F;IP详解 卷2：实现 作者：Gary R. Wright（加里·R·赖特）、W. Richard Stevens（W·理查德·史蒂文斯）全书共927页，TCP&#x2F;IP协议实现的圣经级著作，基于4.4BSD-Lite2内核源码，逐行分析TCP&#x2F;IP协议栈的完整实现，从mbuf内存管理到接口层、IP、ARP、ICMP、IGMP、UDP、TCP、插口层，是理解网络协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP&#x2F;IP详解 卷2：实现">
+<meta property="og:url" content="https://jokerzxxx.github.io/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="雾岛来信">
+<meta property="og:description" content="TCP&#x2F;IP详解 卷2：实现 作者：Gary R. Wright（加里·R·赖特）、W. Richard Stevens（W·理查德·史蒂文斯）全书共927页，TCP&#x2F;IP协议实现的圣经级著作，基于4.4BSD-Lite2内核源码，逐行分析TCP&#x2F;IP协议栈的完整实现，从mbuf内存管理到接口层、IP、ARP、ICMP、IGMP、UDP、TCP、插口层，是理解网络协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-14T04:06:03.111Z">
+<meta property="article:author" content="Jokerzxxx">
+<meta property="article:tag" content="阅读">
+<meta property="article:tag" content="TCP&#x2F;IP">
+<meta property="article:tag" content="网络协议">
+<meta property="article:tag" content="内核实现">
+<meta property="article:tag" content="BSD">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <meta name="keywords" content="阅读,TCP/IP,网络协议,内核实现,BSD">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <meta property="og:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><meta name="twitter:image" content="https://jokerzxxx.github.io/assets/og-cover.png"><link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar-mist-island.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">雾岛来信</div><div class="sub cap">在时间里，慢慢生长</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文章" href="/" style="color:#2563EB"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/documents/" style="color:#0891B2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="专题" href="/topics/" style="color:#4F46E5"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a><a class="nav-item" title="分类" href="/categories/" style="color:#0D9488"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg></a><a class="nav-item" title="标签" href="/tags/" style="color:#EA580C"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#7C3AED"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/"><span class="title">👍 2026工作日报</span></a><a class="item title" href="/2026/09/15/%E5%9B%BE%E8%A7%A3TCP-IP/"><span class="title">图解TCP/IP（第5版）</span></a><a class="item title" href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73/"><span class="title">TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议</span></a><a class="item title" href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%AE%9E%E7%8E%B0/"><span class="title">TCP/IP详解 卷2：实现</span></a><a class="item title" href="/2026/09/14/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B71-%E5%8D%8F%E8%AE%AE/"><span class="title">TCP/IP详解 卷1：协议</span></a><a class="item title" href="/2026/09/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/"><span class="title">深入理解计算机系统</span></a><a class="item title" href="/2026/09/14/%E5%90%89%E4%BB%96%E8%87%AA%E5%AD%A6%E4%B8%89%E6%9C%88%E9%80%9A/"><span class="title">吉他自学三月通</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E5%86%8C/"><span class="title">伯克利现代吉他教程（第三册）</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E5%86%8C/"><span class="title">伯克利现代吉他教程（第二册）</span></a><a class="item title" href="/2026/09/14/%E4%BC%AF%E5%85%8B%E5%88%A9%E7%8E%B0%E4%BB%A3%E5%90%89%E4%BB%96%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E5%86%8C/"><span class="title">伯克利现代吉他教程（第一册）</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Jokerzxxx?tab=repositories" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/github.svg"/></a><a class="social" title="LeetCode" href="https://leetcode.cn/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/leetcode-brand.svg"/></a><a class="social" title="切换主题" onclick="switchTheme()"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/moon.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-09-14T16:00:00.000Z">2026-09-15</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-09-14T04:06:03.111Z">2026-09-14</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>TCP/IP详解 卷2：实现</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="TCP-IP详解-卷2：实现"><a href="#TCP-IP详解-卷2：实现" class="headerlink" title="TCP&#x2F;IP详解 卷2：实现"></a>TCP&#x2F;IP详解 卷2：实现</h1><blockquote>
+<p>作者：Gary R. Wright（加里·R·赖特）、W. Richard Stevens（W·理查德·史蒂文斯）<br>全书共927页，TCP&#x2F;IP协议实现的圣经级著作，基于4.4BSD-Lite2内核源码，逐行分析TCP&#x2F;IP协议栈的完整实现，从mbuf内存管理到接口层、IP、ARP、ICMP、IGMP、UDP、TCP、插口层，是理解网络协议内部实现的必读之作。</p>
+</blockquote>
+<hr>
+<h2 id="第1章-概述"><a href="#第1章-概述" class="headerlink" title="第1章 概述"></a>第1章 概述</h2><h3 id="本书的目的"><a href="#本书的目的" class="headerlink" title="本书的目的"></a>本书的目的</h3><p><strong>卷2的定位</strong>：</p>
+<ul>
+<li>卷1讲解TCP&#x2F;IP协议的原理和行为</li>
+<li>卷2深入协议的实现细节，分析实际代码</li>
+<li>基于4.4BSD-Lite2操作系统内核</li>
+<li>逐函数、逐行分析TCP&#x2F;IP协议栈实现</li>
+<li>理解”协议是如何工作的”而不仅是”协议做什么”</li>
+</ul>
+<p><strong>为什么研究实现</strong>：</p>
+<ul>
+<li>理解协议设计的权衡和取舍</li>
+<li>发现协议规范中的模糊之处</li>
+<li>学习内核编程技巧</li>
+<li>调试网络问题时能深入内核</li>
+<li>为修改或扩展协议栈打下基础</li>
+</ul>
+<h3 id="源代码表示"><a href="#源代码表示" class="headerlink" title="源代码表示"></a>源代码表示</h3><p><strong>代码风格</strong>：</p>
+<ul>
+<li>4.4BSD-Lite2的C代码</li>
+<li>函数名、变量名保持原样</li>
+<li>代码注释保留</li>
+<li>印刷约定：粗体表示新增或修改的代码</li>
+</ul>
+<p><strong>源码组织</strong>：</p>
+<ul>
+<li>网络代码主要在<code>/sys/net</code>和<code>/sys/netinet</code>目录</li>
+<li><code>net/</code>：通用网络代码（接口、路由、mbuf）</li>
+<li><code>netinet/</code>：Internet协议（IP、ICMP、IGMP、UDP、TCP）</li>
+<li>共约15000行C代码</li>
+</ul>
+<h3 id="网络实现概述"><a href="#网络实现概述" class="headerlink" title="网络实现概述"></a>网络实现概述</h3><p><strong>协议栈的层次</strong>：</p>
+<ul>
+<li>插口层（Socket Layer）：系统调用接口</li>
+<li>协议层（Protocol Layer）：TCP、UDP、IP、ICMP等</li>
+<li>接口层（Interface Layer）：以太网、SLIP、环回等</li>
+<li>数据从应用层向下传递到物理层，接收时向上传递</li>
+</ul>
+<p><strong>关键数据结构</strong>：</p>
+<ul>
+<li>mbuf：内存缓冲区，存储网络数据</li>
+<li>ifnet：接口结构</li>
+<li>in_ifaddr：IP接口地址</li>
+<li>route：路由结构</li>
+<li>inpcb：Internet协议控制块（UDP&#x2F;TCP共用）</li>
+<li>tcpcb：TCP控制块</li>
+</ul>
+<h3 id="描述符与插口"><a href="#描述符与插口" class="headerlink" title="描述符与插口"></a>描述符与插口</h3><p><strong>描述符</strong>：</p>
+<ul>
+<li>每个打开的文件、插口、管道都有一个描述符</li>
+<li>描述符是进程文件描述符表的索引</li>
+<li>指向文件结构（struct file）</li>
+<li>文件结构指向具体的对象（文件、插口等）</li>
+</ul>
+<p><strong>插口（Socket）</strong>：</p>
+<ul>
+<li>插口是通信的端点</li>
+<li>struct socket：插口结构</li>
+<li>包含：类型（SOCK_STREAM&#x2F;SOCK_DGRAM）、状态、接收缓冲区、发送缓冲区、协议指针等</li>
+<li>插口与描述符关联，通过系统调用操作</li>
+</ul>
+<h3 id="mbuf与输出处理"><a href="#mbuf与输出处理" class="headerlink" title="mbuf与输出处理"></a>mbuf与输出处理</h3><p><strong>mbuf（内存缓冲区）</strong>：</p>
+<ul>
+<li>网络数据的存储单元</li>
+<li>可以存储数据，也可以存储外部簇（cluster）的指针</li>
+<li>mbuf链表存储一个完整的数据报</li>
+<li>高效的内存管理，避免频繁分配释放</li>
+</ul>
+<p><strong>输出处理流程</strong>（以UDP为例）：</p>
+<ol>
+<li>应用调用sendto系统调用</li>
+<li>插口层将数据复制到mbuf</li>
+<li>UDP层添加UDP首部</li>
+<li>IP层添加IP首部，选择路由</li>
+<li>接口层添加链路层首部</li>
+<li>设备驱动发送到网络</li>
+</ol>
+<h3 id="输入处理"><a href="#输入处理" class="headerlink" title="输入处理"></a>输入处理</h3><p><strong>输入处理流程</strong>：</p>
+<ol>
+<li>网卡收到帧，产生中断</li>
+<li>中断处理程序将数据放入mbuf，加入输入队列</li>
+<li>软件中断（softnet）处理输入队列</li>
+<li>以太网输入：剥离链路层首部，分用（demux）到上层协议</li>
+<li>IP输入：处理IP首部，分用到传输层</li>
+<li>UDP&#x2F;TCP输入：处理传输层首部，交付到插口接收缓冲区</li>
+<li>应用调用recv&#x2F;recvfrom读取数据</li>
+</ol>
+<h3 id="中断级别与并发"><a href="#中断级别与并发" class="headerlink" title="中断级别与并发"></a>中断级别与并发</h3><p><strong>中断级别</strong>：</p>
+<ul>
+<li>网络代码运行在不同的中断优先级（ipl）</li>
+<li>网卡中断：最高优先级，快速处理</li>
+<li>软件中断：处理输入队列，优先级较低</li>
+<li>进程上下文：系统调用，最低优先级</li>
+<li>通过splnet()&#x2F;splx()保护临界区</li>
+</ul>
+<p><strong>并发问题</strong>：</p>
+<ul>
+<li>中断可能在任何时刻打断进程上下文</li>
+<li>需要保护共享数据结构</li>
+<li>4.4BSD使用大内核锁（非抢占式内核）简化并发</li>
+<li>现代内核使用更细粒度的锁</li>
+</ul>
+<hr>
+<h2 id="第2章-mbuf：存储器缓存"><a href="#第2章-mbuf：存储器缓存" class="headerlink" title="第2章 mbuf：存储器缓存"></a>第2章 mbuf：存储器缓存</h2><h3 id="mbuf的设计目标"><a href="#mbuf的设计目标" class="headerlink" title="mbuf的设计目标"></a>mbuf的设计目标</h3><p><strong>为什么需要mbuf</strong>：</p>
+<ul>
+<li>网络数据需要高效的内存管理</li>
+<li>数据在协议栈各层传递，需要添加&#x2F;剥离首部</li>
+<li>避免频繁的内存分配和拷贝</li>
+<li>支持分散-聚集（scatter-gather）I&#x2F;O</li>
+</ul>
+<p><strong>mbuf的特点</strong>：</p>
+<ul>
+<li>小对象（128字节），从内存池分配</li>
+<li>可以直接存储小数据（≤108字节）</li>
+<li>大数据使用外部簇（cluster，通常2KB）</li>
+<li>mbuf链表存储大数据</li>
+<li>引用计数支持共享（写时复制）</li>
+</ul>
+<h3 id="mbuf结构"><a href="#mbuf结构" class="headerlink" title="mbuf结构"></a>mbuf结构</h3><p><strong>struct mbuf</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mbuf</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mbuf</span> *<span class="title">m_next</span>;</span>       <span class="comment">// 链表下一个</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mbuf</span> *<span class="title">m_nextpkt</span>;</span>    <span class="comment">// 下一个分组（队列）</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ifnet</span> *<span class="title">m_rif</span>;</span>       <span class="comment">// 接收接口</span></span><br><span class="line">    <span class="type">int</span> m_len;                  <span class="comment">// 本mbuf数据长度</span></span><br><span class="line">    <span class="type">caddr_t</span> m_data;             <span class="comment">// 数据指针</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">pkthdr</span> <span class="title">MH_pkthdr</span>;</span>  <span class="comment">// 分组头（第一个mbuf）</span></span><br><span class="line">            <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">                <span class="class"><span class="keyword">struct</span> <span class="title">m_ext</span> <span class="title">MH_ext</span>;</span>   <span class="comment">// 外部簇</span></span><br><span class="line">                <span class="type">char</span> MH_databuf[<span class="number">108</span>];  <span class="comment">// 内部数据</span></span><br><span class="line">            &#125; M_dat;</span><br><span class="line">        &#125; MH;</span><br><span class="line">        <span class="type">char</span> M_control[<span class="number">128</span>];   <span class="comment">// 控制数据</span></span><br><span class="line">    &#125; M_databuf;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>mbuf的类型</strong>：</p>
+<ul>
+<li>分组头mbuf：m_flags有M_PKTHDR，存储分组信息（总长度、接收接口等）</li>
+<li>外部簇mbuf：m_flags有M_EXT，m_data指向外部簇</li>
+<li>普通mbuf：直接在m_data中存储数据（最多108字节）</li>
+<li>控制mbuf：存储控制信息（如选项）</li>
+</ul>
+<h3 id="mbuf宏和函数"><a href="#mbuf宏和函数" class="headerlink" title="mbuf宏和函数"></a>mbuf宏和函数</h3><p><strong>常用宏</strong>：</p>
+<ul>
+<li>mtod(m, type)：将m_data转换为指定类型指针</li>
+<li>dtom(x)：从数据指针反推mbuf指针</li>
+<li>MGET(m, wait, type)：分配mbuf</li>
+<li>M_COPY_PKTHDR(to, from)：复制分组头</li>
+<li>m_pullup(m, len)：确保前len字节连续</li>
+<li>m_free(m)：释放单个mbuf</li>
+<li>m_freem(m)：释放整个mbuf链表</li>
+</ul>
+<p><strong>m_get函数</strong>：</p>
+<ul>
+<li>分配一个mbuf</li>
+<li>从mbuf空闲链表分配（快速）</li>
+<li>如果空闲链表空，从内核内存分配</li>
+<li>wait参数：M_WAITOK（可阻塞等待）或M_DONTWAIT（不阻塞）</li>
+</ul>
+<p><strong>m_pullup函数</strong>：</p>
+<ul>
+<li>确保mbuf链表的前n字节连续</li>
+<li>如果不连续，重新排列或拷贝</li>
+<li>协议处理需要连续的首部时使用</li>
+<li>开销较大，尽量避免</li>
+</ul>
+<h3 id="mbuf与簇引用计数"><a href="#mbuf与簇引用计数" class="headerlink" title="mbuf与簇引用计数"></a>mbuf与簇引用计数</h3><p><strong>外部簇（Cluster）</strong>：</p>
+<ul>
+<li>通常2048字节（MCLBYTES）</li>
+<li>多个mbuf可以引用同一个簇（引用计数）</li>
+<li>写时复制：修改共享簇时先复制</li>
+<li>减少大数据拷贝</li>
+</ul>
+<p><strong>簇引用计数</strong>：</p>
+<ul>
+<li>每个簇有引用计数</li>
+<li>m_copy增加引用计数（不拷贝数据）</li>
+<li>m_free减少引用计数，为0时释放簇</li>
+<li>高效处理大数据</li>
+</ul>
+<hr>
+<h2 id="第3章-接口层"><a href="#第3章-接口层" class="headerlink" title="第3章 接口层"></a>第3章 接口层</h2><h3 id="ifnet结构"><a href="#ifnet结构" class="headerlink" title="ifnet结构"></a>ifnet结构</h3><p><strong>struct ifnet</strong>：</p>
+<ul>
+<li>所有网络接口的通用结构</li>
+<li>包含：接口名称、索引、MTU、标志、地址链表、队列、函数指针等</li>
+<li>特定接口（以太网、SLIP）在ifnet基础上扩展</li>
+</ul>
+<p><strong>接口标志</strong>：</p>
+<ul>
+<li>IFF_UP：接口已启用</li>
+<li>IFF_BROADCAST：支持广播</li>
+<li>IFF_DEBUG：调试模式</li>
+<li>IFF_LOOPBACK：环回接口</li>
+<li>IFF_POINTOPOINT：点对点接口</li>
+<li>IFF_RUNNING：接口正在运行</li>
+<li>IFF_NOARP：不需要ARP</li>
+<li>IFF_PROMISC：混杂模式</li>
+<li>IFF_ALLMULTI：接收所有组播</li>
+</ul>
+<p><strong>接口函数指针</strong>：</p>
+<ul>
+<li>if_init：初始化</li>
+<li>if_output：输出（将IP数据报交给接口）</li>
+<li>if_start：开始发送</li>
+<li>if_done：发送完成</li>
+<li>if_ioctl：ioctl控制</li>
+<li>if_reset：复位</li>
+<li>if_watchdog：看门狗定时器</li>
+</ul>
+<h3 id="接口初始化"><a href="#接口初始化" class="headerlink" title="接口初始化"></a>接口初始化</h3><p><strong>网络初始化流程</strong>：</p>
+<ol>
+<li>系统启动时调用ifinit()</li>
+<li>遍历所有接口，调用if_init</li>
+<li>以太网接口初始化：分配ifnet结构，设置函数指针，初始化硬件</li>
+<li>SLIP接口初始化</li>
+<li>环回接口初始化</li>
+<li>调用if_attach()将接口加入全局接口链表</li>
+</ol>
+<p><strong>if_attach函数</strong>：</p>
+<ul>
+<li>将接口加入ifnet链表</li>
+<li>分配接口索引</li>
+<li>初始化接口地址链表</li>
+<li>通知协议层新接口可用</li>
+</ul>
+<h3 id="接口输出"><a href="#接口输出" class="headerlink" title="接口输出"></a>接口输出</h3><p><strong>if_output</strong>：</p>
+<ul>
+<li>协议层（IP）调用接口的if_output</li>
+<li>以太网接口的if_output是ether_output</li>
+<li>功能：<ul>
+<li>解析目标IP对应的MAC地址（ARP）</li>
+<li>封装以太网帧</li>
+<li>将帧加入接口发送队列</li>
+<li>调用if_start开始发送</li>
+</ul>
+</li>
+</ul>
+<p><strong>if_start</strong>：</p>
+<ul>
+<li>从发送队列取一个帧</li>
+<li>交给设备驱动发送</li>
+<li>发送完成后产生中断，调用if_done</li>
+<li>if_done继续发送队列中的下一个帧</li>
+</ul>
+<h3 id="接口输入"><a href="#接口输入" class="headerlink" title="接口输入"></a>接口输入</h3><p><strong>输入处理</strong>：</p>
+<ol>
+<li>网卡收到帧，产生中断</li>
+<li>中断处理程序：<ul>
+<li>分配mbuf</li>
+<li>将帧数据从网卡复制到mbuf</li>
+<li>设置mbuf的接收接口</li>
+<li>将mbuf加入接口输入队列</li>
+<li>调度软件中断（softnet）</li>
+</ul>
+</li>
+<li>软件中断处理输入队列：<ul>
+<li>调用接口的if_input（ether_input）</li>
+<li>ether_input剥离以太网首部，分用到上层协议</li>
+</ul>
+</li>
+</ol>
+<p><strong>ether_input</strong>：</p>
+<ul>
+<li>检查以太网帧类型</li>
+<li>0x0800：IP → ipintr</li>
+<li>0x0806：ARP → arpintr</li>
+<li>0x86DD：IPv6</li>
+<li>其他类型：丢弃或传递给其他协议</li>
+</ul>
+<hr>
+<h2 id="第4章-接口：以太网"><a href="#第4章-接口：以太网" class="headerlink" title="第4章 接口：以太网"></a>第4章 接口：以太网</h2><h3 id="以太网驱动"><a href="#以太网驱动" class="headerlink" title="以太网驱动"></a>以太网驱动</h3><p><strong>le接口（LANCE以太网）</strong>：</p>
+<ul>
+<li>4.4BSD中的示例以太网驱动</li>
+<li>leintr：中断处理程序</li>
+<li>leread：读取接收帧</li>
+<li>ether_output：以太网输出（通用）</li>
+<li>lestart：开始发送</li>
+<li>leioctl：ioctl控制</li>
+</ul>
+<p><strong>以太网初始化</strong>：</p>
+<ul>
+<li>分配ifnet结构和私有数据</li>
+<li>设置if_output&#x3D;ether_output</li>
+<li>设置if_start&#x3D;lestart</li>
+<li>设置if_ioctl&#x3D;leioctl</li>
+<li>初始化网卡硬件</li>
+<li>设置MAC地址</li>
+<li>调用if_attach注册接口</li>
+</ul>
+<h3 id="ether-output函数"><a href="#ether-output函数" class="headerlink" title="ether_output函数"></a>ether_output函数</h3><p><strong>ether_output的流程</strong>：</p>
+<ol>
+<li>检查接口状态（IFF_UP、IFF_RUNNING）</li>
+<li>检查帧大小（≤MTU）</li>
+<li>根据目标IP地址确定目标MAC：<ul>
+<li>广播地址 → 以太网广播</li>
+<li>组播地址 → 映射为以太网组播MAC</li>
+<li>单播地址 → 查询ARP缓存</li>
+</ul>
+</li>
+<li>如果ARP缓存未命中：<ul>
+<li>发送ARP请求</li>
+<li>将待发送帧加入ARP等待队列</li>
+<li>返回（等待ARP应答后再发送）</li>
+</ul>
+</li>
+<li>封装以太网帧（目标MAC、源MAC、类型）</li>
+<li>将帧加入发送队列</li>
+<li>调用if_start发送</li>
+</ol>
+<p><strong>以太网地址映射</strong>：</p>
+<ul>
+<li>IP广播（255.255.255.255）→ 以太网广播（FF:FF:FF:FF:FF:FF）</li>
+<li>IP组播（224.0.0.0&#x2F;4）→ 以太网组播（01:00:5E:xx:xx:xx）<ul>
+<li>IP组播地址的低23位映射到以太网MAC的低23位</li>
+<li>32个IP组播地址映射到同一个以太网MAC（有冲突）</li>
+</ul>
+</li>
+<li>IP单播 → ARP解析</li>
+</ul>
+<hr>
+<h2 id="第5章-接口：SLIP和环回"><a href="#第5章-接口：SLIP和环回" class="headerlink" title="第5章 接口：SLIP和环回"></a>第5章 接口：SLIP和环回</h2><h3 id="SLIP接口"><a href="#SLIP接口" class="headerlink" title="SLIP接口"></a>SLIP接口</h3><p><strong>SLIP（Serial Line IP）</strong>：</p>
+<ul>
+<li>在串行线路上传输IP数据报</li>
+<li>简单的帧封装：<ul>
+<li>END（0xC0）：帧结束</li>
+<li>ESC（0xDB）：转义</li>
+<li>ESC_END（0xDC）：转义后的END</li>
+<li>ESC_ESC（0xDD）：转义后的ESC</li>
+</ul>
+</li>
+<li>无差错检测、无压缩、无协商</li>
+<li>已被PPP取代</li>
+</ul>
+<p><strong>SLIP输出</strong>：</p>
+<ul>
+<li>逐字节处理IP数据报</li>
+<li>END字节转义为ESC+ESC_END</li>
+<li>ESC字节转义为ESC+ESC_ESC</li>
+<li>帧首尾添加END</li>
+<li>写入串行设备</li>
+</ul>
+<p><strong>SLIP输入</strong>：</p>
+<ul>
+<li>从串行设备逐字节读取</li>
+<li>遇到END表示帧结束</li>
+<li>处理转义序列</li>
+<li>组装完整IP数据报</li>
+<li>传递给ipintr</li>
+</ul>
+<h3 id="环回接口"><a href="#环回接口" class="headerlink" title="环回接口"></a>环回接口</h3><p><strong>环回接口（lo）</strong>：</p>
+<ul>
+<li>虚拟接口，数据不离开主机</li>
+<li>发送到环回地址（127.0.0.1）的数据</li>
+<li>输出时直接将数据加入输入队列</li>
+<li>效率高，用于本机进程间通信和测试</li>
+</ul>
+<p><strong>环回输出</strong>：</p>
+<ul>
+<li>looutput函数</li>
+<li>将输出的数据报直接加入输入队列</li>
+<li>调用if_input处理（相当于立即接收）</li>
+<li>不经过物理网络</li>
+</ul>
+<hr>
+<h2 id="第6章-IP：网际协议"><a href="#第6章-IP：网际协议" class="headerlink" title="第6章 IP：网际协议"></a>第6章 IP：网际协议</h2><h3 id="IP处理概述"><a href="#IP处理概述" class="headerlink" title="IP处理概述"></a>IP处理概述</h3><p><strong>IP的功能</strong>：</p>
+<ul>
+<li>路由选择：确定数据报的下一跳</li>
+<li>分片与重组：大于MTU的数据报分片</li>
+<li>首部处理：校验和、TTL、选项</li>
+<li>分用：根据协议字段分用到上层（TCP&#x2F;UDP&#x2F;ICMP&#x2F;IGMP）</li>
+</ul>
+<p><strong>IP输入（ipintr）</strong>：</p>
+<ul>
+<li>从接口输入队列取IP数据报</li>
+<li>验证IP首部（版本、首部长度、校验和、长度）</li>
+<li>处理IP选项</li>
+<li>检查目标地址：<ul>
+<li>本机地址 → 分用到上层协议</li>
+<li>广播&#x2F;组播地址 → 分用或转发</li>
+<li>其他地址 → 如果开启转发则转发，否则丢弃</li>
+</ul>
+</li>
+<li>重组分片</li>
+<li>根据协议字段分用：<ul>
+<li>IPPROTO_TCP → tcpintr</li>
+<li>IPPROTO_UDP → udpintr</li>
+<li>IPPROTO_ICMP → icmpintr</li>
+<li>IPPROTO_IGMP → igmpintr</li>
+</ul>
+</li>
+</ul>
+<p><strong>IP输出（ip_output）</strong>：</p>
+<ul>
+<li>由传输层（TCP&#x2F;UDP）或ICMP调用</li>
+<li>功能：<ul>
+<li>选择路由（查找路由表）</li>
+<li>处理源地址选择</li>
+<li>处理IP选项</li>
+<li>分片（如果数据报大于出口MTU且DF位未设置）</li>
+<li>计算IP首部校验和</li>
+<li>调用接口的if_output发送</li>
+</ul>
+</li>
+</ul>
+<h3 id="IP分片与重组"><a href="#IP分片与重组" class="headerlink" title="IP分片与重组"></a>IP分片与重组</h3><p><strong>分片的原因</strong>：</p>
+<ul>
+<li>不同网络的MTU不同</li>
+<li>IP数据报可能经过MTU较小的网络</li>
+<li>路由器将大数据报分片</li>
+</ul>
+<p><strong>分片机制</strong>：</p>
+<ul>
+<li>标识字段：同一数据报的所有分片有相同标识</li>
+<li>标志字段：MF（更多分片）、DF（不分片）</li>
+<li>片偏移字段：分片在原始数据报中的位置（以8字节为单位）</li>
+<li>最后一个分片MF&#x3D;0，其他MF&#x3D;1</li>
+<li>只有第一个分片有传输层首部</li>
+</ul>
+<p><strong>重组（ip_reass）</strong>：</p>
+<ul>
+<li>目标主机重组分片</li>
+<li>维护重组队列（按源IP、目标IP、协议、标识分组）</li>
+<li>收到分片后加入队列</li>
+<li>所有分片到达后组装完整数据报</li>
+<li>重组超时（通常30秒-60秒）未完成则丢弃，发送ICMP超时</li>
+<li>重组缓冲区有限，可能丢弃分片</li>
+</ul>
+<h3 id="IP选项"><a href="#IP选项" class="headerlink" title="IP选项"></a>IP选项</h3><p><strong>IP选项类型</strong>：</p>
+<ul>
+<li>安全和处理限制（很少用）</li>
+<li>记录路由（RR）：记录经过的路由器IP</li>
+<li>时间戳：记录经过路由器的时间</li>
+<li>宽松源路由（LSRR）：指定必须经过的路由器列表</li>
+<li>严格源路由（SSRR）：指定完整路径</li>
+<li>选项长度可变，最多40字节</li>
+</ul>
+<p><strong>选项处理</strong>：</p>
+<ul>
+<li>输入时处理选项（记录路由、时间戳）</li>
+<li>输出时添加选项（源路由）</li>
+<li>选项处理增加开销，现代网络很少使用</li>
+<li>路由器可能忽略选项</li>
+</ul>
+<hr>
+<h2 id="第7章-IP路由"><a href="#第7章-IP路由" class="headerlink" title="第7章 IP路由"></a>第7章 IP路由</h2><h3 id="路由表结构"><a href="#路由表结构" class="headerlink" title="路由表结构"></a>路由表结构</h3><p><strong>路由表</strong>：</p>
+<ul>
+<li>内核维护的路由信息</li>
+<li>每个路由条目：目标网络、网关、接口、标志、度量等</li>
+<li>4.4BSD使用radix树（基数树）存储路由表</li>
+<li>支持最长前缀匹配</li>
+</ul>
+<p><strong>radix树</strong>：</p>
+<ul>
+<li>紧凑的前缀树（trie）</li>
+<li>按位比较IP地址</li>
+<li>内部节点是比较位，叶子节点是路由条目</li>
+<li>支持高效的最长前缀匹配</li>
+<li>插入、删除、查找都是O(32)（IPv4地址长度）</li>
+</ul>
+<p><strong>rtentry结构</strong>：</p>
+<ul>
+<li>路由条目</li>
+<li>包含：目标地址、网关、接口、标志、引用计数、使用计数、度量、过期时间等</li>
+<li>路由缓存：最近使用的路由缓存，加速查找</li>
+</ul>
+<h3 id="路由查找"><a href="#路由查找" class="headerlink" title="路由查找"></a>路由查找</h3><p><strong>rtalloc函数</strong>：</p>
+<ul>
+<li>查找目标地址的路由</li>
+<li>先查路由缓存</li>
+<li>缓存未命中则查radix树</li>
+<li>返回路由条目（rtentry）</li>
+<li>路由条目包含输出接口和下一跳</li>
+</ul>
+<p><strong>最长前缀匹配</strong>：</p>
+<ul>
+<li>radix树查找时，从根到叶子</li>
+<li>可能有多个前缀匹配</li>
+<li>选择最长的前缀（最具体的路由）</li>
+<li>默认路由（0.0.0.0&#x2F;0）是最短前缀，最后匹配</li>
+</ul>
+<h3 id="路由协议接口"><a href="#路由协议接口" class="headerlink" title="路由协议接口"></a>路由协议接口</h3><p><strong>路由套接字（Routing Socket）</strong>：</p>
+<ul>
+<li>应用程序（如routed、gated）通过路由套接字操作内核路由表</li>
+<li>支持：添加路由、删除路由、获取路由、监听路由变化</li>
+<li>路由守护进程运行动态路由协议（RIP、OSPF、BGP）</li>
+<li>通过路由套接字将学习到的路由写入内核</li>
+</ul>
+<p><strong>路由消息</strong>：</p>
+<ul>
+<li>RTM_ADD：添加路由</li>
+<li>RTM_DELETE：删除路由</li>
+<li>RTM_GET：获取路由</li>
+<li>RTM_CHANGE：修改路由</li>
+<li>RTM_REDIRECT：重定向（ICMP重定向触发）</li>
+<li>RTM_NEWADDR&#x2F;RTM_DELADDR：接口地址变化</li>
+</ul>
+<hr>
+<h2 id="第8章-ARP：地址解析协议"><a href="#第8章-ARP：地址解析协议" class="headerlink" title="第8章 ARP：地址解析协议"></a>第8章 ARP：地址解析协议</h2><h3 id="ARP缓存"><a href="#ARP缓存" class="headerlink" title="ARP缓存"></a>ARP缓存</h3><p><strong>ARP缓存结构</strong>：</p>
+<ul>
+<li>内核维护ARP缓存表</li>
+<li>存储IP地址到MAC地址的映射</li>
+<li>每个条目：IP地址、MAC地址、状态、过期时间、接口、等待队列等</li>
+<li>4.4BSD使用链表存储ARP缓存</li>
+</ul>
+<p><strong>ARP条目状态</strong>：</p>
+<ul>
+<li>永久：静态条目，不过期</li>
+<li>已解析：已获得MAC地址，可直接使用</li>
+<li>待解析：已发送ARP请求，等待应答</li>
+<li>过期：动态条目有超时（通常20分钟）</li>
+</ul>
+<h3 id="ARP输入"><a href="#ARP输入" class="headerlink" title="ARP输入"></a>ARP输入</h3><p><strong>arpintr函数</strong>：</p>
+<ul>
+<li>处理收到的ARP报文</li>
+<li>验证ARP报文格式</li>
+<li>更新发送方的IP-MAC映射到缓存（免费学习）</li>
+<li>如果是ARP请求且目标IP是本机：<ul>
+<li>发送ARP应答（包含本机MAC）</li>
+<li>更新缓存</li>
+</ul>
+</li>
+<li>如果是ARP应答：<ul>
+<li>更新缓存</li>
+<li>唤醒等待该MAC的发送队列</li>
+</ul>
+</li>
+</ul>
+<p><strong>免费ARP（Gratuitous ARP）</strong>：</p>
+<ul>
+<li>主机发送ARP请求查询自己的IP</li>
+<li>作用：检测IP冲突、更新其他主机缓存</li>
+<li>4.4BSD在接口启动时发送免费ARP</li>
+</ul>
+<h3 id="ARP输出"><a href="#ARP输出" class="headerlink" title="ARP输出"></a>ARP输出</h3><p><strong>arpresolve函数</strong>：</p>
+<ul>
+<li>由ether_output调用</li>
+<li>查找目标IP的ARP缓存</li>
+<li>如果已解析：返回MAC地址，直接发送</li>
+<li>如果未解析：<ul>
+<li>创建待解析条目</li>
+<li>发送ARP请求（广播）</li>
+<li>将待发送帧加入等待队列</li>
+<li>返回”暂时无法发送”</li>
+</ul>
+</li>
+<li>ARP应答到达后，处理等待队列中的帧</li>
+</ul>
+<p><strong>ARP请求&#x2F;应答格式</strong>：</p>
+<ul>
+<li>硬件类型：1（以太网）</li>
+<li>协议类型：0x0800（IP）</li>
+<li>硬件地址长度：6</li>
+<li>协议地址长度：4</li>
+<li>操作码：1（请求）、2（应答）</li>
+<li>发送端MAC、发送端IP、目标MAC、目标IP</li>
+</ul>
+<hr>
+<h2 id="第9章-ICMP：网际控制报文协议"><a href="#第9章-ICMP：网际控制报文协议" class="headerlink" title="第9章 ICMP：网际控制报文协议"></a>第9章 ICMP：网际控制报文协议</h2><h3 id="ICMP输入"><a href="#ICMP输入" class="headerlink" title="ICMP输入"></a>ICMP输入</h3><p><strong>icmpintr函数</strong>：</p>
+<ul>
+<li>处理收到的ICMP报文</li>
+<li>验证ICMP校验和</li>
+<li>根据类型和代码分发处理：<ul>
+<li>ICMP_ECHOREPLY：应答（Ping的应答）</li>
+<li>ICMP_UNREACH：目的不可达</li>
+<li>ICMP_REDIRECT：重定向</li>
+<li>ICMP_ECHO：回显请求（Ping请求）</li>
+<li>ICMP_TIMXCEED：超时</li>
+<li>ICMP_PARAMPROB：参数问题</li>
+<li>ICMP_TSTAMP：时间戳请求</li>
+<li>ICMP_TSTAMPREPLY：时间戳应答</li>
+<li>ICMP_MASKREQ：地址掩码请求</li>
+<li>ICMP_MASKREPLY：地址掩码应答</li>
+</ul>
+</li>
+</ul>
+<p><strong>ICMP差错报文的处理</strong>：</p>
+<ul>
+<li>目的不可达、超时、重定向等差错报文</li>
+<li>包含原始IP数据报的前8字节（含传输层首部）</li>
+<li>内核根据原始数据报的源端口找到对应的inpcb</li>
+<li>通知传输层（TCP&#x2F;UDP）发生了差错</li>
+<li>TCP可能调整重传或终止连接</li>
+<li>UDP将差错传递给应用（通过recvfrom的错误）</li>
+</ul>
+<h3 id="ICMP输出"><a href="#ICMP输出" class="headerlink" title="ICMP输出"></a>ICMP输出</h3><p><strong>icmp_error函数</strong>：</p>
+<ul>
+<li>发送ICMP差错报文</li>
+<li>参数：触发差错的IP数据报、类型、代码、指针</li>
+<li>构造ICMP报文：<ul>
+<li>ICMP首部（类型、代码、校验和）</li>
+<li>原始IP首部+前8字节数据</li>
+</ul>
+</li>
+<li>选择源地址（接收接口地址）</li>
+<li>调用ip_output发送</li>
+<li>遵循ICMP差错报文生成规则（不对ICMP差错报文生成差错、不对广播生成差错等）</li>
+</ul>
+<p><strong>icmp_reflect函数</strong>：</p>
+<ul>
+<li>处理ICMP查询请求（回显、时间戳、地址掩码）</li>
+<li>构造应答报文</li>
+<li>交换源&#x2F;目的地址</li>
+<li>调用ip_output发送</li>
+</ul>
+<h3 id="ICMP重定向"><a href="#ICMP重定向" class="headerlink" title="ICMP重定向"></a>ICMP重定向</h3><p><strong>重定向处理</strong>：</p>
+<ul>
+<li>收到ICMP重定向报文</li>
+<li>更新路由表（添加或修改主机路由）</li>
+<li>重定向类型：<ul>
+<li>网络重定向：目标网络的更好路由</li>
+<li>主机重定向：目标主机的更好路由</li>
+<li>服务类型和网络重定向</li>
+<li>服务类型和主机重定向</li>
+</ul>
+</li>
+<li>重定向路由有过期时间</li>
+<li>主机通过重定向学习更优路由，减少路由器负担</li>
+</ul>
+<hr>
+<h2 id="第10章-IGMP：网际组管理协议"><a href="#第10章-IGMP：网际组管理协议" class="headerlink" title="第10章 IGMP：网际组管理协议"></a>第10章 IGMP：网际组管理协议</h2><h3 id="IGMP概述"><a href="#IGMP概述" class="headerlink" title="IGMP概述"></a>IGMP概述</h3><p><strong>IGMP的作用</strong>：</p>
+<ul>
+<li>主机向本地路由器报告组成员关系</li>
+<li>路由器维护每个接口的组播组成员</li>
+<li>用于IP组播</li>
+<li>IGMPv1&#x2F;v2&#x2F;v3</li>
+</ul>
+<p><strong>IGMP报文类型</strong>：</p>
+<ul>
+<li>成员查询（Membership Query）：路由器发送，查询组成员</li>
+<li>成员报告（Membership Report）：主机发送，报告加入组</li>
+<li>离开组（Leave Group）：主机发送，报告离开组（v2）</li>
+</ul>
+<h3 id="IGMP输入"><a href="#IGMP输入" class="headerlink" title="IGMP输入"></a>IGMP输入</h3><p><strong>igmp_input函数</strong>：</p>
+<ul>
+<li>处理收到的IGMP报文</li>
+<li>验证IGMP校验和</li>
+<li>成员查询：<ul>
+<li>启动或重置组成员报告定时器</li>
+<li>每个组随机延迟一段时间后发送报告</li>
+</ul>
+</li>
+<li>成员报告：<ul>
+<li>收到其他主机的报告，取消自己的报告定时器（避免重复报告）</li>
+<li>更新本地组成员状态</li>
+</ul>
+</li>
+</ul>
+<h3 id="IGMP输出"><a href="#IGMP输出" class="headerlink" title="IGMP输出"></a>IGMP输出</h3><p><strong>加入组播组</strong>：</p>
+<ul>
+<li>应用通过setsockopt(IP_ADD_MEMBERSHIP)加入组播组</li>
+<li>内核：<ul>
+<li>记录组成员关系（in_multi结构）</li>
+<li>通知网卡加入组播MAC过滤</li>
+<li>发送IGMP成员报告</li>
+<li>定期发送报告（响应查询）</li>
+</ul>
+</li>
+</ul>
+<p><strong>离开组播组</strong>：</p>
+<ul>
+<li>应用通过setsockopt(IP_DROP_MEMBERSHIP)离开</li>
+<li>内核：<ul>
+<li>删除组成员记录</li>
+<li>通知网卡离开组播MAC过滤</li>
+<li>发送IGMP离开组报文（v2）</li>
+</ul>
+</li>
+</ul>
+<p><strong>组播组成员维护</strong>：</p>
+<ul>
+<li>每个接口维护组播组链表</li>
+<li>每个组有引用计数（多个进程加入同一组）</li>
+<li>引用计数为0时真正离开</li>
+<li>定时器：响应查询的随机延迟、报告重传</li>
+</ul>
+<hr>
+<h2 id="第11章-UDP：用户数据报协议"><a href="#第11章-UDP：用户数据报协议" class="headerlink" title="第11章 UDP：用户数据报协议"></a>第11章 UDP：用户数据报协议</h2><h3 id="UDP处理概述"><a href="#UDP处理概述" class="headerlink" title="UDP处理概述"></a>UDP处理概述</h3><p><strong>UDP的特点</strong>：</p>
+<ul>
+<li>无连接、不可靠</li>
+<li>简单的首部（8字节）</li>
+<li>不保证交付、顺序、不重复</li>
+<li>不做流量控制、拥塞控制</li>
+<li>高效，适用于实时应用</li>
+</ul>
+<p><strong>UDP输入（udp_input）</strong>：</p>
+<ul>
+<li>由ipintr分用调用</li>
+<li>验证UDP校验和（可选）</li>
+<li>查找对应的inpcb（根据源IP、源端口、目的IP、目的端口）</li>
+<li>查找顺序：<ol>
+<li>完全匹配（源IP、源端口、目的IP、目的端口都匹配）</li>
+<li>匹配目的，源通配</li>
+<li>通配</li>
+</ol>
+</li>
+<li>找到后：<ul>
+<li>将数据报加入插口接收缓冲区</li>
+<li>唤醒等待的进程</li>
+</ul>
+</li>
+<li>未找到：<ul>
+<li>发送ICMP端口不可达</li>
+<li>丢弃数据报</li>
+</ul>
+</li>
+</ul>
+<p><strong>UDP输出</strong>：</p>
+<ul>
+<li>应用调用sendto&#x2F;sendmsg</li>
+<li>插口层将数据复制到mbuf</li>
+<li>udp_output：<ul>
+<li>查找路由（根据目的地址）</li>
+<li>选择源地址</li>
+<li>构造UDP首部（源端口、目的端口、长度、校验和）</li>
+<li>计算UDP校验和（覆盖伪首部+UDP首部+数据）</li>
+<li>调用ip_output发送</li>
+</ul>
+</li>
+</ul>
+<h3 id="inpcb结构"><a href="#inpcb结构" class="headerlink" title="inpcb结构"></a>inpcb结构</h3><p><strong>Internet协议控制块（inpcb）</strong>：</p>
+<ul>
+<li>UDP和TCP共用的控制块结构</li>
+<li>存储：本地地址、本地端口、外部地址、外部端口、路由、插口指针、选项等</li>
+<li>所有inpcb组成链表（按协议分）</li>
+<li>哈希表加速查找（按本地端口哈希）</li>
+</ul>
+<p><strong>inpcb查找</strong>：</p>
+<ul>
+<li>in_pcblookup：根据四元组查找</li>
+<li>通配匹配：本地地址&#x2F;端口、外部地址&#x2F;端口可以通配</li>
+<li>最具体的匹配优先</li>
+<li>TCP的inpcb还关联tcpcb</li>
+</ul>
+<h3 id="UDP校验和"><a href="#UDP校验和" class="headerlink" title="UDP校验和"></a>UDP校验和</h3><p><strong>UDP校验和计算</strong>：</p>
+<ul>
+<li>覆盖：伪首部 + UDP首部 + UDP数据</li>
+<li>伪首部：源IP、目的IP、0、协议（17）、UDP长度</li>
+<li>16位二进制反码求和</li>
+<li>校验和为0表示不计算（IPv4可选）</li>
+<li>如果计算结果为0，存储为0xFFFF</li>
+</ul>
+<p><strong>UDP校验和的意义</strong>：</p>
+<ul>
+<li>检测数据损坏</li>
+<li>IP首部校验和只校验IP首部</li>
+<li>UDP校验和提供端到端的数据完整性</li>
+<li>虽然UDP不可靠，但校验和能检测损坏</li>
+<li>IPv6中UDP校验和是强制的</li>
+</ul>
+<hr>
+<h2 id="第12章-TCP：传输控制协议"><a href="#第12章-TCP：传输控制协议" class="headerlink" title="第12章 TCP：传输控制协议"></a>第12章 TCP：传输控制协议</h2><h3 id="TCP概述"><a href="#TCP概述" class="headerlink" title="TCP概述"></a>TCP概述</h3><p><strong>TCP的特点</strong>：</p>
+<ul>
+<li>面向连接、可靠、全双工</li>
+<li>字节流服务</li>
+<li>流量控制、拥塞控制</li>
+<li>复杂的状态机和定时器</li>
+</ul>
+<p><strong>TCP控制块（tcpcb）</strong>：</p>
+<ul>
+<li>每个TCP连接有一个tcpcb</li>
+<li>关联inpcb（四元组、路由等）</li>
+<li>存储：<ul>
+<li>序号：发送&#x2F;接收的序号、窗口、确认号</li>
+<li>状态：连接状态</li>
+<li>窗口：发送窗口、接收窗口、拥塞窗口、慢启动阈值</li>
+<li>定时器：重传、坚持、保活、2MSL</li>
+<li>缓冲区：发送缓冲区、接收缓冲区</li>
+<li>选项：MSS、窗口扩大、时间戳、SACK</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP输入（tcp-input）"><a href="#TCP输入（tcp-input）" class="headerlink" title="TCP输入（tcp_input）"></a>TCP输入（tcp_input）</h3><p><strong>tcp_input的处理流程</strong>：</p>
+<ol>
+<li>验证TCP校验和</li>
+<li>查找对应的inpcb&#x2F;tcpcb</li>
+<li>处理TCP状态：<ul>
+<li>LISTEN状态：处理SYN（建立连接）</li>
+<li>SYN_SENT状态：处理SYN+ACK</li>
+<li>ESTABLISHED及其他状态：处理数据、ACK、FIN、RST</li>
+</ul>
+</li>
+<li>序号检查：确保数据在接收窗口内</li>
+<li>处理ACK：确认发送的数据，更新发送窗口</li>
+<li>处理数据：将数据放入接收缓冲区，更新序号</li>
+<li>处理窗口更新</li>
+<li>处理FIN：关闭连接</li>
+<li>处理RST：复位连接</li>
+<li>发送ACK（延迟确认或立即）</li>
+<li>唤醒等待的进程</li>
+</ol>
+<p><strong>TCP输入的复杂性</strong>：</p>
+<ul>
+<li>需要处理各种状态和标志组合</li>
+<li>需要处理乱序数据、重复数据</li>
+<li>需要处理半关闭、同时关闭</li>
+<li>需要更新各种定时器</li>
+<li>是TCP实现中最复杂的部分</li>
+</ul>
+<h3 id="TCP输出（tcp-output）"><a href="#TCP输出（tcp-output）" class="headerlink" title="TCP输出（tcp_output）"></a>TCP输出（tcp_output）</h3><p><strong>tcp_output的功能</strong>：</p>
+<ul>
+<li>根据发送缓冲区和窗口状态，决定发送什么</li>
+<li>发送条件：<ul>
+<li>有数据要发送且窗口允许</li>
+<li>SYN&#x2F;FIN&#x2F;RST需要发送</li>
+<li>重传超时</li>
+<li>持续定时器探测</li>
+<li>窗口更新</li>
+</ul>
+</li>
+<li>发送流程：<ol>
+<li>计算可发送的数据量（min(发送缓冲区数据, 发送窗口, 拥塞窗口, MSS)）</li>
+<li>构造TCP段（首部+数据）</li>
+<li>计算TCP校验和</li>
+<li>调用ip_output发送</li>
+<li>更新发送序号、缓冲区</li>
+<li>启动重传定时器（如果未启动）</li>
+</ol>
+</li>
+</ul>
+<p><strong>TCP输出的触发</strong>：</p>
+<ul>
+<li>应用调用write&#x2F;send</li>
+<li>收到ACK（确认了数据，窗口打开）</li>
+<li>重传定时器超时</li>
+<li>坚持定时器超时</li>
+<li>延迟确认定时器超时</li>
+<li>各种状态变化</li>
+</ul>
+<hr>
+<h2 id="第13章-TCP定时器"><a href="#第13章-TCP定时器" class="headerlink" title="第13章 TCP定时器"></a>第13章 TCP定时器</h2><h3 id="重传定时器"><a href="#重传定时器" class="headerlink" title="重传定时器"></a>重传定时器</h3><p><strong>重传定时器的作用</strong>：</p>
+<ul>
+<li>发送数据后启动</li>
+<li>超时未收到ACK则重传</li>
+<li>是TCP可靠性的核心</li>
+</ul>
+<p><strong>RTT估计</strong>：</p>
+<ul>
+<li>测量已确认段的RTT</li>
+<li>Karn算法：重传的段不用于RTT测量</li>
+<li>SRTT &#x3D; (1-α)×SRTT + α×RTT（α&#x3D;1&#x2F;8）</li>
+<li>RTTVAR &#x3D; (1-β)×RTTVAR + β×|SRTT-RTT|（β&#x3D;1&#x2F;4）</li>
+<li>RTO &#x3D; SRTT + max(G, 4×RTTVAR)</li>
+</ul>
+<p><strong>重传定时器管理</strong>：</p>
+<ul>
+<li>发送数据时启动（如果未启动）</li>
+<li>收到ACK时：<ul>
+<li>如果所有数据都已确认，停止定时器</li>
+<li>否则重新计算RTO并重启</li>
+</ul>
+</li>
+<li>超时：<ul>
+<li>重传最早的未确认段</li>
+<li>ssthresh &#x3D; max(cwnd&#x2F;2, 2*MSS)</li>
+<li>cwnd &#x3D; 1*MSS（慢启动）</li>
+<li>RTO指数退避（每次超时翻倍）</li>
+<li>重启定时器</li>
+</ul>
+</li>
+</ul>
+<h3 id="坚持定时器"><a href="#坚持定时器" class="headerlink" title="坚持定时器"></a>坚持定时器</h3><p><strong>坚持定时器的作用</strong>：</p>
+<ul>
+<li>接收方通告零窗口后，发送方无法发送数据</li>
+<li>如果窗口更新丢失，会导致死锁</li>
+<li>坚持定时器定期发送窗口探测</li>
+</ul>
+<p><strong>坚持定时器的工作</strong>：</p>
+<ul>
+<li>收到零窗口通告时启动</li>
+<li>超时发送1字节的窗口探测段</li>
+<li>探测间隔指数退避：5s, 10s, 20s, 40s, …最大60s</li>
+<li>收到非零窗口通告时停止</li>
+<li>防止死锁</li>
+</ul>
+<h3 id="保活定时器"><a href="#保活定时器" class="headerlink" title="保活定时器"></a>保活定时器</h3><p><strong>保活定时器的作用</strong>：</p>
+<ul>
+<li>检测空闲连接的对端是否仍然存活</li>
+<li>默认关闭（应用可通过SO_KEEPALIVE启用）</li>
+</ul>
+<p><strong>保活定时器的工作</strong>：</p>
+<ul>
+<li>连接空闲2小时后启动</li>
+<li>发送保活探测段（空数据段，序号为已确认序号-1）</li>
+<li>如果收到响应，对端存活，重置定时器</li>
+<li>如果无响应，每75秒发送一次，共9次</li>
+<li>仍无响应则认为对端已关闭，终止连接</li>
+<li>争议：浪费带宽、可能误杀（临时网络中断）</li>
+</ul>
+<h3 id="2MSL定时器"><a href="#2MSL定时器" class="headerlink" title="2MSL定时器"></a>2MSL定时器</h3><p><strong>2MSL定时器</strong>：</p>
+<ul>
+<li>TIME_WAIT状态持续2MSL</li>
+<li>主动关闭的一方进入TIME_WAIT</li>
+<li>作用：<ol>
+<li>可靠终止连接（最后ACK丢失可重传）</li>
+<li>让旧连接的报文在网络中消逝</li>
+</ol>
+</li>
+<li>MSL通常30秒-2分钟</li>
+<li>2MSL&#x3D;1-4分钟</li>
+</ul>
+<hr>
+<h2 id="第14章-插口层"><a href="#第14章-插口层" class="headerlink" title="第14章 插口层"></a>第14章 插口层</h2><h3 id="插口系统调用"><a href="#插口系统调用" class="headerlink" title="插口系统调用"></a>插口系统调用</h3><p><strong>常用插口系统调用</strong>：</p>
+<ul>
+<li>socket()：创建插口</li>
+<li>bind()：绑定地址</li>
+<li>listen()：监听（TCP服务器）</li>
+<li>accept()：接受连接（TCP服务器）</li>
+<li>connect()：连接（TCP客户端）</li>
+<li>send()&#x2F;sendto()&#x2F;sendmsg()：发送数据</li>
+<li>recv()&#x2F;recvfrom()&#x2F;recvmsg()：接收数据</li>
+<li>close()：关闭插口</li>
+<li>setsockopt()&#x2F;getsockopt()：设置&#x2F;获取选项</li>
+<li>ioctl()：控制</li>
+<li>select()&#x2F;poll()：多路复用</li>
+</ul>
+<p><strong>socket系统调用</strong>：</p>
+<ul>
+<li>创建插口描述符</li>
+<li>参数：域（AF_INET）、类型（SOCK_STREAM&#x2F;SOCK_DGRAM）、协议</li>
+<li>内核：<ul>
+<li>分配file结构和socket结构</li>
+<li>根据类型选择协议（TCP&#x2F;UDP）</li>
+<li>调用协议的pr_usrreq初始化</li>
+<li>返回描述符</li>
+</ul>
+</li>
+</ul>
+<h3 id="插口结构"><a href="#插口结构" class="headerlink" title="插口结构"></a>插口结构</h3><p><strong>struct socket</strong>：</p>
+<ul>
+<li>so_type：类型（SOCK_STREAM等）</li>
+<li>so_options：选项（SO_REUSEADDR等）</li>
+<li>so_linger：延迟关闭时间</li>
+<li>so_state：状态（SS_ISCONNECTED等）</li>
+<li>so_pcb：协议控制块指针（inpcb）</li>
+<li>so_proto：协议切换表指针</li>
+<li>so_head：监听队列头（TCP服务器）</li>
+<li>so_q：已完成连接队列</li>
+<li>so_q0：半连接队列</li>
+<li>so_rcv：接收缓冲区</li>
+<li>so_snd：发送缓冲区</li>
+<li>so_timeo：超时</li>
+</ul>
+<p><strong>接收缓冲区（sockbuf）</strong>：</p>
+<ul>
+<li>存储收到的数据</li>
+<li>高水位标记（sb_hiwat）：缓冲区最大大小</li>
+<li>低水位标记（sb_lowat）：接收就绪的最小数据量</li>
+<li>接收缓冲区大小影响TCP窗口大小</li>
+<li>应用通过setsockopt(SO_RCVBUF)调整</li>
+</ul>
+<p><strong>发送缓冲区（sockbuf）</strong>：</p>
+<ul>
+<li>存储待发送的数据</li>
+<li>高水位标记限制应用写入速度（流量控制）</li>
+<li>TCP发送缓冲区数据在确认前不能释放</li>
+<li>应用通过setsockopt(SO_SNDBUF)调整</li>
+</ul>
+<h3 id="插口选项"><a href="#插口选项" class="headerlink" title="插口选项"></a>插口选项</h3><p><strong>常用插口选项</strong>：</p>
+<ul>
+<li>SO_REUSEADDR：允许重用本地地址（TIME_WAIT状态的端口）</li>
+<li>SO_REUSEPORT：允许多个进程绑定同一端口（负载均衡）</li>
+<li>SO_KEEPALIVE：启用保活定时器</li>
+<li>SO_LINGER：延迟关闭（close时等待数据发送完成）</li>
+<li>SO_BROADCAST：允许广播</li>
+<li>SO_OOBINLINE：带外数据内联</li>
+<li>SO_SNDBUF&#x2F;SO_RCVBUF：发送&#x2F;接收缓冲区大小</li>
+<li>SO_ERROR：获取待处理错误</li>
+<li>SO_TYPE：获取插口类型</li>
+<li>IP_OPTIONS：IP选项</li>
+<li>IP_HDRINCL：包含IP首部（原始套接字）</li>
+<li>IP_TTL：生存时间</li>
+<li>IP_MULTICAST_IF：组播输出接口</li>
+<li>IP_ADD_MEMBERSHIP&#x2F;IP_DROP_MEMBERSHIP：加入&#x2F;离开组播组</li>
+<li>TCP_NODELAY：禁用Nagle算法</li>
+<li>TCP_MAXSEG：最大段大小</li>
+<li>TCP_KEEPALIVE：保活定时器间隔</li>
+</ul>
+<hr>
+<h2 id="读书笔记总结"><a href="#读书笔记总结" class="headerlink" title="读书笔记总结"></a>读书笔记总结</h2><p>《TCP&#x2F;IP详解 卷2：实现》是TCP&#x2F;IP协议实现的圣经级著作，由Gary R. Wright和W. Richard Stevens编写，基于4.4BSD-Lite2内核源码，逐行分析TCP&#x2F;IP协议栈的完整实现。</p>
+<p><strong>全书知识脉络：</strong></p>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1章</td>
+<td>概述</td>
+<td>源码组织、协议栈层次、描述符与插口、输入输出流程、中断与并发</td>
+</tr>
+<tr>
+<td>第2章</td>
+<td>mbuf</td>
+<td>mbuf结构、类型、宏和函数、外部簇、引用计数、内存管理</td>
+</tr>
+<tr>
+<td>第3章</td>
+<td>接口层</td>
+<td>ifnet结构、接口初始化、if_output、if_start、输入处理</td>
+</tr>
+<tr>
+<td>第4章</td>
+<td>以太网</td>
+<td>以太网驱动、ether_output、ARP解析、地址映射、帧封装</td>
+</tr>
+<tr>
+<td>第5章</td>
+<td>SLIP和环回</td>
+<td>SLIP封装&#x2F;解封装、环回接口、虚拟接口</td>
+</tr>
+<tr>
+<td>第6章</td>
+<td>IP协议</td>
+<td>ipintr输入、ip_output输出、分片与重组、IP选项、校验和</td>
+</tr>
+<tr>
+<td>第7章</td>
+<td>IP路由</td>
+<td>radix树、路由表、rtentry、最长前缀匹配、路由套接字</td>
+</tr>
+<tr>
+<td>第8章</td>
+<td>ARP</td>
+<td>ARP缓存、arpintr输入、arpresolve输出、免费ARP、ARP代理</td>
+</tr>
+<tr>
+<td>第9章</td>
+<td>ICMP</td>
+<td>icmpintr输入、icmp_error输出、差错报文处理、重定向</td>
+</tr>
+<tr>
+<td>第10章</td>
+<td>IGMP</td>
+<td>组成员管理、igmp_input、加入&#x2F;离开组播组、报告定时器</td>
+</tr>
+<tr>
+<td>第11章</td>
+<td>UDP</td>
+<td>udp_input输入、udp_output输出、inpcb查找、UDP校验和</td>
+</tr>
+<tr>
+<td>第12章</td>
+<td>TCP</td>
+<td>tcpcb控制块、tcp_input输入、tcp_output输出、状态机</td>
+</tr>
+<tr>
+<td>第13章</td>
+<td>TCP定时器</td>
+<td>重传定时器（RTT估计&#x2F;RTO）、坚持定时器、保活定时器、2MSL</td>
+</tr>
+<tr>
+<td>第14章</td>
+<td>插口层</td>
+<td>系统调用、socket结构、收发缓冲区、插口选项</td>
+</tr>
+</tbody></table>
+<p><strong>学习建议：</strong></p>
+<ul>
+<li>本书是源码分析，需要有C语言和操作系统基础</li>
+<li>配合卷1学习，先理解协议原理再看实现</li>
+<li>不要试图逐行读完所有代码，重点理解核心函数和数据结构</li>
+<li>重点章节：mbuf（第2章）、IP输入输出（第6章）、TCP输入输出（第12章）、TCP定时器（第13章）</li>
+<li>理解mbuf是理解整个网络栈的基础</li>
+<li>理解inpcb和tcpcb是理解TCP&#x2F;UDP的关键</li>
+<li>可以在自己的系统上（Linux&#x2F;BSD）阅读对应源码，对比学习</li>
+<li>Linux内核的TCP&#x2F;IP实现与BSD有差异，但核心思想相同</li>
+<li>本书基于4.4BSD-Lite2，虽然较老，但协议实现的核心思想不变</li>
+<li>适合网络开发者、系统程序员、内核爱好者深入学习</li>
+</ul>
+<p>这本书是理解TCP&#x2F;IP协议内部实现的必读之作，深入内核源码，揭示协议”如何工作”的本质，是从”会用网络”到”懂网络”的关键一步。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://jokerzxxx.github.io/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%AE%9E%E7%8E%B0/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" /></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" /></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://jokerzxxx.github.io/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%AE%9E%E7%8E%B0/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/09/15/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B73/">TCP/IP详解 卷3：TCP事务协议、HTTP、NNTP和UNIX域协议</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/09/14/TCP-IP%E8%AF%A6%E8%A7%A3%E5%8D%B71-%E5%8D%8F%E8%AE%AE/">TCP/IP详解 卷1：协议</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">内容</span><a href="/">近期文章</a><a href="/topics/">专题地图</a><a href="/documents/">全部文档</a><a href="/categories/">文章分类</a><a href="/tags/">全部标签</a><a href="/archives/">时间归档</a></div><div class="sitemap-group"><span class="fs15">专题</span><a href="/tags/Android/">Android</a><a href="/tags/Java/">Java</a><a href="/tags/CAN/">CAN 协议</a><a href="/categories/%E5%90%89%E4%BB%96%E7%94%9F%E6%B4%BB/">吉他</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/Jokerzxxx">GitHub</a></div></div><div class="text"><p>© Jokerzxxx · 愿每一次记录，都有回声。<br>本站由 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 驱动，内容采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-IP%E8%AF%A6%E8%A7%A3-%E5%8D%B72%EF%BC%9A%E5%AE%9E%E7%8E%B0"><span class="toc-text">TCP&#x2F;IP详解 卷2：实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC1%E7%AB%A0-%E6%A6%82%E8%BF%B0"><span class="toc-text">第1章 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-mbuf%EF%BC%9A%E5%AD%98%E5%82%A8%E5%99%A8%E7%BC%93%E5%AD%98"><span class="toc-text">第2章 mbuf：存储器缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E6%8E%A5%E5%8F%A3%E5%B1%82"><span class="toc-text">第3章 接口层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E6%8E%A5%E5%8F%A3%EF%BC%9A%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-text">第4章 接口：以太网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC5%E7%AB%A0-%E6%8E%A5%E5%8F%A3%EF%BC%9ASLIP%E5%92%8C%E7%8E%AF%E5%9B%9E"><span class="toc-text">第5章 接口：SLIP和环回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-IP%EF%BC%9A%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AE"><span class="toc-text">第6章 IP：网际协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-IP%E8%B7%AF%E7%94%B1"><span class="toc-text">第7章 IP路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC8%E7%AB%A0-ARP%EF%BC%9A%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE"><span class="toc-text">第8章 ARP：地址解析协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC9%E7%AB%A0-ICMP%EF%BC%9A%E7%BD%91%E9%99%85%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE"><span class="toc-text">第9章 ICMP：网际控制报文协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC10%E7%AB%A0-IGMP%EF%BC%9A%E7%BD%91%E9%99%85%E7%BB%84%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE"><span class="toc-text">第10章 IGMP：网际组管理协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC11%E7%AB%A0-UDP%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AE"><span class="toc-text">第11章 UDP：用户数据报协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC12%E7%AB%A0-TCP%EF%BC%9A%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE"><span class="toc-text">第12章 TCP：传输控制协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC13%E7%AB%A0-TCP%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">第13章 TCP定时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC14%E7%AB%A0-%E6%8F%92%E5%8F%A3%E5%B1%82"><span class="toc-text">第14章 插口层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93"><span class="toc-text">读书笔记总结</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.md-text img:not([class]), .md-text .image img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `复制`,
+        success_text: `已复制`,
+        toast: `代码已复制`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+<script src="/js/toc-toggle.js" defer></script>
+</div></body></html>
